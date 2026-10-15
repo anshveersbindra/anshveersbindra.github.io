@@ -36,13 +36,12 @@
   --line: #e2e8f0;
   --line-light: #f1f5f9;
   
-  /* Princeton & Academic Palette */
-  --princeton-orange: #e77500;
-  --princeton-deep: #b45309;
-  --princeton-soft: #fffbeb;
-  --princeton-border: #fde68a;
-  
+  /* Refined Neutral Academic Palette */
   --navy: #0f172a;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-soft: #f1f5f9;
+  --accent-border: #cbd5e1;
   --navy-accent: #1e3a8a;
   --navy-soft: #eff6ff;
   
@@ -82,12 +81,12 @@ h1, h2, h3, h4, .serif-font {
 }
 
 a {
-  color: var(--princeton-deep);
+  color: var(--accent);
   text-decoration: none;
   transition: all 0.2s ease;
 }
 a:hover {
-  color: var(--princeton-orange);
+  color: var(--accent-hover);
 }
 
 .wrap {
@@ -123,10 +122,10 @@ header.hero {
   text-transform: uppercase;
 }
 
-.badge-princeton {
-  background: var(--princeton-soft);
-  color: #9a3412;
-  border: 1px solid var(--princeton-border);
+.badge-app {
+  background: #f1f5f9;
+  color: #1e293b;
+  border: 1px solid #cbd5e1;
 }
 
 .badge-subtle {
@@ -201,7 +200,7 @@ h1.hero-title {
 /* Executive Note for AOs */
 .ao-note {
   background: #ffffff;
-  border-left: 4px solid var(--princeton-orange);
+  border-left: 4px solid var(--navy);
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   padding: 18px 22px;
   margin: 28px 0 0;
@@ -218,7 +217,7 @@ h1.hero-title {
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--princeton-deep);
+  color: var(--accent);
   margin-bottom: 6px;
 }
 .ao-note p {
@@ -362,8 +361,9 @@ h3.card-title {
 
 /* Plain English Hook */
 .layman-hook {
-  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
-  border: 1px solid var(--princeton-border);
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-left: 3px solid var(--navy);
   border-radius: var(--radius-sm);
   padding: 12px 18px;
   margin-bottom: 24px;
@@ -372,18 +372,18 @@ h3.card-title {
   align-items: flex-start;
 }
 .layman-hook-icon {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   line-height: 1.2;
   flex-shrink: 0;
 }
 .layman-hook-text {
   font-size: 0.94rem;
-  color: #78350f;
-  line-height: 1.5;
+  color: #334155;
+  line-height: 1.55;
   margin: 0;
 }
 .layman-hook-text strong {
-  color: #92400e;
+  color: var(--navy);
   font-weight: 700;
 }
 
@@ -401,7 +401,7 @@ h3.card-title {
   transition: border-color 0.2s;
 }
 .pillar:hover {
-  border-left-color: var(--princeton-orange);
+  border-left-color: var(--accent-hover);
 }
 
 .pillar-header {
@@ -415,10 +415,10 @@ h3.card-title {
   color: var(--ink-secondary);
   margin-bottom: 4px;
 }
-.pillar-header.question-head { color: #b45309; }
+.pillar-header.question-head { color: #475569; }
 .pillar-header.method-head   { color: #1d4ed8; }
 .pillar-header.results-head  { color: #047857; }
-.pillar-header.signif-head   { color: #4338ca; }
+.pillar-header.signif-head   { color: var(--navy); }
 
 .pillar p {
   margin: 0 0 6px;
@@ -507,7 +507,7 @@ summary.deep-dive-trigger {
   user-select: none;
 }
 summary.deep-dive-trigger:hover {
-  color: var(--princeton-deep);
+  color: var(--accent);
   background: var(--bg-subtle);
 }
 summary.deep-dive-trigger::marker { display: none; content: ""; }
@@ -579,11 +579,11 @@ table.data-table tr:hover td {
   transform: translateY(-1px);
 }
 .btn-accent {
-  background: var(--princeton-orange);
+  background: #334155;
   color: #ffffff;
 }
 .btn-accent:hover {
-  background: var(--princeton-deep);
+  background: #1e293b;
   color: #ffffff;
   transform: translateY(-1px);
 }
@@ -712,7 +712,7 @@ footer .footer-content {
 <header class="hero" id="top">
   <div class="wrap">
     <div class="badge-row">
-      <span class="badge badge-princeton">Princeton University &middot; Common App Supplement</span>
+      <span class="badge badge-app">Common App &middot; Supplementary Research Portfolio</span>
       <span class="badge badge-subtle">Oberoi International School JVLR &middot; Mumbai</span>
     </div>
     
@@ -751,7 +751,7 @@ footer .footer-content {
     <div class="ao-note">
       <div class="ao-note-header">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-        Executive Summary for Admissions Officers
+        Executive Summary for Admissions Committees &amp; Evaluators
       </div>
       <p>
         Each entry below is structured with a <strong>one-sentence intuitive hook</strong>, followed by four clear pillars: <strong>The Question</strong>, <strong>The Method &amp; Intuition</strong>, <strong>The Concrete Results</strong>, and <strong>Significance</strong>. Key mathematical equations are typeset with KaTeX with intuitive explanations of every variable. For faculty evaluators or deeper inspection, click <em>Technical Deep-Dive</em> or open the full manuscripts directly.
@@ -875,7 +875,7 @@ footer .footer-content {
     <details class="deep-dive">
       <summary class="deep-dive-trigger">
         <span>Technical Deep-Dive: Synthetic Benchmarks &amp; Resolution Limits</span>
-        <span style="font-size:0.8rem; color:var(--princeton-deep);">Click to Expand &darr;</span>
+        <span style="font-size:0.8rem; color:var(--muted);">Click to Expand &darr;</span>
       </summary>
       <div class="deep-dive-content">
         <p><strong>Monte Carlo Validation:</strong> Before running on real telescope data, we evaluated the inversion on 100 synthetic catalogues of 2,356 pulsars with known injection profiles (Fast, Gaussian, and Bimodal). The algorithm accurately recovered the birth distribution to within $0.06\text{ dex}$ in $\log P$, with an effective resolution of $0.29\text{ dex}$ inside the slow window.</p>
@@ -1517,15 +1517,15 @@ footer .footer-content {
 
   <article class="audio-card">
     <div class="card-top">
-      <span class="card-category" style="background:#fef3c7; color:#92400e;">Chamber Music &middot; Mathematical Serialism</span>
+      <span class="card-category" style="background:#f1f5f9; color:#334155;">Chamber Music &middot; Mathematical Serialism</span>
       <span class="card-meta">2025 &middot; ~3 Minutes &middot; String Quartet</span>
     </div>
 
     <h3 class="card-title">String Quartet in E minor, &ldquo;Future&rdquo;</h3>
     
-    <div class="layman-hook" style="background:#fdf4ff; border-color:#f0abfc;">
+    <div class="layman-hook" >
       <div class="layman-hook-icon">&#127926;</div>
-      <p class="layman-hook-text" style="color:#701a75;">
+      <p class="layman-hook-text" >
         <strong>Bridging Number Theory and Harmony:</strong> This quartet applies serialist techniques where pitch intervals and harmonic shifts are governed by cyclic permutations and modular arithmetic sequences—the exact same structures investigated in my digit-subtraction dynamics research.
       </p>
     </div>
@@ -1647,7 +1647,7 @@ footer .footer-content {
       <a href="#top" class="btn btn-secondary" style="padding:6px 12px; font-size:0.8rem;">Back to Top &uarr;</a>
     </div>
     <div style="font-size:0.85rem; color:var(--muted); line-height:1.5;">
-      Supplementary portfolio prepared for undergraduate admissions committees, including Princeton University. All manuscripts, sheet music, and audio recordings are authored or co-authored by Anshveer Bindra.
+      Supplementary portfolio prepared for undergraduate admissions committees, All manuscripts, sheet music, and audio recordings are authored or co-authored by Anshveer Bindra.
     </div>
   </div>
 </footer>

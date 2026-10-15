@@ -1,5 +1,5 @@
 # Portfolio & Academic Research - Anshveer Bindra
-Supplementary portfolio for college applications (including Princeton University).
+Supplementary portfolio for undergraduate college applications.
 
 ## Contents
 - **index.html**: Main interactive research portfolio with KaTeX mathematical typesetting, executive summaries, and embedded viewers.

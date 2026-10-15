@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anshveer Bindra | Research Portfolio &amp; Supplementary Materials</title>
+<meta name="description" content="Common App Supplementary Portfolio for Anshveer Bindra: Seven research papers in astrophysics, theoretical physics, and pure mathematics, an original string quartet, and UniPal.">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- KaTeX for instantaneous, razor-sharp mathematical typesetting -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      {left: '$$', right: '$$', display: true},
+      {left: '\\[', right: '\\]', display: true},
+      {left: '$', right: '$', display: false},
+      {left: '\\(', right: '\\)', display: false}
+    ],
+    throwOnError: false
+  });"></script>
+
+<style>
+:root {
+  --bg: #f8fafc;
+  --bg-subtle: #f1f5f9;
+  --card-bg: #ffffff;
+  --ink: #0f172a;
+  --ink-secondary: #334155;
+  --muted: #64748b;
+  --line: #e2e8f0;
+  --line-light: #f1f5f9;
+  
+  /* Princeton & Academic Palette */
+  --princeton-orange: #e77500;
+  --princeton-deep: #b45309;
+  --princeton-soft: #fffbeb;
+  --princeton-border: #fde68a;
+  
+  --navy: #0f172a;
+  --navy-accent: #1e3a8a;
+  --navy-soft: #eff6ff;
+  
+  --emerald: #047857;
+  --emerald-soft: #ecfdf5;
+  
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 4px 16px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+  --shadow-lg: 0 12px 32px -4px rgba(15, 23, 42, 0.08);
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Typography */
+h1, h2, h3, h4, .serif-font {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  line-height: 1.15;
+  color: var(--navy);
+  font-weight: 700;
+}
+
+.mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+a {
+  color: var(--princeton-deep);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+a:hover {
+  color: var(--princeton-orange);
+}
+
+.wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Hero Section */
+header.hero {
+  background: linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+  border-bottom: 1px solid var(--line);
+  padding: 64px 0 40px;
+}
+
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.badge-princeton {
+  background: var(--princeton-soft);
+  color: #9a3412;
+  border: 1px solid var(--princeton-border);
+}
+
+.badge-subtle {
+  background: var(--bg-subtle);
+  color: var(--muted);
+  border: 1px solid var(--line);
+}
+
+h1.hero-title {
+  font-size: clamp(2.8rem, 6vw, 4.2rem);
+  letter-spacing: -0.02em;
+  margin: 0 0 10px;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-secondary);
+  font-weight: 500;
+  margin: 0 0 16px;
+}
+
+.hero-lead {
+  font-size: 1.05rem;
+  color: var(--muted);
+  max-width: 44em;
+  margin: 0 0 28px;
+  line-height: 1.7;
+}
+
+/* Stat Grid */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.stat-card {
+  background: var(--card-bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 16px 18px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.stat-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: 6px;
+}
+.stat-desc {
+  font-size: 0.85rem;
+  color: var(--ink-secondary);
+  margin-top: 4px;
+}
+
+/* Executive Note for AOs */
+.ao-note {
+  background: #ffffff;
+  border-left: 4px solid var(--princeton-orange);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 18px 22px;
+  margin: 28px 0 0;
+  box-shadow: var(--shadow-sm);
+  border-top: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.ao-note-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--princeton-deep);
+  margin-bottom: 6px;
+}
+.ao-note p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--ink-secondary);
+  line-height: 1.6;
+}
+
+/* Sticky Navigation & Filter */
+nav.nav-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  padding: 10px 0;
+}
+
+nav .nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+nav .nav-container::-webkit-scrollbar { display: none; }
+
+.filter-group {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.filter-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+.filter-btn:hover {
+  background: var(--bg-subtle);
+  color: var(--ink);
+}
+.filter-btn.active {
+  background: var(--navy);
+  color: #ffffff;
+  border-color: var(--navy);
+}
+
+.filter-btn .count {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.25);
+  padding: 1px 6px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  margin-left: 4px;
+}
+.filter-btn:not(.active) .count {
+  background: var(--bg-subtle);
+  color: var(--muted);
+}
+
+/* Sections */
+section {
+  padding: 56px 0 20px;
+}
+
+.section-head {
+  margin-bottom: 28px;
+}
+.section-title {
+  font-size: 2.4rem;
+  margin: 0 0 6px;
+  letter-spacing: -0.01em;
+}
+.section-sub {
+  color: var(--muted);
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+/* Paper Cards */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 32px 36px;
+  margin-bottom: 32px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  position: relative;
+}
+.card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: #cbd5e1;
+}
+
+.card-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.card-category {
+  display: inline-block;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: var(--navy-soft);
+  color: var(--navy-accent);
+}
+
+.card-meta {
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+h3.card-title {
+  font-size: 1.85rem;
+  margin: 0 0 14px;
+  color: var(--navy);
+  line-height: 1.25;
+}
+
+/* Plain English Hook */
+.layman-hook {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+  border: 1px solid var(--princeton-border);
+  border-radius: var(--radius-sm);
+  padding: 12px 18px;
+  margin-bottom: 24px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.layman-hook-icon {
+  font-size: 1.25rem;
+  line-height: 1.2;
+  flex-shrink: 0;
+}
+.layman-hook-text {
+  font-size: 0.94rem;
+  color: #78350f;
+  line-height: 1.5;
+  margin: 0;
+}
+.layman-hook-text strong {
+  color: #92400e;
+  font-weight: 700;
+}
+
+/* 4-Pillar Grid */
+.pillar-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.pillar {
+  border-left: 3px solid var(--line);
+  padding-left: 16px;
+  transition: border-color 0.2s;
+}
+.pillar:hover {
+  border-left-color: var(--princeton-orange);
+}
+
+.pillar-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-secondary);
+  margin-bottom: 4px;
+}
+.pillar-header.question-head { color: #b45309; }
+.pillar-header.method-head   { color: #1d4ed8; }
+.pillar-header.results-head  { color: #047857; }
+.pillar-header.signif-head   { color: #4338ca; }
+
+.pillar p {
+  margin: 0 0 6px;
+  color: var(--ink);
+  font-size: 0.97rem;
+  line-height: 1.6;
+}
+
+.pillar ul {
+  margin: 4px 0 6px;
+  padding-left: 18px;
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+.pillar li {
+  margin-bottom: 6px;
+  line-height: 1.55;
+}
+
+/* Math Equation Showcase Box */
+.math-box {
+  background: #f8fafc;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 18px 22px;
+  margin: 20px 0;
+  position: relative;
+}
+.math-box-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--line);
+}
+.math-box-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+.math-formula {
+  overflow-x: auto;
+  padding: 6px 0;
+  font-size: 1.15rem;
+  text-align: center;
+}
+.math-legend {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--line-light);
+  font-size: 0.84rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.math-legend span {
+  font-weight: 600;
+  color: var(--ink-secondary);
+}
+
+/* Technical Deep Dive / Accordion */
+details.deep-dive {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  margin-top: 18px;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+details.deep-dive[open] {
+  background: #ffffff;
+  border-color: #cbd5e1;
+}
+
+summary.deep-dive-trigger {
+  padding: 12px 18px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--ink-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+}
+summary.deep-dive-trigger:hover {
+  color: var(--princeton-deep);
+  background: var(--bg-subtle);
+}
+summary.deep-dive-trigger::marker { display: none; content: ""; }
+
+.deep-dive-content {
+  padding: 18px 20px;
+  border-top: 1px solid var(--line);
+  font-size: 0.93rem;
+  line-height: 1.6;
+}
+
+/* Tables */
+table.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  margin: 12px 0;
+  overflow-x: auto;
+  display: block;
+}
+table.data-table th, table.data-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--line);
+  text-align: right;
+  white-space: nowrap;
+}
+table.data-table th:first-child, table.data-table td:first-child {
+  text-align: left;
+}
+table.data-table th {
+  background: var(--bg-subtle);
+  font-weight: 600;
+  color: var(--ink-secondary);
+}
+table.data-table tr:hover td {
+  background: rgba(241, 245, 249, 0.6);
+}
+
+/* Action Buttons */
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line-light);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+.btn-primary {
+  background: var(--navy);
+  color: #ffffff;
+}
+.btn-primary:hover {
+  background: #1e293b;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+.btn-accent {
+  background: var(--princeton-orange);
+  color: #ffffff;
+}
+.btn-accent:hover {
+  background: var(--princeton-deep);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+.btn-secondary {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  color: var(--ink-secondary);
+}
+.btn-secondary:hover {
+  border-color: #94a3b8;
+  color: var(--ink);
+  background: var(--bg-subtle);
+}
+
+/* Inline PDF Viewer Container */
+.pdf-viewer-wrap {
+  margin-top: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: #334155;
+  display: none;
+}
+.pdf-viewer-wrap.active {
+  display: block;
+}
+.pdf-viewer-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1e293b;
+  padding: 8px 14px;
+  color: #e2e8f0;
+  font-size: 0.85rem;
+}
+.pdf-viewer-bar a {
+  color: #93c5fd;
+  text-decoration: underline;
+}
+.pdf-viewer-wrap iframe, .pdf-viewer-wrap object {
+  width: 100%;
+  height: 640px;
+  border: none;
+  background: #ffffff;
+}
+
+/* Audio Player */
+.audio-card {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 30px 34px;
+  box-shadow: var(--shadow-sm);
+}
+audio.styled-audio {
+  width: 100%;
+  margin: 16px 0 10px;
+  border-radius: 999px;
+}
+
+/* UniPal Showcase */
+.unipal-card {
+  background: linear-gradient(180deg, #ffffff 0%, #fbfcfe 100%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 32px 36px;
+  box-shadow: var(--shadow-sm);
+}
+
+.unipal-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+.unipal-metric-box {
+  background: var(--bg-subtle);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  text-align: center;
+}
+.unipal-metric-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1;
+}
+.unipal-metric-lbl {
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* Footer */
+footer {
+  border-top: 1px solid var(--line);
+  background: #ffffff;
+  padding: 50px 0 60px;
+  margin-top: 60px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+footer .footer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .wrap { padding: 0 18px; }
+  .card { padding: 24px 20px; }
+  h1.hero-title { font-size: 2.5rem; }
+  h3.card-title { font-size: 1.55rem; }
+  .pdf-viewer-wrap iframe, .pdf-viewer-wrap object { height: 460px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO HEADER -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="badge-row">
+      <span class="badge badge-princeton">Princeton University &middot; Common App Supplement</span>
+      <span class="badge badge-subtle">Oberoi International School JVLR &middot; Mumbai</span>
+    </div>
+    
+    <h1 class="hero-title">Anshveer Bindra</h1>
+    <div class="hero-subtitle">Independent Research Portfolio &middot; Physics, Mathematics, &amp; Music</div>
+    
+    <p class="hero-lead">
+      This supplementary portfolio brings together seven research papers spanning observational &amp; theoretical astrophysics, curved-space quantum field theory, algebraic topology, and analytic number theory, alongside an original string quartet and educational technology leadership at UniPal.
+    </p>
+
+    <!-- Quick Stats Grid -->
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-number">7</div>
+        <div class="stat-label">Research Papers</div>
+        <div class="stat-desc">4 First/Co-Authored &middot; 3 Pure Math &amp; Reviews</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">2,356</div>
+        <div class="stat-label">Pulsars Inverted</div>
+        <div class="stat-desc">Resolving the 45-year slow-birth paradox</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">137</div>
+        <div class="stat-label">Pages on de Rham</div>
+        <div class="stat-desc">Homology to smooth manifold cohomology</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">900+</div>
+        <div class="stat-label">Students Reached</div>
+        <div class="stat-desc">CTO &amp; Lecturer at UniPal Nonprofit</div>
+      </div>
+    </div>
+
+    <!-- Note for the Admissions Committee -->
+    <div class="ao-note">
+      <div class="ao-note-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+        Executive Summary for Admissions Officers
+      </div>
+      <p>
+        Each entry below is structured with a <strong>one-sentence intuitive hook</strong>, followed by four clear pillars: <strong>The Question</strong>, <strong>The Method &amp; Intuition</strong>, <strong>The Concrete Results</strong>, and <strong>Significance</strong>. Key mathematical equations are typeset with KaTeX with intuitive explanations of every variable. For faculty evaluators or deeper inspection, click <em>Technical Deep-Dive</em> or open the full manuscripts directly.
+      </p>
+    </div>
+  </div>
+</header>
+
+<!-- STICKY FILTER & NAV BAR -->
+<nav class="nav-bar" aria-label="Portfolio Navigation">
+  <div class="wrap nav-container">
+    <div class="filter-group" role="tablist">
+      <button class="filter-btn active" data-filter="all" onclick="filterWorks('all', this)">All Works <span class="count">9</span></button>
+      <button class="filter-btn" data-filter="astrophysics" onclick="filterWorks('astrophysics', this)">Astrophysics <span class="count">3</span></button>
+      <button class="filter-btn" data-filter="physics" onclick="filterWorks('physics', this)">Theoretical Physics <span class="count">1</span></button>
+      <button class="filter-btn" data-filter="mathematics" onclick="filterWorks('mathematics', this)">Pure Math <span class="count">3</span></button>
+      <button class="filter-btn" data-filter="creative" onclick="filterWorks('creative', this)">Music &amp; Leadership <span class="count">2</span></button>
+    </div>
+    <div style="flex-shrink:0;">
+      <a href="#music" style="font-size: 0.88rem; font-weight: 600; color: var(--navy); margin-right: 14px;">Quartet</a>
+      <a href="#unipal" style="font-size: 0.88rem; font-weight: 600; color: var(--navy);">UniPal</a>
+    </div>
+  </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main class="wrap">
+
+<!-- PAPERS SECTION -->
+<section id="papers">
+  <div class="section-head">
+    <h2 class="section-title">Research Papers</h2>
+    <p class="section-sub">Peer-level investigation across astrophysics, curved-space quantum theory, and pure mathematics.</p>
+  </div>
+
+  <!-- PAPER 1: WEAK-FORM PULSAR INVERSION -->
+  <article class="card" data-category="astrophysics">
+    <div class="card-top">
+      <span class="card-category">Astrophysics &middot; Computational Fluid Dynamics</span>
+      <span class="card-meta">With Tanish Kulkarni &middot; 2026 &middot; Paper I of Pulsar Series</span>
+    </div>
+    
+    <h3 class="card-title">A Weak-Form 2D Continuity Inversion for Pulsar Birth Demographics</h3>
+
+    <div class="layman-hook">
+      <div class="layman-hook-icon">&#9889;</div>
+      <p class="layman-hook-text">
+        <strong>The 10-Second Takeaway:</strong> For 45 years, astronomers debated whether neutron stars are born spinning blindingly fast or sluggishly slow. By treating 2,356 drifting pulsars as a fluid and solving the inverse continuity equation in "weak form," we prove that neutron stars are overwhelmingly born spinning fast, settling a classic 1981 controversy.
+      </p>
+    </div>
+
+    <div class="pillar-grid">
+      <!-- Question -->
+      <div class="pillar">
+        <div class="pillar-header question-head">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          1. The Question &amp; The Paradox
+        </div>
+        <p>
+          Do neutron stars begin their lives spinning tens of times per second (tens of milliseconds), or are up to 75% injected at slow periods of $0.40$ to $0.85\text{ s}$? In 1981, Vivekanand and Narayan deduced that most pulsars are born slow. But counting pulsars directly from telescope data is deceptively hard: pulsar braking scales with magnetic field as $\dot{P} \propto B^2/P$ (varying by six orders of magnitude across the population), and radio surveys suffer from severe, unknown observational selection effects.
+        </p>
+      </div>
+
+      <!-- Method -->
+      <div class="pillar">
+        <div class="pillar-header method-head">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          2. The Method &amp; Mathematical Intuition
+        </div>
+        <p>
+          Pulsars do not jump randomly; they drift deterministically through the period-magnetic field $(P, B)$ plane. Thus, their birth rate $S$ must obey a 2D continuity equation. Differentiating raw, noisy observational histograms directly amplifies noise into massive false signals. To solve this, we formulated the equation in <strong>weak form</strong>: integrating against smooth test functions transfers the derivatives off the noisy catalogue data and onto the infinitely smooth test functions. Crucially, telescope visibility was calibrated <em>exclusively outside</em> the contested slow-birth window ($0.40 - 0.85\text{ s}$), eliminating any possibility of circular reasoning.
+        </p>
+      </div>
+    </div>
+
+    <!-- Math Feature Box -->
+    <div class="math-box">
+      <div class="math-box-header">
+        <span class="math-box-title">Core Governing Equation &middot; Weak Continuity Inversion</span>
+        <span class="badge badge-subtle">Phase Space $(P, B)$</span>
+      </div>
+      <div class="math-formula">
+        $$\nabla \cdot \big(\mathbf{v}\,f\big) + \Lambda f = S \quad \implies \quad \iint \Big[ \mathbf{v}f \cdot \nabla\phi - \Lambda f \phi + S\phi \Big] \,d(\log P)\,d(\log B) = 0$$
+      </div>
+      <div class="math-legend">
+        <strong>Symbol Key:</strong> $\mathbf{v}$ is deterministic drift velocity $(\dot{P}, \dot{B})$, $f(P,B)$ is true pulsar phase-space density, $\Lambda$ is death/luminosity cutoff rate, $S(P,B)$ is the birth injection rate to be reconstructed, and $\phi$ is a smooth Sobolev test function that absorbs all spatial derivatives.
+      </div>
+    </div>
+
+    <div class="pillar-grid">
+      <!-- Results -->
+      <div class="pillar">
+        <div class="pillar-header results-head">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          3. Concrete Results &amp; Multi-Wavelength Validation
+        </div>
+        <p>
+          Applying this inversion to the complete ATNF catalogue of <strong>2,356 isolated pulsars</strong> reveals that <strong>only $0.57\%$ of pulsars are born slow</strong> (with a formal upper limit of $\le 9.03\%$ across all field-decay timescales). The classical 40%–75% slow-birth hypothesis is ruled out. We verified this through four independent, calibration-free physical cross-checks:
+        </p>
+        <ul>
+          <li><strong>Supernova Remnant Census:</strong> Constrains slow births to $\le 22\%$.</li>
+          <li><strong>Galactic Scale-Height Clock:</strong> Kinematic drift away from the Galactic plane bounds slow births to $\le 17\%$ ($2.6\sigma$ tension with the $50\%$ hypothesis).</li>
+          <li><strong>Volume-Complete Solar Cylinders:</strong> Local neighborhood census bounds slow births to $4\% - 9\%$.</li>
+          <li><strong>High-Field Conservation Bound:</strong> Restricts slow births to $\le 23\%$.</li>
+        </ul>
+      </div>
+
+      <!-- Significance -->
+      <div class="pillar">
+        <div class="pillar-header signif-head">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          4. Scientific Significance
+        </div>
+        <p>
+          This paper resolves a foundational debate in high-energy astrophysics, demonstrating that the apparent abundance of slow pulsars is an illusion caused by rapid spin-down rather than slow birth injection. It establishes that core-collapse supernovae almost universally produce rapidly rotating compact objects.
+        </p>
+      </div>
+    </div>
+
+    <!-- Deep Dive Collapsible -->
+    <details class="deep-dive">
+      <summary class="deep-dive-trigger">
+        <span>Technical Deep-Dive: Synthetic Benchmarks &amp; Resolution Limits</span>
+        <span style="font-size:0.8rem; color:var(--princeton-deep);">Click to Expand &darr;</span>
+      </summary>
+      <div class="deep-dive-content">
+        <p><strong>Monte Carlo Validation:</strong> Before running on real telescope data, we evaluated the inversion on 100 synthetic catalogues of 2,356 pulsars with known injection profiles (Fast, Gaussian, and Bimodal). The algorithm accurately recovered the birth distribution to within $0.06\text{ dex}$ in $\log P$, with an effective resolution of $0.29\text{ dex}$ inside the slow window.</p>
+        <p><strong>Resolution Boundary:</strong> The paper explicitly documents its own physical threshold: slow-birth fractions below $25\% - 30\%$ fall beneath the observational noise floor of current radio telescopes and cannot be definitively ruled out until next-generation surveys (SKA, ngVLA) come online.</p>
+      </div>
+    </details>
+
+    <!-- Action Buttons -->
+    <div class="card-actions">
+      <a class="btn btn-primary" href="papers/weak-form-inversion.pdf" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+        Open Full Manuscript (PDF)
+      </a>
+      <button class="btn btn-secondary" onclick="togglePdf('viewer-weak-inversion')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+        Toggle Inline Reader
+      </button>
+      <a class="btn btn-secondary" href="papers/weak-form-inversion.pdf" download>Download</a>
+    </div>
+
+    <!-- Inline PDF Embed Container -->
+    <div id="viewer-weak-inversion" class="pdf-viewer-wrap">
+      <div class="pdf-viewer-bar">
+        <span>A Weak-Form 2D Continuity Inversion for Pulsar Birth Demographics &middot; Bindra &amp; Kulkarni</span>
+        <a href="papers/weak-form-inversion.pdf" target="_blank">Open in New Window &nearr;</a>
+      </div>
+      <object data="papers/weak-form-inversion.pdf" type="application/pdf">
+        <p style="padding: 20px; color: white;">Your browser does not support inline PDF viewing. <a href="papers/weak-form-inversion.pdf" style="color:#93c5fd;">Download the PDF</a>.</p>
+      </object>
+    </div>
+  </article>
+
+  <!-- PAPER 2: INTRINSIC EQUILIBRIUM PULSAR DEMOGRAPHICS -->
+  <article class="card" data-category="astrophysics">
+    <div class="card-top">
+      <span class="card-category">Astrophysics &middot; Galactic Population Synthesis</span>
+      <span class="card-meta">With Tanish Kulkarni &middot; 2026 &middot; Paper II of Pulsar Series (AASTeX631)</span>
+    </div>
+    
+    <h3 class="card-title">The Intrinsic Equilibrium Demographic Distribution of Galactic Pulsars</h3>
+
+    <div class="layman-hook">
+      <div class="layman-hook-icon">&#127756;</div>
+      <p class="layman-hook-text">
+        <strong>The 10-Second Takeaway:</strong> If pulsars are born spinning at 48 milliseconds, why do our telescope surveys peak at 0.6 seconds? We model the entire evolutionary life of Milky Way pulsars, showing that stars spend 100,000 times longer creeping through mature spin periods, explaining the apparent population without needing any slow births.
+      </p>
+    </div>
+
+    <div class="pillar-grid">
+      <div class="pillar">
+        <div class="pillar-header question-head">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          1. The Question: The Missing 97%
+        </div>
+        <p>
+          Paper I showed that pulsars are born fast, peaking near $48\text{ ms}$. But the observed catalog of 2,356 timed pulsars represents barely $3\%$ of the Galaxy's active population. What does the true, intrinsic demographic distribution of the entire Milky Way look like? And why does the observed catalog peak around $0.6\text{ s}$ if every pulsar started at $0.05\text{ s}$?
+        </p>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-header method-head">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          2. The Method &amp; The Factor of $10^5$
+        </div>
+        <p>
+          The explanation lies in <strong>residence time</strong>. A pulsar's dwell time per decade of spin period scales as $\tau_{\rm res} \propto P^2/B^2$. A newborn pulsar flashes across the fast regime in just $\sim 270\text{ years}$, but takes over $\mathbf{23\text{ million years}}$ to cross the mature period range of $0.5$ to $3\text{ s}$—a residence slowdown factor of $\mathbf{10^5}$! Pulsars spend $71\%$ of their active radiating lives at slow periods. We solved the steady-state 2D continuity equation analytically in a single sweep and verified it against a custom 100,000-star Fortran Monte Carlo simulation over $100\text{ Myr}$.
+        </p>
+      </div>
+    </div>
+
+    <!-- Math Feature Box -->
+    <div class="math-box">
+      <div class="math-box-header">
+        <span class="math-box-title">Equilibrium Transport &amp; Kinematic Velocity</span>
+        <span class="badge badge-subtle">Steady-State Solution</span>
+      </div>
+      <div class="math-formula">
+        $$\partial_x\big(v_x f\big) + \partial_y\big(v_y f\big) + \Lambda f = S, \quad \text{where } v_x \propto B^2 P^{-(n-1)}, \quad \tau_{\rm res} \propto \frac{P^2}{B^2}$$
+      </div>
+      <div class="math-legend">
+        <strong>Symbol Key:</strong> $x = \log P$, $y = \log B$, $v_x$ is magnetic dipole braking drift, $v_y$ is crustal ohmic field decay, and $\tau_{\rm res}$ is residence time per logarithmic period decade.
+      </div>
+    </div>
+
+    <div class="pillar-grid">
+      <div class="pillar">
+        <div class="pillar-header results-head">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          3. Concrete Demographics &amp; Blind Tests
+        </div>
+        <ul>
+          <li><strong>True Population Peak:</strong> The real Galactic population peaks at <strong>$1.61\text{ s}$</strong> with a median of <strong>$1.38\text{ s}$</strong>, perfectly reproducing the observed $0.62\text{ s}$ telescope peak once radio beam geometry and luminosity thresholds are accounted for ($W_1 = 0.037\text{ dex}$).</li>
+          <li><strong>Milky Way Inventory:</strong> The Galaxy hosts $(0.82 \pm 0.27) \times 10^5$ active radio pulsars and $\sim 1.1 \times 10^8$ cold dead remnants.</li>
+          <li><strong>Blind Spatial Test:</strong> Ballistic drift out of the Galactic disk accurately predicts high-latitude pulsars without tuning ($W_1 = 0.031\text{ dex}$, KS test $p = 0.199$).</li>
+          <li><strong>Survey Forecasts:</strong> Predicts discovery medians will shift to $0.83\text{ s}$ for FAST and $1.03\text{ s}$ for the Square Kilometre Array (SKA1-Mid).</li>
+        </ul>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-header signif-head">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          4. Scientific Significance
+        </div>
+        <p>
+          Completes the two-paper series by providing an end-to-end, physically consistent demographic map of compact objects in the Milky Way, linking newborn supernova dynamics to the cold, dead pulsar graveyard of our Galaxy.
+        </p>
+      </div>
+    </div>
+
+    <div class="card-actions">
+      <a class="btn btn-primary" href="papers/pulsar-demographics.pdf" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+        Open Full Manuscript (PDF)
+      </a>
+      <button class="btn btn-secondary" onclick="togglePdf('viewer-pulsar-demographics')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+        Toggle Inline Reader
+      </button>
+      <a class="btn btn-secondary" href="papers/pulsar-demographics.pdf" download>Download</a>
+    </div>
+
+    <div id="viewer-pulsar-demographics" class="pdf-viewer-wrap">
+      <div class="pdf-viewer-bar">
+        <span>The Intrinsic Equilibrium Demographic Distribution of Galactic Pulsars &middot; Bindra &amp; Kulkarni</span>
+        <a href="papers/pulsar-demographics.pdf" target="_blank">Open in New Window &nearr;</a>
+      </div>
+      <object data="papers/pulsar-demographics.pdf" type="application/pdf">
+        <p style="padding: 20px; color: white;">Your browser does not support inline PDF viewing. <a href="papers/pulsar-demographics.pdf" style="color:#93c5fd;">Download the PDF</a>.</p>
+      </object>
+    </div>
+  </article>
+
+  <!-- PAPER 3: ASTEROID ORBIT GAUSS -->
+  <article class="card" data-category="astrophysics">
+    <div class="card-top">
+      <span class="card-category">Observational Astronomy &middot; Summer Science Program (SSP)</span>
+      <span class="card-meta">With Chloe Leung &amp; Gavin Flajole &middot; LCO Telescopes (Chile, Hawaii, Texas)</span>
+    </div>
+    
+    <h3 class="card-title">Orbit Determination of Near-Earth Asteroid 2015 GF27 via the Method of Gauss</h3>
+
+    <div class="layman-hook">
+      <div class="layman-hook-icon">&#128640;</div>
+      <p class="layman-hook-text">
+        <strong>The 10-Second Takeaway:</strong> We tracked an elusive Near-Earth Asteroid using Las Cumbres Observatory telescopes across three continents, computed its full 3D Keplerian orbit from only three images, matched NASA JPL ephemerides to within 0.11%–0.61%, and uncovered a key lesson in real astronomy: why high precision is not the same as true accuracy.
+      </p>
+    </div>
+
+    <div class="pillar-grid">
+      <div class="pillar">
+        <div class="pillar-header question-head">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          1. The Question: Planetary Defense from 3 Snapshots
+        </div>
+        <p>
+          Near-Earth Asteroid (NEA) tracking is vital for planetary defense. But when a newly discovered asteroid is faint and fast-moving, can you reconstruct its complete six-parameter 3D elliptical orbit around the Sun using only three optical telescope observations spanning 26 days?
+        </p>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-header method-head">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          2. The Method: Gauss 1801 with 4th-Order Perturbations
+        </div>
+        <p>
+          We acquired and reduced raw FITS images from Las Cumbres Observatory (LCO) telescopes in Chile, Hawaii, and Texas, performing astrometry calibrated against 20 reference stars per frame. We wrote a Python engine implementing Gauss's 1801 method, expressing the middle position vector as a coplanar combination $\mathbf{r}_2 = a_1\mathbf{r}_1 + a_3\mathbf{r}_3$ and refining it iteratively with 4th-order series $\mathbf{r}(\tau) = f(\tau)\mathbf{r}_2 + g(\tau)\dot{\mathbf{r}}_2$ until convergence to $10^{-10}\text{ AU}$. Measurement uncertainties were propagated with Monte Carlo trials.
+        </p>
+      </div>
+    </div>
+
+    <!-- Math Feature Box -->
+    <div class="math-box">
+      <div class="math-box-header">
+        <span class="math-box-title">Gauss Orbit Iteration &amp; 4th-Order $f$ and $g$ Series</span>
+        <span class="badge badge-subtle">Heliocentric Position Refinement</span>
+      </div>
+      <div class="math-formula">
+        $$\mathbf{r}(\tau) = f(\tau)\,\mathbf{r}_2 + g(\tau)\,\dot{\mathbf{r}}_2, \quad f(\tau) = 1 - \frac{\mu}{2r_2^3}\tau^2 + \dots, \quad g(\tau) = \tau - \frac{\mu}{6r_2^3}\tau^3 + \dots$$
+      </div>
+      <div class="math-legend">
+        <strong>Symbol Key:</strong> $\tau = k(t - t_2)$ is Gaussian time difference, $\mu = 1$ in canonical solar units, and $r_2 = \|\mathbf{r}_2\|$ is heliocentric distance.
+      </div>
+    </div>
+
+    <!-- Results Table -->
+    <div class="pillar">
+      <div class="pillar-header results-head">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        3. Results &amp; Comparison with NASA JPL Horizons
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Orbital Element</th>
+            <th>Our Method</th>
+            <th>NASA JPL Horizons</th>
+            <th>Discrepancy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Semi-major axis ($a$)</strong></td>
+            <td>$2.2932\text{ AU}$</td>
+            <td>$2.3610\text{ AU}$</td>
+            <td>$0.61\%$</td>
+          </tr>
+          <tr>
+            <td><strong>Eccentricity ($e$)</strong></td>
+            <td>$0.4436$</td>
+            <td>$0.4565$</td>
+            <td>$0.51\%$</td>
+          </tr>
+          <tr>
+            <td><strong>Inclination ($i$)</strong></td>
+            <td>$9.978^\circ$</td>
+            <td>$10.136^\circ$</td>
+            <td><strong>$0.11\%$</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Ascending Node ($\Omega$)</strong></td>
+            <td>$231.708^\circ$</td>
+            <td>$231.401^\circ$</td>
+            <td>$0.20\%$</td>
+          </tr>
+          <tr>
+            <td><strong>Arg. of Periapsis ($\omega$)</strong></td>
+            <td>$46.348^\circ$</td>
+            <td>$47.143^\circ$</td>
+            <td>$2.35\%$</td>
+          </tr>
+          <tr>
+            <td><strong>Mean Anomaly ($M$)</strong></td>
+            <td>$1.502^\circ$</td>
+            <td>$1.287^\circ$</td>
+            <td>$17.83\%$</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pillar" style="margin-top:16px;">
+      <div class="pillar-header signif-head">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+        4. The Astrophysical Lesson: Precision vs. Accuracy
+      </div>
+      <p>
+        The Monte Carlo random measurement error ($\pm 0.005\text{ AU}$) was far smaller than the difference with NASA JPL. This proved our errors were not random noise, but systematic: the Gauss model assumes a pure two-body problem, ignoring planetary perturbations from Earth and Jupiter. Furthermore, because asteroid 2015 GF27 has a shallow inclination ($\sim 10^\circ$), the out-of-plane signal is tiny, dramatically amplifying orbital element sensitivities.
+      </p>
+    </div>
+
+    <div class="card-actions">
+      <a class="btn btn-primary" href="papers/asteroid-2015-GF27.pdf" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+        Open Full Report (PDF)
+      </a>
+      <button class="btn btn-secondary" onclick="togglePdf('viewer-asteroid')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+        Toggle Inline Reader
+      </button>
+      <a class="btn btn-secondary" href="papers/asteroid-2015-GF27.pdf" download>Download</a>
+    </div>
+
+    <div id="viewer-asteroid" class="pdf-viewer-wrap">
+      <div class="pdf-viewer-bar">
+        <span>Orbit Determination of Asteroid 2015 GF27 &middot; Bindra, Leung, Flajole (SSP)</span>
+        <a href="papers/asteroid-2015-GF27.pdf" target="_blank">Open in New Window &nearr;</a>
+      </div>
+      <object data="papers/asteroid-2015-GF27.pdf" type="application/pdf">
+        <p style="padding: 20px; color: white;">Your browser does not support inline PDF viewing. <a href="papers/asteroid-2015-GF27.pdf" style="color:#93c5fd;">Download the PDF</a>.</p>
+      </object>
+    </div>
+  </article>
+
+  <!-- PAPER 4: QFT IN DE SITTER SPACE -->
+  <article class="card" data-category="physics">
+    <div class="card-top">
+      <span class="card-category">Theoretical Physics &middot; Quantum Field Theory in Curved Spacetime</span>
+      <span class="card-meta">Anshveer Bindra &middot; 2026 &middot; Comprehensive Theoretical Review</span>
+    </div>
+    
+    <h3 class="card-title">Quantum Field Theory in de Sitter Space: Foundations, Challenges, and Implications for Physics</h3>
+
+    <div class="layman-hook">
+      <div class="layman-hook-icon">&#128302;</div>
+      <p class="layman-hook-text">
+        <strong>The 10-Second Takeaway:</strong> In an exponentially expanding universe like our cosmos during inflation, empty space has no stable "nothingness"—an observer sees a thermal glow of radiating particles born from spacetime geometry itself. This monograph synthesizes how modern mathematical frameworks reconcile quantum unitarity with expanding cosmological horizons.
+      </p>
+    </div>
+
+    <div class="pillar-grid">
+      <div class="pillar">
+        <div class="pillar-header question-head">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          1. The Question: When Quantum Vacua Break Down
+        </div>
+        <p>
+          De Sitter space describes both the primordial inflation of the infant universe and today's dark-energy expansion. Yet ordinary quantum field theory breaks down here: there is no global timelike Killing vector, meaning there is no unique, canonical "empty vacuum." Instead, a continuous family of vacua (the $\alpha$-vacua) exists, static observers detect an unavoidable thermal Gibbons-Hawking radiation at temperature $T_{\rm dS} = H/2\pi$, and massless scalar fields develop infrared divergences that threaten perturbation theory.
+        </p>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-header method-head">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          2. Two Unifying Mathematical Frameworks
+        </div>
+        <p>
+          This work systematically unifies two advanced approaches:
+        </p>
+        <ul>
+          <li><strong>Direct-Sum QFT:</strong> Replaces the single Hilbert space with $\mathcal{H}_+ \oplus \mathcal{H}_-$, separating time orientations. While the total cosmological state is strictly pure and unitary, an observer confined behind an event horizon sees a reduced density matrix $\rho_+ = \mathrm{Tr}_- |\Psi\rangle\langle\Psi|$, which is mathematically identical to a thermal bath. Thermality is thus proven to be a direct consequence of horizon entanglement.</li>
+          <li><strong>Ambient Space Formalism:</strong> Embeds 4D de Sitter space as a 5D hyperboloid $-X_0^2 + X_1^2 + \dots + X_4^2 = H^{-2}$ in flat Minkowski spacetime, allowing the symmetry group $\mathrm{SO}(1,4)$ to act by linear matrix operations, eliminating coordinate singularities and tracing infrared divergences to indecomposable group representations.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Math Feature Box -->
+    <div class="math-box">
+      <div class="math-box-header">
+        <span class="math-box-title">Cosmological Horizon Temperature &amp; Ambient 5D Hyperboloid</span>
+        <span class="badge badge-subtle">Natural Units ($\hbar = c = k_B = 1$)</span>
+      </div>
+      <div class="math-formula">
+        $$T_{\rm dS} = \frac{H}{2\pi}, \qquad -X_0^2 + \sum_{i=1}^4 X_i^2 = H^{-2}, \qquad \mathcal{P}_\phi = \frac{H^2}{4\pi^2}$$
+      </div>
+      <div class="math-legend">
+        <strong>Symbol Key:</strong> $H$ is the Hubble expansion parameter, $T_{\rm dS}$ is the Gibbons-Hawking horizon temperature, and $\mathcal{P}_\phi$ is the scale-invariant scalar perturbation power spectrum that seeds galaxies in the cosmic microwave background.
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="pillar-header signif-head">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+        3. Scientific Significance &amp; Open Frontiers
+      </div>
+      <p>
+        The review connects these algebraic foundations directly to observable signatures in the Cosmic Microwave Background (CMB). It concludes with a critical survey of unsolved open problems: constructing local, gauge-invariant observables in quantum gravity, the non-perturbative stability of de Sitter vacua in string theory, and the holographic dS/CFT correspondence.
+      </p>
+    </div>
+
+    <div class="card-actions">
+      <a class="btn btn-primary" href="papers/qft-de-sitter.pdf" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+        Open Full Monograph (PDF)
+      </a>
+      <button class="btn btn-secondary" onclick="togglePdf('viewer-qft')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+        Toggle Inline Reader
+      </button>
+      <a class="btn btn-secondary" href="papers/qft-de-sitter.pdf" download>Download</a>
+    </div>
+
+    <div id="viewer-qft" class="pdf-viewer-wrap">
+      <div class="pdf-viewer-bar">
+        <span>QFT in de Sitter Space &middot; Anshveer Bindra</span>
+        <a href="papers/qft-de-sitter.pdf" target="_blank">Open in New Window &nearr;</a>
+      </div>
+      <object data="papers/qft-de-sitter.pdf" type="application/pdf">
+        <p style="padding: 20px; color: white;">Your browser does not support inline PDF viewing. <a href="papers/qft-de-sitter.pdf" style="color:#93c5fd;">Download the PDF</a>.</p>
+      </object>
+    </div>
+  </article>
+
+  <!-- PAPER 5: HOMOLOGY TO DE RHAM COHOMOLOGY -->
+  <article class="card" data-category="mathematics">
+    <div class="card-top">
+      <span class="card-category">Algebraic Topology &middot; Differential Geometry</span>
+      <span class="card-meta">Anshveer Bindra &middot; 2026 &middot; 137-Page Graduate-Level Treatise</span>
+    </div>
+    
+    <h3 class="card-title">From Homology to de Rham Cohomology: An Expository Journey through the Topology of Smooth Manifolds</h3>
+
+    <div class="layman-hook">
+      <div class="layman-hook-icon">&#128218;</div>
+      <p class="layman-hook-text">
+        <strong>The 10-Second Takeaway:</strong> If you were an ant walking on a sphere versus a donut, every tiny patch would feel completely flat. How can calculus—which only measures tiny slopes—detect the global presence of holes? This 137-page book builds the path from Euler and Gauss to de Rham's theorem, proving calculus and topology are one and the same.
+      </p>
+    </div>
+
+    <div class="pillar-grid">
+      <div class="pillar">
+        <div class="pillar-header question-head">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          1. The Question: Detecting Shape Through Calculus
+        </div>
+        <p>
+          Local geometry cannot differentiate an open disc from a sphere: both are smooth and locally Euclidean. Yet globally, they possess fundamentally different topologies (holes, twists, boundaries). The foundational quest of modern differential topology is determining how calculus on smooth manifolds can compute invariant, global topological shapes.
+        </p>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-header method-head">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          2. The Method: The 137-Page Arc
+        </div>
+        <p>
+          Written as a self-contained graduate-level monograph, the text constructs the complete mathematical machinery across three stages:
+        </p>
+        <ul>
+          <li><strong>Homology:</strong> Simplicial complexes, chain complexes, boundary operator $\partial$ with $\partial^2 = 0$, cycles modulo boundaries $H_k(M) = \ker \partial_k / \operatorname{im} \partial_{k+1}$, and singular homology.</li>
+          <li><strong>Cohomology &amp; Duality:</strong> Dual cochain complexes, coboundary operator $d$, cup products $\smile$, the Mayer&ndash;Vietoris exact sequence, and Poincaré duality.</li>
+          <li><strong>Differential Forms:</strong> The exterior algebra $\bigwedge^k T^*M$, exterior derivative $d$ with $d^2 = 0$, pullback maps, and the generalized Stokes' Theorem $\int_M d\omega = \int_{\partial M} \omega$.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Math Feature Box -->
+    <div class="math-box">
+      <div class="math-box-header">
+        <span class="math-box-title">De Rham Isomorphism &amp; Generalized Stokes' Theorem</span>
+        <span class="badge badge-subtle">Canonical Duality</span>
+      </div>
+      <div class="math-formula">
+        $$H^k_{\mathrm{dR}}(M) \;\cong\; H^k(M; \mathbb{R}) \qquad \Longleftrightarrow \qquad \int_M d\omega = \int_{\partial M} \omega$$
+      </div>
+      <div class="math-legend">
+        <strong>The Deep Insight:</strong> The analytic vector space of closed differential forms modulo exact forms ($H^k_{\mathrm{dR}}(M)$) is naturally isomorphic to the topological singular cohomology groups with real coefficients ($H^k(M;\mathbb{R})$).
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="pillar-header signif-head">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+        3. Calculations &amp; Significance
+      </div>
+      <p>
+        The treatise culminates in a complete proof of de Rham's Theorem, supported by explicit computations on $n$-spheres $S^n$, $n$-tori $T^n$, punctured Euclidean spaces $\mathbb{R}^n \setminus \{0\}$, real projective spaces $\mathbb{RP}^n$, and compact Riemann surfaces of genus $g$. It represents a comprehensive synthesis of modern geometric analysis.
+      </p>
+    </div>
+
+    <div class="card-actions">
+      <a class="btn btn-primary" href="papers/homology-to-de-rham.pdf" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+        Open 137-Page Treatise (PDF)
+      </a>
+      <button class="btn btn-secondary" onclick="togglePdf('viewer-topology')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+        Toggle Inline Reader
+      </button>
+      <a class="btn btn-secondary" href="papers/homology-to-de-rham.pdf" download>Download</a>
+    </div>
+
+    <div id="viewer-topology" class="pdf-viewer-wrap">
+      <div class="pdf-viewer-bar">
+        <span>From Homology to de Rham Cohomology (137 pp.) &middot; Anshveer Bindra</span>
+        <a href="papers/homology-to-de-rham.pdf" target="_blank">Open in New Window &nearr;</a>
+      </div>
+      <object data="papers/homology-to-de-rham.pdf" type="application/pdf">
+        <p style="padding: 20px; color: white;">Your browser does not support inline PDF viewing. <a href="papers/homology-to-de-rham.pdf" style="color:#93c5fd;">Download the PDF</a>.</p>
+      </object>
+    </div>
+  </article>
+
+  <!-- PAPER 6: REDISCOVERING A FORMULA FOR PI -->
+  <article class="card" data-category="mathematics">
+    <div class="card-top">
+      <span class="card-category">Analytic Mathematics &middot; Infinite Series &amp; Special Functions</span>
+      <span class="card-meta">Anshveer Bindra &middot; Closed-Form Elementary Proof</span>
+    </div>
+    
+    <h3 class="card-title">Rediscovering a Formula for &pi;</h3>
+
+    <div class="layman-hook">
+      <div class="layman-hook-icon">&#128394;</div>
+      <p class="layman-hook-text">
+        <strong>The 10-Second Takeaway:</strong> An arithmetic slip while computing $\pi$ by hand led to an unexpected series that converged to $1 + \pi/2$. Rather than throwing it away, I derived a fully elementary proof using only single-variable calculus, generalized it to a continuous family of rapid formulas, and found a series that gives 7 digits of $\pi$ in only 8 terms.
+      </p>
+    </div>
+
+    <div class="pillar-grid">
+      <div class="pillar">
+        <div class="pillar-header question-head">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          1. The Discovery &amp; The Generalization
+        </div>
+        <p>
+          While manipulating series expansions for $\pi$ by hand, an algebraic error produced the unexpected sum:
+          $$\sum_{n=0}^{\infty}\frac{2^n}{\binom{2n+1}{n+1}} = 1+\frac{\pi}{2}$$
+          Instead of discarding it, I generalized this discovery into an entire one-parameter family of infinite series $S(a) = \sum_{n \ge 0} \frac{a^n}{\binom{2n+1}{n+1}}$ valid for all real $|a| < 4$.
+        </p>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-header method-head">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          2. The Method: An Elementary Beta-Integral Route
+        </div>
+        <p>
+          While the closed form can be framed within heavy hypergeometric functions (${}_2F_1(2, 1; \tfrac{3}{2}; \tfrac{a}{4})$), the paper's contribution is a strictly elementary derivation using only integration by parts, the ratio test, and Euler's Beta integral identity:
+          $$\frac{1}{\binom{2n+1}{n+1}} = (n+1)\int_0^1 t^n(1-t)^n\,dt$$
+          Summing under the integral sign produces a clean geometric series, yielding $\int_0^1 \frac{dt}{(1 - at(1-t))^2}$, which evaluates directly by completing the square.
+        </p>
+      </div>
+    </div>
+
+    <!-- Math Feature Box -->
+    <div class="math-box">
+      <div class="math-box-header">
+        <span class="math-box-title">General Closed-Form Family for All Real $|a| < 4$</span>
+        <span class="badge badge-subtle">Elementary Closed Form</span>
+      </div>
+      <div class="math-formula">
+        $$S(a) = \sum_{n=0}^\infty \frac{a^n}{\binom{2n+1}{n+1}} = \frac{2}{4-a} + \frac{8}{(4-a)^{3/2}\sqrt{a}}\,\arctan\sqrt{\frac{a}{4-a}}$$
+      </div>
+      <div class="math-legend">
+        <strong>Special Exact Evaluations:</strong> $S(1) = \frac{2}{3} + \frac{4\pi}{9\sqrt{3}}$, $S(2) = 1 + \frac{\pi}{2}$, and $S(3) = 2 + \frac{8\pi}{3\sqrt{3}}$.
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="pillar-header signif-head">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+        3. Geometric Convergence &amp; Significance
+      </div>
+      <p>
+        The terms decay exponentially as $(a/4)^n$. While the classical Leibniz formula for $\pi$ crawls agonizingly (requiring $10^7$ terms for 7 decimal places), choosing the acceleration parameter $a = 2 - \sqrt{2}$ produces <strong>7 correct digits of $\pi$ in just 8 terms</strong>. The paper demonstrates how curiosity and mathematical play turn unexpected errors into rigorous closed-form discoveries.
+      </p>
+    </div>
+
+    <div class="card-actions">
+      <a class="btn btn-primary" href="papers/formula-for-pi.pdf" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+        Open Full Manuscript (PDF)
+      </a>
+      <button class="btn btn-secondary" onclick="togglePdf('viewer-pi')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+        Toggle Inline Reader
+      </button>
+      <a class="btn btn-secondary" href="papers/formula-for-pi.pdf" download>Download</a>
+    </div>
+
+    <div id="viewer-pi" class="pdf-viewer-wrap">
+      <div class="pdf-viewer-bar">
+        <span>Rediscovering a Formula for &pi; &middot; Anshveer Bindra</span>
+        <a href="papers/formula-for-pi.pdf" target="_blank">Open in New Window &nearr;</a>
+      </div>
+      <object data="papers/formula-for-pi.pdf" type="application/pdf">
+        <p style="padding: 20px; color: white;">Your browser does not support inline PDF viewing. <a href="papers/formula-for-pi.pdf" style="color:#93c5fd;">Download the PDF</a>.</p>
+      </object>
+    </div>
+  </article>
+
+  <!-- PAPER 7: DIGIT-SUBTRACTION DYNAMICS -->
+  <article class="card" data-category="mathematics">
+    <div class="card-top">
+      <span class="card-category">Number Theory &middot; Discrete Dynamical Systems</span>
+      <span class="card-meta">Anshveer Bindra &middot; August 2026</span>
+    </div>
+    
+    <h3 class="card-title">The Single-Generator Theory of Cycle-Decomposed Digit-Subtraction Dynamics</h3>
+
+    <div class="layman-hook">
+      <div class="layman-hook-icon">&#128290;</div>
+      <p class="layman-hook-text">
+        <strong>The 10-Second Takeaway:</strong> Kaprekar's constant (6174) is famous: arrange digits, subtract, and you always get 6174. But why? We generalize this to any number base and digit permutation, proving that seemingly unpredictable digit dynamics decouple into clean, independent cycles powered by a single modular multiplication generator.
+      </p>
+    </div>
+
+    <div class="pillar-grid">
+      <div class="pillar">
+        <div class="pillar-header question-head">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          1. The Question: Generalizing Kaprekar Beyond Base 10
+        </div>
+        <p>
+          In 1949, D.R. Kaprekar discovered that sorting the digits of any four-digit number in descending and ascending order and subtracting always reaches 6174 within 7 steps. But what happens in arbitrary bases $B \ge 2$, under arbitrary permutation symmetries $\pi \in S_k$, where digit positions rotate and subtract on disjoint cycles?
+        </p>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-header method-head">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          2. The Method: Decoupling by Disjoint Permutations
+        </div>
+        <p>
+          We prove that the global dynamical map decomposes into completely independent sub-systems—one for each disjoint cycle of $\pi$. On each cycle of length $t$, the subtraction map, after modulo-sign equivalence $x \sim -x$, reduces to multiplication by a <strong>single generator</strong>:
+          $$c = (B - 1)B^{t-1} \pmod{B^t - 1}$$
+          Factoring the modulus $B^t - 1 = N_1 N_2$, where every prime dividing $N_1$ divides $B-1$ and $\gcd(N_2, B-1) = 1$, allows all dynamical behavior to be deduced analytically from $N_1$ and $N_2$.
+        </p>
+      </div>
+    </div>
+
+    <!-- Math Feature Box -->
+    <div class="math-box">
+      <div class="math-box-header">
+        <span class="math-box-title">The Single-Generator Algebraic Theorem</span>
+        <span class="badge badge-subtle">Ring $\mathbb{Z}/(B^t - 1)\mathbb{Z}$</span>
+      </div>
+      <div class="math-formula">
+        $$c = (B-1)B^{t-1} \pmod{B^t - 1}, \qquad \text{Total Attractor Rank} = \prod_{i} \frac{N_2(B, t_i) + 1}{2}$$
+      </div>
+      <div class="math-legend">
+        <strong>The Connection:</strong> For two-cycles ($t = 2$), the formula simplifies to $(\mathrm{odd}(B+1) + 1)/2$, which is identically the integer sequence OEIS A003602!
+      </div>
+    </div>
+
+    <div class="pillar">
+      <div class="pillar-header results-head">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        3. Structural Theorems &amp; Significance
+      </div>
+      <ul>
+        <li><strong>Attractor Cardinality:</strong> Each independent piece has exactly $(N_2 + 1)/2$ periodic attractor states.</li>
+        <li><strong>Finite Transient Bound:</strong> Every initial state reaches a periodic orbit in either $a_0$ or $a_0 + 1$ iterations, where $a_0$ is the least integer with $N_1 \mid c^{a_0}$.</li>
+        <li><strong>Trivial Collapse Criterion:</strong> Total collapse to zero occurs if and only if $t = 1$, or $t = 2$ when $B+1$ is a power of two.</li>
+        <li><strong>Novel Complex Orbits:</strong> Discovered multi-cycle attractors—for example, Base 14 with cycle length 3 exhibits a cycle of period 105; Base 6 with length 4 hosts simultaneous cycles of length 1, 3, and 9.</li>
+      </ul>
+    </div>
+
+    <div class="card-actions">
+      <a class="btn btn-primary" href="papers/digit-subtraction.pdf" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+        Open Full Manuscript (PDF)
+      </a>
+      <button class="btn btn-secondary" onclick="togglePdf('viewer-digit')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+        Toggle Inline Reader
+      </button>
+      <a class="btn btn-secondary" href="papers/digit-subtraction.pdf" download>Download</a>
+    </div>
+
+    <div id="viewer-digit" class="pdf-viewer-wrap">
+      <div class="pdf-viewer-bar">
+        <span>Single-Generator Digit-Subtraction Dynamics &middot; Anshveer Bindra</span>
+        <a href="papers/digit-subtraction.pdf" target="_blank">Open in New Window &nearr;</a>
+      </div>
+      <object data="papers/digit-subtraction.pdf" type="application/pdf">
+        <p style="padding: 20px; color: white;">Your browser does not support inline PDF viewing. <a href="papers/digit-subtraction.pdf" style="color:#93c5fd;">Download the PDF</a>.</p>
+      </object>
+    </div>
+  </article>
+</section>
+
+<!-- MUSIC SECTION -->
+<section id="music" data-category="creative">
+  <div class="section-head">
+    <h2 class="section-title">Musical Composition</h2>
+    <p class="section-sub">Self-taught composer releasing under the artist name <strong>Quasaarz</strong>.</p>
+  </div>
+
+  <article class="audio-card">
+    <div class="card-top">
+      <span class="card-category" style="background:#fef3c7; color:#92400e;">Chamber Music &middot; Mathematical Serialism</span>
+      <span class="card-meta">2025 &middot; ~3 Minutes &middot; String Quartet</span>
+    </div>
+
+    <h3 class="card-title">String Quartet in E minor, &ldquo;Future&rdquo;</h3>
+    
+    <div class="layman-hook" style="background:#fdf4ff; border-color:#f0abfc;">
+      <div class="layman-hook-icon">&#127926;</div>
+      <p class="layman-hook-text" style="color:#701a75;">
+        <strong>Bridging Number Theory and Harmony:</strong> This quartet applies serialist techniques where pitch intervals and harmonic shifts are governed by cyclic permutations and modular arithmetic sequences—the exact same structures investigated in my digit-subtraction dynamics research.
+      </p>
+    </div>
+
+    <p style="font-size:0.97rem; line-height:1.6; margin-bottom:16px;">
+      Scored for two violins, viola, and violoncello. Instead of choosing melodic intervals through intuitive voice-leading alone, the harmonic architecture unfolds through rigorous cyclic interval rows that transition from a reflective <em>Andante</em> into a resonant <em>Adagio</em>.
+    </p>
+
+    <!-- Embedded Audio Player -->
+    <div style="background:var(--bg-subtle); border:1px solid var(--line); border-radius:var(--radius-sm); padding:18px 20px; margin:16px 0;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <span style="font-weight:700; font-size:0.9rem; color:var(--navy);">Full Recording: String Quartet in E minor ("Future")</span>
+        <span class="badge badge-subtle">MP3 Audio</span>
+      </div>
+      <audio controls class="styled-audio" preload="metadata" src="music/quartet-future.mp3">
+        Your browser does not support audio playback. <a href="music/quartet-future.mp3">Download recording directly</a>.
+      </audio>
+    </div>
+
+    <div class="card-actions">
+      <a class="btn btn-primary" href="music/quartet-future-score.pdf" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+        Open Sheet Music Score (PDF)
+      </a>
+      <button class="btn btn-secondary" onclick="togglePdf('viewer-quartet')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+        Toggle Score Preview
+      </button>
+      <a class="btn btn-secondary" href="https://open.spotify.com/search/Quasaarz" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M8 12a4 4 0 0 1 8 0"></path><path d="M6 10a7 7 0 0 1 12 0"></path><path d="M10 14a2 2 0 0 1 4 0"></path></svg>
+        Quasaarz on Spotify &nearr;
+      </a>
+    </div>
+
+    <div id="viewer-quartet" class="pdf-viewer-wrap">
+      <div class="pdf-viewer-bar">
+        <span>String Quartet in Em ("Future") Score &middot; Anshveer Bindra</span>
+        <a href="music/quartet-future-score.pdf" target="_blank">Open in New Window &nearr;</a>
+      </div>
+      <object data="music/quartet-future-score.pdf" type="application/pdf">
+        <p style="padding: 20px; color: white;">Your browser does not support inline PDF viewing. <a href="music/quartet-future-score.pdf" style="color:#93c5fd;">Download the Score</a>.</p>
+      </object>
+    </div>
+  </article>
+</section>
+
+<!-- UNIPAL SECTION -->
+<section id="unipal" data-category="creative">
+  <div class="section-head">
+    <h2 class="section-title">Educational Leadership &amp; Service</h2>
+    <p class="section-sub">Free advanced mathematics education for underserved students globally.</p>
+  </div>
+
+  <article class="unipal-card">
+    <div class="card-top">
+      <span class="card-category" style="background:#ecfdf5; color:#047857;">Nonprofit Leadership &middot; Educational Technology</span>
+      <span class="card-meta">Chief Technology Officer &amp; Number Theory Lead</span>
+    </div>
+
+    <h3 class="card-title">UniPal &middot; Mathematics for Everyone</h3>
+
+    <p style="font-size:1rem; line-height:1.65; margin-bottom:14px;">
+      UniPal is an international, student-run 501(c)(3) nonprofit dedicated to democratizing competition-level and university-level mathematics education. Through self-paced online modules, interactive problem sets, and live mentoring, UniPal provides tuition-free instruction to students who lack access to specialized contest training or Olympiad coaching. All operational revenues and donations are channeled directly into educational grants for underserved learners.
+    </p>
+
+    <!-- Key Metrics -->
+    <div class="unipal-metrics">
+      <div class="unipal-metric-box">
+        <div class="unipal-metric-num">900+</div>
+        <div class="unipal-metric-lbl">Active Learners</div>
+      </div>
+      <div class="unipal-metric-box">
+        <div class="unipal-metric-num">9+</div>
+        <div class="unipal-metric-lbl">Countries</div>
+      </div>
+      <div class="unipal-metric-box">
+        <div class="unipal-metric-num">6+</div>
+        <div class="unipal-metric-lbl">US States</div>
+      </div>
+      <div class="unipal-metric-box">
+        <div class="unipal-metric-num">100%</div>
+        <div class="unipal-metric-lbl">Tuition-Free</div>
+      </div>
+    </div>
+
+    <div class="pillar" style="border-left-color: var(--emerald); margin: 20px 0;">
+      <div class="pillar-header" style="color: var(--emerald);">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+        My Dual Role: CTO &amp; Number Theory Curriculum Architect
+      </div>
+      <p>
+        <strong>1. Technological Infrastructure:</strong> As CTO, I architected and maintain the core web platform, ensuring low-latency access for students on constrained bandwidth across developing nations, managing user authentication, automated problem grading, and interactive practice dashboards.
+      </p>
+      <p>
+        <strong>2. Number Theory Curriculum:</strong> I designed and teach the flagship Number Theory lecture series. Rather than teaching rote contest tricks, I structured the curriculum around proof-first mathematical intuition—using competition problems as stepping stones into modular ring theory, group theory, primitive roots, and Diophantine geometry.
+      </p>
+    </div>
+
+    <div class="card-actions">
+      <a class="btn btn-primary" href="https://www.gounipal.com/home" target="_blank" rel="noopener">
+        Visit UniPal Platform &nearr;
+      </a>
+      <a class="btn btn-secondary" href="https://www.gounipal.com/courses" target="_blank" rel="noopener">
+        Explore Courses &amp; Curriculum &nearr;
+      </a>
+    </div>
+  </article>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap footer-content">
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+      <div>
+        <strong style="color:var(--navy);">Anshveer Bindra</strong> &middot; Oberoi International School JVLR, Mumbai
+      </div>
+      <a href="#top" class="btn btn-secondary" style="padding:6px 12px; font-size:0.8rem;">Back to Top &uarr;</a>
+    </div>
+    <div style="font-size:0.85rem; color:var(--muted); line-height:1.5;">
+      Supplementary portfolio prepared for undergraduate admissions committees, including Princeton University. All manuscripts, sheet music, and audio recordings are authored or co-authored by Anshveer Bindra.
+    </div>
+  </div>
+</footer>
+
+<!-- INTERACTIVE SCRIPTS -->
+<script>
+// Filter works by category
+function filterWorks(category, btn) {
+  const buttons = document.querySelectorAll('.filter-btn');
+  buttons.forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  const cards = document.querySelectorAll('article.card, section#music, section#unipal');
+  cards.forEach(card => {
+    const cardCat = card.getAttribute('data-category');
+    if (category === 'all' || cardCat === category) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// Toggle inline PDF viewer
+function togglePdf(viewerId) {
+  const viewer = document.getElementById(viewerId);
+  if (!viewer) return;
+  viewer.classList.toggle('active');
+  if (viewer.classList.contains('active')) {
+    viewer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
+</script>
+
+</body>
+</html>

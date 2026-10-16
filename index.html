@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Anshveer Bindra</title>
-<meta name="description" content="Research papers in astrophysics, theoretical physics, and pure mathematics, an original string quartet, and educational technology leadership.">
+<meta name="description" content="Research portfolio of Anshveer Bindra: papers in astrophysics, theoretical physics, and pure mathematics, alongside an original chamber work in modular serialism.">
 
 <!-- Typographic Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,16 +27,22 @@
 
 <style>
 :root {
-  --bg: #f9fafb;
-  --surface: #ffffff;
-  --ink: #111827;
-  --ink-secondary: #374151;
-  --ink-muted: #6b7280;
-  --border: #d1d5db;
-  --border-light: #e5e7eb;
-  --border-subtle: #f3f4f6;
-  --accent: #1e3a5f;
-  --accent-link: #1d4ed8;
+  --bg: #0b0f17;
+  --surface: #131924;
+  --surface-hover: #17202f;
+  --surface-subtle: #0e141e;
+  --surface-active: #1a2436;
+  --ink: #f1f5f9;
+  --ink-secondary: #cbd5e1;
+  --ink-muted: #94a3b8;
+  --ink-faint: #64748b;
+  --border: #222d3e;
+  --border-light: #1b2432;
+  --border-hover: #33435c;
+  --border-subtle: #161e2a;
+  --accent: #38bdf8;
+  --accent-dim: #0284c7;
+  --accent-hover: #7dd3fc;
   --font-serif: 'Newsreader', Garamond, Georgia, serif;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
@@ -56,10 +62,10 @@ body {
 }
 
 /* Typography */
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5 {
   font-family: var(--font-serif);
-  font-weight: 500;
-  line-height: 1.25;
+  font-weight: 400;
+  line-height: 1.28;
   color: var(--ink);
   margin: 0;
 }
@@ -67,14 +73,14 @@ h1, h2, h3, h4 {
 .mono { font-family: var(--font-mono); }
 
 a {
-  color: var(--accent-link);
+  color: var(--accent);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
   transition: color 0.15s ease;
 }
 a:hover {
-  color: var(--ink);
+  color: var(--accent-hover);
 }
 
 .wrap {
@@ -85,19 +91,20 @@ a:hover {
 
 /* Site Header */
 header.site-header {
-  background: var(--surface);
+  background: var(--bg);
   border-bottom: 1px solid var(--border);
   padding: 68px 0 44px;
 }
 
 .site-title {
   font-size: clamp(2.5rem, 5vw, 3.6rem);
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
   margin-bottom: 8px;
+  font-weight: 400;
 }
 
 .site-subtitle {
-  font-size: 1.15rem;
+  font-size: 1.12rem;
   color: var(--ink-muted);
   font-weight: 400;
   margin-bottom: 20px;
@@ -116,9 +123,9 @@ nav.filter-nav {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(11, 15, 23, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
   padding: 12px 0;
 }
@@ -153,12 +160,12 @@ nav.filter-nav {
 }
 .filter-btn:hover {
   color: var(--ink);
-  background: var(--border-subtle);
+  background: var(--surface-subtle);
 }
 .filter-btn.active {
   color: var(--ink);
-  background: #f3f4f6;
-  border-color: var(--border);
+  background: var(--surface-active);
+  border-color: var(--border-hover);
   font-weight: 600;
 }
 
@@ -193,7 +200,7 @@ section.content-section {
 }
 .section-header h2 {
   font-size: 2.1rem;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 .section-header p {
   margin: 0;
@@ -204,16 +211,15 @@ section.content-section {
 /* Clearly Bounded Paper Cards */
 article.paper-card {
   background: var(--surface);
-  border: 1.5px solid var(--border);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 34px 38px;
   margin-bottom: 34px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 article.paper-card:hover {
-  border-color: #9ca3af;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-color: var(--border-hover);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
 }
 
 .card-top {
@@ -240,20 +246,21 @@ article.paper-card:hover {
 
 .card-venue {
   font-style: italic;
-  color: #1f2937;
+  color: #93c5fd;
   font-weight: 500;
 }
 
 h3.card-title {
-  font-size: 1.8rem;
+  font-size: 1.75rem;
   margin-bottom: 14px;
   letter-spacing: -0.01em;
   color: var(--ink);
+  line-height: 1.3;
 }
 
 /* Summary Box */
 .card-summary {
-  background: #f9fafb;
+  background: var(--surface-subtle);
   border-left: 3px solid var(--accent);
   border-top: 1px solid var(--border-light);
   border-right: 1px solid var(--border-light);
@@ -263,11 +270,7 @@ h3.card-title {
   margin: 0 0 16px;
   font-size: 0.98rem;
   color: var(--ink-secondary);
-  line-height: 1.6;
-}
-.card-summary strong {
-  color: var(--ink);
-  font-weight: 600;
+  line-height: 1.68;
 }
 
 /* Executive Highlights Grid */
@@ -275,7 +278,7 @@ h3.card-title {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
-  background: #fbfcfd;
+  background: var(--surface-subtle);
   border: 1px solid var(--border-light);
   border-radius: 6px;
   padding: 14px 16px;
@@ -288,7 +291,7 @@ h3.card-title {
 }
 .exec-label {
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--accent);
@@ -312,7 +315,7 @@ summary.deepdive-summary {
   cursor: pointer;
   user-select: none;
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--ink);
   padding: 8px 4px;
   list-style: none;
@@ -323,7 +326,7 @@ summary.deepdive-summary::-webkit-details-marker {
   display: none;
 }
 summary.deepdive-summary:hover {
-  color: var(--accent-link);
+  color: var(--accent-hover);
 }
 .deepdive-badge {
   display: inline-flex;
@@ -331,21 +334,22 @@ summary.deepdive-summary:hover {
   gap: 4px;
   font-size: 0.78rem;
   font-weight: 500;
-  color: var(--ink-secondary);
-  background: #f3f4f6;
+  color: var(--ink-muted);
+  background: var(--surface-subtle);
   border: 1px solid var(--border);
   padding: 4px 10px;
   border-radius: 4px;
   transition: all 0.15s ease;
 }
 summary.deepdive-summary:hover .deepdive-badge {
-  background: var(--ink);
-  color: #ffffff;
-  border-color: var(--ink);
+  background: var(--surface-active);
+  color: var(--accent);
+  border-color: var(--accent-dim);
 }
 details.deepdive-drawer[open] summary.deepdive-summary .deepdive-badge {
-  background: #e5e7eb;
+  background: var(--surface-active);
   color: var(--ink);
+  border-color: var(--border-hover);
 }
 .deepdive-content {
   margin-top: 16px;
@@ -353,27 +357,28 @@ details.deepdive-drawer[open] summary.deepdive-summary .deepdive-badge {
 
 /* Narrative Prose Sections */
 .narrative-section {
-  margin-bottom: 20px;
+  margin-bottom: 22px;
 }
 .narrative-section h4 {
   font-family: var(--font-sans);
-  font-size: 0.82rem;
-  font-weight: 700;
+  font-size: 0.84rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--ink-muted);
-  margin-bottom: 6px;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  margin-bottom: 8px;
 }
 .narrative-section p {
-  margin: 0 0 10px;
-  font-size: 1rem;
-  color: var(--ink);
+  margin: 0 0 12px;
+  font-size: 0.98rem;
+  color: var(--ink-secondary);
   line-height: 1.72;
 }
 .narrative-section ul {
   margin: 6px 0 12px;
   padding-left: 20px;
-  font-size: 0.98rem;
+  font-size: 0.96rem;
+  color: var(--ink-secondary);
 }
 .narrative-section li {
   margin-bottom: 6px;
@@ -382,7 +387,7 @@ details.deepdive-drawer[open] summary.deepdive-summary .deepdive-badge {
 
 /* Equation Display Box */
 .equation-box {
-  background: #f9fafb;
+  background: var(--surface-subtle);
   border: 1px solid var(--border-light);
   border-radius: 6px;
   padding: 16px 20px;
@@ -393,14 +398,15 @@ details.deepdive-drawer[open] summary.deepdive-summary .deepdive-badge {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--ink-muted);
+  color: var(--accent);
   margin-bottom: 8px;
 }
 .equation-display {
   overflow-x: auto;
-  font-size: 1.15rem;
+  font-size: 1.12rem;
   padding: 6px 0;
   text-align: center;
+  color: var(--ink);
 }
 .equation-explanation {
   font-size: 0.86rem;
@@ -418,14 +424,14 @@ details.deepdive-drawer[open] summary.deepdive-summary .deepdive-badge {
 table.data-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.9rem;
-  margin: 12px 0 18px;
+  font-size: 0.88rem;
+  margin: 14px 0 18px;
   display: block;
   overflow-x: auto;
 }
 table.data-table th, table.data-table td {
   padding: 8px 12px;
-  border-bottom: 1px solid var(--border-light);
+  border: 1px solid var(--border-light);
   text-align: right;
   white-space: nowrap;
 }
@@ -435,35 +441,14 @@ table.data-table th:first-child, table.data-table td:first-child {
 table.data-table th {
   font-weight: 600;
   color: var(--ink);
-  background: #f9fafb;
-  border-top: 1px solid var(--border-light);
+  background: var(--surface-active);
+  border-color: var(--border);
 }
-
-/* Technical Details Accordion */
-details.technical-notes {
-  margin: 20px 0;
-  border: 1px solid var(--border-light);
-  border-radius: 6px;
-  background: #fbfbfb;
-}
-summary.technical-toggle {
-  padding: 11px 16px;
-  font-size: 0.9rem;
-  font-weight: 500;
+table.data-table td {
   color: var(--ink-secondary);
-  cursor: pointer;
-  user-select: none;
 }
-summary.technical-toggle:hover {
-  color: var(--ink);
-  background: #f3f4f6;
-}
-.technical-body {
-  padding: 16px 18px;
-  border-top: 1px solid var(--border-light);
-  font-size: 0.94rem;
-  line-height: 1.68;
-  color: var(--ink-secondary);
+table.data-table tr:nth-child(even) td {
+  background: rgba(255, 255, 255, 0.02);
 }
 
 /* Action Button Row */
@@ -483,8 +468,8 @@ summary.technical-toggle:hover {
   gap: 6px;
   font-size: 0.88rem;
   font-weight: 500;
-  color: var(--ink);
-  background: var(--surface);
+  color: var(--ink-secondary);
+  background: var(--surface-subtle);
   border: 1px solid var(--border);
   padding: 7px 16px;
   border-radius: 6px;
@@ -493,17 +478,18 @@ summary.technical-toggle:hover {
   transition: all 0.15s ease;
 }
 .action-btn:hover {
-  background: var(--ink);
-  color: #ffffff;
-  border-color: var(--ink);
+  background: var(--surface-active);
+  color: var(--ink);
+  border-color: var(--border-hover);
 }
 .action-btn-primary {
-  background: #111827;
-  color: #ffffff;
-  border-color: #111827;
+  background: #1e293b;
+  color: #f8fafc;
+  border-color: #334155;
 }
 .action-btn-primary:hover {
-  background: #1f2937;
+  background: #2b394f;
+  border-color: #475569;
   color: #ffffff;
 }
 
@@ -514,7 +500,7 @@ summary.technical-toggle:hover {
   border: 1px solid var(--border);
   border-radius: 6px;
   overflow: hidden;
-  background: #1f2937;
+  background: #0b0f17;
 }
 .inline-viewer.active {
   display: block;
@@ -523,13 +509,14 @@ summary.technical-toggle:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #111827;
-  color: #e5e7eb;
+  background: #0e141e;
+  color: var(--ink-muted);
   font-size: 0.82rem;
   padding: 8px 14px;
+  border-bottom: 1px solid var(--border);
 }
 .viewer-topbar a {
-  color: #93c5fd;
+  color: var(--accent);
 }
 .inline-viewer object {
   width: 100%;
@@ -540,41 +527,42 @@ summary.technical-toggle:hover {
 
 /* Music Technique & Interactive Synthesizer */
 .technique-box {
-  background: #ffffff;
-  border: 1.5px solid var(--border);
+  background: var(--surface-subtle);
+  border: 1px solid var(--border);
   border-radius: 8px;
-  padding: 28px 32px;
+  padding: 26px 30px;
   margin: 24px 0;
 }
 .technique-box h4 {
   font-family: var(--font-sans);
   font-size: 0.95rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   color: var(--ink);
   margin: 0 0 14px;
 }
 .technique-box h5 {
   font-family: var(--font-sans);
-  font-size: 0.88rem;
-  font-weight: 700;
+  font-size: 0.86rem;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--accent);
-  margin: 20px 0 8px;
+  margin: 22px 0 10px;
 }
 .technique-box p {
   margin: 0 0 12px;
   font-size: 0.96rem;
   line-height: 1.7;
-  color: var(--ink);
+  color: var(--ink-secondary);
 }
 .technique-box ul, .technique-box ol {
   margin: 8px 0 16px;
   padding-left: 22px;
   font-size: 0.95rem;
   line-height: 1.65;
+  color: var(--ink-secondary);
 }
 .technique-box li {
   margin-bottom: 8px;
@@ -586,9 +574,11 @@ summary.technical-toggle:hover {
   border-collapse: collapse;
   margin: 16px 0 20px;
   font-size: 0.88rem;
+  display: block;
+  overflow-x: auto;
 }
 .method-table th {
-  background: #f3f4f6;
+  background: var(--surface-active);
   border: 1px solid var(--border);
   padding: 8px 12px;
   text-align: left;
@@ -596,26 +586,26 @@ summary.technical-toggle:hover {
   color: var(--ink);
 }
 .method-table td {
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-light);
   padding: 8px 12px;
-  color: var(--ink);
+  color: var(--ink-secondary);
   vertical-align: middle;
 }
 .method-table tr:nth-child(even) td {
-  background: #fcfcfd;
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .interactive-synth {
-  background: #ffffff;
-  border: 1.5px solid var(--border);
+  background: var(--surface-subtle);
+  border: 1px solid var(--border);
   border-radius: 8px;
-  padding: 26px 30px;
+  padding: 24px 28px;
   margin: 24px 0;
 }
 .synth-header {
   font-family: var(--font-sans);
-  font-size: 0.98rem;
-  font-weight: 700;
+  font-size: 0.96rem;
+  font-weight: 600;
   color: var(--ink);
   margin-bottom: 14px;
 }
@@ -631,20 +621,21 @@ summary.technical-toggle:hover {
   align-items: center;
   gap: 8px;
   font-weight: 500;
+  color: var(--ink-secondary);
 }
 .synth-controls select {
   font-family: inherit;
   font-size: 0.88rem;
-  padding: 6px 10px;
+  padding: 6px 12px;
   border: 1px solid var(--border);
   border-radius: 5px;
-  background: #ffffff;
+  background: var(--surface);
   color: var(--ink);
 }
 .synth-btn {
-  background: #111827;
-  color: #ffffff;
-  border: 1px solid #111827;
+  background: #1e293b;
+  color: #f8fafc;
+  border: 1px solid #334155;
   font-family: inherit;
   font-size: 0.88rem;
   font-weight: 500;
@@ -654,16 +645,41 @@ summary.technical-toggle:hover {
   transition: all 0.15s ease;
 }
 .synth-btn:hover {
-  background: #1f2937;
+  background: #2b394f;
+  border-color: #475569;
 }
 .synth-output {
   margin-top: 18px;
   font-size: 0.88rem;
   overflow-x: auto;
 }
+table.synth-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 0.84rem;
+}
+table.synth-table th {
+  text-align: left;
+  padding: 7px 10px;
+  background: var(--surface-active);
+  border: 1px solid var(--border);
+  color: var(--ink);
+  font-weight: 600;
+  white-space: nowrap;
+}
+table.synth-table td {
+  padding: 7px 10px;
+  border: 1px solid var(--border-light);
+  color: var(--ink-secondary);
+  text-align: center;
+}
+table.synth-table tr:nth-child(even) td {
+  background: rgba(255, 255, 255, 0.02);
+}
 .synth-agency-note {
   font-size: 0.86rem;
-  color: var(--ink-secondary);
+  color: var(--ink-muted);
   line-height: 1.6;
   margin-top: 16px;
   padding-top: 14px;
@@ -678,7 +694,7 @@ audio.styled-player {
 /* Footer */
 footer.site-footer {
   border-top: 1px solid var(--border);
-  background: var(--surface);
+  background: var(--bg);
   padding: 48px 0;
   color: var(--ink-muted);
   font-size: 0.88rem;
@@ -706,7 +722,7 @@ footer.site-footer {
   .site-bio { font-size: 0.95rem; line-height: 1.65; }
   nav.filter-nav { padding: 10px 0; }
   .filter-btn { padding: 6px 11px; font-size: 0.82rem; }
-  .section-jump { display: none; } /* On small mobile, keep nav focused on filters */
+  .section-jump { display: none; }
   article.paper-card { padding: 22px 18px; margin-bottom: 24px; }
   h3.card-title { font-size: 1.45rem; line-height: 1.3; }
   .card-summary { font-size: 0.92rem; padding: 12px 14px; }
@@ -720,10 +736,8 @@ footer.site-footer {
   .synth-controls { flex-direction: column; align-items: stretch; gap: 10px; }
   .synth-controls label { justify-content: space-between; }
   .synth-btn { width: 100%; text-align: center; padding: 10px; }
-  .method-table { display: block; overflow-x: auto; width: 100%; }
-  .method-table th, .method-table td { padding: 6px 8px; font-size: 0.8rem; }
+  .method-table { font-size: 0.8rem; }
   table.data-table { font-size: 0.82rem; }
-  table.data-table th, table.data-table td { padding: 6px 8px; }
 }
 </style>
 </head>
@@ -735,25 +749,24 @@ footer.site-footer {
     <h1 class="site-title">Anshveer Bindra</h1>
     <div class="site-subtitle">Physics, mathematics, and musical composition &middot; Mumbai, India</div>
     <p class="site-bio">
-      This page brings together seven research papers across observational astrophysics, theoretical physics, algebraic topology, and analytic number theory, alongside an original string quartet and educational technology work at UniPal. Each summary outlines the governing question, the theoretical or numerical approach, key results, and broader significance, with complete manuscripts available to read or download.
+      Selected research across observational astrophysics, theoretical physics, algebraic topology, and analytic number theory, alongside an original chamber work in modular serialism. Each paper includes context on the problem, mathematical and numerical formulations, observational or experimental results, and complete manuscripts.
     </p>
   </div>
 </header>
 
 <!-- STICKY FILTER NAVIGATION -->
-<nav class="filter-nav" aria-label="Work category filter">
+<nav class="filter-nav" aria-label="Discipline filters">
   <div class="wrap nav-row">
-    <div class="filter-links" role="tablist">
+    <div class="filter-links">
       <button class="filter-btn active" data-filter="all" onclick="filterCategory('all', this)">All Works</button>
       <button class="filter-btn" data-filter="astrophysics" onclick="filterCategory('astrophysics', this)">Astrophysics</button>
       <button class="filter-btn" data-filter="mathematics" onclick="filterCategory('mathematics', this)">Mathematics</button>
       <button class="filter-btn" data-filter="physics" onclick="filterCategory('physics', this)">Theoretical Physics</button>
-      <button class="filter-btn" data-filter="creative" onclick="filterCategory('creative', this)">Music &amp; Leadership</button>
+      <button class="filter-btn" data-filter="music" onclick="filterCategory('music', this)">Music</button>
     </div>
     <div class="section-jump">
       <a href="#papers">Papers</a>
       <a href="#music">Music</a>
-      <a href="#unipal">UniPal</a>
     </div>
   </div>
 </nav>
@@ -776,8 +789,7 @@ footer.site-footer {
 
     <h3 class="card-title">Orbit Determination of Near-Earth Asteroid 2015 GF27 via the Method of Gauss</h3>
 
-    <div class="card-summary">
-      <strong>Overview:</strong> Determining the full 3D heliocentric orbit of a near-Earth asteroid using only three optical telescope observations across a 26-day baseline, matching NASA JPL Horizons ephemerides to within 0.11%–0.61%, and demonstrating how observational geometry governs physical accuracy.
+    <div class="card-summary">Determining the full 3D heliocentric orbit of a near-Earth asteroid using only three optical telescope observations across a 26-day baseline, matching NASA JPL Horizons ephemerides to within 0.11%–0.61%, and demonstrating how observational geometry governs physical accuracy.
     </div>
 
     <!-- Executive 3-Point Highlights -->
@@ -837,7 +849,7 @@ footer.site-footer {
         </div>
 
         <div class="narrative-section">
-          <h4>Results &amp; Comparison with NASA JPL</h4>
+          <h4>Keplerian Elements and JPL Horizons Validation</h4>
           <table class="data-table">
             <thead>
               <tr>
@@ -889,7 +901,7 @@ footer.site-footer {
         </div>
 
         <div class="narrative-section">
-          <h4>Significance: Precision vs. Accuracy</h4>
+          <h4>Geometric Conditioning and Observational Uncertainty</h4>
           <p>
             The Monte Carlo uncertainty resulting from astrometric centroid noise was tiny (for example, $\pm 0.005\text{ AU}$ in the semi-major axis)—far smaller than the gap to NASA JPL Horizons. This discrepancy demonstrates an essential physical principle: high observational precision does not guarantee accuracy.
           </p>
@@ -920,8 +932,7 @@ footer.site-footer {
 
     <h3 class="card-title">A Weak-Form 2D Continuity Inversion for Pulsar Birth Demographics</h3>
 
-    <div class="card-summary">
-      <strong>Overview:</strong> Resolving the 45-year controversy on whether neutron stars are born spinning fast or slow by treating the 2,356 pulsars of the ATNF catalogue as a fluid in phase space and solving the inverse continuity equation in weak form.
+    <div class="card-summary">Resolving the 45-year controversy on whether neutron stars are born spinning fast or slow by treating the 2,356 pulsars of the ATNF catalogue as a fluid in phase space and solving the inverse continuity equation in weak form.
     </div>
 
     <!-- Executive 3-Point Highlights -->
@@ -983,7 +994,7 @@ footer.site-footer {
         </div>
 
         <div class="narrative-section">
-          <h4>Results &amp; Multi-Wavelength Validation</h4>
+          <h4>Demographic Reconstruction and Catalog Alignment</h4>
           <p>
             Applied to 2,356 isolated pulsars from the ATNF catalogue, the inversion demonstrates that <strong>only 0.57% of pulsars are born slow</strong> (with a formal upper bound of at most 9.03% across all physical crustal field-decay timescales). The classical 40%–75% slow-birth hypothesis is decisively excluded. Four independent physical tests that do not depend on the fitted visibility function confirm this conclusion:
           </p>
@@ -1031,8 +1042,7 @@ footer.site-footer {
 
     <h3 class="card-title">The Intrinsic Equilibrium Demographic Distribution of Galactic Pulsars</h3>
 
-    <div class="card-summary">
-      <strong>Overview:</strong> Explaining why observed telescope surveys peak at 0.6 seconds when pulsars are born spinning 100 times faster, through the physics of residence-time slowdown, and reconstructing the true, unseen population of the entire Milky Way.
+    <div class="card-summary">Explaining why observed telescope surveys peak at 0.6 seconds when pulsars are born spinning 100 times faster, through the physics of residence-time slowdown, and reconstructing the true, unseen population of the entire Milky Way.
     </div>
 
     <!-- Executive 3-Point Highlights -->
@@ -1072,7 +1082,7 @@ footer.site-footer {
         </div>
 
         <div class="narrative-section">
-          <h4>Approach &amp; Method: The Factor of $10^5$</h4>
+          <h4>Phase-Space Transport and Kinematic Selection Modeling</h4>
           <p>
             The apparent contradiction is resolved by <strong>residence time</strong> (the "traffic jam" effect of stellar spin-down). A pulsar's residence time per logarithmic period decade scales as $\tau_{\rm res} \propto P^2/B^2$.
           </p>
@@ -1092,7 +1102,7 @@ footer.site-footer {
         </div>
 
         <div class="narrative-section">
-          <h4>Results &amp; Census of the Milky Way</h4>
+          <h4>The True Galactic Census and Scale-Height Invariants</h4>
           <ul>
             <li><strong>True Population Peak:</strong> The actual Galactic population peaks at <strong>$1.61\text{ s}$</strong> (median $1.38\text{ s}$), reproducing the observed $0.62\text{ s}$ catalogue peak once telescope beaming and luminosity thresholds are applied ($W_1 = 0.037\text{ dex}$). No slow injection is required.</li>
             <li><strong>Milky Way Inventory:</strong> The Galaxy contains $(0.82 \pm 0.27) \times 10^5$ active radio pulsars and roughly $1.1 \times 10^8$ dead remnants.</li>
@@ -1130,8 +1140,7 @@ footer.site-footer {
 
     <h3 class="card-title">The Single-Generator Theory of Cycle-Decomposed Digit-Subtraction Dynamics</h3>
 
-    <div class="card-summary">
-      <strong>Overview:</strong> Generalizing Kaprekar's routine (6174) to arbitrary number bases and digit permutations, proving that seemingly non-linear digit dynamics decompose into decoupled, independent cycles governed by a single modular generator.
+    <div class="card-summary">Generalizing Kaprekar's routine (6174) to arbitrary number bases and digit permutations, proving that seemingly non-linear digit dynamics decompose into decoupled, independent cycles governed by a single modular generator.
     </div>
 
     <!-- Executive 3-Point Highlights -->
@@ -1171,7 +1180,7 @@ footer.site-footer {
         </div>
 
         <div class="narrative-section">
-          <h4>Approach &amp; Method: Decoupling by Permutation Cycles</h4>
+          <h4>Cycle Decomposition and the Single Modular Generator</h4>
           <p>
             We prove that the global dynamical system decouples into completely independent subsystems—one for each disjoint cycle of $\pi$. On each cycle of length $t$, the subtraction map, after modulo-sign equivalence $x \sim -x$, simplifies to multiplication by a single generator:
           </p>
@@ -1228,8 +1237,7 @@ footer.site-footer {
 
     <h3 class="card-title">Rediscovering a Formula for &pi;</h3>
 
-    <div class="card-summary">
-      <strong>Overview:</strong> Deriving an elementary, closed-form summation for a one-parameter family of central binomial coefficient series, achieving geometric convergence to $\pi$ using only single-variable calculus.
+    <div class="card-summary">Deriving an elementary, closed-form summation for a one-parameter family of central binomial coefficient series, achieving geometric convergence to $\pi$ using only single-variable calculus.
     </div>
 
     <!-- Executive 3-Point Highlights -->
@@ -1271,7 +1279,7 @@ footer.site-footer {
         </div>
 
         <div class="narrative-section">
-          <h4>Approach &amp; Method: The Elementary Beta-Integral Route</h4>
+          <h4>Elementary Calculus via the Beta-Integral Representation</h4>
           <p>
             We construct a self-contained derivation for the entire one-parameter family $S(a) = \sum_{n \ge 0} \frac{a^n}{\binom{2n+1}{n+1}}$ valid for all real $|a| < 4$. Rather than invoking heavy hypergeometric identities, the proof applies Euler's Beta integral identity to rewrite the reciprocal central binomial coefficient:
             $$\frac{1}{\binom{2n+1}{n+1}} = (n+1)\int_0^1 t^n(1-t)^n\,dt$$
@@ -1290,7 +1298,7 @@ footer.site-footer {
         </div>
 
         <div class="narrative-section">
-          <h4>Results &amp; Geometric Convergence</h4>
+          <h4>Geometric Convergence and Special Harmonic Evaluations</h4>
           <p>
             The terms shrink geometrically at rate $(a/4)^n$. In contrast to the classical Leibniz alternating series which requires $10^7$ terms for 7 decimal digits of $\pi$, choosing the acceleration parameter $a = 2 - \sqrt{2}$ yields <strong>7 correct digits of $\pi$ in just 8 terms</strong>.
           </p>
@@ -1325,8 +1333,7 @@ footer.site-footer {
 
     <h3 class="card-title">Quantum Field Theory in de Sitter Space: Foundations, Challenges, and Implications for Physics</h3>
 
-    <div class="card-summary">
-      <strong>Overview:</strong> Synthesizing quantum field theory in an accelerating, curved spacetime—examining how observer horizons generate intrinsic thermal radiation, infrared divergences, and primordial cosmological fluctuations.
+    <div class="card-summary">Synthesizing quantum field theory in an accelerating, curved spacetime—examining how observer horizons generate intrinsic thermal radiation, infrared divergences, and primordial cosmological fluctuations.
     </div>
 
     <!-- Executive 3-Point Highlights -->
@@ -1366,7 +1373,7 @@ footer.site-footer {
         </div>
 
         <div class="narrative-section">
-          <h4>Approach &amp; Method: Two Unifying Frameworks</h4>
+          <h4>Direct-Sum Fock Spaces and Ambient Space Embedding</h4>
           <p>
             The paper analyzes two modern mathematical frameworks:
           </p>
@@ -1415,8 +1422,7 @@ footer.site-footer {
 
     <h3 class="card-title">From Homology to de Rham Cohomology: An Expository Journey through the Topology of Smooth Manifolds</h3>
 
-    <div class="card-summary">
-      <strong>Overview:</strong> A self-contained, 137-page mathematical treatise tracing how differential forms and integration on smooth manifolds compute topological invariants, culminating in a proof of de Rham's Theorem.
+    <div class="card-summary">A self-contained, 137-page mathematical treatise tracing how differential forms and integration on smooth manifolds compute topological invariants, culminating in a proof of de Rham's Theorem.
     </div>
 
     <!-- Executive 3-Point Highlights -->
@@ -1456,7 +1462,7 @@ footer.site-footer {
         </div>
 
         <div class="narrative-section">
-          <h4>Approach &amp; Structure: The 137-Page Arc</h4>
+          <h4>Singular Chains, Differential Forms, and the de Rham Theorem</h4>
           <p>
             Over 137 pages, the text systematically constructs the bridge between geometric topology and differential analysis:
           </p>
@@ -1478,7 +1484,7 @@ footer.site-footer {
         </div>
 
         <div class="narrative-section">
-          <h4>Calculations &amp; Significance</h4>
+          <h4>Characteristic Classes and Topological Invariants</h4>
           <p>
             Concludes with a complete proof of de Rham's Theorem, supported by explicit computations on $n$-spheres $S^n$, $n$-tori $T^n$, punctured Euclidean spaces $\mathbb{R}^n \setminus \{0\}$, real projective spaces $\mathbb{RP}^n$, and compact Riemann surfaces of genus $g$.
           </p>
@@ -1499,7 +1505,7 @@ footer.site-footer {
 </section>
 
 <!-- MUSIC SECTION -->
-<section id="music" class="content-section" data-category="creative">
+<section id="music" class="content-section" data-category="music">
   <div class="section-header">
     <h2>Music</h2>
     <p>Chamber music applying mathematical serialism—a method turning number-theoretic sequences into acoustic counterpoint.</p>
@@ -1513,8 +1519,7 @@ footer.site-footer {
 
     <h3 class="card-title">String Quartet in E minor, &ldquo;Future&rdquo;</h3>
 
-    <div class="card-summary">
-      <strong>In one line:</strong> The intervals between notes are generated by integer sequences reduced modulo 7 or 11; the realization of voice-leading, counterpoint, rhythm, and harmony is shaped by composer agency, with a deliberate exception at measure 27.
+    <div class="card-summary">The intervals between notes are generated by integer sequences reduced modulo 7 or 11; the realization of voice-leading, counterpoint, rhythm, and harmony is shaped by composer agency, with a deliberate exception at measure 27.
     </div>
 
     <!-- Executive 3-Point Highlights -->
@@ -1534,7 +1539,7 @@ footer.site-footer {
     </div>
 
     <!-- Embedded Audio Player -->
-    <div style="background:#f9fafb; border:1px solid var(--border-light); border-radius:6px; padding:16px 18px; margin:16px 0;">
+    <div style="background:var(--surface-subtle); border:1px solid var(--border); border-radius:6px; padding:16px 18px; margin:16px 0;">
       <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:8px;">
         <span style="font-weight:600; font-size:0.92rem; color:var(--ink);">Full Recording: String Quartet in E minor ("Future")</span>
         <span style="font-size:0.82rem; color:var(--ink-muted);">MP3 Audio &middot; ~3 Min</span>
@@ -1822,70 +1827,7 @@ footer.site-footer {
   </article>
 </section>
 
-<!-- UNIPAL SECTION -->
-<section id="unipal" class="content-section" data-category="creative">
-  <div class="section-header">
-    <h2>UniPal</h2>
-    <p>Educational technology and tuition-free mathematics instruction for underserved learners.</p>
-  </div>
 
-  <article class="paper-card">
-    <div class="card-top">
-      <span class="card-discipline">Educational Technology &middot; Nonprofit</span>
-      <span class="card-meta">Chief Technology Officer &amp; Number Theory Lead</span>
-    </div>
-
-    <h3 class="card-title">UniPal &middot; Advanced Mathematics for Underserved Students</h3>
-
-    <div class="card-summary">
-      <strong>Overview:</strong> International student-run nonprofit providing free, competition-level and university-level mathematics education to underserved learners worldwide, with 100% of operational revenue funding educational grants.
-    </div>
-
-    <!-- Executive 3-Point Highlights -->
-    <div class="executive-grid">
-      <div class="exec-item">
-        <span class="exec-label">Scale &amp; Reach</span>
-        <span class="exec-val">900+ active students across 9+ countries &amp; 6+ US states; 100% of profits fund educational grants for low-income learners.</span>
-      </div>
-      <div class="exec-item">
-        <span class="exec-label">CTO Infrastructure</span>
-        <span class="exec-val">Architected low-bandwidth web platform, automated grading engine, and self-paced problem tracking for students with constrained access.</span>
-      </div>
-      <div class="exec-item">
-        <span class="exec-label">Number Theory</span>
-        <span class="exec-val">Designed and lectured flagship proof-first curriculum using Olympiad problems as gateways to rings, primitive roots, and Diophantine equations.</span>
-      </div>
-    </div>
-
-    <div class="action-row">
-      <a class="action-btn action-btn-primary" href="https://www.gounipal.com/home" target="_blank" rel="noopener">Visit UniPal Platform &rarr;</a>
-      <a class="action-btn" href="https://www.gounipal.com/courses" target="_blank" rel="noopener">View Courses &rarr;</a>
-    </div>
-
-    <!-- Progressive Disclosure: Detailed Role & Curriculum -->
-    <details class="deepdive-drawer">
-      <summary class="deepdive-summary">
-        <span>Explore Technical Architecture &amp; Curriculum Design</span>
-        <span class="deepdive-badge">Full Details &darr;</span>
-      </summary>
-      <div class="deepdive-content">
-        <div class="narrative-section">
-          <h4>Technological Infrastructure</h4>
-          <p>
-            As CTO, I architected and manage the platform's web infrastructure, optimizing delivery for students connecting over constrained bandwidth in developing regions, handling user authentication, automated problem grading, and self-paced problem-set progress tracking.
-          </p>
-        </div>
-
-        <div class="narrative-section">
-          <h4>Number Theory Curriculum</h4>
-          <p>
-            I designed and lecture the organization's flagship Number Theory series. Rather than focusing solely on competition shortcuts, the lectures emphasize proof-first mathematical foundations—using Olympiad problems as entry points into modular rings, primitive roots, quadratic reciprocity, and Diophantine equations.
-          </p>
-        </div>
-      </div>
-    </details>
-  </article>
-</section>
 
 </main>
 
@@ -1908,15 +1850,26 @@ function filterCategory(category, btn) {
   buttons.forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
 
-  const items = document.querySelectorAll('article.paper-card, section#music, section#unipal');
-  items.forEach(item => {
-    const itemCat = item.getAttribute('data-category');
-    if (category === 'all' || itemCat === category) {
-      item.style.display = '';
-    } else {
-      item.style.display = 'none';
-    }
-  });
+  const papersSection = document.getElementById('papers');
+  const musicSection = document.getElementById('music');
+  const paperCards = document.querySelectorAll('#papers .paper-card');
+
+  if (category === 'all') {
+    if (papersSection) papersSection.style.display = '';
+    if (musicSection) musicSection.style.display = '';
+    paperCards.forEach(card => card.style.display = '');
+  } else if (category === 'music') {
+    if (papersSection) papersSection.style.display = 'none';
+    if (musicSection) musicSection.style.display = '';
+  } else {
+    // Paper categories: astrophysics, mathematics, physics
+    if (papersSection) papersSection.style.display = '';
+    if (musicSection) musicSection.style.display = 'none';
+    paperCards.forEach(card => {
+      const cardCat = card.getAttribute('data-category');
+      card.style.display = (cardCat === category) ? '' : 'none';
+    });
+  }
 }
 
 function toggleViewer(id) {
@@ -1972,8 +1925,8 @@ if(btn){
     var dir=document.getElementById('dir').value;
     var x=seq(document.getElementById('seq').value);
     var pos=0,notes=[midi(0,m)];
-    var thStyle='style="text-align:left;padding:7px 10px;background:#f3f4f6;border:1px solid #d1d5db;font-weight:600;"';
-    var tdStyle='style="padding:7px 10px;border:1px solid #d1d5db;text-align:center;"';
+    var thStyle='';
+    var tdStyle='';
     
     var rows='<tr><th '+thStyle+'>Step <em>n</em></th>'+x.map(function(_,i){return'<td '+tdStyle+'>'+(i+1)+'</td>'}).join('')+'</tr>';
     rows+='<tr><th '+thStyle+'>Term <em>x<sub>n</sub></em></th>'+x.map(function(v){return'<td '+tdStyle+'>'+v+'</td>'}).join('')+'</tr>';
@@ -2027,7 +1980,7 @@ if(btn){
     rows+='<tr><th '+thStyle+'>Residue <em>a</em> (mod '+m+')</th>'+residues.map(function(v){return'<td '+tdStyle+'>'+v+'</td>'}).join('')+'</tr>';
     rows+='<tr><th '+thStyle+'>Complement <em>m &minus; a</em></th>'+complements.map(function(v){return'<td '+tdStyle+'>'+v+'</td>'}).join('')+'</tr>';
     rows+='<tr><th '+thStyle+'>Equivalence Set &Epsilon;(<em>a</em>)</th>'+eqClasses.map(function(v){return'<td '+tdStyle+' style="font-size:0.8rem;white-space:nowrap;">'+v+'</td>'}).join('')+'</tr>';
-    rows+='<tr><th '+thStyle+'>Realized Move</th>'+realizedMoves.map(function(v){return'<td '+tdStyle+' style="font-weight:600;color:#1e3a8a;">'+v+'</td>'}).join('')+'</tr>';
+    rows+='<tr><th '+thStyle+'>Realized Move</th>'+realizedMoves.map(function(v){return'<td '+tdStyle+' style="font-weight:600;color:var(--accent);">'+v+'</td>'}).join('')+'</tr>';
     
     var noteNames=notes.map(function(n){return NM[n%12]+(Math.floor(n/12)-1)});
     var pitchCells=noteNames.slice(1).map(function(p){return'<td '+tdStyle+' style="font-weight:700;">'+p+'</td>'}).join('');

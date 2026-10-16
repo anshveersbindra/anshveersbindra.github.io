@@ -260,7 +260,7 @@ h3.card-title {
   border-bottom: 1px solid var(--border-light);
   border-radius: 4px;
   padding: 14px 18px;
-  margin: 0 0 24px;
+  margin: 0 0 16px;
   font-size: 0.98rem;
   color: var(--ink-secondary);
   line-height: 1.6;
@@ -268,6 +268,87 @@ h3.card-title {
 .card-summary strong {
   color: var(--ink);
   font-weight: 600;
+}
+
+/* Executive Highlights Grid */
+.executive-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  background: #fbfcfd;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 14px 16px;
+  margin: 0 0 18px;
+}
+.exec-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.exec-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+}
+.exec-val {
+  font-size: 0.88rem;
+  color: var(--ink-secondary);
+  line-height: 1.5;
+}
+
+/* Progressive Disclosure Deep-Dive Drawer */
+details.deepdive-drawer {
+  margin-top: 18px;
+  border-top: 1px solid var(--border-light);
+  padding-top: 12px;
+}
+summary.deepdive-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink);
+  padding: 8px 4px;
+  list-style: none;
+  border-radius: 4px;
+  transition: color 0.15s ease;
+}
+summary.deepdive-summary::-webkit-details-marker {
+  display: none;
+}
+summary.deepdive-summary:hover {
+  color: var(--accent-link);
+}
+.deepdive-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--ink-secondary);
+  background: #f3f4f6;
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+}
+summary.deepdive-summary:hover .deepdive-badge {
+  background: var(--ink);
+  color: #ffffff;
+  border-color: var(--ink);
+}
+details.deepdive-drawer[open] summary.deepdive-summary .deepdive-badge {
+  background: #e5e7eb;
+  color: var(--ink);
+}
+.deepdive-content {
+  margin-top: 16px;
 }
 
 /* Narrative Prose Sections */
@@ -610,12 +691,39 @@ footer.site-footer {
   gap: 12px;
 }
 
+@media (max-width: 768px) {
+  .executive-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
 @media (max-width: 640px) {
-  .wrap { padding: 0 18px; }
-  header.site-header { padding: 48px 0 32px; }
-  article.paper-card { padding: 24px 20px; }
-  h3.card-title { font-size: 1.5rem; }
-  .inline-viewer object { height: 420px; }
+  .wrap { padding: 0 16px; }
+  header.site-header { padding: 36px 0 24px; }
+  .site-title { font-size: 2.1rem; }
+  .site-subtitle { font-size: 0.98rem; margin-bottom: 14px; }
+  .site-bio { font-size: 0.95rem; line-height: 1.65; }
+  nav.filter-nav { padding: 10px 0; }
+  .filter-btn { padding: 6px 11px; font-size: 0.82rem; }
+  .section-jump { display: none; } /* On small mobile, keep nav focused on filters */
+  article.paper-card { padding: 22px 18px; margin-bottom: 24px; }
+  h3.card-title { font-size: 1.45rem; line-height: 1.3; }
+  .card-summary { font-size: 0.92rem; padding: 12px 14px; }
+  .action-row { gap: 8px; padding-top: 16px; margin-top: 18px; }
+  .action-btn { padding: 7px 12px; font-size: 0.84rem; }
+  .equation-box { padding: 12px 14px; }
+  .equation-display { font-size: 1rem; }
+  .inline-viewer object { height: 380px; }
+  .technique-box { padding: 18px 16px; }
+  .interactive-synth { padding: 18px 16px; }
+  .synth-controls { flex-direction: column; align-items: stretch; gap: 10px; }
+  .synth-controls label { justify-content: space-between; }
+  .synth-btn { width: 100%; text-align: center; padding: 10px; }
+  .method-table { display: block; overflow-x: auto; width: 100%; }
+  .method-table th, .method-table td { padding: 6px 8px; font-size: 0.8rem; }
+  table.data-table { font-size: 0.82rem; }
+  table.data-table th, table.data-table td { padding: 6px 8px; }
 }
 </style>
 </head>
@@ -672,93 +780,20 @@ footer.site-footer {
       <strong>Overview:</strong> Determining the full 3D heliocentric orbit of a near-Earth asteroid using only three optical telescope observations across a 26-day baseline, matching NASA JPL Horizons ephemerides to within 0.11%–0.61%, and demonstrating how observational geometry governs physical accuracy.
     </div>
 
-    <div class="narrative-section">
-      <h4>The Question</h4>
-      <p>
-        Tracking Near-Earth Asteroids (NEAs) is fundamental to planetary defense and hazard assessment. When an asteroid is faint and rapidly drifting across the sky, astronomers only record 2D topocentric angular coordinates (right ascension $\alpha$ and declination $\delta$) from a telescope, with no direct distance measurement. How accurately can one reconstruct the full six Keplerian orbital elements of the body around the Sun using only three optical snapshots taken over 26 days?
-      </p>
-    </div>
-
-    <div class="narrative-section">
-      <h4>Approach &amp; Method</h4>
-      <p>
-        We acquired and reduced raw FITS charge-coupled device (CCD) images using Las Cumbres Observatory (LCO) telescopes located in Chile, Hawaii, and Texas. After performing astrometric calibration against 20 reference stars per exposure to establish plate constants, we implemented Carl Friedrich Gauss's 1801 method of initial orbit determination in Python.
-      </p>
-      <p>
-        Because the asteroid's heliocentric position vectors $\mathbf{r}_1, \mathbf{r}_2, \mathbf{r}_3$ lie in a single orbital plane, the middle vector can be expressed as a linear combination of the outer two: $\mathbf{r}_2 = a_1 \mathbf{r}_1 + a_3 \mathbf{r}_3$. Using Kepler's second law (conservation of areal velocity), the triangular areas ratio is iteratively refined with fourth-order Taylor series in Gaussian time intervals $\tau = k(t - t_2)$ until convergence to $10^{-10}\text{ AU}$. Random observational centroid noise was propagated through 1,000 Monte Carlo trials.
-      </p>
-    </div>
-
-    <div class="equation-box">
-      <div class="equation-label">Iterative 4th-Order Gauss $f$ and $g$ Series</div>
-      <div class="equation-display">
-        $$\mathbf{r}(\tau) = f(\tau)\,\mathbf{r}_2 + g(\tau)\,\dot{\mathbf{r}}_2, \quad f(\tau) = 1 - \frac{\mu}{2r_2^3}\tau^2 + \dots, \quad g(\tau) = \tau - \frac{\mu}{6r_2^3}\tau^3 + \dots$$
+    <!-- Executive 3-Point Highlights -->
+    <div class="executive-grid">
+      <div class="exec-item">
+        <span class="exec-label">Problem</span>
+        <span class="exec-val">Reconstruct full 3D Keplerian orbit from only three 2D optical angle snapshots $(\alpha, \delta)$ across 26 days, without distance data.</span>
       </div>
-      <div class="equation-explanation">
-        <strong>Symbol Key:</strong> $\tau = k(t - t_2)$ is the Gaussian time interval ($k$ is the Gaussian gravitational constant), $\mu = 1$ in canonical solar units, and $r_2 = \|\mathbf{r}_2\|$ is the asteroid's heliocentric distance at the second observation.
+      <div class="exec-item">
+        <span class="exec-label">Method</span>
+        <span class="exec-val">Gauss method in Python; iterative refinement of triangular ratios with 4th-order $f$ &amp; $g$ series ($10^{-10}\text{ AU}$); 1,000 Monte Carlo trials.</span>
       </div>
-    </div>
-
-    <div class="narrative-section">
-      <h4>Results &amp; Comparison with NASA JPL</h4>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>Orbital Element</th>
-            <th>Computed Result</th>
-            <th>NASA JPL Horizons</th>
-            <th>Difference</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Semi-major axis ($a$)</td>
-            <td>$2.2932\text{ AU}$</td>
-            <td>$2.3610\text{ AU}$</td>
-            <td>$0.61\%$</td>
-          </tr>
-          <tr>
-            <td>Eccentricity ($e$)</td>
-            <td>$0.4436$</td>
-            <td>$0.4565$</td>
-            <td>$0.51\%$</td>
-          </tr>
-          <tr>
-            <td>Inclination ($i$)</td>
-            <td>$9.978^\circ$</td>
-            <td>$10.136^\circ$</td>
-            <td><strong>0.11%</strong></td>
-          </tr>
-          <tr>
-            <td>Longitude of ascending node ($\Omega$)</td>
-            <td>$231.708^\circ$</td>
-            <td>$231.401^\circ$</td>
-            <td>$0.20\%$</td>
-          </tr>
-          <tr>
-            <td>Argument of periapsis ($\omega$)</td>
-            <td>$46.348^\circ$</td>
-            <td>$47.143^\circ$</td>
-            <td>$2.35\%$</td>
-          </tr>
-          <tr>
-            <td>Mean anomaly ($M$)</td>
-            <td>$1.502^\circ$</td>
-            <td>$1.287^\circ$</td>
-            <td>$17.83\%$</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="narrative-section">
-      <h4>Significance: Precision vs. Accuracy</h4>
-      <p>
-        The Monte Carlo uncertainty resulting from astrometric centroid noise was tiny (for example, $\pm 0.005\text{ AU}$ in the semi-major axis)—far smaller than the gap to NASA JPL Horizons. This discrepancy demonstrates an essential physical principle: high observational precision does not guarantee accuracy.
-      </p>
-      <p>
-        The errors are systematic: Gauss's classical method assumes an idealized two-body Keplerian problem, neglecting planetary gravitational perturbations from Jupiter and Earth. Furthermore, because asteroid 2015 GF27 has a shallow inclination ($i \approx 10^\circ$), the out-of-plane signal is small, which mathematically amplifies the sensitivity of the node and periapsis to minor observational errors. The mean anomaly error then compounds from the slight offset in semi-major axis through Kepler's equation.
-      </p>
+      <div class="exec-item">
+        <span class="exec-label">Key Result</span>
+        <span class="exec-val">Matched NASA JPL to 0.11% in inclination and 0.61% in semi-major axis; traced mean anomaly variance ($17.8\%$) to line-of-sight geometry.</span>
+      </div>
     </div>
 
     <div class="action-row">
@@ -766,6 +801,104 @@ footer.site-footer {
       <button class="action-btn" onclick="toggleViewer('viewer-asteroid')">Inline Viewer</button>
       <a class="action-btn" href="papers/asteroid-2015-GF27.pdf" download>Download</a>
     </div>
+
+    <!-- Progressive Disclosure: Full In-Depth Analysis -->
+    <details class="deepdive-drawer">
+      <summary class="deepdive-summary">
+        <span>Explore In-Depth Derivation, Data &amp; Methodology</span>
+        <span class="deepdive-badge">Full Analysis &darr;</span>
+      </summary>
+      <div class="deepdive-content">
+        <div class="narrative-section">
+          <h4>The Question</h4>
+          <p>
+            Tracking Near-Earth Asteroids (NEAs) is fundamental to planetary defense and hazard assessment. When an asteroid is faint and rapidly drifting across the sky, astronomers only record 2D topocentric angular coordinates (right ascension $\alpha$ and declination $\delta$) from a telescope, with no direct distance measurement. How accurately can one reconstruct the full six Keplerian orbital elements of the body around the Sun using only three optical snapshots taken over 26 days?
+          </p>
+        </div>
+
+        <div class="narrative-section">
+          <h4>Approach &amp; Method</h4>
+          <p>
+            We acquired and reduced raw FITS charge-coupled device (CCD) images using Las Cumbres Observatory (LCO) telescopes located in Chile, Hawaii, and Texas. After performing astrometric calibration against 20 reference stars per exposure to establish plate constants, we implemented Carl Friedrich Gauss's 1801 method of initial orbit determination in Python.
+          </p>
+          <p>
+            Because the asteroid's heliocentric position vectors $\mathbf{r}_1, \mathbf{r}_2, \mathbf{r}_3$ lie in a single orbital plane, the middle vector can be expressed as a linear combination of the outer two: $\mathbf{r}_2 = a_1 \mathbf{r}_1 + a_3 \mathbf{r}_3$. Using Kepler's second law (conservation of areal velocity), the triangular areas ratio is iteratively refined with fourth-order Taylor series in Gaussian time intervals $\tau = k(t - t_2)$ until convergence to $10^{-10}\text{ AU}$. Random observational centroid noise was propagated through 1,000 Monte Carlo trials.
+          </p>
+        </div>
+
+        <div class="equation-box">
+          <div class="equation-label">Iterative 4th-Order Gauss $f$ and $g$ Series</div>
+          <div class="equation-display">
+            $$\mathbf{r}(\tau) = f(\tau)\,\mathbf{r}_2 + g(\tau)\,\dot{\mathbf{r}}_2, \quad f(\tau) = 1 - \frac{\mu}{2r_2^3}\tau^2 + \dots, \quad g(\tau) = \tau - \frac{\mu}{6r_2^3}\tau^3 + \dots$$
+          </div>
+          <div class="equation-explanation">
+            <strong>Symbol Key:</strong> $\tau = k(t - t_2)$ is the Gaussian time interval ($k$ is the Gaussian gravitational constant), $\mu = 1$ in canonical solar units, and $r_2 = \|\mathbf{r}_2\|$ is the asteroid's heliocentric distance at the second observation.
+          </div>
+        </div>
+
+        <div class="narrative-section">
+          <h4>Results &amp; Comparison with NASA JPL</h4>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Orbital Element</th>
+                <th>Computed Result</th>
+                <th>NASA JPL Horizons</th>
+                <th>Difference</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Semi-major axis ($a$)</td>
+                <td>$2.2932\text{ AU}$</td>
+                <td>$2.3610\text{ AU}$</td>
+                <td>$0.61\%$</td>
+              </tr>
+              <tr>
+                <td>Eccentricity ($e$)</td>
+                <td>$0.4436$</td>
+                <td>$0.4565$</td>
+                <td>$0.51\%$</td>
+              </tr>
+              <tr>
+                <td>Inclination ($i$)</td>
+                <td>$9.978^\circ$</td>
+                <td>$10.136^\circ$</td>
+                <td><strong>0.11%</strong></td>
+              </tr>
+              <tr>
+                <td>Longitude of ascending node ($\Omega$)</td>
+                <td>$231.708^\circ$</td>
+                <td>$231.401^\circ$</td>
+                <td>$0.20\%$</td>
+              </tr>
+              <tr>
+                <td>Argument of periapsis ($\omega$)</td>
+                <td>$46.348^\circ$</td>
+                <td>$47.143^\circ$</td>
+                <td>$2.35\%$</td>
+              </tr>
+              <tr>
+                <td>Mean anomaly ($M$)</td>
+                <td>$1.502^\circ$</td>
+                <td>$1.287^\circ$</td>
+                <td>$17.83\%$</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="narrative-section">
+          <h4>Significance: Precision vs. Accuracy</h4>
+          <p>
+            The Monte Carlo uncertainty resulting from astrometric centroid noise was tiny (for example, $\pm 0.005\text{ AU}$ in the semi-major axis)—far smaller than the gap to NASA JPL Horizons. This discrepancy demonstrates an essential physical principle: high observational precision does not guarantee accuracy.
+          </p>
+          <p>
+            The errors are systematic: Gauss's classical method assumes an idealized two-body Keplerian problem, neglecting planetary gravitational perturbations from Jupiter and Earth. Furthermore, because asteroid 2015 GF27 has a shallow inclination ($i \approx 10^\circ$), the out-of-plane signal is small, which mathematically amplifies the sensitivity of the node and periapsis to minor observational errors. The mean anomaly error then compounds from the slight offset in semi-major axis through Kepler's equation.
+          </p>
+        </div>
+      </div>
+    </details>
 
     <div id="viewer-asteroid" class="inline-viewer">
       <div class="viewer-topbar">
@@ -791,67 +924,92 @@ footer.site-footer {
       <strong>Overview:</strong> Resolving the 45-year controversy on whether neutron stars are born spinning fast or slow by treating the 2,356 pulsars of the ATNF catalogue as a fluid in phase space and solving the inverse continuity equation in weak form.
     </div>
 
-    <div class="narrative-section">
-      <h4>The Question</h4>
-      <p>
-        Are neutron stars born spinning fast, or are many born slow? Standard core-collapse supernova theory predicts that newly formed neutron stars should be born spinning rapidly, with periods of tens of milliseconds ($P \sim 0.01 - 0.05\text{ s}$), due to conservation of angular momentum during stellar collapse. However, in 1981, Vivekanand and Narayan published an influential argument concluding that 40% to 75% of pulsars enter the population as "slow births" at periods of 0.40 to 0.85 s.
-      </p>
-      <p>
-        Settling this question from telescope catalogues has proved notoriously difficult for two reasons: a pulsar's spin-down deceleration scales with its magnetic field as $\dot{P} \propto B^2/P$ (meaning deceleration varies by six orders of magnitude across the population), and radio telescope surveys suffer from severe, poorly constrained observational selection effects.
-      </p>
-    </div>
-
-    <div class="narrative-section">
-      <h4>Approach &amp; Method</h4>
-      <p>
-        Pulsars do not jump discontinuously; they drift deterministically through the period-magnetic field $(P, B)$ plane. Consequently, their birth injection rate $S(P,B)$ must satisfy a two-dimensional continuity equation:
-      </p>
-      <div class="equation-box">
-        <div class="equation-label">Weak-Form Phase-Space Continuity Inversion</div>
-        <div class="equation-display">
-          $$\nabla \cdot \big(\mathbf{v}\,f\big) + \Lambda f = S \quad \implies \quad \iint \Big[ \mathbf{v}f \cdot \nabla\phi - \Lambda f \phi + S\phi \Big] \,d(\log P)\,d(\log B) = 0$$
-        </div>
-        <div class="equation-explanation">
-          <strong>Symbol Key:</strong> $\mathbf{v} = (\dot{P}, \dot{B})$ is the deterministic kinematic drift vector, $f(P,B)$ is the true phase-space density, $\Lambda$ is the death/luminosity cutoff rate, $S$ is the birth distribution to be recovered, and $\phi$ is an infinitely differentiable test function.
-        </div>
+    <!-- Executive 3-Point Highlights -->
+    <div class="executive-grid">
+      <div class="exec-item">
+        <span class="exec-label">Problem</span>
+        <span class="exec-val">Numerical derivatives on noisy survey histograms diverge catastrophically, creating a 45-year dispute over whether pulsars are born fast or slow ($P > 0.4\text{ s}$).</span>
       </div>
-      <p>
-        Taking numerical derivatives of noisy, bin-counted observational histograms creates catastrophic numerical divergence. We resolved this by formulating the continuity equation in <strong>weak form</strong>: multiplying by smooth Sobolev test functions $\phi$ and integrating by parts transfers all spatial derivatives off the noisy catalogue data and onto the smooth test function. Crucially, telescope visibility selection was calibrated <em>strictly outside</em> the contested slow-birth window ($0.40 - 0.85\text{ s}$), eliminating any possibility of circular reasoning.
-      </p>
-    </div>
-
-    <div class="narrative-section">
-      <h4>Results &amp; Multi-Wavelength Validation</h4>
-      <p>
-        Applied to 2,356 isolated pulsars from the ATNF catalogue, the inversion demonstrates that <strong>only 0.57% of pulsars are born slow</strong> (with a formal upper bound of at most 9.03% across all physical crustal field-decay timescales). The classical 40%–75% slow-birth hypothesis is decisively excluded. Four independent physical tests that do not depend on the fitted visibility function confirm this conclusion:
-      </p>
-      <ul>
-        <li><strong>Supernova Remnant Census:</strong> Associating young pulsars directly with known supernova remnants constrains slow births to $\le 22\%$.</li>
-        <li><strong>Scale-Height Kinematic Clock:</strong> Measuring vertical drift away from the Galactic plane over time bounds slow births to $\le 17\%$ ($2.6\sigma$ tension with the 50% slow-birth hypothesis).</li>
-        <li><strong>Volume-Complete Solar Cylinders:</strong> A local neighborhood census ($d \le 1.5\text{ kpc}$) bounds slow births to $4\% - 9\%$.</li>
-        <li><strong>High-Field Conservation Bound:</strong> Restricts slow births to $\le 23\%$.</li>
-      </ul>
-    </div>
-
-    <div class="narrative-section">
-      <h4>Significance</h4>
-      <p>
-        This paper settles a four-decade debate in compact-object astrophysics. It proves that the observed accumulation of slow pulsars is an optical illusion caused by rapid deceleration rather than slow injection, establishing that core-collapse supernovae almost universally produce rapidly rotating neutron stars.
-      </p>
-    </div>
-
-    <details class="technical-notes">
-      <summary class="technical-toggle">Technical Notes: Synthetic Validation &amp; Resolution Boundaries</summary>
-      <div class="technical-body">
-        <p>Across 100 synthetic catalogues of 2,356 pulsars with known fast, Gaussian, and bimodal injection profiles, the weak-form inversion recovered the underlying distribution to within 0.06 dex in $\log P$, with an effective resolution of 0.29 dex inside the slow window. The paper also documents its resolution limit: slow-birth fractions below 25%–30% fall below current observational sensitivity and require next-generation instruments (such as the Square Kilometre Array) to constrain further.</p>
+      <div class="exec-item">
+        <span class="exec-label">Method</span>
+        <span class="exec-val">Cast 2D continuity equation into variational weak form via integration by parts against Sobolev test functions $\phi$, transferring derivatives off noisy data.</span>
       </div>
-    </details>
+      <div class="exec-item">
+        <span class="exec-label">Key Result</span>
+        <span class="exec-val">Demonstrated only <strong>0.57%</strong> of pulsars are born slow (upper bound 9.03%); confirmed by 4 independent observational tests (SNRs, scale height).</span>
+      </div>
+    </div>
 
     <div class="action-row">
       <a class="action-btn action-btn-primary" href="papers/weak-form-inversion.pdf" target="_blank" rel="noopener">Open PDF</a>
       <button class="action-btn" onclick="toggleViewer('viewer-pulsar-1')">Inline Viewer</button>
       <a class="action-btn" href="papers/weak-form-inversion.pdf" download>Download</a>
     </div>
+
+    <!-- Progressive Disclosure: Full In-Depth Analysis -->
+    <details class="deepdive-drawer">
+      <summary class="deepdive-summary">
+        <span>Explore In-Depth Derivation, Data &amp; Methodology</span>
+        <span class="deepdive-badge">Full Analysis &darr;</span>
+      </summary>
+      <div class="deepdive-content">
+        <div class="narrative-section">
+          <h4>The Question</h4>
+          <p>
+            Are neutron stars born spinning fast, or are many born slow? Standard core-collapse supernova theory predicts that newly formed neutron stars should be born spinning rapidly, with periods of tens of milliseconds ($P \sim 0.01 - 0.05\text{ s}$), due to conservation of angular momentum during stellar collapse. However, in 1981, Vivekanand and Narayan published an influential argument concluding that 40% to 75% of pulsars enter the population as "slow births" at periods of 0.40 to 0.85 s.
+          </p>
+          <p>
+            Settling this question from telescope catalogues has proved notoriously difficult for two reasons: a pulsar's spin-down deceleration scales with its magnetic field as $\dot{P} \propto B^2/P$ (meaning deceleration varies by six orders of magnitude across the population), and radio telescope surveys suffer from severe, poorly constrained observational selection effects.
+          </p>
+        </div>
+
+        <div class="narrative-section">
+          <h4>Approach &amp; Method</h4>
+          <p>
+            Pulsars do not jump discontinuously; they drift deterministically through the period-magnetic field $(P, B)$ plane. Consequently, their birth injection rate $S(P,B)$ must satisfy a two-dimensional continuity equation:
+          </p>
+          <div class="equation-box">
+            <div class="equation-label">Weak-Form Phase-Space Continuity Inversion</div>
+            <div class="equation-display">
+              $$\nabla \cdot \big(\mathbf{v}\,f\big) + \Lambda f = S \quad \implies \quad \iint \Big[ \mathbf{v}f \cdot \nabla\phi - \Lambda f \phi + S\phi \Big] \,d(\log P)\,d(\log B) = 0$$
+            </div>
+            <div class="equation-explanation">
+              <strong>Symbol Key:</strong> $\mathbf{v} = (\dot{P}, \dot{B})$ is the deterministic kinematic drift vector, $f(P,B)$ is the true phase-space density, $\Lambda$ is the death/luminosity cutoff rate, $S$ is the birth distribution to be recovered, and $\phi$ is an infinitely differentiable test function.
+            </div>
+          </div>
+          <p>
+            Taking numerical derivatives of noisy, bin-counted observational histograms creates catastrophic numerical divergence. We resolved this by formulating the continuity equation in <strong>weak form</strong>: multiplying by smooth Sobolev test functions $\phi$ and integrating by parts transfers all spatial derivatives off the noisy catalogue data and onto the smooth test function. Crucially, telescope visibility selection was calibrated <em>strictly outside</em> the contested slow-birth window ($0.40 - 0.85\text{ s}$), eliminating any possibility of circular reasoning.
+          </p>
+        </div>
+
+        <div class="narrative-section">
+          <h4>Results &amp; Multi-Wavelength Validation</h4>
+          <p>
+            Applied to 2,356 isolated pulsars from the ATNF catalogue, the inversion demonstrates that <strong>only 0.57% of pulsars are born slow</strong> (with a formal upper bound of at most 9.03% across all physical crustal field-decay timescales). The classical 40%–75% slow-birth hypothesis is decisively excluded. Four independent physical tests that do not depend on the fitted visibility function confirm this conclusion:
+          </p>
+          <ul>
+            <li><strong>Supernova Remnant Census:</strong> Associating young pulsars directly with known supernova remnants constrains slow births to $\le 22\%$.</li>
+            <li><strong>Scale-Height Kinematic Clock:</strong> Measuring vertical drift away from the Galactic plane over time bounds slow births to $\le 17\%$ ($2.6\sigma$ tension with the 50% slow-birth hypothesis).</li>
+            <li><strong>Volume-Complete Solar Cylinders:</strong> A local neighborhood census ($d \le 1.5\text{ kpc}$) bounds slow births to $4\% - 9\%$.</li>
+            <li><strong>High-Field Conservation Bound:</strong> Restricts slow births to $\le 23\%$.</li>
+          </ul>
+        </div>
+
+        <div class="narrative-section">
+          <h4>Significance</h4>
+          <p>
+            This paper settles a four-decade debate in compact-object astrophysics. It proves that the observed accumulation of slow pulsars is an optical illusion caused by rapid deceleration rather than slow injection, establishing that core-collapse supernovae almost universally produce rapidly rotating neutron stars.
+          </p>
+        </div>
+
+        <details class="technical-notes">
+          <summary class="technical-toggle">Technical Notes: Synthetic Validation &amp; Resolution Boundaries</summary>
+          <div class="technical-body">
+            <p>Across 100 synthetic catalogues of 2,356 pulsars with known fast, Gaussian, and bimodal injection profiles, the weak-form inversion recovered the underlying distribution to within 0.06 dex in $\log P$, with an effective resolution of 0.29 dex inside the slow window. The paper also documents its resolution limit: slow-birth fractions below 25%–30% fall below current observational sensitivity and require next-generation instruments (such as the Square Kilometre Array) to constrain further.</p>
+          </div>
+        </details>
+      </div>
+    </details>
 
     <div id="viewer-pulsar-1" class="inline-viewer">
       <div class="viewer-topbar">
@@ -877,48 +1035,20 @@ footer.site-footer {
       <strong>Overview:</strong> Explaining why observed telescope surveys peak at 0.6 seconds when pulsars are born spinning 100 times faster, through the physics of residence-time slowdown, and reconstructing the true, unseen population of the entire Milky Way.
     </div>
 
-    <div class="narrative-section">
-      <h4>The Question</h4>
-      <p>
-        Paper I proves that pulsars are born spinning rapidly, with birth injection peaking near 48 ms. Why, then, does the observed astronomical catalogue peak near 0.6 s? The timed catalogue of 2,356 pulsars represents roughly 3% of the active Galaxy. What is the true, intrinsic demographic distribution of the entire Milky Way, and what does the unseen population look like?
-      </p>
-    </div>
-
-    <div class="narrative-section">
-      <h4>Approach &amp; Method: The Factor of $10^5$</h4>
-      <p>
-        The apparent contradiction is resolved by <strong>residence time</strong> (the "traffic jam" effect of stellar spin-down). A pulsar's residence time per logarithmic period decade scales as $\tau_{\rm res} \propto P^2/B^2$.
-      </p>
-      <p>
-        A newborn pulsar flashes across the fast regime in roughly 270 years, but takes approximately 23 million years to traverse the mature period range of 0.5 to 3 s—a slowdown factor of $\mathbf{10^5}$. Consequently, pulsars spend roughly 71% of their active radiating lifetimes lingering at slower periods. We evolved the birth distribution forward in time under magnetic dipole braking, crustal ohmic field decay, and death-valley switchoff, solving the 2D steady-state transport equation analytically and validating it against an independent 100,000-star Fortran Monte Carlo simulation evolved over 100 Myr ($W_1 = 0.028\text{ dex}$ agreement).
-      </p>
-    </div>
-
-    <div class="equation-box">
-      <div class="equation-label">Steady-State Demographic Transport</div>
-      <div class="equation-display">
-        $$\partial_x\big(v_x f\big) + \partial_y\big(v_y f\big) + \Lambda f = S, \quad v_x \propto B^2 P^{-(n-1)}, \quad \tau_{\rm res} \propto \frac{P^2}{B^2}$$
+    <!-- Executive 3-Point Highlights -->
+    <div class="executive-grid">
+      <div class="exec-item">
+        <span class="exec-label">Problem</span>
+        <span class="exec-val">Astronomical catalogues peak at $0.6\text{ s}$ despite pulsars being born at $0.048\text{ s}$. How do selection effects and spin-down mask the true Milky Way population?</span>
       </div>
-      <div class="equation-explanation">
-        <strong>Symbol Key:</strong> $x = \log P$, $y = \log B$, $v_x$ is magnetic dipole braking drift, $v_y$ is crustal ohmic decay, and $\tau_{\rm res}$ is the residence timescale per decade of spin period.
+      <div class="exec-item">
+        <span class="exec-label">Method</span>
+        <span class="exec-val">2D steady-state demographic transport with dipole braking and crustal ohmic field decay; validated against 100,000-star Fortran Monte Carlo simulation ($W_1 = 0.028\text{ dex}$).</span>
       </div>
-    </div>
-
-    <div class="narrative-section">
-      <h4>Results &amp; Census of the Milky Way</h4>
-      <ul>
-        <li><strong>True Population Peak:</strong> The actual Galactic population peaks at <strong>$1.61\text{ s}$</strong> (median $1.38\text{ s}$), reproducing the observed $0.62\text{ s}$ catalogue peak once telescope beaming and luminosity thresholds are applied ($W_1 = 0.037\text{ dex}$). No slow injection is required.</li>
-        <li><strong>Milky Way Inventory:</strong> The Galaxy contains $(0.82 \pm 0.27) \times 10^5$ active radio pulsars and roughly $1.1 \times 10^8$ dead remnants.</li>
-        <li><strong>Blind Kinematic Test:</strong> Ballistic drift away from the Galactic disc correctly predicts high-latitude pulsars without parameter tuning ($W_1 = 0.031\text{ dex}$, Kolmogorov-Smirnov $p = 0.199$).</li>
-        <li><strong>Survey Forecasts:</strong> Predicts discovery medians will shift to $0.83\text{ s}$ for FAST and $1.03\text{ s}$ for SKA1-Mid.</li>
-      </ul>
-    </div>
-
-    <div class="narrative-section">
-      <h4>Significance</h4>
-      <p>
-        Unifies birth dynamics with mature demographic observations, demonstrating that the apparent abundance of slow pulsars is a natural consequence of kinematic deceleration rather than slow injection.
-      </p>
+      <div class="exec-item">
+        <span class="exec-label">Key Result</span>
+        <span class="exec-val">Proved a $10^5\times$ residence slowdown ($\tau_{\rm res} \propto P^2/B^2$); reconstructed true Galactic population ($(0.82 \pm 0.27) \times 10^5$ pulsars) peaking at $1.61\text{ s}$.</span>
+      </div>
     </div>
 
     <div class="action-row">
@@ -926,6 +1056,59 @@ footer.site-footer {
       <button class="action-btn" onclick="toggleViewer('viewer-pulsar-2')">Inline Viewer</button>
       <a class="action-btn" href="papers/pulsar-demographics.pdf" download>Download</a>
     </div>
+
+    <!-- Progressive Disclosure: Full In-Depth Analysis -->
+    <details class="deepdive-drawer">
+      <summary class="deepdive-summary">
+        <span>Explore In-Depth Derivation, Data &amp; Methodology</span>
+        <span class="deepdive-badge">Full Analysis &darr;</span>
+      </summary>
+      <div class="deepdive-content">
+        <div class="narrative-section">
+          <h4>The Question</h4>
+          <p>
+            Paper I proves that pulsars are born spinning rapidly, with birth injection peaking near 48 ms. Why, then, does the observed astronomical catalogue peak near 0.6 s? The timed catalogue of 2,356 pulsars represents roughly 3% of the active Galaxy. What is the true, intrinsic demographic distribution of the entire Milky Way, and what does the unseen population look like?
+          </p>
+        </div>
+
+        <div class="narrative-section">
+          <h4>Approach &amp; Method: The Factor of $10^5$</h4>
+          <p>
+            The apparent contradiction is resolved by <strong>residence time</strong> (the "traffic jam" effect of stellar spin-down). A pulsar's residence time per logarithmic period decade scales as $\tau_{\rm res} \propto P^2/B^2$.
+          </p>
+          <p>
+            A newborn pulsar flashes across the fast regime in roughly 270 years, but takes approximately 23 million years to traverse the mature period range of 0.5 to 3 s—a slowdown factor of $\mathbf{10^5}$. Consequently, pulsars spend roughly 71% of their active radiating lifetimes lingering at slower periods. We evolved the birth distribution forward in time under magnetic dipole braking, crustal ohmic field decay, and death-valley switchoff, solving the 2D steady-state transport equation analytically and validating it against an independent 100,000-star Fortran Monte Carlo simulation evolved over 100 Myr ($W_1 = 0.028\text{ dex}$ agreement).
+          </p>
+        </div>
+
+        <div class="equation-box">
+          <div class="equation-label">Steady-State Demographic Transport</div>
+          <div class="equation-display">
+            $$\partial_x\big(v_x f\big) + \partial_y\big(v_y f\big) + \Lambda f = S, \quad v_x \propto B^2 P^{-(n-1)}, \quad \tau_{\rm res} \propto \frac{P^2}{B^2}$$
+          </div>
+          <div class="equation-explanation">
+            <strong>Symbol Key:</strong> $x = \log P$, $y = \log B$, $v_x$ is magnetic dipole braking drift, $v_y$ is crustal ohmic decay, and $\tau_{\rm res}$ is the residence timescale per decade of spin period.
+          </div>
+        </div>
+
+        <div class="narrative-section">
+          <h4>Results &amp; Census of the Milky Way</h4>
+          <ul>
+            <li><strong>True Population Peak:</strong> The actual Galactic population peaks at <strong>$1.61\text{ s}$</strong> (median $1.38\text{ s}$), reproducing the observed $0.62\text{ s}$ catalogue peak once telescope beaming and luminosity thresholds are applied ($W_1 = 0.037\text{ dex}$). No slow injection is required.</li>
+            <li><strong>Milky Way Inventory:</strong> The Galaxy contains $(0.82 \pm 0.27) \times 10^5$ active radio pulsars and roughly $1.1 \times 10^8$ dead remnants.</li>
+            <li><strong>Blind Kinematic Test:</strong> Ballistic drift away from the Galactic disc correctly predicts high-latitude pulsars without parameter tuning ($W_1 = 0.031\text{ dex}$, Kolmogorov-Smirnov $p = 0.199$).</li>
+            <li><strong>Survey Forecasts:</strong> Predicts discovery medians will shift to $0.83\text{ s}$ for FAST and $1.03\text{ s}$ for SKA1-Mid.</li>
+          </ul>
+        </div>
+
+        <div class="narrative-section">
+          <h4>Significance</h4>
+          <p>
+            Unifies birth dynamics with mature demographic observations, demonstrating that the apparent abundance of slow pulsars is a natural consequence of kinematic deceleration rather than slow injection.
+          </p>
+        </div>
+      </div>
+    </details>
 
     <div id="viewer-pulsar-2" class="inline-viewer">
       <div class="viewer-topbar">
@@ -951,47 +1134,20 @@ footer.site-footer {
       <strong>Overview:</strong> Generalizing Kaprekar's routine (6174) to arbitrary number bases and digit permutations, proving that seemingly non-linear digit dynamics decompose into decoupled, independent cycles governed by a single modular generator.
     </div>
 
-    <div class="narrative-section">
-      <h4>The Question</h4>
-      <p>
-        In 1949, D.R. Kaprekar discovered that sorting the digits of any four-digit number in descending and ascending order and subtracting always reaches 6174 within 7 steps. What algebraic mechanisms govern this process when generalized to arbitrary number bases $B \ge 2$, under arbitrary digit permutations $\pi \in S_k$ where digit positions rotate and subtract on disjoint cycles?
-      </p>
-    </div>
-
-    <div class="narrative-section">
-      <h4>Approach &amp; Method: Decoupling by Permutation Cycles</h4>
-      <p>
-        We prove that the global dynamical system decouples into completely independent subsystems—one for each disjoint cycle of $\pi$. On each cycle of length $t$, the subtraction map, after modulo-sign equivalence $x \sim -x$, simplifies to multiplication by a single generator:
-      </p>
-      <div class="equation-box">
-        <div class="equation-label">Single-Generator Theorem &amp; Attractor Rank</div>
-        <div class="equation-display">
-          $$c = (B - 1)B^{t-1} \pmod{B^t - 1}, \qquad \text{Total Attractor Rank} = \prod_{i} \frac{N_2(B, t_i) + 1}{2}$$
-        </div>
-        <div class="equation-explanation">
-          <strong>The Connection:</strong> Factoring $B^t - 1 = N_1 N_2$, where prime factors of $N_1$ divide $B-1$ and $\gcd(N_2, B-1) = 1$. For two-cycles ($t = 2$), the rank reduces to $(\mathrm{odd}(B+1) + 1)/2$, which corresponds to the integer sequence OEIS A003602.
-        </div>
+    <!-- Executive 3-Point Highlights -->
+    <div class="executive-grid">
+      <div class="exec-item">
+        <span class="exec-label">Problem</span>
+        <span class="exec-val">Kaprekar's 6174 puzzle has resisted general algebraic solution when extended to arbitrary number bases $B \ge 2$ and arbitrary digit permutations $\pi \in S_k$.</span>
       </div>
-      <p>
-        This formulation turns the entire dynamical system into exact modular arithmetic on the ring $\mathbb{Z}/(B^t - 1)\mathbb{Z}$, allowing attractor counts, cycle lengths, and transient convergence bounds to be determined analytically.
-      </p>
-    </div>
-
-    <div class="narrative-section">
-      <h4>Results</h4>
-      <ul>
-        <li><strong>Attractor Cardinality:</strong> Each independent subsystem has exactly $(N_2 + 1)/2$ periodic attractor states.</li>
-        <li><strong>Transient Bound:</strong> Every state enters a periodic orbit in at most $a_0$ or $a_0 + 1$ iterations, where $a_0$ is the least integer satisfying $N_1 \mid c^{a_0}$.</li>
-        <li><strong>Zero Collapse:</strong> Total collapse to zero occurs if and only if $t = 1$, or $t = 2$ when $B+1$ is a power of two.</li>
-        <li><strong>Multi-Cycle Behavior:</strong> Discovered multi-cycle attractors—for example, Base 14 with cycle length 3 exhibits an orbit of period 105; Base 6 with length 4 hosts simultaneous cycles of lengths 1, 3, and 9.</li>
-      </ul>
-    </div>
-
-    <div class="narrative-section">
-      <h4>Significance</h4>
-      <p>
-        Provides a closed-form algebraic theory for a long-standing class of discrete dynamical systems, converting a recreational digit puzzle into an exact question of modular group theory.
-      </p>
+      <div class="exec-item">
+        <span class="exec-label">Method</span>
+        <span class="exec-val">Proved non-linear dynamics decouple across permutation cycles; mapped action on each cycle to multiplication by a single generator $c = (B-1)B^{t-1} \pmod{B^t-1}$.</span>
+      </div>
+      <div class="exec-item">
+        <span class="exec-label">Key Result</span>
+        <span class="exec-val">Derived closed-form formula for periodic attractor rank $\prod_i (N_2(B, t_i)+1)/2$ matching OEIS A003602, and established universal transient bounds.</span>
+      </div>
     </div>
 
     <div class="action-row">
@@ -999,6 +1155,58 @@ footer.site-footer {
       <button class="action-btn" onclick="toggleViewer('viewer-digit')">Inline Viewer</button>
       <a class="action-btn" href="papers/digit-subtraction.pdf" download>Download</a>
     </div>
+
+    <!-- Progressive Disclosure: Full In-Depth Analysis -->
+    <details class="deepdive-drawer">
+      <summary class="deepdive-summary">
+        <span>Explore In-Depth Derivation, Data &amp; Methodology</span>
+        <span class="deepdive-badge">Full Analysis &darr;</span>
+      </summary>
+      <div class="deepdive-content">
+        <div class="narrative-section">
+          <h4>The Question</h4>
+          <p>
+            In 1949, D.R. Kaprekar discovered that sorting the digits of any four-digit number in descending and ascending order and subtracting always reaches 6174 within 7 steps. What algebraic mechanisms govern this process when generalized to arbitrary number bases $B \ge 2$, under arbitrary digit permutations $\pi \in S_k$ where digit positions rotate and subtract on disjoint cycles?
+          </p>
+        </div>
+
+        <div class="narrative-section">
+          <h4>Approach &amp; Method: Decoupling by Permutation Cycles</h4>
+          <p>
+            We prove that the global dynamical system decouples into completely independent subsystems—one for each disjoint cycle of $\pi$. On each cycle of length $t$, the subtraction map, after modulo-sign equivalence $x \sim -x$, simplifies to multiplication by a single generator:
+          </p>
+          <div class="equation-box">
+            <div class="equation-label">Single-Generator Theorem &amp; Attractor Rank</div>
+            <div class="equation-display">
+              $$c = (B - 1)B^{t-1} \pmod{B^t - 1}, \qquad \text{Total Attractor Rank} = \prod_{i} \frac{N_2(B, t_i) + 1}{2}$$
+            </div>
+            <div class="equation-explanation">
+              <strong>The Connection:</strong> Factoring $B^t - 1 = N_1 N_2$, where prime factors of $N_1$ divide $B-1$ and $\gcd(N_2, B-1) = 1$. For two-cycles ($t = 2$), the rank reduces to $(\mathrm{odd}(B+1) + 1)/2$, which corresponds to the integer sequence OEIS A003602.
+            </div>
+          </div>
+          <p>
+            This formulation turns the entire dynamical system into exact modular arithmetic on the ring $\mathbb{Z}/(B^t - 1)\mathbb{Z}$, allowing attractor counts, cycle lengths, and transient convergence bounds to be determined analytically.
+          </p>
+        </div>
+
+        <div class="narrative-section">
+          <h4>Results</h4>
+          <ul>
+            <li><strong>Attractor Cardinality:</strong> Each independent subsystem has exactly $(N_2 + 1)/2$ periodic attractor states.</li>
+            <li><strong>Transient Bound:</strong> Every state enters a periodic orbit in at most $a_0$ or $a_0 + 1$ iterations, where $a_0$ is the least integer satisfying $N_1 \mid c^{a_0}$.</li>
+            <li><strong>Zero Collapse:</strong> Total collapse to zero occurs if and only if $t = 1$, or $t = 2$ when $B+1$ is a power of two.</li>
+            <li><strong>Multi-Cycle Behavior:</strong> Discovered multi-cycle attractors—for example, Base 14 with cycle length 3 exhibits an orbit of period 105; Base 6 with length 4 hosts simultaneous cycles of lengths 1, 3, and 9.</li>
+          </ul>
+        </div>
+
+        <div class="narrative-section">
+          <h4>Significance</h4>
+          <p>
+            Provides a closed-form algebraic theory for a long-standing class of discrete dynamical systems, converting a recreational digit puzzle into an exact question of modular group theory.
+          </p>
+        </div>
+      </div>
+    </details>
 
     <div id="viewer-digit" class="inline-viewer">
       <div class="viewer-topbar">
@@ -1024,46 +1232,20 @@ footer.site-footer {
       <strong>Overview:</strong> Deriving an elementary, closed-form summation for a one-parameter family of central binomial coefficient series, achieving geometric convergence to $\pi$ using only single-variable calculus.
     </div>
 
-    <div class="narrative-section">
-      <h4>The Question</h4>
-      <p>
-        While manipulating series expansions for $\pi$ by hand, an algebraic error produced the unexpected sum:
-        $$\sum_{n=0}^{\infty}\frac{2^n}{\binom{2n+1}{n+1}} = 1+\frac{\pi}{2}$$
-        Can this be rigorously proven without relying on generalized hypergeometric machinery (${}_2F_1$), and generalized into a continuous family of rapidly converging formulas?
-      </p>
-    </div>
-
-    <div class="narrative-section">
-      <h4>Approach &amp; Method: The Elementary Beta-Integral Route</h4>
-      <p>
-        We construct a self-contained derivation for the entire one-parameter family $S(a) = \sum_{n \ge 0} \frac{a^n}{\binom{2n+1}{n+1}}$ valid for all real $|a| < 4$. Rather than invoking heavy hypergeometric identities, the proof applies Euler's Beta integral identity to rewrite the reciprocal central binomial coefficient:
-        $$\frac{1}{\binom{2n+1}{n+1}} = (n+1)\int_0^1 t^n(1-t)^n\,dt$$
-        Summing the series under the integral sign converts the sum into a geometric series, yielding $\int_0^1 \frac{dt}{(1 - at(1-t))^2}$, which is evaluated directly by completing the square and applying elementary substitutions.
-      </p>
-    </div>
-
-    <div class="equation-box">
-      <div class="equation-label">Closed-Form Evaluation for Real $|a| < 4$</div>
-      <div class="equation-display">
-        $$S(a) = \sum_{n=0}^\infty \frac{a^n}{\binom{2n+1}{n+1}} = \frac{2}{4-a} + \frac{8}{(4-a)^{3/2}\sqrt{a}}\,\arctan\sqrt{\frac{a}{4-a}}$$
+    <!-- Executive 3-Point Highlights -->
+    <div class="executive-grid">
+      <div class="exec-item">
+        <span class="exec-label">Problem</span>
+        <span class="exec-val">Prove the unexpected identity $\sum_{n \ge 0} \frac{2^n}{\binom{2n+1}{n+1}} = 1 + \frac{\pi}{2}$ without relying on generalized hypergeometric functions (${}_2F_1$).</span>
       </div>
-      <div class="equation-explanation">
-        <strong>Special Exact Values:</strong> $S(1) = \frac{2}{3} + \frac{4\pi}{9\sqrt{3}}$, $S(2) = 1 + \frac{\pi}{2}$, and $S(3) = 2 + \frac{8\pi}{3\sqrt{3}}$.
+      <div class="exec-item">
+        <span class="exec-label">Method</span>
+        <span class="exec-val">Rewrote reciprocal central binomials via Euler's Beta integral; summed geometric series under the integral sign and integrated via completing the square.</span>
       </div>
-    </div>
-
-    <div class="narrative-section">
-      <h4>Results &amp; Geometric Convergence</h4>
-      <p>
-        The terms shrink geometrically at rate $(a/4)^n$. In contrast to the classical Leibniz alternating series which requires $10^7$ terms for 7 decimal digits of $\pi$, choosing the acceleration parameter $a = 2 - \sqrt{2}$ yields <strong>7 correct digits of $\pi$ in just 8 terms</strong>.
-      </p>
-    </div>
-
-    <div class="narrative-section">
-      <h4>Significance</h4>
-      <p>
-        Presents an elementary pedagogical route to central binomial series that avoids complex analysis, demonstrating how an accidental calculation error can be developed into a closed-form theorem.
-      </p>
+      <div class="exec-item">
+        <span class="exec-label">Key Result</span>
+        <span class="exec-val">Derived closed form $S(a)$ for all $|a|<4$, showing terms shrink as $(a/4)^n$ and yielding <strong>7 digits of $\pi$ in 8 terms</strong> (vs. $10^7$ for Leibniz).</span>
+      </div>
     </div>
 
     <div class="action-row">
@@ -1071,6 +1253,57 @@ footer.site-footer {
       <button class="action-btn" onclick="toggleViewer('viewer-pi')">Inline Viewer</button>
       <a class="action-btn" href="papers/formula-for-pi.pdf" download>Download</a>
     </div>
+
+    <!-- Progressive Disclosure: Full In-Depth Analysis -->
+    <details class="deepdive-drawer">
+      <summary class="deepdive-summary">
+        <span>Explore In-Depth Derivation, Data &amp; Methodology</span>
+        <span class="deepdive-badge">Full Analysis &darr;</span>
+      </summary>
+      <div class="deepdive-content">
+        <div class="narrative-section">
+          <h4>The Question</h4>
+          <p>
+            While manipulating series expansions for $\pi$ by hand, an algebraic error produced the unexpected sum:
+            $$\sum_{n=0}^{\infty}\frac{2^n}{\binom{2n+1}{n+1}} = 1+\frac{\pi}{2}$$
+            Can this be rigorously proven without relying on generalized hypergeometric machinery (${}_2F_1$), and generalized into a continuous family of rapidly converging formulas?
+          </p>
+        </div>
+
+        <div class="narrative-section">
+          <h4>Approach &amp; Method: The Elementary Beta-Integral Route</h4>
+          <p>
+            We construct a self-contained derivation for the entire one-parameter family $S(a) = \sum_{n \ge 0} \frac{a^n}{\binom{2n+1}{n+1}}$ valid for all real $|a| < 4$. Rather than invoking heavy hypergeometric identities, the proof applies Euler's Beta integral identity to rewrite the reciprocal central binomial coefficient:
+            $$\frac{1}{\binom{2n+1}{n+1}} = (n+1)\int_0^1 t^n(1-t)^n\,dt$$
+            Summing the series under the integral sign converts the sum into a geometric series, yielding $\int_0^1 \frac{dt}{(1 - at(1-t))^2}$, which is evaluated directly by completing the square and applying elementary substitutions.
+          </p>
+        </div>
+
+        <div class="equation-box">
+          <div class="equation-label">Closed-Form Evaluation for Real $|a| < 4$</div>
+          <div class="equation-display">
+            $$S(a) = \sum_{n=0}^\infty \frac{a^n}{\binom{2n+1}{n+1}} = \frac{2}{4-a} + \frac{8}{(4-a)^{3/2}\sqrt{a}}\,\arctan\sqrt{\frac{a}{4-a}}$$
+          </div>
+          <div class="equation-explanation">
+            <strong>Special Exact Values:</strong> $S(1) = \frac{2}{3} + \frac{4\pi}{9\sqrt{3}}$, $S(2) = 1 + \frac{\pi}{2}$, and $S(3) = 2 + \frac{8\pi}{3\sqrt{3}}$.
+          </div>
+        </div>
+
+        <div class="narrative-section">
+          <h4>Results &amp; Geometric Convergence</h4>
+          <p>
+            The terms shrink geometrically at rate $(a/4)^n$. In contrast to the classical Leibniz alternating series which requires $10^7$ terms for 7 decimal digits of $\pi$, choosing the acceleration parameter $a = 2 - \sqrt{2}$ yields <strong>7 correct digits of $\pi$ in just 8 terms</strong>.
+          </p>
+        </div>
+
+        <div class="narrative-section">
+          <h4>Significance</h4>
+          <p>
+            Presents an elementary pedagogical route to central binomial series that avoids complex analysis, demonstrating how an accidental calculation error can be developed into a closed-form theorem.
+          </p>
+        </div>
+      </div>
+    </details>
 
     <div id="viewer-pi" class="inline-viewer">
       <div class="viewer-topbar">
@@ -1096,39 +1329,20 @@ footer.site-footer {
       <strong>Overview:</strong> Synthesizing quantum field theory in an accelerating, curved spacetime—examining how observer horizons generate intrinsic thermal radiation, infrared divergences, and primordial cosmological fluctuations.
     </div>
 
-    <div class="narrative-section">
-      <h4>The Question</h4>
-      <p>
-        De Sitter space describes both the primordial inflation of the early universe and the current dark-energy accelerated expansion. However, standard quantum field theory requires fundamental modification here: there is no global timelike Killing vector, meaning there is no unique, canonical "empty vacuum." Instead, a continuous family of vacua (the $\alpha$-vacua) exists, static observers detect unavoidable thermal radiation at temperature $T_{\rm dS} = H/2\pi$, and massless scalar fields develop infrared divergences that threaten perturbation theory.
-      </p>
-    </div>
-
-    <div class="narrative-section">
-      <h4>Approach &amp; Method: Two Unifying Frameworks</h4>
-      <p>
-        The paper analyzes two modern mathematical frameworks:
-      </p>
-      <ul>
-        <li><strong>Direct-Sum QFT:</strong> Replaces the single Hilbert space with $\mathcal{H}_+ \oplus \mathcal{H}_-$, separating time orientations. While the total state remains pure and unitary, an observer restricted to one sector sees the reduced density matrix $\rho_+ = \mathrm{Tr}_- |\Psi\rangle\langle\Psi|$, which is thermal. Thermality is thus demonstrated to be an exact consequence of horizon entanglement.</li>
-        <li><strong>Ambient Space Formalism:</strong> Embeds 4D de Sitter space as a 5D hyperboloid $-X_0^2 + X_1^2 + \dots + X_4^2 = H^{-2}$ in flat Minkowski space, allowing $\mathrm{SO}(1,4)$ transformations to act as linear matrix multiplications, resolving coordinate singularities and tracing infrared divergences to indecomposable group representations.</li>
-      </ul>
-    </div>
-
-    <div class="equation-box">
-      <div class="equation-label">Gibbons-Hawking Temperature &amp; Ambient Hyperboloid</div>
-      <div class="equation-display">
-        $$T_{\rm dS} = \frac{H}{2\pi}, \qquad -X_0^2 + \sum_{i=1}^4 X_i^2 = H^{-2}, \qquad \mathcal{P}_\phi = \frac{H^2}{4\pi^2}$$
+    <!-- Executive 3-Point Highlights -->
+    <div class="executive-grid">
+      <div class="exec-item">
+        <span class="exec-label">Problem</span>
+        <span class="exec-val">Curved, accelerating de Sitter spacetime lacks a global timelike Killing vector, destroying the notion of an empty vacuum and generating infrared divergences.</span>
       </div>
-      <div class="equation-explanation">
-        <strong>Symbol Key:</strong> $H$ is the Hubble expansion parameter, $T_{\rm dS}$ is the horizon temperature in natural units ($\hbar = c = k_B = 1$), and $\mathcal{P}_\phi$ is the primordial scalar perturbation power spectrum that seeds cosmological structure.
+      <div class="exec-item">
+        <span class="exec-label">Method</span>
+        <span class="exec-val">Analyzed Direct-Sum QFT ($\mathcal{H}_+ \oplus \mathcal{H}_-$) with horizon trace and 5D Ambient Space hyperboloid embedding ($-X_0^2 + \sum X_i^2 = H^{-2}$) under $\mathrm{SO}(1,4)$.</span>
       </div>
-    </div>
-
-    <div class="narrative-section">
-      <h4>Significance</h4>
-      <p>
-        Connects group-theoretic foundations directly to observable signatures in the Cosmic Microwave Background, and surveys active open problems in the field: constructing gauge-invariant observables in quantum gravity, non-perturbative vacuum stability in string theory, and the status of the dS/CFT correspondence.
-      </p>
+      <div class="exec-item">
+        <span class="exec-label">Key Result</span>
+        <span class="exec-val">Proved Gibbons-Hawking thermality ($T_{\rm dS} = H/2\pi$) is exact horizon entanglement; linked indecomposable representations to CMB primordial perturbations $\mathcal{P}_\phi = H^2/4\pi^2$.</span>
+      </div>
     </div>
 
     <div class="action-row">
@@ -1136,6 +1350,50 @@ footer.site-footer {
       <button class="action-btn" onclick="toggleViewer('viewer-qft')">Inline Viewer</button>
       <a class="action-btn" href="papers/qft-de-sitter.pdf" download>Download</a>
     </div>
+
+    <!-- Progressive Disclosure: Full In-Depth Analysis -->
+    <details class="deepdive-drawer">
+      <summary class="deepdive-summary">
+        <span>Explore In-Depth Derivation, Data &amp; Methodology</span>
+        <span class="deepdive-badge">Full Analysis &darr;</span>
+      </summary>
+      <div class="deepdive-content">
+        <div class="narrative-section">
+          <h4>The Question</h4>
+          <p>
+            De Sitter space describes both the primordial inflation of the early universe and the current dark-energy accelerated expansion. However, standard quantum field theory requires fundamental modification here: there is no global timelike Killing vector, meaning there is no unique, canonical "empty vacuum." Instead, a continuous family of vacua (the $\alpha$-vacua) exists, static observers detect unavoidable thermal radiation at temperature $T_{\rm dS} = H/2\pi$, and massless scalar fields develop infrared divergences that threaten perturbation theory.
+          </p>
+        </div>
+
+        <div class="narrative-section">
+          <h4>Approach &amp; Method: Two Unifying Frameworks</h4>
+          <p>
+            The paper analyzes two modern mathematical frameworks:
+          </p>
+          <ul>
+            <li><strong>Direct-Sum QFT:</strong> Replaces the single Hilbert space with $\mathcal{H}_+ \oplus \mathcal{H}_-$, separating time orientations. While the total state remains pure and unitary, an observer restricted to one sector sees the reduced density matrix $\rho_+ = \mathrm{Tr}_- |\Psi\rangle\langle\Psi|$, which is thermal. Thermality is thus demonstrated to be an exact consequence of horizon entanglement.</li>
+            <li><strong>Ambient Space Formalism:</strong> Embeds 4D de Sitter space as a 5D hyperboloid $-X_0^2 + X_1^2 + \dots + X_4^2 = H^{-2}$ in flat Minkowski space, allowing $\mathrm{SO}(1,4)$ transformations to act as linear matrix multiplications, resolving coordinate singularities and tracing infrared divergences to indecomposable group representations.</li>
+          </ul>
+        </div>
+
+        <div class="equation-box">
+          <div class="equation-label">Gibbons-Hawking Temperature &amp; Ambient Hyperboloid</div>
+          <div class="equation-display">
+            $$T_{\rm dS} = \frac{H}{2\pi}, \qquad -X_0^2 + \sum_{i=1}^4 X_i^2 = H^{-2}, \qquad \mathcal{P}_\phi = \frac{H^2}{4\pi^2}$$
+          </div>
+          <div class="equation-explanation">
+            <strong>Symbol Key:</strong> $H$ is the Hubble expansion parameter, $T_{\rm dS}$ is the horizon temperature in natural units ($\hbar = c = k_B = 1$), and $\mathcal{P}_\phi$ is the primordial scalar perturbation power spectrum that seeds cosmological structure.
+          </div>
+        </div>
+
+        <div class="narrative-section">
+          <h4>Significance</h4>
+          <p>
+            Connects group-theoretic foundations directly to observable signatures in the Cosmic Microwave Background, and surveys active open problems in the field: constructing gauge-invariant observables in quantum gravity, non-perturbative vacuum stability in string theory, and the status of the dS/CFT correspondence.
+          </p>
+        </div>
+      </div>
+    </details>
 
     <div id="viewer-qft" class="inline-viewer">
       <div class="viewer-topbar">
@@ -1161,40 +1419,20 @@ footer.site-footer {
       <strong>Overview:</strong> A self-contained, 137-page mathematical treatise tracing how differential forms and integration on smooth manifolds compute topological invariants, culminating in a proof of de Rham's Theorem.
     </div>
 
-    <div class="narrative-section">
-      <h4>The Question</h4>
-      <p>
-        Local calculus cannot distinguish an open disk from an entire sphere: both look Euclidean under sufficient magnification. How can local differential calculus detect the global presence of holes, voids, and twists in multidimensional spaces?
-      </p>
-    </div>
-
-    <div class="narrative-section">
-      <h4>Approach &amp; Structure: The 137-Page Arc</h4>
-      <p>
-        Over 137 pages, the text systematically constructs the bridge between geometric topology and differential analysis:
-      </p>
-      <ul>
-        <li><strong>Homology:</strong> Simplicial complexes, chain groups, the boundary operator $\partial$ with $\partial^2 = 0$, cycles modulo boundaries $H_k(M) = \ker \partial_k / \operatorname{im} \partial_{k+1}$, and singular homology.</li>
-        <li><strong>Cohomology &amp; Duality:</strong> Cochains, coboundary operator $d$, cup products $\smile$, the Mayer&ndash;Vietoris exact sequence, and Poincaré duality.</li>
-        <li><strong>Differential Forms:</strong> The exterior algebra $\bigwedge^k T^*M$, exterior derivative $d$ with $d^2 = 0$, pullbacks, and the generalized Stokes' Theorem $\int_M d\omega = \int_{\partial M} \omega$.</li>
-      </ul>
-    </div>
-
-    <div class="equation-box">
-      <div class="equation-label">De Rham Isomorphism &amp; Generalized Stokes' Theorem</div>
-      <div class="equation-display">
-        $$H^k_{\mathrm{dR}}(M) \;\cong\; H^k(M; \mathbb{R}) \qquad \Longleftrightarrow \qquad \int_M d\omega = \int_{\partial M} \omega$$
+    <!-- Executive 3-Point Highlights -->
+    <div class="executive-grid">
+      <div class="exec-item">
+        <span class="exec-label">Problem</span>
+        <span class="exec-val">Local calculus cannot distinguish an open disk from a sphere. How can differential forms detect global multidimensional topological holes and twists?</span>
       </div>
-      <div class="equation-explanation">
-        <strong>The Deep Insight:</strong> The vector space of closed forms modulo exact forms ($H^k_{\mathrm{dR}}(M)$) is canonically isomorphic to the singular cohomology groups with real coefficients ($H^k(M;\mathbb{R})$).
+      <div class="exec-item">
+        <span class="exec-label">Method</span>
+        <span class="exec-val">137-page exposition spanning simplicial &amp; singular homology, cohomology, Mayer-Vietoris sequences, exterior algebra $\bigwedge^k T^*M$, and generalized Stokes' Theorem.</span>
       </div>
-    </div>
-
-    <div class="narrative-section">
-      <h4>Calculations &amp; Significance</h4>
-      <p>
-        Concludes with a complete proof of de Rham's Theorem, supported by explicit computations on $n$-spheres $S^n$, $n$-tori $T^n$, punctured Euclidean spaces $\mathbb{R}^n \setminus \{0\}$, real projective spaces $\mathbb{RP}^n$, and compact Riemann surfaces of genus $g$.
-      </p>
+      <div class="exec-item">
+        <span class="exec-label">Key Result</span>
+        <span class="exec-val">Rigorous proof of de Rham's Theorem ($H^k_{\mathrm{dR}}(M) \cong H^k(M;\mathbb{R})$); explicit computations on $S^n$, $T^n$, $\mathbb{RP}^n$, and Riemann surfaces of genus $g$.</span>
+      </div>
     </div>
 
     <div class="action-row">
@@ -1202,6 +1440,51 @@ footer.site-footer {
       <button class="action-btn" onclick="toggleViewer('viewer-topology')">Inline Viewer</button>
       <a class="action-btn" href="papers/homology-to-de-rham.pdf" download>Download</a>
     </div>
+
+    <!-- Progressive Disclosure: Full In-Depth Analysis -->
+    <details class="deepdive-drawer">
+      <summary class="deepdive-summary">
+        <span>Explore In-Depth Derivation, Data &amp; Methodology</span>
+        <span class="deepdive-badge">Full Analysis &darr;</span>
+      </summary>
+      <div class="deepdive-content">
+        <div class="narrative-section">
+          <h4>The Question</h4>
+          <p>
+            Local calculus cannot distinguish an open disk from an entire sphere: both look Euclidean under sufficient magnification. How can local differential calculus detect the global presence of holes, voids, and twists in multidimensional spaces?
+          </p>
+        </div>
+
+        <div class="narrative-section">
+          <h4>Approach &amp; Structure: The 137-Page Arc</h4>
+          <p>
+            Over 137 pages, the text systematically constructs the bridge between geometric topology and differential analysis:
+          </p>
+          <ul>
+            <li><strong>Homology:</strong> Simplicial complexes, chain groups, the boundary operator $\partial$ with $\partial^2 = 0$, cycles modulo boundaries $H_k(M) = \ker \partial_k / \operatorname{im} \partial_{k+1}$, and singular homology.</li>
+            <li><strong>Cohomology &amp; Duality:</strong> Cochains, coboundary operator $d$, cup products $\smile$, the Mayer&ndash;Vietoris exact sequence, and Poincaré duality.</li>
+            <li><strong>Differential Forms:</strong> The exterior algebra $\bigwedge^k T^*M$, exterior derivative $d$ with $d^2 = 0$, pullbacks, and the generalized Stokes' Theorem $\int_M d\omega = \int_{\partial M} \omega$.</li>
+          </ul>
+        </div>
+
+        <div class="equation-box">
+          <div class="equation-label">De Rham Isomorphism &amp; Generalized Stokes' Theorem</div>
+          <div class="equation-display">
+            $$H^k_{\mathrm{dR}}(M) \;\cong\; H^k(M; \mathbb{R}) \qquad \Longleftrightarrow \qquad \int_M d\omega = \int_{\partial M} \omega$$
+          </div>
+          <div class="equation-explanation">
+            <strong>The Deep Insight:</strong> The vector space of closed forms modulo exact forms ($H^k_{\mathrm{dR}}(M)$) is canonically isomorphic to the singular cohomology groups with real coefficients ($H^k(M;\mathbb{R})$).
+          </div>
+        </div>
+
+        <div class="narrative-section">
+          <h4>Calculations &amp; Significance</h4>
+          <p>
+            Concludes with a complete proof of de Rham's Theorem, supported by explicit computations on $n$-spheres $S^n$, $n$-tori $T^n$, punctured Euclidean spaces $\mathbb{R}^n \setminus \{0\}$, real projective spaces $\mathbb{RP}^n$, and compact Riemann surfaces of genus $g$.
+          </p>
+        </div>
+      </div>
+    </details>
 
     <div id="viewer-topology" class="inline-viewer">
       <div class="viewer-topbar">
@@ -1234,231 +1517,31 @@ footer.site-footer {
       <strong>In one line:</strong> The intervals between notes are generated by integer sequences reduced modulo 7 or 11; the realization of voice-leading, counterpoint, rhythm, and harmony is shaped by composer agency, with a deliberate exception at measure 27.
     </div>
 
+    <!-- Executive 3-Point Highlights -->
+    <div class="executive-grid">
+      <div class="exec-item">
+        <span class="exec-label">The Method</span>
+        <span class="exec-val">Serialism of relative interval distances ($x_n$) rather than absolute pitches, generated by integer sequences reduced modulo 7 or 11.</span>
+      </div>
+      <div class="exec-item">
+        <span class="exec-label">The Geometry</span>
+        <span class="exec-val">Axioms $+a \equiv -a$ and $+a \equiv m-a$ collapse all moves into class $\mathcal{E}(a) = \{\pm a, \pm (m-a)\}$; classical serialist inversions cannot exist.</span>
+      </div>
+      <div class="exec-item">
+        <span class="exec-label">The Expression</span>
+        <span class="exec-val">Composer shapes 4-part counterpoint across strings, register ($a+7$), and breaks the rule at measure 27 to resolve in E minor.</span>
+      </div>
+    </div>
+
     <!-- Embedded Audio Player -->
-    <div style="background:#f9fafb; border:1px solid var(--border-light); border-radius:6px; padding:18px 20px; margin:20px 0;">
+    <div style="background:#f9fafb; border:1px solid var(--border-light); border-radius:6px; padding:16px 18px; margin:16px 0;">
       <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:8px;">
         <span style="font-weight:600; font-size:0.92rem; color:var(--ink);">Full Recording: String Quartet in E minor ("Future")</span>
-        <span style="font-size:0.82rem; color:var(--ink-muted);">MP3 Audio</span>
+        <span style="font-size:0.82rem; color:var(--ink-muted);">MP3 Audio &middot; ~3 Min</span>
       </div>
       <audio controls class="styled-player" preload="metadata" src="music/quartet-future.mp3">
         Your browser does not support audio playback. <a href="music/quartet-future.mp3">Download recording</a>.
       </audio>
-    </div>
-
-    <!-- In-Depth Technique Explanation -->
-    <div class="technique-box">
-      <h4>The Compositional System: Modular Serialism &amp; Interval Equivalence</h4>
-      
-      <p>
-        The quartet adapts the principles of musical serialism by deriving its pitch material from number-theoretic sequences, but departs from classical twelve-tone technique in two foundational ways:
-      </p>
-      <ul>
-        <li><strong>Relative intervals rather than absolute pitches:</strong> In traditional twelve-tone serialism (Schoenberg, Webern), the composer defines a rigid row of fixed pitch classes ($P_0, P_1, \dots, P_{11}$). In this system, each sequence term $x_n$ dictates the <em>interval distance</em> to leap from the current note, leaving absolute pitch, register, and contour flexible.</li>
-        <li><strong>Deterministic integer sequences rather than tone rows:</strong> The interval distances are drawn from sequences such as the Fibonacci numbers ($1, 1, 2, 3, 5, 8, 13, 21, \dots$), primes, or polynomial sequences, whose recurrent mathematical properties mirror organic growth.</li>
-      </ul>
-
-      <h5>1. Mathematical Foundations: The Three Equivalence Axioms</h5>
-      <p>
-        To project an unbounded integer sequence into finite musical space, each term is reduced modulo an integer $m$:
-      </p>
-      <div style="margin: 12px 0 16px; text-align: center;">
-        $$a \equiv x_n \pmod m \qquad \text{where } a \in \{0, 1, \dots, m-1\}$$
-      </div>
-      <p>
-        The residue $a$ is then governed by three algebraic symmetries that define the composer's palette:
-      </p>
-      <ul>
-        <li>
-          <strong>Axiom I: Directional Invariance ($+a \equiv -a$):</strong>
-          Stepping upward by $a$ scale steps and stepping downward by $a$ scale steps are defined as acoustic manifestations of the identical interval class. The number specifies the magnitude of the displacement; direction (up or down) is a free expressive choice.
-          <br><br>
-          <em>Why Serialist Inversions Cannot Exist:</em> In classical twelve-tone serialism, an "Inversion" creates a new row form by reflecting every ascending interval into a descending one ($+a \mapsto -a$). In this system, because $+a \equiv -a$, reflecting the sign merely maps the interval back onto itself:
-          $$\mathcal{I}(+a) = -a \equiv +a$$
-          Therefore, an inversion produces no new row form—the system is inherently self-inverse by construction. The classical Prime ($P$) and Inversion ($I$) operations collapse into an exact algebraic identity.
-        </li>
-        <li>
-          <strong>Axiom II: Complementary Equivalence ($+a \equiv -a$ and $+a \equiv m - a \equiv -(m - a)$):</strong>
-          On a circular pitch scale of $m$ notes, stepping forward by $a$ arrives at the exact same pitch degree as stepping backward by the modular complement $m - a$:
-          $$+a \equiv -(m - a) \pmod m \qquad \text{and} \qquad -a \equiv +(m - a) \pmod m$$
-          Because direction is invariant ($+a \equiv -a$), all four physical motions:
-          $$\mathcal{E}(a) = \bigl\{ +a, \quad -a, \quad +(m - a), \quad -(m - a) \bigr\}$$
-          belong to the <em>exact same interval class</em>. Whether the composer moves <strong>up by $a$</strong>, <strong>down by $a$</strong>, <strong>up by $m - a$</strong>, or <strong>down by $m - a$</strong>, they are realizing different facets of the same mathematical constraint.
-        </li>
-        <li>
-          <strong>Axiom III: Octave Equivalence ($a \equiv a + m$):</strong>
-          Adding or subtracting integer multiples of the modulus $m$ corresponds to transposing the interval across octaves ($a \equiv a + k \cdot m$). A stepwise second ($a = 1$) can be voiced across octaves as a compound ninth ($1 + 7 = 8$) or sixteenth, allowing the quartet to move between close contrapuntal weaving and wide registral leaps.
-        </li>
-      </ul>
-
-      <h5>2. Modulus &amp; Pitch Space Partitioning</h5>
-      <p>
-        The choice of modulus $m$ establishes the harmonic geometry:
-      </p>
-      <ul>
-        <li>
-          <strong>Modulo 7 ($m = 7$ &mdash; Diatonic E Natural Minor):</strong>
-          Operates on the seven scale degrees of the E natural minor (Aeolian) scale:
-          <div style="margin: 8px 0; text-align: center; font-size: 0.94rem;">
-            $$1 = \text{E}, \quad 2 = \text{F}\sharp, \quad 3 = \text{G}, \quad 4 = \text{A}, \quad 5 = \text{B}, \quad 6 = \text{C}, \quad 7 = \text{D}$$
-          </div>
-          Under the equivalence axioms, all integers in the universe partition into just <strong>four fundamental interval classes</strong>:
-        </li>
-      </ul>
-
-      <table class="method-table">
-        <thead>
-          <tr>
-            <th>Interval Class</th>
-            <th>Primary Residue $a$</th>
-            <th>Complement $m - a$</th>
-            <th>Equivalence Set $\mathcal{E}(a)$</th>
-            <th>Musical Function in E Minor</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Class 0</strong></td>
-            <td>$0$</td>
-            <td>$0$</td>
-            <td>$\{0\}$</td>
-            <td>Unison, repeated notes, stationary pedal points</td>
-          </tr>
-          <tr>
-            <td><strong>Class 1</strong></td>
-            <td>$1$</td>
-            <td>$6$</td>
-            <td>$\{+1, -1, +6, -6\}$</td>
-            <td>Seconds and sevenths (scalar, stepwise melodic voice-leading)</td>
-          </tr>
-          <tr>
-            <td><strong>Class 2</strong></td>
-            <td>$2$</td>
-            <td>$5$</td>
-            <td>$\{+2, -2, +5, -5\}$</td>
-            <td>Thirds and sixths (triadic harmony: E&ndash;G, G&ndash;B, C&ndash;E)</td>
-          </tr>
-          <tr>
-            <td><strong>Class 3</strong></td>
-            <td>$3$</td>
-            <td>$4$</td>
-            <td>$\{+3, -3, +4, -4\}$</td>
-            <td>Fourths and fifths (open structural consonances: E&ndash;B, A&ndash;E)</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <ul>
-        <li>
-          <strong>Modulo 11 ($m = 11$ &mdash; Chromatic Pitch Space):</strong>
-          Partitions the chromatic scale into eleven interval classes, generating dense, post-tonal counterpoint and restless harmonic friction.
-        </li>
-      </ul>
-
-      <h5>3. Worked-Out Musical Trace: How E Minor Harmony Emerges</h5>
-      <p>
-        To see why this produces coherent musical architecture rather than random leaps, consider the first six Fibonacci terms ($1, 1, 2, 3, 5, 8$) reduced modulo 7, starting on the tonic note <strong>E4</strong>:
-      </p>
-
-      <table class="method-table">
-        <thead>
-          <tr>
-            <th>Step $n$</th>
-            <th>Fibonacci $x_n$</th>
-            <th>Residue $a$</th>
-            <th>Class $\mathcal{E}(a)$</th>
-            <th>Realized Leap</th>
-            <th>Current Pitch</th>
-            <th>Harmonic Interpretation</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Start</td>
-            <td>&mdash;</td>
-            <td>&mdash;</td>
-            <td>&mdash;</td>
-            <td>&mdash;</td>
-            <td><strong>E4</strong> (Degree 1)</td>
-            <td>Tonic root</td>
-          </tr>
-          <tr>
-            <td>$n=1$</td>
-            <td>$1$</td>
-            <td>$1$</td>
-            <td>$\{\pm 1, \pm 6\}$</td>
-            <td>$+1$ (step up)</td>
-            <td><strong>F&#9839;4</strong> (Degree 2)</td>
-            <td>Scalar step away from tonic</td>
-          </tr>
-          <tr>
-            <td>$n=2$</td>
-            <td>$1$</td>
-            <td>$1$</td>
-            <td>$\{\pm 1, \pm 6\}$</td>
-            <td>$+1$ (step up)</td>
-            <td><strong>G4</strong> (Degree 3)</td>
-            <td>Arrives at the minor third of E minor</td>
-          </tr>
-          <tr>
-            <td>$n=3$</td>
-            <td>$2$</td>
-            <td>$2$</td>
-            <td>$\{\pm 2, \pm 5\}$</td>
-            <td>$+2$ (third up)</td>
-            <td><strong>B4</strong> (Degree 5)</td>
-            <td>Arrives at the dominant fifth of E minor</td>
-          </tr>
-          <tr>
-            <td>$n=4$</td>
-            <td>$3$</td>
-            <td>$3$</td>
-            <td>$\{\pm 3, \pm 4\}$</td>
-            <td>$+3$ (fourth up)</td>
-            <td><strong>E5</strong> (Degree 1)</td>
-            <td>Arrives at the tonic octave!</td>
-          </tr>
-          <tr>
-            <td>$n=5$</td>
-            <td>$5$</td>
-            <td>$5 \equiv 2$</td>
-            <td>$\{\pm 2, \pm 5\}$</td>
-            <td>$-2$ (third down)</td>
-            <td><strong>G4</strong> (Degree 3)</td>
-            <td>Outlines the tonic triad descending</td>
-          </tr>
-          <tr>
-            <td>$n=6$</td>
-            <td>$8$</td>
-            <td>$8 \equiv 1$</td>
-            <td>$\{\pm 1, \pm 6\}$</td>
-            <td>$-1$ (step down)</td>
-            <td><strong>F&#9839;4</strong> (Degree 2)</td>
-            <td>Neighbor tone leading toward cadence</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <p style="color: var(--ink-secondary); font-size: 0.93rem;">
-        Notice what just happened: through pure mathematical deduction, the Fibonacci sequence naturally spelled out an ascending E minor arpeggio (<strong>E4 &rarr; F&#9839;4 &rarr; G4 &rarr; B4 &rarr; E5</strong>) followed by a balanced scalar return! The interplay between the Pisano period and the interval equivalence classes naturally generates organic, classical harmonic balance.
-      </p>
-
-      <h5>4. Polyphony &amp; Composer Agency Across the Quartet</h5>
-      <p>
-        The mathematical sequence never composes the piece alone; it provides the architectural scaffolding:
-      </p>
-      <ul>
-        <li><strong>Contrapuntal distribution:</strong> The sequence is allocated across four distinct acoustic voices (Violin I, Violin II, Viola, Violoncello). While Violin I carries an ascending realization $+a$, the Cello can ground the texture with the complementary descent $-(m-a)$ or an octave displacement $a + 7$, and the inner voices supply harmonic counter-lines.</li>
-        <li><strong>Rhythm, meter, and pacing:</strong> Intervals specify distance, not duration. The composer assigns note values (sustained whole notes, syncopated quarters, rapid sixteenths), meters (4/4, 3/4), and tempos.</li>
-        <li><strong>Timbre and articulation:</strong> Dynamics from <em>pianissimo</em> to <em>fortissimo</em>, expressive vibrato, <em>sul ponticello</em>, and <em>pizzicato</em> are purely expressive decisions.</li>
-      </ul>
-
-      <h5>5. The Deliberate Exception at Measure 27</h5>
-      <p>
-        A purely mechanical algorithmic process would cycle through its sequence indefinitely without ever reaching musical closure. Throughout the opening <em>Andante</em>, the Fibonacci intervals drive escalating rhythmic and contrapuntal compression.
-      </p>
-      <p>
-        At <strong>measure 27</strong>, the quartet intentionally breaks the mathematical sequence. The strict interval row is suspended to voice an authentic classical cadence, releasing the accumulated contrapuntal tension and inaugurating the serene, chorale-like <em>Adagio</em> in E minor. The full score explicitly marks this moment of harmonic resolution.
-      </p>
     </div>
 
     <!-- Interactive Tone & Sequence Generator -->
@@ -1493,7 +1576,7 @@ footer.site-footer {
       <div id="out" class="synth-output"></div>
       
       <div class="synth-agency-note">
-        <strong>How to listen:</strong> Starting from E4 (tonic), each note is calculated by applying the selected realization from the term's interval equivalence class $\mathcal{E}(a) = \{\pm a, \pm (m-a)\}$. Notice how the same underlying sequence produces completely distinct melodic lines depending on whether the composer selects direct leaps, complements, or balanced voice-leading. Synthesized with the Web Audio API using harmonic triangle waves.
+        <strong>How to listen:</strong> Starting from E4 (tonic), each note is calculated by applying the selected realization from the term's interval equivalence class $\mathcal{E}(a) = \{\pm a, \pm (m-a)\}$. Synthesized with the Web Audio API using harmonic triangle waves.
       </div>
     </div>
 
@@ -1502,6 +1585,230 @@ footer.site-footer {
       <button class="action-btn" onclick="toggleViewer('viewer-quartet')">Inline Score Viewer</button>
       <a class="action-btn" href="music/quartet-future.mp3" download>Download MP3</a>
     </div>
+
+    <!-- Progressive Disclosure: Complete Theoretical Proofs & Trace -->
+    <details class="deepdive-drawer">
+      <summary class="deepdive-summary">
+        <span>Explore Complete Theoretical Proofs, Quotient Tables &amp; Harmonic Trace</span>
+        <span class="deepdive-badge">Full Music Theory &darr;</span>
+      </summary>
+      <div class="deepdive-content">
+        <div class="technique-box" style="margin: 0; border: none; padding: 6px 0;">
+          <h4>The Compositional System: Modular Serialism &amp; Interval Equivalence</h4>
+          
+          <p>
+            The quartet adapts the principles of musical serialism by deriving its pitch material from number-theoretic sequences, but departs from classical twelve-tone technique in two foundational ways:
+          </p>
+          <ul>
+            <li><strong>Relative intervals rather than absolute pitches:</strong> In traditional twelve-tone serialism (Schoenberg, Webern), the composer defines a rigid row of fixed pitch classes ($P_0, P_1, \dots, P_{11}$). In this system, each sequence term $x_n$ dictates the <em>interval distance</em> to leap from the current note, leaving absolute pitch, register, and contour flexible.</li>
+            <li><strong>Deterministic integer sequences rather than tone rows:</strong> The interval distances are drawn from sequences such as the Fibonacci numbers ($1, 1, 2, 3, 5, 8, 13, 21, \dots$), primes, or polynomial sequences, whose recurrent mathematical properties mirror organic growth.</li>
+          </ul>
+
+          <h5>1. Mathematical Foundations: The Three Equivalence Axioms</h5>
+          <p>
+            To project an unbounded integer sequence into finite musical space, each term is reduced modulo an integer $m$:
+          </p>
+          <div style="margin: 12px 0 16px; text-align: center;">
+            $$a \equiv x_n \pmod m \qquad \text{where } a \in \{0, 1, \dots, m-1\}$$
+          </div>
+          <p>
+            The residue $a$ is then governed by three algebraic symmetries that define the composer's palette:
+          </p>
+          <ul>
+            <li>
+              <strong>Axiom I: Directional Invariance ($+a \equiv -a$):</strong>
+              Stepping upward by $a$ scale steps and stepping downward by $a$ scale steps are defined as acoustic manifestations of the identical interval class. The number specifies the magnitude of the displacement; direction (up or down) is a free expressive choice.
+              <br><br>
+              <em>Why Serialist Inversions Cannot Exist:</em> In classical twelve-tone serialism, an "Inversion" creates a new row form by reflecting every ascending interval into a descending one ($+a \mapsto -a$). In this system, because $+a \equiv -a$, reflecting the sign merely maps the interval back onto itself:
+              $$\mathcal{I}(+a) = -a \equiv +a$$
+              Therefore, an inversion produces no new row form—the system is inherently self-inverse by construction. The classical Prime ($P$) and Inversion ($I$) operations collapse into an exact algebraic identity.
+            </li>
+            <li>
+              <strong>Axiom II: Complementary Equivalence ($+a \equiv -a$ and $+a \equiv m - a \equiv -(m - a)$):</strong>
+              On a circular pitch scale of $m$ notes, stepping forward by $a$ arrives at the exact same pitch degree as stepping backward by the modular complement $m - a$:
+              $$+a \equiv -(m - a) \pmod m \qquad \text{and} \qquad -a \equiv +(m - a) \pmod m$$
+              Because direction is invariant ($+a \equiv -a$), all four physical motions:
+              $$\mathcal{E}(a) = \bigl\{ +a, \quad -a, \quad +(m - a), \quad -(m - a) \bigr\}$$
+              belong to the <em>exact same interval class</em>. Whether the composer moves <strong>up by $a$</strong>, <strong>down by $a$</strong>, <strong>up by $m - a$</strong>, or <strong>down by $m - a$</strong>, they are realizing different facets of the same mathematical constraint.
+            </li>
+            <li>
+              <strong>Axiom III: Octave Equivalence ($a \equiv a + m$):</strong>
+              Adding or subtracting integer multiples of the modulus $m$ corresponds to transposing the interval across octaves ($a \equiv a + k \cdot m$). A stepwise second ($a = 1$) can be voiced across octaves as a compound ninth ($1 + 7 = 8$) or sixteenth, allowing the quartet to move between close contrapuntal weaving and wide registral leaps.
+            </li>
+          </ul>
+
+          <h5>2. Modulus &amp; Pitch Space Partitioning</h5>
+          <p>
+            The choice of modulus $m$ establishes the harmonic geometry:
+          </p>
+          <ul>
+            <li>
+              <strong>Modulo 7 ($m = 7$ &mdash; Diatonic E Natural Minor):</strong>
+              Operates on the seven scale degrees of the E natural minor (Aeolian) scale:
+              <div style="margin: 8px 0; text-align: center; font-size: 0.94rem;">
+                $$1 = \text{E}, \quad 2 = \text{F}\sharp, \quad 3 = \text{G}, \quad 4 = \text{A}, \quad 5 = \text{B}, \quad 6 = \text{C}, \quad 7 = \text{D}$$
+              </div>
+              Under the equivalence axioms, all integers in the universe partition into just <strong>four fundamental interval classes</strong>:
+            </li>
+          </ul>
+
+          <table class="method-table">
+            <thead>
+              <tr>
+                <th>Interval Class</th>
+                <th>Primary Residue $a$</th>
+                <th>Complement $m - a$</th>
+                <th>Equivalence Set $\mathcal{E}(a)$</th>
+                <th>Musical Function in E Minor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Class 0</strong></td>
+                <td>$0$</td>
+                <td>$0$</td>
+                <td>$\{0\}$</td>
+                <td>Unison, repeated notes, stationary pedal points</td>
+              </tr>
+              <tr>
+                <td><strong>Class 1</strong></td>
+                <td>$1$</td>
+                <td>$6$</td>
+                <td>$\{+1, -1, +6, -6\}$</td>
+                <td>Seconds and sevenths (scalar, stepwise melodic voice-leading)</td>
+              </tr>
+              <tr>
+                <td><strong>Class 2</strong></td>
+                <td>$2$</td>
+                <td>$5$</td>
+                <td>$\{+2, -2, +5, -5\}$</td>
+                <td>Thirds and sixths (triadic harmony: E&ndash;G, G&ndash;B, C&ndash;E)</td>
+              </tr>
+              <tr>
+                <td><strong>Class 3</strong></td>
+                <td>$3$</td>
+                <td>$4$</td>
+                <td>$\{+3, -3, +4, -4\}$</td>
+                <td>Fourths and fifths (open structural consonances: E&ndash;B, A&ndash;E)</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <ul>
+            <li>
+              <strong>Modulo 11 ($m = 11$ &mdash; Chromatic Pitch Space):</strong>
+              Partitions the chromatic scale into eleven interval classes, generating dense, post-tonal counterpoint and restless harmonic friction.
+            </li>
+          </ul>
+
+          <h5>3. Worked-Out Musical Trace: How E Minor Harmony Emerges</h5>
+          <p>
+            To see why this produces coherent musical architecture rather than random leaps, consider the first six Fibonacci terms ($1, 1, 2, 3, 5, 8$) reduced modulo 7, starting on the tonic note <strong>E4</strong>:
+          </p>
+
+          <table class="method-table">
+            <thead>
+              <tr>
+                <th>Step $n$</th>
+                <th>Fibonacci $x_n$</th>
+                <th>Residue $a$</th>
+                <th>Class $\mathcal{E}(a)$</th>
+                <th>Realized Leap</th>
+                <th>Current Pitch</th>
+                <th>Harmonic Interpretation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Start</td>
+                <td>&mdash;</td>
+                <td>&mdash;</td>
+                <td>&mdash;</td>
+                <td>&mdash;</td>
+                <td><strong>E4</strong> (Degree 1)</td>
+                <td>Tonic root</td>
+              </tr>
+              <tr>
+                <td>$n=1$</td>
+                <td>$1$</td>
+                <td>$1$</td>
+                <td>$\{\pm 1, \pm 6\}$</td>
+                <td>$+1$ (step up)</td>
+                <td><strong>F&#9839;4</strong> (Degree 2)</td>
+                <td>Scalar step away from tonic</td>
+              </tr>
+              <tr>
+                <td>$n=2$</td>
+                <td>$1$</td>
+                <td>$1$</td>
+                <td>$\{\pm 1, \pm 6\}$</td>
+                <td>$+1$ (step up)</td>
+                <td><strong>G4</strong> (Degree 3)</td>
+                <td>Arrives at the minor third of E minor</td>
+              </tr>
+              <tr>
+                <td>$n=3$</td>
+                <td>$2$</td>
+                <td>$2$</td>
+                <td>$\{\pm 2, \pm 5\}$</td>
+                <td>$+2$ (third up)</td>
+                <td><strong>B4</strong> (Degree 5)</td>
+                <td>Arrives at the dominant fifth of E minor</td>
+              </tr>
+              <tr>
+                <td>$n=4$</td>
+                <td>$3$</td>
+                <td>$3$</td>
+                <td>$\{\pm 3, \pm 4\}$</td>
+                <td>$+3$ (fourth up)</td>
+                <td><strong>E5</strong> (Degree 1)</td>
+                <td>Arrives at the tonic octave!</td>
+              </tr>
+              <tr>
+                <td>$n=5$</td>
+                <td>$5$</td>
+                <td>$5 \equiv 2$</td>
+                <td>$\{\pm 2, \pm 5\}$</td>
+                <td>$-2$ (third down)</td>
+                <td><strong>G4</strong> (Degree 3)</td>
+                <td>Outlines the tonic triad descending</td>
+              </tr>
+              <tr>
+                <td>$n=6$</td>
+                <td>$8$</td>
+                <td>$8 \equiv 1$</td>
+                <td>$\{\pm 1, \pm 6\}$</td>
+                <td>$-1$ (step down)</td>
+                <td><strong>F&#9839;4</strong> (Degree 2)</td>
+                <td>Neighbor tone leading toward cadence</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p style="color: var(--ink-secondary); font-size: 0.93rem;">
+            Notice what just happened: through pure mathematical deduction, the Fibonacci sequence naturally spelled out an ascending E minor arpeggio (<strong>E4 &rarr; F&#9839;4 &rarr; G4 &rarr; B4 &rarr; E5</strong>) followed by a balanced scalar return! The interplay between the Pisano period and the interval equivalence classes naturally generates organic, classical harmonic balance.
+          </p>
+
+          <h5>4. Polyphony &amp; Composer Agency Across the Quartet</h5>
+          <p>
+            The mathematical sequence never composes the piece alone; it provides the architectural scaffolding:
+          </p>
+          <ul>
+            <li><strong>Contrapuntal distribution:</strong> The sequence is allocated across four distinct acoustic voices (Violin I, Violin II, Viola, Violoncello). While Violin I carries an ascending realization $+a$, the Cello can ground the texture with the complementary descent $-(m-a)$ or an octave displacement $a + 7$, and the inner voices supply harmonic counter-lines.</li>
+            <li><strong>Rhythm, meter, and pacing:</strong> Intervals specify distance, not duration. The composer assigns note values (sustained whole notes, syncopated quarters, rapid sixteenths), meters (4/4, 3/4), and tempos.</li>
+            <li><strong>Timbre and articulation:</strong> Dynamics from <em>pianissimo</em> to <em>fortissimo</em>, expressive vibrato, <em>sul ponticello</em>, and <em>pizzicato</em> are purely expressive decisions.</li>
+          </ul>
+
+          <h5>5. The Deliberate Exception at Measure 27</h5>
+          <p>
+            A purely mechanical algorithmic process would cycle through its sequence indefinitely without ever reaching musical closure. Throughout the opening <em>Andante</em>, the Fibonacci intervals drive escalating rhythmic and contrapuntal compression.
+          </p>
+          <p>
+            At <strong>measure 27</strong>, the quartet intentionally breaks the mathematical sequence. The strict interval row is suspended to voice an authentic classical cadence, releasing the accumulated contrapuntal tension and inaugurating the serene, chorale-like <em>Adagio</em> in E minor. The full score explicitly marks this moment of harmonic resolution.
+          </p>
+        </div>
+      </div>
+    </details>
 
     <div id="viewer-quartet" class="inline-viewer">
       <div class="viewer-topbar">
@@ -1530,28 +1837,53 @@ footer.site-footer {
 
     <h3 class="card-title">UniPal &middot; Advanced Mathematics for Underserved Students</h3>
 
-    <p style="font-size: 1rem; line-height: 1.7; margin-bottom: 16px;">
-      UniPal is an international, student-run nonprofit providing free, competition-level and university-level mathematics education to students who lack access to contest coaching or Olympiad programs. The platform supports over 900 active students across 9+ countries and 6+ US states, with all operational revenues directed toward educational grants for low-income learners.
-    </p>
-
-    <div class="narrative-section">
-      <h4>Technological Infrastructure</h4>
-      <p>
-        As CTO, I architected and manage the platform's web infrastructure, optimizing delivery for students connecting over constrained bandwidth in developing regions, handling user authentication, automated problem grading, and self-paced problem-set progress tracking.
-      </p>
+    <div class="card-summary">
+      <strong>Overview:</strong> International student-run nonprofit providing free, competition-level and university-level mathematics education to underserved learners worldwide, with 100% of operational revenue funding educational grants.
     </div>
 
-    <div class="narrative-section">
-      <h4>Number Theory Curriculum</h4>
-      <p>
-        I designed and lecture the organization's flagship Number Theory series. Rather than focusing solely on competition shortcuts, the lectures emphasize proof-first mathematical foundations—using Olympiad problems as entry points into modular rings, primitive roots, quadratic reciprocity, and Diophantine equations.
-      </p>
+    <!-- Executive 3-Point Highlights -->
+    <div class="executive-grid">
+      <div class="exec-item">
+        <span class="exec-label">Scale &amp; Reach</span>
+        <span class="exec-val">900+ active students across 9+ countries &amp; 6+ US states; 100% of profits fund educational grants for low-income learners.</span>
+      </div>
+      <div class="exec-item">
+        <span class="exec-label">CTO Infrastructure</span>
+        <span class="exec-val">Architected low-bandwidth web platform, automated grading engine, and self-paced problem tracking for students with constrained access.</span>
+      </div>
+      <div class="exec-item">
+        <span class="exec-label">Number Theory</span>
+        <span class="exec-val">Designed and lectured flagship proof-first curriculum using Olympiad problems as gateways to rings, primitive roots, and Diophantine equations.</span>
+      </div>
     </div>
 
     <div class="action-row">
       <a class="action-btn action-btn-primary" href="https://www.gounipal.com/home" target="_blank" rel="noopener">Visit UniPal Platform &rarr;</a>
       <a class="action-btn" href="https://www.gounipal.com/courses" target="_blank" rel="noopener">View Courses &rarr;</a>
     </div>
+
+    <!-- Progressive Disclosure: Detailed Role & Curriculum -->
+    <details class="deepdive-drawer">
+      <summary class="deepdive-summary">
+        <span>Explore Technical Architecture &amp; Curriculum Design</span>
+        <span class="deepdive-badge">Full Details &darr;</span>
+      </summary>
+      <div class="deepdive-content">
+        <div class="narrative-section">
+          <h4>Technological Infrastructure</h4>
+          <p>
+            As CTO, I architected and manage the platform's web infrastructure, optimizing delivery for students connecting over constrained bandwidth in developing regions, handling user authentication, automated problem grading, and self-paced problem-set progress tracking.
+          </p>
+        </div>
+
+        <div class="narrative-section">
+          <h4>Number Theory Curriculum</h4>
+          <p>
+            I designed and lecture the organization's flagship Number Theory series. Rather than focusing solely on competition shortcuts, the lectures emphasize proof-first mathematical foundations—using Olympiad problems as entry points into modular rings, primitive roots, quadratic reciprocity, and Diophantine equations.
+          </p>
+        </div>
+      </div>
+    </details>
   </article>
 </section>
 

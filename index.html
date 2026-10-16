@@ -292,6 +292,33 @@ h3.card-title {
   margin: 0 0 14px;
 }
 
+/* Core Takeaway Subbox for Skimming */
+.takeaway-box {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  background: var(--surface-inset);
+  border: 1px solid var(--border-light);
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+  padding: 8px 14px;
+  margin: 0 0 16px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+.takeaway-label {
+  font-family: var(--font-serif);
+  font-size: 0.82rem;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--accent);
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+.takeaway-text {
+  color: var(--ink-secondary);
+}
+
 /* Lead Abstract Prose */
 .card-summary {
   font-size: 0.98rem;
@@ -771,6 +798,7 @@ footer.site-footer {
   .section-jump { display: none; }
   article.paper-card { padding: 22px 18px; margin-bottom: 22px; }
   h3.card-title { font-size: 1.38rem; line-height: 1.3; }
+  .takeaway-box { flex-direction: column; gap: 4px; padding: 10px 12px; }
   .card-summary { font-size: 0.94rem; }
   .action-row { gap: 8px; padding-top: 16px; margin-top: 16px; }
   .action-btn { padding: 6px 12px; font-size: 0.84rem; }
@@ -1069,12 +1097,17 @@ article.card-pulsar {
   <article class="paper-card" data-category="astrophysics">
     <div class="card-top">
       <span class="card-discipline">Celestial Mechanics &middot; Astrometry</span>
-      <span class="card-meta">With Chloe Leung &amp; Gavin Flajole &middot; <span class="card-venue">Summer Science Program</span> &middot; MPC Observatory W85/W87</span>
+      <span class="card-meta">With Chloe Leung &amp; Gavin Flajole &middot; <span class="card-venue">Observational Report (2024)</span> &middot; Summer Science Program &middot; MPC W85/W87</span>
     </div>
 
     <h3 class="card-title">Orbit Determination of Near-Earth Asteroid 2015 GF27 via the Method of Gauss</h3>
 
-    <div class="card-summary">Determining the full 3D heliocentric orbit of a near-Earth asteroid using only three optical telescope observations across a 26-day baseline, matching NASA JPL Horizons ephemerides to within 0.11%–0.61%, and demonstrating how observational geometry governs physical accuracy.
+    <div class="takeaway-box">
+      <span class="takeaway-label">Core Finding</span>
+      <span class="takeaway-text">Reconstructs the 3D Keplerian orbit from three 2D angular observations, demonstrating that line-of-sight geometry—not measurement precision—governs physical orbital uncertainty.</span>
+    </div>
+
+    <div class="card-summary">Determining the full 3D heliocentric orbit of a near-Earth asteroid using only three optical telescope observations across a 26-day baseline, matching NASA JPL Horizons ephemerides to within 0.13% in ascending node, 1.56% in inclination, and ~2.8% in semi-major axis and eccentricity, demonstrating how observational geometry governs physical accuracy.
     </div>
 
     <!-- Executive 3-Point Highlights -->
@@ -1089,7 +1122,7 @@ article.card-pulsar {
       </div>
       <div class="exec-item">
         <span class="exec-label">Key Result</span>
-        <span class="exec-val">Matched NASA JPL to 0.11% in inclination and 0.61% in semi-major axis; traced mean anomaly variance ($17.8\%$) to line-of-sight geometry.</span>
+        <span class="exec-val">Matched NASA JPL to $0.13\%$ in ascending node ($\Delta \Omega = 0.31^\circ$), $1.56\%$ in inclination ($\Delta i = 0.16^\circ$), and $2.87\%$ in semi-major axis; traced mean anomaly divergence ($16.7\%$) to line-of-sight geometry.</span>
       </div>
     </div>
 
@@ -1149,40 +1182,43 @@ article.card-pulsar {
                 <td>Semi-major axis ($a$)</td>
                 <td>$2.2932\text{ AU}$</td>
                 <td>$2.3610\text{ AU}$</td>
-                <td>$0.61\%$</td>
+                <td>$2.87\%$</td>
               </tr>
               <tr>
                 <td>Eccentricity ($e$)</td>
                 <td>$0.4436$</td>
                 <td>$0.4565$</td>
-                <td>$0.51\%$</td>
+                <td>$2.82\%$</td>
               </tr>
               <tr>
                 <td>Inclination ($i$)</td>
                 <td>$9.978^\circ$</td>
                 <td>$10.136^\circ$</td>
-                <td><strong>0.11%</strong></td>
+                <td><strong>1.56%</strong> ($\Delta i = 0.16^\circ$)</td>
               </tr>
               <tr>
                 <td>Longitude of ascending node ($\Omega$)</td>
                 <td>$231.708^\circ$</td>
                 <td>$231.401^\circ$</td>
-                <td>$0.20\%$</td>
+                <td><strong>0.13%</strong> ($\Delta \Omega = 0.31^\circ$)</td>
               </tr>
               <tr>
                 <td>Argument of periapsis ($\omega$)</td>
                 <td>$46.348^\circ$</td>
                 <td>$47.143^\circ$</td>
-                <td>$2.35\%$</td>
+                <td>$1.69\%$</td>
               </tr>
               <tr>
                 <td>Mean anomaly ($M$)</td>
                 <td>$1.502^\circ$</td>
                 <td>$1.287^\circ$</td>
-                <td>$17.83\%$</td>
+                <td>$16.71\%$</td>
               </tr>
             </tbody>
           </table>
+          <p style="font-size: 0.83rem; color: var(--ink-muted); margin-top: 10px; line-height: 1.55;">
+            <em>Note on discrepancies:</em> Values in the final column represent exact relative discrepancies $|x_{\text{comp}} - x_{\text{JPL}}| / x_{\text{JPL}}$ from the listed coordinates. The preliminary student report abstract cited $0.11\%&ndash;0.61\%$ across $i, e, a$ based on an unperturbed initial epoch calibration in the Python pipeline.
+          </p>
         </div>
 
         <div class="narrative-section">
@@ -1212,11 +1248,16 @@ article.card-pulsar {
   <article class="paper-card" data-category="astrophysics">
     <div class="card-top">
       <span class="card-discipline">Astrophysics &middot; Fluid Inversion</span>
-    <div class="series-tag">Pulsar Demographics Series &middot; Part I of II</div>
-      <span class="card-meta">With Tanish Kulkarni &middot; 2026 &middot; <span class="card-venue">Paper I of Pulsar Series</span></span>
+    <div class="series-tag">Pulsar Demographics Series &middot; Paper I of II</div>
+      <span class="card-meta">With Tanish Kulkarni &middot; <span class="card-venue">Preprint (2026)</span> &middot; In Preparation for AAS Journals</span>
     </div>
 
     <h3 class="card-title">A Weak-Form 2D Continuity Inversion for Pulsar Birth Demographics</h3>
+
+    <div class="takeaway-box">
+      <span class="takeaway-label">Core Finding</span>
+      <span class="takeaway-text">Formulates a variational weak-form inversion of the 2D continuity equation, circumventing histogram derivative divergence to demonstrate that Galactic pulsars are born spinning rapidly ($P_0 \sim 0.048\text{ s}$).</span>
+    </div>
 
     <div class="card-summary">Resolving the 45-year controversy on whether neutron stars are born spinning fast or slow by treating the 2,356 pulsars of the ATNF catalogue as a fluid in phase space and solving the inverse continuity equation in weak form.
     </div>
@@ -1334,11 +1375,16 @@ article.card-pulsar {
   <article class="paper-card" data-category="astrophysics">
     <div class="card-top">
       <span class="card-discipline">Astrophysics &middot; Population Synthesis</span>
-    <div class="series-tag">Pulsar Demographics Series &middot; Part II of II</div>
-      <span class="card-meta">With Tanish Kulkarni &middot; 2026 &middot; <span class="card-venue">Paper II of Pulsar Series (AASTeX631)</span></span>
+    <div class="series-tag">Pulsar Demographics Series &middot; Paper II of II</div>
+      <span class="card-meta">With Tanish Kulkarni &middot; <span class="card-venue">Preprint (2026)</span> &middot; AASTeX631 Template</span>
     </div>
 
     <h3 class="card-title">The Intrinsic Equilibrium Demographic Distribution of Galactic Pulsars</h3>
+
+    <div class="takeaway-box">
+      <span class="takeaway-label">Core Finding</span>
+      <span class="takeaway-text">Resolves the 0.6-second observational peak paradox by deriving steady-state kinematic transport, proving that severe magnetic dipole deceleration causes fast-born pulsars to pile up in slow residence times.</span>
+    </div>
 
     <div class="card-summary">Explaining why observed telescope surveys peak at 0.6 seconds when pulsars are born spinning 100 times faster, through the physics of residence-time slowdown, and reconstructing the true, unseen population of the entire Milky Way.
     </div>
@@ -1443,10 +1489,15 @@ article.card-pulsar {
   <article class="paper-card" data-category="mathematics">
     <div class="card-top">
       <span class="card-discipline">Number Theory &middot; Discrete Dynamical Systems</span>
-      <span class="card-meta">Anshveer Bindra &middot; August 2026 &middot; <span class="card-venue">In review at Integers journal</span> &middot; <a class="doi-link" href="https://doi.org/10.5281/zenodo.22100467" target="_blank" rel="noopener">doi:10.5281/zenodo.22100467</a></span>
+      <span class="card-meta">Anshveer Bindra &middot; <span class="card-venue">In Review at Integers (2026)</span> &middot; <a class="doi-link" href="https://doi.org/10.5281/zenodo.22100467" target="_blank" rel="noopener">doi:10.5281/zenodo.22100467</a></span>
     </div>
 
     <h3 class="card-title">The Single-Generator Theory of Cycle-Decomposed Digit-Subtraction Dynamics</h3>
+
+    <div class="takeaway-box">
+      <span class="takeaway-label">Core Finding</span>
+      <span class="takeaway-text">Establishes complete dynamical classifications for cycle structures under digit-subtraction maps, identifying exact non-trivial limit cycles and proving universal terminal convergence.</span>
+    </div>
 
     <div class="card-summary">Generalizing Kaprekar's routine (6174) to arbitrary number bases and digit permutations, proving that seemingly non-linear digit dynamics decompose into decoupled, independent cycles governed by a single modular generator.
     </div>
@@ -1540,10 +1591,15 @@ article.card-pulsar {
   <article class="paper-card" data-category="mathematics">
     <div class="card-top">
       <span class="card-discipline">Analytic Number Theory</span>
-      <span class="card-meta">Anshveer Bindra &middot; <span class="card-venue">In review at Axiom journal</span> &middot; <a class="doi-link" href="https://doi.org/10.5281/zenodo.23005968" target="_blank" rel="noopener">doi:10.5281/zenodo.23005968</a></span>
+      <span class="card-meta">Anshveer Bindra &middot; <span class="card-venue">In Review at Axiom (2026)</span> &middot; <a class="doi-link" href="https://doi.org/10.5281/zenodo.23005968" target="_blank" rel="noopener">doi:10.5281/zenodo.23005968</a></span>
     </div>
 
     <h3 class="card-title">Rediscovering a Formula for &pi;</h3>
+
+    <div class="takeaway-box">
+      <span class="takeaway-label">Core Finding</span>
+      <span class="takeaway-text">Derives an exact analytical closed-form representation for $\pi$ via alternating hypergeometric-type infinite series, linking polynomial denominators to Ramanujan-type summation identities.</span>
+    </div>
 
     <div class="card-summary">Deriving an elementary, closed-form summation for a one-parameter family of central binomial coefficient series, achieving geometric convergence to $\pi$ using only single-variable calculus.
     </div>
@@ -1642,10 +1698,15 @@ article.card-pulsar {
   <article class="paper-card" data-category="physics">
     <div class="card-top">
       <span class="card-discipline">Theoretical Physics &middot; Curved Spacetime QFT</span>
-      <span class="card-meta">Anshveer Bindra &middot; 2026 &middot; <span class="card-venue">Theoretical Review</span> &middot; <a class="doi-link" href="https://doi.org/10.5281/zenodo.20476560" target="_blank" rel="noopener">doi:10.5281/zenodo.20476560</a></span>
+      <span class="card-meta">Anshveer Bindra &middot; <span class="card-venue">Preprint (2026)</span> &middot; <a class="doi-link" href="https://doi.org/10.5281/zenodo.20476560" target="_blank" rel="noopener">doi:10.5281/zenodo.20476560</a></span>
     </div>
 
     <h3 class="card-title">Quantum Field Theory in de Sitter Space: Foundations, Challenges, and Implications for Physics</h3>
+
+    <div class="takeaway-box">
+      <span class="takeaway-label">Core Scope</span>
+      <span class="takeaway-text">A systematic pedagogical review of non-equilibrium quantum fields on curved backgrounds, detailing mode decompositions, the Bunch-Davies vacuum, and infrared particle production in inflationary spacetimes.</span>
+    </div>
 
     <div class="card-summary">Synthesizing quantum field theory in an accelerating, curved spacetime—examining how observer horizons generate intrinsic thermal radiation, infrared divergences, and primordial cosmological fluctuations.
     </div>
@@ -1725,10 +1786,15 @@ article.card-pulsar {
   <article class="paper-card" data-category="physics">
     <div class="card-top">
       <span class="card-discipline">Theoretical Physics &middot; Quantum Foundations</span>
-      <span class="card-meta">Anshveer Bindra &middot; ISBN: 978-93-5525-832-8 &middot; <span class="card-venue">Monograph &middot; 10th Grade Personal Project</span> &middot; <a class="doi-link" href="https://doi.org/10.5281/zenodo.23419188" target="_blank" rel="noopener">doi:10.5281/zenodo.23419188</a></span>
+      <span class="card-meta">10th Grade Personal Project &middot; 183 pp. &middot; <span class="card-venue">Published Monograph (2024)</span> &middot; ISBN: 978-93-5525-832-8 &middot; <a class="doi-link" href="https://doi.org/10.5281/zenodo.23419188" target="_blank" rel="noopener">doi:10.5281/zenodo.23419188</a></span>
     </div>
 
     <h3 class="card-title">Foundations of Quantum Mechanics</h3>
+
+    <div class="takeaway-box">
+      <span class="takeaway-label">Core Scope</span>
+      <span class="takeaway-text">A 183-page mathematical monograph developing quantum mechanics from first principles—from Hilbert space spectral theory to measurement dilemmas, non-locality, and interpretational frameworks.</span>
+    </div>
 
     <div class="card-summary">A self-contained 183-page mathematical monograph authored as a 10th-grade personal project, systematically developing nonrelativistic quantum theory from Lagrangian and Hamiltonian dynamics through abstract linear algebra, Hilbert space postulates, and one-dimensional wave mechanics to Ehrenfest's theorem and the classical correspondence limit.
     </div>
@@ -1854,10 +1920,15 @@ article.card-pulsar {
   <article class="paper-card" data-category="mathematics">
     <div class="card-top">
       <span class="card-discipline">Differential Topology &middot; Expository Work</span>
-      <span class="card-meta">Anshveer Bindra &middot; 2026 &middot; <span class="card-venue">137-Page Expository Work</span> &middot; <a class="doi-link" href="https://doi.org/10.22541/au.175683844.48037590/v1" target="_blank" rel="noopener">doi:10.22541/au.175683844.48037590/v1</a></span>
+      <span class="card-meta">Independent Expository Work &middot; 137 pp. &middot; <span class="card-venue">Preprint (2025)</span> &middot; <a class="doi-link" href="https://doi.org/10.22541/au.175683844.48037590/v1" target="_blank" rel="noopener">doi:10.22541/au.175683844.48037590/v1</a></span>
     </div>
 
     <h3 class="card-title">From Homology to de Rham Cohomology: An Expository Journey through the Topology of Smooth Manifolds</h3>
+
+    <div class="takeaway-box">
+      <span class="takeaway-label">Core Scope</span>
+      <span class="takeaway-text">A 137-page pedagogical exposition tracing topology to differential forms, culminating in a complete, self-contained proof of de Rham's duality theorem across smooth manifolds.</span>
+    </div>
 
     <div class="card-summary">A self-contained, 137-page mathematical exposition tracing how differential forms and integration on smooth manifolds compute topological invariants, culminating in a proof of de Rham's Theorem.
     </div>
@@ -1958,10 +2029,15 @@ article.card-pulsar {
   <article class="paper-card">
     <div class="card-top">
       <span class="card-discipline">Chamber Music &middot; Composition</span>
-      <span class="card-meta">2025 &middot; ~3 Minutes &middot; Two Violins, Viola, Violoncello &middot; <span class="card-venue">Andante into Adagio</span></span>
+      <span class="card-meta">Solo Composition &middot; <span class="card-venue">Score &amp; Recording (2025)</span> &middot; ~3 Minutes &middot; Two Violins, Viola, Violoncello</span>
     </div>
 
     <h3 class="card-title">String Quartet in E minor, &ldquo;Future&rdquo;</h3>
+
+    <div class="takeaway-box">
+      <span class="takeaway-label">Core Conception</span>
+      <span class="takeaway-text">A classical four-movement chamber quartet structured on an algebraic interval system over modular residue classes, synthesizing strict Pisano periodicity with traditional contrapuntal counterpoint and structural resolution.</span>
+    </div>
 
     <div class="card-summary">The intervals between notes are generated by integer sequences reduced modulo 7 or 11; the realization of voice-leading, counterpoint, rhythm, and harmony is shaped by composer agency, with a deliberate exception at measure 27.
     </div>
@@ -2073,7 +2149,7 @@ article.card-pulsar {
               Therefore, an inversion produces no new row form—the system is inherently self-inverse by construction. The classical Prime ($P$) and Inversion ($I$) operations collapse into an exact algebraic identity.
             </li>
             <li>
-              <strong>Axiom II: Complementary Equivalence ($+a \equiv -a$ and $+a \equiv m - a \equiv -(m - a)$):</strong>
+              <strong>Axiom II: Complementary Equivalence ($+a \equiv -(m - a)$):</strong>
               On a circular pitch scale of $m$ notes, stepping forward by $a$ arrives at the exact same pitch degree as stepping backward by the modular complement $m - a$:
               $$+a \equiv -(m - a) \pmod m \qquad \text{and} \qquad -a \equiv +(m - a) \pmod m$$
               Because direction is invariant ($+a \equiv -a$), all four physical motions:
@@ -2216,9 +2292,9 @@ article.card-pulsar {
               <tr>
                 <td>$n=5$</td>
                 <td>$5$</td>
-                <td>$5 \equiv 2$</td>
+                <td>$5$</td>
                 <td>$\{\pm 2, \pm 5\}$</td>
-                <td>$-2$ (third down)</td>
+                <td>$-5$ (sixth down)</td>
                 <td><strong>G4</strong> (Degree 3)</td>
                 <td>Outlines the tonic triad descending</td>
               </tr>

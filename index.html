@@ -459,58 +459,104 @@ summary.technical-toggle:hover {
 
 /* Music Technique & Interactive Synthesizer */
 .technique-box {
-  background: #f9fafb;
-  border: 1px solid var(--border-light);
-  border-radius: 6px;
-  padding: 22px 24px;
-  margin: 20px 0;
+  background: #ffffff;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 28px 32px;
+  margin: 24px 0;
 }
 .technique-box h4 {
   font-family: var(--font-sans);
-  font-size: 0.84rem;
+  font-size: 0.95rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--ink-muted);
-  margin: 0 0 10px;
+  color: var(--ink);
+  margin: 0 0 14px;
 }
-.technique-box ol {
-  margin: 8px 0 14px;
-  padding-left: 20px;
+.technique-box h5 {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  margin: 20px 0 8px;
+}
+.technique-box p {
+  margin: 0 0 12px;
   font-size: 0.96rem;
+  line-height: 1.7;
+  color: var(--ink);
+}
+.technique-box ul, .technique-box ol {
+  margin: 8px 0 16px;
+  padding-left: 22px;
+  font-size: 0.95rem;
+  line-height: 1.65;
 }
 .technique-box li {
   margin-bottom: 8px;
-  line-height: 1.6;
+}
+
+/* Method Tables */
+.method-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0 20px;
+  font-size: 0.88rem;
+}
+.method-table th {
+  background: #f3f4f6;
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--ink);
+}
+.method-table td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  color: var(--ink);
+  vertical-align: middle;
+}
+.method-table tr:nth-child(even) td {
+  background: #fcfcfd;
 }
 
 .interactive-synth {
   background: #ffffff;
   border: 1.5px solid var(--border);
-  border-radius: 6px;
-  padding: 22px 24px;
-  margin: 20px 0;
+  border-radius: 8px;
+  padding: 26px 30px;
+  margin: 24px 0;
 }
 .synth-header {
   font-family: var(--font-sans);
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: 0.98rem;
+  font-weight: 700;
   color: var(--ink);
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 .synth-controls {
   display: flex;
   flex-wrap: wrap;
-  gap: 14px;
+  gap: 16px;
   align-items: center;
   font-size: 0.9rem;
+}
+.synth-controls label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
 }
 .synth-controls select {
   font-family: inherit;
   font-size: 0.88rem;
   padding: 6px 10px;
   border: 1px solid var(--border);
-  border-radius: 4px;
+  border-radius: 5px;
   background: #ffffff;
   color: var(--ink);
 }
@@ -521,7 +567,7 @@ summary.technical-toggle:hover {
   font-family: inherit;
   font-size: 0.88rem;
   font-weight: 500;
-  padding: 7px 18px;
+  padding: 8px 20px;
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -530,16 +576,16 @@ summary.technical-toggle:hover {
   background: #1f2937;
 }
 .synth-output {
-  margin-top: 16px;
-  font-size: 0.9rem;
+  margin-top: 18px;
+  font-size: 0.88rem;
   overflow-x: auto;
 }
 .synth-agency-note {
-  font-size: 0.85rem;
-  color: var(--ink-muted);
-  line-height: 1.55;
-  margin-top: 14px;
-  padding-top: 12px;
+  font-size: 0.86rem;
+  color: var(--ink-secondary);
+  line-height: 1.6;
+  margin-top: 16px;
+  padding-top: 14px;
   border-top: 1px solid var(--border-light);
 }
 
@@ -1201,55 +1247,244 @@ footer.site-footer {
 
     <!-- In-Depth Technique Explanation -->
     <div class="technique-box">
-      <h4>The Compositional Method: Modular Interval Symmetries</h4>
-      <p style="margin: 0 0 12px; font-size: 0.98rem; color: var(--ink); line-height: 1.7;">
-        The quartet adapts the principles of serialism by deriving pitch material from number-theoretic sequences (such as the Fibonacci numbers), but fundamentally redefines how intervals behave through modular arithmetic and geometric symmetry:
-      </p>
+      <h4>The Compositional System: Modular Serialism &amp; Interval Equivalence</h4>
       
-      <ol>
-        <li>
-          <strong>Terms as relative intervals, not fixed pitches:</strong> Rather than mapping numbers directly to static scale degrees, each term of the generating sequence $x_n$ defines the <em>interval distance</em> between two consecutive notes.
-        </li>
-        <li>
-          <strong>Modular reduction ($\text{mod } m$):</strong> Terms are reduced modulo a chosen modulus $m$. Modulo 7 maps intervals onto the diatonic scale degrees of E natural minor (yielding resonant, tonal material), while modulo 11 partitions chromatic pitch space (producing dense, contemporary counterpoint).
-        </li>
-        <li>
-          <strong>Directional symmetry ($+a \equiv -a$):</strong> Upward and downward motions are identified as identical manifestations of the same interval class. An interval of size $a$ can be taken either ascending ($+a$) or descending ($-a$) with complete equivalence.
-        </li>
-        <li>
-          <strong>Why serialist inversions cannot exist:</strong> In classical 12-tone serialism, an "inversion" reflects a row across a pitch axis by swapping ascending intervals for descending ones ($+a \mapsto -a$). In this system, because $+a \equiv -a$, reflecting the direction of an interval maps it back onto itself. Inversions do not produce a distinct row—the system is inherently self-inverse by construction.
-        </li>
-        <li>
-          <strong>Complementary equivalence ($+a \equiv -a$ and $+a \equiv m - a \equiv -(m - a)$):</strong> Beyond sign symmetry, stepping $a$ in one direction is mathematically identified with stepping its modular complement $m - a$ in the opposite direction. Thus, at any point, the composer has simultaneous access to both: you can step up by $a$, down by $a$, up by $m - a$, or down by $m - a$. All four choices belong to the exact same interval class.
-        </li>
-        <li>
-          <strong>Octave equivalence ($a \equiv a + m$):</strong> Adding multiples of the modulus $m$ represents octave displacement ($a \equiv m + a$), allowing any interval to expand into wide expressive leaps or contract into close voice-leading across registers without altering its structural identity.
-        </li>
-      </ol>
-      
-      <p style="margin: 14px 0 0; font-size: 0.98rem; color: var(--ink); line-height: 1.7;">
-        <strong>The Essential Role of Composer Agency:</strong> The mathematical sequence specifies only the abstract interval equivalence class $\{ \pm a, \pm (m-a) \} \pmod m$. Because every term offers multiple valid realizations—ascending or descending, root interval or complement, across any octave register—the composer exercises complete aesthetic agency. The composer decides the counterpoint across the two violins, viola, and cello, voicing chords, shaping rhythmic density, and sculpting dynamic arcs. The mathematics builds the architectural lattice; the composer creates the music.
+      <p>
+        The quartet adapts the principles of musical serialism by deriving its pitch material from number-theoretic sequences, but departs from classical twelve-tone technique in two foundational ways:
       </p>
-      <p style="margin: 10px 0 0; font-size: 0.98rem; color: var(--ink); line-height: 1.7;">
-        <strong>The Deliberate Rule-Break at Measure 27:</strong> In measure 27, the quartet intentionally breaks the mathematical sequence, altering the row to allow the contrapuntal <em>Andante</em> to cadence and resolve into an open, choral <em>Adagio</em> in E minor. The score explicitly shows where the sequence is broken.
+      <ul>
+        <li><strong>Relative intervals rather than absolute pitches:</strong> In traditional twelve-tone serialism (Schoenberg, Webern), the composer defines a rigid row of fixed pitch classes ($P_0, P_1, \dots, P_{11}$). In this system, each sequence term $x_n$ dictates the <em>interval distance</em> to leap from the current note, leaving absolute pitch, register, and contour flexible.</li>
+        <li><strong>Deterministic integer sequences rather than tone rows:</strong> The interval distances are drawn from sequences such as the Fibonacci numbers ($1, 1, 2, 3, 5, 8, 13, 21, \dots$), primes, or polynomial sequences, whose recurrent mathematical properties mirror organic growth.</li>
+      </ul>
+
+      <h5>1. Mathematical Foundations: The Three Equivalence Axioms</h5>
+      <p>
+        To project an unbounded integer sequence into finite musical space, each term is reduced modulo an integer $m$:
+      </p>
+      <div style="margin: 12px 0 16px; text-align: center;">
+        $$a \equiv x_n \pmod m \qquad \text{where } a \in \{0, 1, \dots, m-1\}$$
+      </div>
+      <p>
+        The residue $a$ is then governed by three algebraic symmetries that define the composer's palette:
+      </p>
+      <ul>
+        <li>
+          <strong>Axiom I: Directional Invariance ($+a \equiv -a$):</strong>
+          Stepping upward by $a$ scale steps and stepping downward by $a$ scale steps are defined as acoustic manifestations of the identical interval class. The number specifies the magnitude of the displacement; direction (up or down) is a free expressive choice.
+          <br><br>
+          <em>Why Serialist Inversions Cannot Exist:</em> In classical twelve-tone serialism, an "Inversion" creates a new row form by reflecting every ascending interval into a descending one ($+a \mapsto -a$). In this system, because $+a \equiv -a$, reflecting the sign merely maps the interval back onto itself:
+          $$\mathcal{I}(+a) = -a \equiv +a$$
+          Therefore, an inversion produces no new row form—the system is inherently self-inverse by construction. The classical Prime ($P$) and Inversion ($I$) operations collapse into an exact algebraic identity.
+        </li>
+        <li>
+          <strong>Axiom II: Complementary Equivalence ($+a \equiv -a$ and $+a \equiv m - a \equiv -(m - a)$):</strong>
+          On a circular pitch scale of $m$ notes, stepping forward by $a$ arrives at the exact same pitch degree as stepping backward by the modular complement $m - a$:
+          $$+a \equiv -(m - a) \pmod m \qquad \text{and} \qquad -a \equiv +(m - a) \pmod m$$
+          Because direction is invariant ($+a \equiv -a$), all four physical motions:
+          $$\mathcal{E}(a) = \bigl\{ +a, \quad -a, \quad +(m - a), \quad -(m - a) \bigr\}$$
+          belong to the <em>exact same interval class</em>. Whether the composer moves <strong>up by $a$</strong>, <strong>down by $a$</strong>, <strong>up by $m - a$</strong>, or <strong>down by $m - a$</strong>, they are realizing different facets of the same mathematical constraint.
+        </li>
+        <li>
+          <strong>Axiom III: Octave Equivalence ($a \equiv a + m$):</strong>
+          Adding or subtracting integer multiples of the modulus $m$ corresponds to transposing the interval across octaves ($a \equiv a + k \cdot m$). A stepwise second ($a = 1$) can be voiced across octaves as a compound ninth ($1 + 7 = 8$) or sixteenth, allowing the quartet to move between close contrapuntal weaving and wide registral leaps.
+        </li>
+      </ul>
+
+      <h5>2. Modulus &amp; Pitch Space Partitioning</h5>
+      <p>
+        The choice of modulus $m$ establishes the harmonic geometry:
+      </p>
+      <ul>
+        <li>
+          <strong>Modulo 7 ($m = 7$ &mdash; Diatonic E Natural Minor):</strong>
+          Operates on the seven scale degrees of the E natural minor (Aeolian) scale:
+          <div style="margin: 8px 0; text-align: center; font-size: 0.94rem;">
+            $$1 = \text{E}, \quad 2 = \text{F}\sharp, \quad 3 = \text{G}, \quad 4 = \text{A}, \quad 5 = \text{B}, \quad 6 = \text{C}, \quad 7 = \text{D}$$
+          </div>
+          Under the equivalence axioms, all integers in the universe partition into just <strong>four fundamental interval classes</strong>:
+        </li>
+      </ul>
+
+      <table class="method-table">
+        <thead>
+          <tr>
+            <th>Interval Class</th>
+            <th>Primary Residue $a$</th>
+            <th>Complement $m - a$</th>
+            <th>Equivalence Set $\mathcal{E}(a)$</th>
+            <th>Musical Function in E Minor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Class 0</strong></td>
+            <td>$0$</td>
+            <td>$0$</td>
+            <td>$\{0\}$</td>
+            <td>Unison, repeated notes, stationary pedal points</td>
+          </tr>
+          <tr>
+            <td><strong>Class 1</strong></td>
+            <td>$1$</td>
+            <td>$6$</td>
+            <td>$\{+1, -1, +6, -6\}$</td>
+            <td>Seconds and sevenths (scalar, stepwise melodic voice-leading)</td>
+          </tr>
+          <tr>
+            <td><strong>Class 2</strong></td>
+            <td>$2$</td>
+            <td>$5$</td>
+            <td>$\{+2, -2, +5, -5\}$</td>
+            <td>Thirds and sixths (triadic harmony: E&ndash;G, G&ndash;B, C&ndash;E)</td>
+          </tr>
+          <tr>
+            <td><strong>Class 3</strong></td>
+            <td>$3$</td>
+            <td>$4$</td>
+            <td>$\{+3, -3, +4, -4\}$</td>
+            <td>Fourths and fifths (open structural consonances: E&ndash;B, A&ndash;E)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul>
+        <li>
+          <strong>Modulo 11 ($m = 11$ &mdash; Chromatic Pitch Space):</strong>
+          Partitions the chromatic scale into eleven interval classes, generating dense, post-tonal counterpoint and restless harmonic friction.
+        </li>
+      </ul>
+
+      <h5>3. Worked-Out Musical Trace: How E Minor Harmony Emerges</h5>
+      <p>
+        To see why this produces coherent musical architecture rather than random leaps, consider the first six Fibonacci terms ($1, 1, 2, 3, 5, 8$) reduced modulo 7, starting on the tonic note <strong>E4</strong>:
+      </p>
+
+      <table class="method-table">
+        <thead>
+          <tr>
+            <th>Step $n$</th>
+            <th>Fibonacci $x_n$</th>
+            <th>Residue $a$</th>
+            <th>Class $\mathcal{E}(a)$</th>
+            <th>Realized Leap</th>
+            <th>Current Pitch</th>
+            <th>Harmonic Interpretation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Start</td>
+            <td>&mdash;</td>
+            <td>&mdash;</td>
+            <td>&mdash;</td>
+            <td>&mdash;</td>
+            <td><strong>E4</strong> (Degree 1)</td>
+            <td>Tonic root</td>
+          </tr>
+          <tr>
+            <td>$n=1$</td>
+            <td>$1$</td>
+            <td>$1$</td>
+            <td>$\{\pm 1, \pm 6\}$</td>
+            <td>$+1$ (step up)</td>
+            <td><strong>F&#9839;4</strong> (Degree 2)</td>
+            <td>Scalar step away from tonic</td>
+          </tr>
+          <tr>
+            <td>$n=2$</td>
+            <td>$1$</td>
+            <td>$1$</td>
+            <td>$\{\pm 1, \pm 6\}$</td>
+            <td>$+1$ (step up)</td>
+            <td><strong>G4</strong> (Degree 3)</td>
+            <td>Arrives at the minor third of E minor</td>
+          </tr>
+          <tr>
+            <td>$n=3$</td>
+            <td>$2$</td>
+            <td>$2$</td>
+            <td>$\{\pm 2, \pm 5\}$</td>
+            <td>$+2$ (third up)</td>
+            <td><strong>B4</strong> (Degree 5)</td>
+            <td>Arrives at the dominant fifth of E minor</td>
+          </tr>
+          <tr>
+            <td>$n=4$</td>
+            <td>$3$</td>
+            <td>$3$</td>
+            <td>$\{\pm 3, \pm 4\}$</td>
+            <td>$+3$ (fourth up)</td>
+            <td><strong>E5</strong> (Degree 1)</td>
+            <td>Arrives at the tonic octave!</td>
+          </tr>
+          <tr>
+            <td>$n=5$</td>
+            <td>$5$</td>
+            <td>$5 \equiv 2$</td>
+            <td>$\{\pm 2, \pm 5\}$</td>
+            <td>$-2$ (third down)</td>
+            <td><strong>G4</strong> (Degree 3)</td>
+            <td>Outlines the tonic triad descending</td>
+          </tr>
+          <tr>
+            <td>$n=6$</td>
+            <td>$8$</td>
+            <td>$8 \equiv 1$</td>
+            <td>$\{\pm 1, \pm 6\}$</td>
+            <td>$-1$ (step down)</td>
+            <td><strong>F&#9839;4</strong> (Degree 2)</td>
+            <td>Neighbor tone leading toward cadence</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="color: var(--ink-secondary); font-size: 0.93rem;">
+        Notice what just happened: through pure mathematical deduction, the Fibonacci sequence naturally spelled out an ascending E minor arpeggio (<strong>E4 &rarr; F&#9839;4 &rarr; G4 &rarr; B4 &rarr; E5</strong>) followed by a balanced scalar return! The interplay between the Pisano period and the interval equivalence classes naturally generates organic, classical harmonic balance.
+      </p>
+
+      <h5>4. Polyphony &amp; Composer Agency Across the Quartet</h5>
+      <p>
+        The mathematical sequence never composes the piece alone; it provides the architectural scaffolding:
+      </p>
+      <ul>
+        <li><strong>Contrapuntal distribution:</strong> The sequence is allocated across four distinct acoustic voices (Violin I, Violin II, Viola, Violoncello). While Violin I carries an ascending realization $+a$, the Cello can ground the texture with the complementary descent $-(m-a)$ or an octave displacement $a + 7$, and the inner voices supply harmonic counter-lines.</li>
+        <li><strong>Rhythm, meter, and pacing:</strong> Intervals specify distance, not duration. The composer assigns note values (sustained whole notes, syncopated quarters, rapid sixteenths), meters (4/4, 3/4), and tempos.</li>
+        <li><strong>Timbre and articulation:</strong> Dynamics from <em>pianissimo</em> to <em>fortissimo</em>, expressive vibrato, <em>sul ponticello</em>, and <em>pizzicato</em> are purely expressive decisions.</li>
+      </ul>
+
+      <h5>5. The Deliberate Exception at Measure 27</h5>
+      <p>
+        A purely mechanical algorithmic process would cycle through its sequence indefinitely without ever reaching musical closure. Throughout the opening <em>Andante</em>, the Fibonacci intervals drive escalating rhythmic and contrapuntal compression.
+      </p>
+      <p>
+        At <strong>measure 27</strong>, the quartet intentionally breaks the mathematical sequence. The strict interval row is suspended to voice an authentic classical cadence, releasing the accumulated contrapuntal tension and inaugurating the serene, chorale-like <em>Adagio</em> in E minor. The full score explicitly marks this moment of harmonic resolution.
       </p>
     </div>
 
     <!-- Interactive Tone & Sequence Generator -->
     <div class="interactive-synth">
-      <div class="synth-header">Try It: Interactive Interval Class &amp; Sound Generator</div>
+      <div class="synth-header">Interactive Sound Lab: Generate and Hear the Interval Classes</div>
       <div class="synth-controls">
-        <label><strong>Sequence:</strong> 
+        <label>Sequence:
           <select id="seq">
-            <option value="fib">Fibonacci</option>
-            <option value="prime">Primes</option>
-            <option value="sq">Squares</option>
+            <option value="fib">Fibonacci (1, 1, 2, 3, 5, 8, ...)</option>
+            <option value="prime">Primes (2, 3, 5, 7, 11, ...)</option>
+            <option value="sq">Squares (1, 4, 9, 16, 25, ...)</option>
           </select>
         </label>
-        <label><strong>Modulus:</strong> 
+        <label>Modulus:
           <select id="mod">
-            <option value="7">7 (tonal, E natural minor)</option>
-            <option value="11">11 (chromatic)</option>
+            <option value="7">7 (Diatonic, E minor scale)</option>
+            <option value="11">11 (Chromatic pitch space)</option>
+          </select>
+        </label>
+        <label>Realization Mode:
+          <select id="dir">
+            <option value="contour">Composer Contour (Melodic Balance)</option>
+            <option value="up">Always Ascend (+a)</option>
+            <option value="down">Always Descend (-a)</option>
+            <option value="comp_up">Ascending Complement (+(m - a))</option>
+            <option value="comp_down">Descending Complement (-(m - a))</option>
           </select>
         </label>
         <button class="synth-btn" id="play" type="button">Generate &amp; Play</button>
@@ -1258,7 +1493,7 @@ footer.site-footer {
       <div id="out" class="synth-output"></div>
       
       <div class="synth-agency-note">
-        <strong>Note on Musical Realization:</strong> This interactive tool illustrates one realization from each term's equivalence class $\{ \pm a, \pm (m-a) \}$. In the actual string quartet, the composer chooses direction ($+a$ vs $-a$), complement ($m-a$), and octave shifts ($a = m + a$) to construct counterpoint across four acoustic instruments.
+        <strong>How to listen:</strong> Starting from E4 (tonic), each note is calculated by applying the selected realization from the term's interval equivalence class $\mathcal{E}(a) = \{\pm a, \pm (m-a)\}$. Notice how the same underlying sequence produces completely distinct melodic lines depending on whether the composer selects direct leaps, complements, or balanced voice-leading. Synthesized with the Web Audio API using harmonic triangle waves.
       </div>
     </div>
 
@@ -1363,9 +1598,9 @@ function toggleViewer(id) {
 
 // Web Audio API Interactive Synthesizer
 (function(){
-var N = 14, A = [0,2,3,5,7,8,10], NM = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+var N = 12, A = [0,2,3,5,7,8,10], NM = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
 function seq(t){
-  var r=[],a=1,b=1,p=[2,3,5,7,11,13,17,19,23,29,31,37,41,43];
+  var r=[],a=1,b=1,p=[2,3,5,7,11,13,17,19,23,29,31,37];
   for(var i=0;i<N;i++){
     if(t=='fib'){r.push(a);var c=a+b;a=b;b=c;}
     else if(t=='prime')r.push(p[i]);
@@ -1389,39 +1624,87 @@ function play(ms){
     var o=ctx.createOscillator(),g=ctx.createGain();
     o.type='triangle';
     o.frequency.value=440*Math.pow(2,(n-69)/12);
-    g.gain.setValueAtTime(0,t+i*.38);
-    g.gain.linearRampToValueAtTime(.18,t+i*.38+.03);
-    g.gain.exponentialRampToValueAtTime(.001,t+i*.38+.36);
+    g.gain.setValueAtTime(0,t+i*.42);
+    g.gain.linearRampToValueAtTime(.20,t+i*.42+.04);
+    g.gain.exponentialRampToValueAtTime(.001,t+i*.42+.40);
     o.connect(g);
     g.connect(ctx.destination);
-    o.start(t+i*.38);
-    o.stop(t+i*.38+.38);
+    o.start(t+i*.42);
+    o.stop(t+i*.42+.42);
   });
 }
 var btn=document.getElementById('play');
 if(btn){
   btn.onclick=function(){
-    var m=+document.getElementById('mod').value,x=seq(document.getElementById('seq').value);
-    var pos=0,notes=[midi(0,m)],
-        rows='<tr><th style="text-align:left;padding:6px 10px;">Term <em>x<sub>n</sub></em></th>'+x.map(function(v){return'<td style="padding:6px 10px;">'+v+'</td>'}).join('')+'</tr>',
-        ic=[],comp=[],eqc=[];
+    var m=+document.getElementById('mod').value;
+    var dir=document.getElementById('dir').value;
+    var x=seq(document.getElementById('seq').value);
+    var pos=0,notes=[midi(0,m)];
+    var thStyle='style="text-align:left;padding:7px 10px;background:#f3f4f6;border:1px solid #d1d5db;font-weight:600;"';
+    var tdStyle='style="padding:7px 10px;border:1px solid #d1d5db;text-align:center;"';
+    
+    var rows='<tr><th '+thStyle+'>Step <em>n</em></th>'+x.map(function(_,i){return'<td '+tdStyle+'>'+(i+1)+'</td>'}).join('')+'</tr>';
+    rows+='<tr><th '+thStyle+'>Term <em>x<sub>n</sub></em></th>'+x.map(function(v){return'<td '+tdStyle+'>'+v+'</td>'}).join('')+'</tr>';
+    
+    var residues=[],complements=[],eqClasses=[],realizedMoves=[];
     x.forEach(function(v){
       var a=((v%m)+m)%m;
       var c=(m-a)%m;
-      // Realized step along shortest path
-      var s=a;
-      if(a > m/2) s = a - m;
-      ic.push(a);
-      comp.push(c);
-      eqc.push('{&plusmn;'+a+', &plusmn;'+c+'}');
-      pos+=s;
+      var step=a;
+      var moveLabel='+'+a;
+      
+      if(dir==='up'){
+        step=a;
+        moveLabel='+'+a;
+      } else if(dir==='down'){
+        step=-a;
+        moveLabel='-'+a;
+      } else if(dir==='comp_up'){
+        step=c;
+        moveLabel='+'+c+' (comp)';
+      } else if(dir==='comp_down'){
+        step=-c;
+        moveLabel='-'+c+' (comp)';
+      } else {
+        // Composer contour: natural melodic balance keeping within comfortable singing compass
+        if(pos > 5){
+          step = (a !== 0) ? -a : 0;
+          moveLabel = '-'+a;
+        } else if(pos < -5){
+          step = a;
+          moveLabel = '+'+a;
+        } else {
+          if(a > m/2){
+            step = -c;
+            moveLabel = '-'+c+' (comp)';
+          } else {
+            step = a;
+            moveLabel = '+'+a;
+          }
+        }
+      }
+      
+      residues.push(a);
+      complements.push(c);
+      eqClasses.push('{&plusmn;'+a+', &plusmn;'+c+'}');
+      realizedMoves.push(moveLabel);
+      pos+=step;
       notes.push(midi(pos,m));
     });
-    rows+='<tr><th style="text-align:left;padding:6px 10px;">Interval <em>a</em> (mod '+m+')</th>'+ic.map(function(v){return'<td style="padding:6px 10px;">'+v+'</td>'}).join('')+'</tr>';
-    rows+='<tr><th style="text-align:left;padding:6px 10px;">Complement <em>m &minus; a</em></th>'+comp.map(function(v){return'<td style="padding:6px 10px;">'+v+'</td>'}).join('')+'</tr>';
-    rows+='<tr><th style="text-align:left;padding:6px 10px;">Equivalence Class</th>'+eqc.map(function(v){return'<td style="padding:6px 10px;font-size:0.82rem;">'+v+'</td>'}).join('')+'</tr>';
-    var names=notes.map(function(n){return NM[n%12]+(Math.floor(n/12)-1)});
-    document.getElementById('out').innerHTML='<table style="border-collapse:collapse;width:100%;font-size:0.9rem;margin:10px 0;">'+rows+'</table><p style="margin:8px 0 0;font-size:0.92rem;"><strong>Audible Pitch Trajectory:</strong> '+names.join(' &rarr; ')+'</p>';
+    
+    rows+='<tr><th '+thStyle+'>Residue <em>a</em> (mod '+m+')</th>'+residues.map(function(v){return'<td '+tdStyle+'>'+v+'</td>'}).join('')+'</tr>';
+    rows+='<tr><th '+thStyle+'>Complement <em>m &minus; a</em></th>'+complements.map(function(v){return'<td '+tdStyle+'>'+v+'</td>'}).join('')+'</tr>';
+    rows+='<tr><th '+thStyle+'>Equivalence Set &Epsilon;(<em>a</em>)</th>'+eqClasses.map(function(v){return'<td '+tdStyle+' style="font-size:0.8rem;white-space:nowrap;">'+v+'</td>'}).join('')+'</tr>';
+    rows+='<tr><th '+thStyle+'>Realized Move</th>'+realizedMoves.map(function(v){return'<td '+tdStyle+' style="font-weight:600;color:#1e3a8a;">'+v+'</td>'}).join('')+'</tr>';
+    
+    var noteNames=notes.map(function(n){return NM[n%12]+(Math.floor(n/12)-1)});
+    var pitchCells=noteNames.slice(1).map(function(p){return'<td '+tdStyle+' style="font-weight:700;">'+p+'</td>'}).join('');
+    rows+='<tr><th '+thStyle+'>Resulting Pitch</th>'+pitchCells+'</tr>';
+    
+    document.getElementById('out').innerHTML=
+      '<div style="overflow-x:auto;margin:14px 0;"><table style="border-collapse:collapse;width:100%;font-size:0.86rem;">'+rows+'</table></div>'+
+      '<p style="margin:10px 0 0;font-size:0.92rem;color:#111827;"><strong>Audible Pitch Progression:</strong> '+noteNames.join(' &rarr; ')+'</p>';
+    
     play(notes);
   };
 }

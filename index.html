@@ -1201,27 +1201,43 @@ footer.site-footer {
 
     <!-- In-Depth Technique Explanation -->
     <div class="technique-box">
-      <h4>How Mathematical Serialism Works</h4>
+      <h4>The Compositional Method: Modular Interval Symmetries</h4>
+      <p style="margin: 0 0 12px; font-size: 0.98rem; color: var(--ink); line-height: 1.7;">
+        The quartet adapts the principles of serialism by deriving pitch material from number-theoretic sequences (such as the Fibonacci numbers), but fundamentally redefines how intervals behave through modular arithmetic and geometric symmetry:
+      </p>
+      
       <ol>
-        <li><strong>Start with a generating sequence:</strong> such as the Fibonacci numbers 1, 1, 2, 3, 5, 8, 13, &hellip;</li>
-        <li><strong>Read each term as an interval:</strong> the distance between two consecutive notes, rather than as a fixed absolute pitch.</li>
-        <li><strong>Reduce modulo a chosen number \(m\):</strong> Mod 7 yields seven interval classes mapping onto scale degrees (producing tonal, diatonic material); mod 11 yields eleven chromatic interval classes (producing dense, modern harmonic textures).</li>
-        <li><strong>Apply the intervals sequentially:</strong> Each term determines the jump from the current note to the next under octave equivalence.</li>
-        <li><strong>Shortest-path interval symmetry:</strong> Mod \(m\), an ascending step of $+a$ is equivalent to a descending step of $-(m-a)$. The shortest path chooses the minimal leap (for example, in mod 7, stepping $+6$ is realized as $-1$, stepping down one scale degree rather than leaping upwards).</li>
-        <li><strong>Build a transposition matrix:</strong> The rows of an $m \times m$ matrix supply related compositional permutations: transpositions, retrogrades (temporal reversal), inversions (pitch-axis reflection), and retrograde inversions.</li>
+        <li>
+          <strong>Terms as relative intervals, not fixed pitches:</strong> Rather than mapping numbers directly to static scale degrees, each term of the generating sequence $x_n$ defines the <em>interval distance</em> between two consecutive notes.
+        </li>
+        <li>
+          <strong>Modular reduction ($\text{mod } m$):</strong> Terms are reduced modulo a chosen modulus $m$. Modulo 7 maps intervals onto the diatonic scale degrees of E natural minor (yielding resonant, tonal material), while modulo 11 partitions chromatic pitch space (producing dense, contemporary counterpoint).
+        </li>
+        <li>
+          <strong>Directional symmetry ($+a \equiv -a$):</strong> Upward and downward motions are identified as identical manifestations of the same interval class. An interval of size $a$ can be taken either ascending ($+a$) or descending ($-a$) with complete equivalence.
+        </li>
+        <li>
+          <strong>Why serialist inversions cannot exist:</strong> In classical 12-tone serialism, an "inversion" reflects a row across a pitch axis by swapping ascending intervals for descending ones ($+a \mapsto -a$). In this system, because $+a \equiv -a$, reflecting the direction of an interval maps it back onto itself. Inversions do not produce a distinct row—the system is inherently self-inverse by construction.
+        </li>
+        <li>
+          <strong>Complementary equivalence ($+a \equiv -a$ and $+a \equiv m - a \equiv -(m - a)$):</strong> Beyond sign symmetry, stepping $a$ in one direction is mathematically identified with stepping its modular complement $m - a$ in the opposite direction. Thus, at any point, the composer has simultaneous access to both: you can step up by $a$, down by $a$, up by $m - a$, or down by $m - a$. All four choices belong to the exact same interval class.
+        </li>
+        <li>
+          <strong>Octave equivalence ($a \equiv a + m$):</strong> Adding multiples of the modulus $m$ represents octave displacement ($a \equiv m + a$), allowing any interval to expand into wide expressive leaps or contract into close voice-leading across registers without altering its structural identity.
+        </li>
       </ol>
       
-      <p style="margin: 14px 0 0; font-size: 0.95rem; color: var(--ink); line-height: 1.65;">
-        <strong>The Essential Role of Composer Agency:</strong> The mathematical sequence fixes <em>only</em> the abstract interval grammar. The realization of actual music—allocating notes across the four instruments, voicing chords, varying rhythmic density, shaping dynamic arcs, and articulating phrases—demands continuous, rigorous composer agency. The algorithm suggests intervals; the composer creates the music.
+      <p style="margin: 14px 0 0; font-size: 0.98rem; color: var(--ink); line-height: 1.7;">
+        <strong>The Essential Role of Composer Agency:</strong> The mathematical sequence specifies only the abstract interval equivalence class $\{ \pm a, \pm (m-a) \} \pmod m$. Because every term offers multiple valid realizations—ascending or descending, root interval or complement, across any octave register—the composer exercises complete aesthetic agency. The composer decides the counterpoint across the two violins, viola, and cello, voicing chords, shaping rhythmic density, and sculpting dynamic arcs. The mathematics builds the architectural lattice; the composer creates the music.
       </p>
-      <p style="margin: 8px 0 0; font-size: 0.95rem; color: var(--ink); line-height: 1.65;">
-        <strong>The Deliberate Exception at Measure 27:</strong> In measure 27, the quartet deliberately breaks the rule and alters the sequence to allow the first movement to resolve into E minor. The score shows where the sequence is broken.
+      <p style="margin: 10px 0 0; font-size: 0.98rem; color: var(--ink); line-height: 1.7;">
+        <strong>The Deliberate Rule-Break at Measure 27:</strong> In measure 27, the quartet intentionally breaks the mathematical sequence, altering the row to allow the contrapuntal <em>Andante</em> to cadence and resolve into an open, choral <em>Adagio</em> in E minor. The score explicitly shows where the sequence is broken.
       </p>
     </div>
 
     <!-- Interactive Tone & Sequence Generator -->
     <div class="interactive-synth">
-      <div class="synth-header">Try It: Interactive Tone &amp; Sequence Generator</div>
+      <div class="synth-header">Try It: Interactive Interval Class &amp; Sound Generator</div>
       <div class="synth-controls">
         <label><strong>Sequence:</strong> 
           <select id="seq">
@@ -1242,7 +1258,7 @@ footer.site-footer {
       <div id="out" class="synth-output"></div>
       
       <div class="synth-agency-note">
-        <strong>Note on Composer Agency:</strong> This interactive tool is strictly a mechanical illustration of interval generation along the shortest path. In the actual string quartet, the mathematical sequence provides only the underlying interval lattice. The realization of music—voicing across four string instruments, harmonic counterpoint, rhythmic variation, octave displacement, bowing, and expressive dynamics—demands rigorous composer agency.
+        <strong>Note on Musical Realization:</strong> This interactive tool illustrates one realization from each term's equivalence class $\{ \pm a, \pm (m-a) \}$. In the actual string quartet, the composer chooses direction ($+a$ vs $-a$), complement ($m-a$), and octave shifts ($a = m + a$) to construct counterpoint across four acoustic instruments.
       </div>
     </div>
 
@@ -1386,17 +1402,26 @@ var btn=document.getElementById('play');
 if(btn){
   btn.onclick=function(){
     var m=+document.getElementById('mod').value,x=seq(document.getElementById('seq').value);
-    var pos=0,notes=[midi(0,m)],rows='<tr><th style="text-align:left;padding:6px 10px;">Term</th>'+x.map(function(v){return'<td style="padding:6px 10px;">'+v+'</td>'}).join('')+'</tr>',ic=[],st=[];
+    var pos=0,notes=[midi(0,m)],
+        rows='<tr><th style="text-align:left;padding:6px 10px;">Term <em>x<sub>n</sub></em></th>'+x.map(function(v){return'<td style="padding:6px 10px;">'+v+'</td>'}).join('')+'</tr>',
+        ic=[],comp=[],eqc=[];
     x.forEach(function(v){
-      var a=v%m,s=a;
-      // Shortest path: if step exceeds half the modulus, wrap in the minimal direction
+      var a=((v%m)+m)%m;
+      var c=(m-a)%m;
+      // Realized step along shortest path
+      var s=a;
       if(a > m/2) s = a - m;
-      ic.push(a);st.push(s);pos+=s;notes.push(midi(pos,m));
+      ic.push(a);
+      comp.push(c);
+      eqc.push('{&plusmn;'+a+', &plusmn;'+c+'}');
+      pos+=s;
+      notes.push(midi(pos,m));
     });
-    rows+='<tr><th style="text-align:left;padding:6px 10px;">Mod '+m+'</th>'+ic.map(function(v){return'<td style="padding:6px 10px;">'+v+'</td>'}).join('')+'</tr>';
-    rows+='<tr><th style="text-align:left;padding:6px 10px;">Shortest Step</th>'+st.map(function(v){return'<td style="padding:6px 10px;">'+(v>0?'+':'')+v+'</td>'}).join('')+'</tr>';
+    rows+='<tr><th style="text-align:left;padding:6px 10px;">Interval <em>a</em> (mod '+m+')</th>'+ic.map(function(v){return'<td style="padding:6px 10px;">'+v+'</td>'}).join('')+'</tr>';
+    rows+='<tr><th style="text-align:left;padding:6px 10px;">Complement <em>m &minus; a</em></th>'+comp.map(function(v){return'<td style="padding:6px 10px;">'+v+'</td>'}).join('')+'</tr>';
+    rows+='<tr><th style="text-align:left;padding:6px 10px;">Equivalence Class</th>'+eqc.map(function(v){return'<td style="padding:6px 10px;font-size:0.82rem;">'+v+'</td>'}).join('')+'</tr>';
     var names=notes.map(function(n){return NM[n%12]+(Math.floor(n/12)-1)});
-    document.getElementById('out').innerHTML='<table style="border-collapse:collapse;width:100%;font-size:0.9rem;margin:10px 0;">'+rows+'</table><p style="margin:8px 0 0;font-size:0.92rem;"><strong>Generated Pitch Trajectory:</strong> '+names.join(' &rarr; ')+'</p>';
+    document.getElementById('out').innerHTML='<table style="border-collapse:collapse;width:100%;font-size:0.9rem;margin:10px 0;">'+rows+'</table><p style="margin:8px 0 0;font-size:0.92rem;"><strong>Audible Pitch Trajectory:</strong> '+names.join(' &rarr; ')+'</p>';
     play(notes);
   };
 }

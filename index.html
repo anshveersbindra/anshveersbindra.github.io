@@ -783,14 +783,57 @@ footer.site-footer {
   .synth-btn { width: 100%; text-align: center; padding: 10px; }
 }
 
-/* Disciplinary Left Spines */
-article.card-astronomy { border-left: 3px solid #4a90e2; }
-article.card-pulsar { border-left: 3px solid #dfa565; }
-article.card-algebra { border-left: 3px solid #9d7cd8; }
-article.card-analysis { border-left: 3px solid #4ec9b0; }
-article.card-theory { border-left: 3px solid #61afef; }
-article.card-treatise { border-left: 3px solid #e5c07b; }
-article.card-music { border-left: 3px solid #e06c75; }
+
+/* ORCID & DOI Academic Links */
+.site-links {
+  margin: 12px 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.orcid-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: #a6ce39;
+  text-decoration: none;
+  background: rgba(166, 206, 57, 0.08);
+  border: 1px solid rgba(166, 206, 57, 0.25);
+  padding: 4px 10px;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+}
+.orcid-link:hover {
+  background: rgba(166, 206, 57, 0.16);
+  color: #c0ea4b;
+  border-color: #a6ce39;
+}
+.doi-link {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.doi-pill {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  background: #191b20;
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+.doi-pill:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
 
 /* Series Banner for Pulsar Papers */
 .series-banner {
@@ -816,39 +859,36 @@ article.card-music { border-left: 3px solid #e06c75; }
   padding: 2px 6px;
   border-radius: 3px;
 }
+article.card-pulsar {
+  border-left: 3px solid #dfa565;
+}
 
-/* Contextual Project Tag Strips */
-.project-tag-strip {
+/* Monograph & Exposition Syllabus */
+.monograph-syllabus, .exposition-syllabus {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 6px 10px;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   color: var(--ink-muted);
   background: var(--surface-inset);
   border: 1px solid var(--border-light);
   border-radius: 5px;
-  padding: 7px 12px;
-  margin: 0 0 14px;
+  padding: 8px 14px;
+  margin: 12px 0 16px;
 }
-.strip-item {
-  display: inline-flex;
-  align-items: center;
+.syllabus-label {
+  font-weight: 600;
+  color: var(--accent);
 }
-.strip-sep {
+.syllabus-sep {
   color: var(--ink-faint);
-  user-select: none;
 }
-.astronomy-strip .strip-item:first-child { color: #6ba8f2; font-weight: 500; }
-.algebra-strip .strip-item:first-child { color: #b79bf0; font-weight: 500; }
-.theory-strip .strip-item:first-child { color: #82c0f6; font-weight: 500; }
-.music-strip .strip-item:first-child { color: #f08992; font-weight: 500; }
 
-/* Crystalline Formula Gem for Pi paper */
+/* Formula Gem for Pi */
 .formula-gem-box {
   background: var(--surface-inset);
-  border: 1px solid rgba(78, 201, 176, 0.25);
-  border-left: 3px solid #4ec9b0;
+  border: 1px solid rgba(223, 165, 101, 0.2);
   border-radius: 6px;
   padding: 14px 18px;
   margin: 0 0 18px;
@@ -858,7 +898,7 @@ article.card-music { border-left: 3px solid #e06c75; }
   font-size: 0.84rem;
   font-style: italic;
   font-weight: 600;
-  color: #4ec9b0;
+  color: var(--accent);
   margin-bottom: 4px;
 }
 .formula-gem-math {
@@ -877,12 +917,12 @@ article.card-music { border-left: 3px solid #e06c75; }
   border-top: 1px dotted var(--border-light);
 }
 
-/* Prominent Hero Action Buttons */
+/* Prominent Action Buttons */
 .action-row {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   margin-top: 20px;
   padding-top: 18px;
   border-top: 1px solid var(--border-light);
@@ -940,6 +980,11 @@ article.card-music { border-left: 3px solid #e06c75; }
   <div class="wrap">
     <h1 class="site-title">Anshveer Bindra</h1>
     <div class="site-subtitle">Physics, mathematics, and musical composition &middot; Mumbai, India</div>
+    <div class="site-links">
+      <a class="orcid-link" href="https://orcid.org/0009-0008-3593-1450" target="_blank" rel="noopener">
+        <svg class="orcid-icon" width="15" height="15" viewBox="0 0 256 256" fill="currentColor"><path d="M128 0C57.31 0 0 57.31 0 128s57.31 128 128 128 128-57.31 128-128S198.69 0 128 0zm-41.25 188.75H64.22V87.06h22.53v101.69zm-11.26-115.6c-7.22 0-13.06-5.85-13.06-13.07 0-7.22 5.84-13.07 13.06-13.07s13.07 5.85 13.07 13.07c-.01 7.22-5.85 13.07-13.07 13.07zm119.86 64.91c0 29.56-23.97 50.69-53.79 50.69h-38.31V87.06h39.73c29.13 0 52.37 20.94 52.37 50.99zm-23.01 0c0-18.06-13.92-30.88-31.98-30.88h-14.8v61.76h14.8c18.06 0 31.98-12.82 31.98-30.88z"/></svg> ORCID: 0009-0008-3593-1450
+      </a>
+    </div>
     <p class="site-bio">
       Selected research across observational astrophysics, theoretical physics, algebraic topology, and analytic number theory, alongside an original chamber work in modular serialism. Each paper includes context on the problem, mathematical and numerical formulations, observational or experimental results, and complete manuscripts.
     </p>
@@ -969,27 +1014,17 @@ article.card-music { border-left: 3px solid #e06c75; }
 <section id="papers" class="content-section">
   <div class="section-header">
     <h2>Papers</h2>
-    <p>Seven research manuscripts ordered chronologically and thematically across celestial mechanics, pulsar astrophysics, dynamical systems, infinite series, quantum field theory, and topology.</p>
+    <p>Eight research works and monographs ordered across celestial mechanics, pulsar astrophysics, dynamical systems, infinite series, theoretical physics, quantum foundations, and topology.</p>
   </div>
 
   <!-- 1. ASTEROID ORBIT GAUSS (SSP) -->
-  <article class="paper-card card-astronomy" data-category="astrophysics">
+  <article class="paper-card" data-category="astrophysics">
     <div class="card-top">
       <span class="card-discipline">Celestial Mechanics &middot; Astrometry</span>
       <span class="card-meta">With Chloe Leung &amp; Gavin Flajole &middot; <span class="card-venue">Summer Science Program</span> &middot; MPC Observatory W85/W87</span>
     </div>
 
     <h3 class="card-title">Orbit Determination of Near-Earth Asteroid 2015 GF27 via the Method of Gauss</h3>
-
-    <div class="project-tag-strip astronomy-strip">
-      <span class="strip-item">Observational Campaign</span>
-      <span class="strip-sep">&middot;</span>
-      <span class="strip-item">Las Cumbres Observatory Network (Chile, Hawaii, Texas)</span>
-      <span class="strip-sep">&middot;</span>
-      <span class="strip-item">MPC Code W85/W87</span>
-      <span class="strip-sep">&middot;</span>
-      <span class="strip-item">26-Day Baseline Astrometry</span>
-    </div>
 
     <div class="card-summary">Determining the full 3D heliocentric orbit of a near-Earth asteroid using only three optical telescope observations across a 26-day baseline, matching NASA JPL Horizons ephemerides to within 0.11%–0.61%, and demonstrating how observational geometry governs physical accuracy.
     </div>
@@ -1126,7 +1161,7 @@ article.card-music { border-left: 3px solid #e06c75; }
   </article>
 
   <!-- 2. PULSAR PAPER I (WEAK FORM INVERSION) -->
-  <article class="paper-card card-astronomy" data-category="astrophysics">
+  <article class="paper-card" data-category="astrophysics">
     <div class="card-top">
       <span class="card-discipline">Astrophysics &middot; Fluid Inversion</span>
     <div class="series-tag">Pulsar Demographics Series &middot; Part I of II</div>
@@ -1237,7 +1272,7 @@ article.card-music { border-left: 3px solid #e06c75; }
   </article>
 
   <!-- 3. PULSAR PAPER II (INTRINSIC EQUILIBRIUM) -->
-  <article class="paper-card card-astronomy" data-category="astrophysics">
+  <article class="paper-card" data-category="astrophysics">
     <div class="card-top">
       <span class="card-discipline">Astrophysics &middot; Population Synthesis</span>
     <div class="series-tag">Pulsar Demographics Series &middot; Part II of II</div>
@@ -1339,20 +1374,10 @@ article.card-music { border-left: 3px solid #e06c75; }
   <article class="paper-card" data-category="mathematics">
     <div class="card-top">
       <span class="card-discipline">Number Theory &middot; Discrete Dynamical Systems</span>
-      <span class="card-meta">Anshveer Bindra &middot; August 2026 &middot; <span class="card-venue">In review at Integers journal</span></span>
+      <span class="card-meta">Anshveer Bindra &middot; August 2026 &middot; <span class="card-venue">In review at Integers journal</span> &middot; <a class="doi-link" href="https://doi.org/10.5281/zenodo.22100467" target="_blank" rel="noopener">doi:10.5281/zenodo.22100467</a></span>
     </div>
 
     <h3 class="card-title">The Single-Generator Theory of Cycle-Decomposed Digit-Subtraction Dynamics</h3>
-
-    <div class="project-tag-strip algebra-strip">
-      <span class="strip-item">Combinatorial Number Theory</span>
-      <span class="strip-sep">&middot;</span>
-      <span class="strip-item">Arbitrary Base $B \ge 2$</span>
-      <span class="strip-sep">&middot;</span>
-      <span class="strip-item">Permutation Cycles $\pi \in S_k$</span>
-      <span class="strip-sep">&middot;</span>
-      <span class="strip-item">Single Modular Generator $g = B - 1$</span>
-    </div>
 
     <div class="card-summary">Generalizing Kaprekar's routine (6174) to arbitrary number bases and digit permutations, proving that seemingly non-linear digit dynamics decompose into decoupled, independent cycles governed by a single modular generator.
     </div>
@@ -1446,7 +1471,7 @@ article.card-music { border-left: 3px solid #e06c75; }
   <article class="paper-card" data-category="mathematics">
     <div class="card-top">
       <span class="card-discipline">Analytic Number Theory</span>
-      <span class="card-meta">Anshveer Bindra &middot; <span class="card-venue">In review at Axiom journal</span></span>
+      <span class="card-meta">Anshveer Bindra &middot; <span class="card-venue">In review at Axiom journal</span> &middot; <a class="doi-link" href="https://doi.org/10.5281/zenodo.23005968" target="_blank" rel="noopener">doi:10.5281/zenodo.23005968</a></span>
     </div>
 
     <h3 class="card-title">Rediscovering a Formula for &pi;</h3>
@@ -1548,20 +1573,10 @@ article.card-music { border-left: 3px solid #e06c75; }
   <article class="paper-card" data-category="physics">
     <div class="card-top">
       <span class="card-discipline">Theoretical Physics &middot; Curved Spacetime QFT</span>
-      <span class="card-meta">Anshveer Bindra &middot; 2026 &middot; <span class="card-venue">Theoretical Review</span></span>
+      <span class="card-meta">Anshveer Bindra &middot; 2026 &middot; <span class="card-venue">Theoretical Review</span> &middot; <a class="doi-link" href="https://doi.org/10.5281/zenodo.20476560" target="_blank" rel="noopener">doi:10.5281/zenodo.20476560</a></span>
     </div>
 
     <h3 class="card-title">Quantum Field Theory in de Sitter Space: Foundations, Challenges, and Implications for Physics</h3>
-
-    <div class="project-tag-strip theory-strip">
-      <span class="strip-item">Curved Spacetime Geometry</span>
-      <span class="strip-sep">&middot;</span>
-      <span class="strip-item">Hyperboloid Embedding in $\mathbb{R}^{1,d}$</span>
-      <span class="strip-sep">&middot;</span>
-      <span class="strip-item">Horizon Temperature $T = H / 2\pi$</span>
-      <span class="strip-sep">&middot;</span>
-      <span class="strip-item">Absence of Global Timelike Killing Vector</span>
-    </div>
 
     <div class="card-summary">Synthesizing quantum field theory in an accelerating, curved spacetime—examining how observer horizons generate intrinsic thermal radiation, infrared divergences, and primordial cosmological fluctuations.
     </div>
@@ -1643,20 +1658,156 @@ article.card-music { border-left: 3px solid #e06c75; }
     </div>
   </article>
 
-  <!-- 7. HOMOLOGY TO DE RHAM COHOMOLOGY -->
+  <!-- 7. FOUNDATIONS OF QUANTUM MECHANICS (10TH GRADE MONOGRAPH) -->
+  <article class="paper-card" data-category="physics">
+    <div class="card-top">
+      <span class="card-discipline">Theoretical Physics &middot; Quantum Foundations</span>
+      <span class="card-meta">Anshveer Bindra &middot; ISBN: 978-93-5525-832-8 &middot; <span class="card-venue">Monograph &middot; 10th Grade Personal Project</span> &middot; <a class="doi-link" href="https://doi.org/10.5281/zenodo.23419188" target="_blank" rel="noopener">doi:10.5281/zenodo.23419188</a></span>
+    </div>
+
+    <h3 class="card-title">Foundations of Quantum Mechanics</h3>
+
+    <div class="card-summary">A self-contained 183-page mathematical monograph authored as a 10th-grade personal project, systematically developing nonrelativistic quantum theory from Lagrangian and Hamiltonian dynamics through abstract linear algebra, Hilbert space postulates, and one-dimensional wave mechanics to Ehrenfest's theorem and the classical correspondence limit.
+    </div>
+
+    <div class="monograph-syllabus">
+      <span class="syllabus-label">Monograph Structure (183 pp.):</span>
+      <span class="syllabus-step">Ch. 1 Classical Foundation</span>
+      <span class="syllabus-sep">&rarr;</span>
+      <span class="syllabus-step">Ch. 2 Linear Algebra &amp; Dirac Notation</span>
+      <span class="syllabus-sep">&rarr;</span>
+      <span class="syllabus-step">Ch. 3 Crisis of Classical Physics</span>
+      <span class="syllabus-sep">&rarr;</span>
+      <span class="syllabus-step">Ch. 4 The Postulates</span>
+      <span class="syllabus-sep">&rarr;</span>
+      <span class="syllabus-step">Ch. 5 1D Quantum Systems</span>
+      <span class="syllabus-sep">&rarr;</span>
+      <span class="syllabus-step">Ch. 6 The Classical Limit</span>
+      <span class="syllabus-sep">&rarr;</span>
+      <span class="syllabus-step">Ch. 7 Next Steps</span>
+    </div>
+
+    <!-- Executive 3-Point Highlights -->
+    <div class="executive-grid">
+      <div class="exec-item">
+        <span class="exec-label">Problem</span>
+        <span class="exec-val">Classical determinism fails catastrophically at atomic scales—producing the ultraviolet catastrophe and atomic collapse. How is state space restructured from phase space $(x, p)$ to Hilbert space rays $|\Psi
+angle$?</span>
+      </div>
+      <div class="exec-item">
+        <span class="exec-label">Method</span>
+        <span class="exec-val">First-principles axiomatic formulation: develops Hamiltonian mechanics via Legendre transforms, establishes Dirac bra-ket notation and projection operators, constructs observables as Hermitian operators, and solves the Schr&ouml;dinger equation.</span>
+      </div>
+      <div class="exec-item">
+        <span class="exec-label">Key Result</span>
+        <span class="exec-val">Proves non-degeneracy of 1D bound states, derives exact propagators $U(x,t;x')$ for free particles and square wells, and proves Ehrenfest's theorem relating quantum expectation values directly to classical Hamilton equations.</span>
+      </div>
+    </div>
+
+    <div class="action-row">
+      <button class="action-btn action-btn-viewer" onclick="toggleViewer('viewer-quantum')"><svg class="btn-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg> Read Inline (Viewer)</button>
+      <a class="action-btn action-btn-secondary" href="papers/foundations-quantum-mechanics.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+      <a class="action-btn action-btn-secondary" href="papers/foundations-quantum-mechanics.pdf" download>Download PDF</a>
+      <a class="doi-pill" href="https://doi.org/10.5281/zenodo.23419188" target="_blank" rel="noopener">Zenodo DOI</a>
+    </div>
+
+    <!-- Progressive Disclosure: In-Depth Overview of the Monograph -->
+    <details class="deepdive-drawer">
+      <summary class="deepdive-summary">
+        <span>Explore Monograph Chapters, Formal Proofs &amp; Mathematical Postulates</span>
+        <span class="deepdive-badge">Full Analysis &darr;</span>
+      </summary>
+      <div class="deepdive-content">
+        <div class="narrative-section">
+          <h4>From Classical Action to Quantum Postulates</h4>
+          <p>
+            Authored as an extended independent investigation in 10th grade, this 183-page book bridges the conceptual canyon between classical mechanics and nonrelativistic quantum theory. Rather than introducing wave-particle duality as an isolated empirical mystery, the text begins by reformulating Newtonian physics into the principle of least action $S = \int \mathcal{L}\, dt$ and Hamilton's canonical equations, demonstrating that the Hamiltonian $\mathcal{H}(q,p) = T + V$ is the natural physical generator for quantum time evolution.
+          </p>
+        </div>
+
+        <div class="narrative-section">
+          <h4>The Abstract Linear Algebra Interlude</h4>
+          <p>
+            Chapter 2 provides a rigorous mathematical bridge into infinite-dimensional functional analysis:
+          </p>
+          <ul>
+            <li><strong>Dirac Bra-Ket Notation:</strong> Establishes the isomorphism between the vector space of kets $|\Psi\rangle$ and the dual space of linear functionals (bras $\langle\Phi|$), with inner product $\langle\Phi|\Psi\rangle = \langle\Psi|\Phi\rangle^*$.</li>
+            <li><strong>Projection Operators and Completeness:</strong> Proves the resolution of the identity $I = \sum_{i} |i\rangle\langle i|$ and establishes the spectral decomposition for discrete and continuous operators.</li>
+            <li><strong>From Discrete Vectors to Function Spaces:</strong> Details the continuum limit of an $n$-point clamped string to infinite-dimensional Hilbert space $L^2(\mathbb{R})$, where the Kronecker delta $\delta_{ij}$ transitions to the Dirac delta distribution $\delta(x - x')$.</li>
+          </ul>
+        </div>
+
+        <!-- Featured Equation from Chapter 4 & 6 -->
+        <div class="equation-box">
+          <div class="equation-label">Ehrenfest's Theorem &amp; The Classical Correspondence Limit (Chapter 6)</div>
+          <div class="equation-display">
+            $$\frac{d}{dt}\langle\Omega\rangle = -\frac{i}{\hbar}\langle[\Omega, H]\rangle + \left\langle \frac{\partial \Omega}{\partial t} \right\rangle$$
+          </div>
+          <div class="equation-explanation">
+            <strong>Physical Meaning:</strong> The quantum expectation values of position and momentum obey Hamilton's classical equations of motion: $\langle\dot{X}\rangle = \langle P\rangle/m$ and $\langle\dot{P}\rangle = -\langle\nabla V(X)\rangle$. When evaluated for macroscopic quasi-classical Gaussian wave packets $|x_0 p_0 \Delta\rangle$, quantum fluctuations vanish and classical Newtonian trajectories emerge as an exact limiting case.
+          </div>
+        </div>
+
+        <div class="narrative-section">
+          <h4>The Postulates of Quantum Mechanics</h4>
+          <p>
+            Chapter 4 formalizes the four foundational postulates of nonrelativistic quantum mechanics:
+          </p>
+          <ul>
+            <li><strong>Postulate I (State Space):</strong> Physical states correspond to rays in a complex Hilbert space $\mathcal{H}$.</li>
+            <li><strong>Postulate II (Observables):</strong> Measurable quantities correspond to linear Hermitian operators $\Omega = \Omega^\dagger$, with the canonical commutation relation $[X, P] = i\hbar$ generating the Heisenberg uncertainty bound $\Delta X \Delta P \ge \hbar / 2$.</li>
+            <li><strong>Postulate III (Measurement &amp; Collapse):</strong> Measuring an observable $\Omega$ yields an eigenvalue $\omega_i$ with probability $P(\omega_i) = |\langle\omega_i|\Psi\rangle|^2 / \langle\Psi|\Psi\rangle$, instantaneously projecting the state vector into the corresponding eigenspace.</li>
+            <li><strong>Postulate IV (Time Evolution):</strong> The unitary time evolution of the state vector is governed by the Schr&ouml;dinger equation $i\hbar \frac{d}{dt}|\Psi(t)\rangle = H|\Psi(t)\rangle$.</li>
+          </ul>
+        </div>
+
+        <div class="narrative-section">
+          <h4>Solved One-Dimensional Systems and Theorems</h4>
+          <p>
+            Chapter 5 works through complete, closed-form derivations:
+          </p>
+          <ul>
+            <li><strong>Free Particle Propagator:</strong> Derives the exact time-evolution propagator $U(x, t; x') = \sqrt{\frac{m}{2\pi i \hbar t}} \exp\left( \frac{i m (x - x')^2}{2\hbar t} \right)$ using Gaussian path integrals.</li>
+            <li><strong>Infinite Square Well:</strong> Solves boundary conditions at $x = \pm L/2$, proving energy quantization $E_n = \frac{\hbar^2 \pi^2 n^2}{2m L^2}$ and parity symmetry of eigenfunctions.</li>
+            <li><strong>Theorem of Bound State Non-Degeneracy:</strong> Proves that all one-dimensional bound states in localized potentials are strictly non-degenerate, and their wavefunctions can always be chosen to be purely real.</li>
+            <li><strong>Probability Current &amp; Continuity:</strong> Derives the local conservation of probability $\frac{\partial \rho}{\partial t} + \nabla \cdot \mathbf{j} = 0$ directly from the Schr&ouml;dinger equation.</li>
+          </ul>
+        </div>
+
+        <div class="narrative-section">
+          <h4>Monograph Publication Details</h4>
+          <p>
+            Registered with official ISBN <strong>978-93-5525-832-8</strong> and archived on Zenodo (<a class="doi-link" href="https://doi.org/10.5281/zenodo.23419188" target="_blank" rel="noopener">doi:10.5281/zenodo.23419188</a>). Written over ten months as a 10th-grade personal project, the volume concludes with an analytical survey of quantum computation, the Measurement Problem, and the mathematical obstacles to quantum gravity.
+          </p>
+        </div>
+      </div>
+    </details>
+
+    <div id="viewer-quantum" class="inline-viewer">
+      <div class="viewer-topbar">
+        <span>Foundations of Quantum Mechanics (Monograph) &middot; Anshveer Bindra</span>
+        <a href="papers/foundations-quantum-mechanics.pdf" target="_blank">Open in New Tab &rarr;</a>
+      </div>
+      <object data="papers/foundations-quantum-mechanics.pdf" type="application/pdf">
+        <p style="padding: 20px; color: #fff;">Unable to render inline. <a href="papers/foundations-quantum-mechanics.pdf">Download Monograph PDF</a>.</p>
+      </object>
+    </div>
+  </article>
+
+  <!-- 8. HOMOLOGY TO DE RHAM COHOMOLOGY -->
   <article class="paper-card" data-category="mathematics">
     <div class="card-top">
-      <span class="card-discipline">Differential Topology</span>
-      <span class="card-meta">Anshveer Bindra &middot; 2026 &middot; <span class="card-venue">137-Page Exposition</span></span>
+      <span class="card-discipline">Differential Topology &middot; Expository Work</span>
+      <span class="card-meta">Anshveer Bindra &middot; 2026 &middot; <span class="card-venue">137-Page Expository Work</span> &middot; <a class="doi-link" href="https://doi.org/10.22541/au.175683844.48037590/v1" target="_blank" rel="noopener">doi:10.22541/au.175683844.48037590/v1</a></span>
     </div>
 
     <h3 class="card-title">From Homology to de Rham Cohomology: An Expository Journey through the Topology of Smooth Manifolds</h3>
 
-    <div class="card-summary">A self-contained, 137-page mathematical treatise tracing how differential forms and integration on smooth manifolds compute topological invariants, culminating in a proof of de Rham's Theorem.
+    <div class="card-summary">A self-contained, 137-page mathematical exposition tracing how differential forms and integration on smooth manifolds compute topological invariants, culminating in a proof of de Rham's Theorem.
     </div>
 
-    <div class="monograph-syllabus">
-      <span class="syllabus-label">Monograph Arc:</span>
+    <div class="exposition-syllabus">
+      <span class="syllabus-label">Exposition Structure:</span>
       <span class="syllabus-step">&sect;1 Singular Homology</span>
       <span class="syllabus-sep">&rarr;</span>
       <span class="syllabus-step">&sect;2 Smooth Manifolds</span>
@@ -1754,23 +1905,13 @@ article.card-music { border-left: 3px solid #e06c75; }
     <p>Acoustic realization of modular serialism &mdash; deriving four-part chamber counterpoint from number-theoretic sequences.</p>
   </div>
 
-  <article class="paper-card card-music">
+  <article class="paper-card">
     <div class="card-top">
       <span class="card-discipline">Chamber Music &middot; Composition</span>
       <span class="card-meta">2025 &middot; ~3 Minutes &middot; Two Violins, Viola, Violoncello &middot; <span class="card-venue">Andante into Adagio</span></span>
     </div>
 
     <h3 class="card-title">String Quartet in E minor, &ldquo;Future&rdquo;</h3>
-
-    <div class="project-tag-strip music-strip">
-      <span class="strip-item">Instrumentation: 2 Violins, Viola, Violoncello</span>
-      <span class="strip-sep">&middot;</span>
-      <span class="strip-item">Duration: ~3 Minutes</span>
-      <span class="strip-sep">&middot;</span>
-      <span class="strip-item">Tempo: Andante into Adagio</span>
-      <span class="strip-sep">&middot;</span>
-      <span class="strip-item">Tonal Center: E natural minor</span>
-    </div>
 
     <div class="card-summary">The intervals between notes are generated by integer sequences reduced modulo 7 or 11; the realization of voice-leading, counterpoint, rhythm, and harmony is shaped by composer agency, with a deliberate exception at measure 27.
     </div>

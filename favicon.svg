@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#182e4b"/>
+      <stop offset="100%" stop-color="#0e1a2b"/>
+    </linearGradient>
+    <linearGradient id="orbitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.9"/>
+      <stop offset="50%" stop-color="#818cf8" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#e2ded4"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Base Rounded Squircle -->
+  <rect x="16" y="16" width="480" height="480" rx="116" fill="url(#bgGrad)"/>
+  <rect x="16" y="16" width="480" height="480" rx="116" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="3"/>
+
+  <!-- Keplerian Orbital Ellipse -->
+  <g transform="translate(256, 256) rotate(-26) translate(-256, -256)">
+    <ellipse cx="256" cy="256" rx="204" ry="82" fill="none" stroke="url(#orbitGrad)" stroke-width="12" stroke-linecap="round"/>
+    <!-- Periapsis / Observation Node -->
+    <circle cx="445" cy="256" r="14" fill="#38bdf8" filter="url(#glow)"/>
+    <circle cx="445" cy="256" r="7" fill="#ffffff"/>
+  </g>
+
+  <!-- Intertwined Serif Monogram AB -->
+  <text x="256" y="338" font-family="'Georgia', 'Newsreader', 'Times New Roman', serif" font-size="234" font-weight="bold" fill="url(#textGrad)" text-anchor="middle" letter-spacing="-10">AB</text>
+
+  <!-- Golden Focus Point -->
+  <circle cx="256" cy="382" r="7" fill="#f59e0b" filter="url(#glow)"/>
+</svg>

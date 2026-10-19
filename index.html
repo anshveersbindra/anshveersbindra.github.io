@@ -204,15 +204,18 @@ nav.filter-nav {
   font-size: 0.84rem;
   font-weight: 500;
   color: var(--ink-muted);
-  padding: 5px 12px;
-  border-radius: 4px;
+  padding: 6px 13px;
+  border-radius: 5px;
   cursor: pointer;
   white-space: nowrap;
-  transition: all 0.15s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .filter-btn:hover {
   color: var(--ink);
   background: var(--surface-inset);
+}
+.filter-btn:active {
+  transform: scale(0.97);
 }
 .filter-btn.active {
   color: var(--accent);
@@ -319,20 +322,28 @@ section.content-section {
   margin: 0;
 }
 
-/* Research Articles: Editorial broadsheet flow */
+/* Research Articles: Distinguished, tactile archival card */
 article.paper-card {
-  background: transparent;
-  border: none;
-  border-top: 1px solid var(--border);
-  border-radius: 0;
-  padding: 44px 0 32px;
-  margin-bottom: 0;
-  box-shadow: none;
-  transition: border-color 0.15s ease;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 38px 42px;
+  margin-bottom: 28px;
+  box-shadow: 0 1px 3px rgba(30, 28, 24, 0.04), 0 4px 14px rgba(30, 28, 24, 0.02);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+  will-change: transform, box-shadow;
 }
-article.paper-card:first-of-type {
-  border-top: none;
-  padding-top: 10px;
+article.paper-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(30, 28, 24, 0.06), 0 12px 28px rgba(30, 28, 24, 0.04);
+}
+[data-theme="dark"] article.paper-card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+[data-theme="dark"] article.paper-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  border-color: var(--border-hover);
 }
 
 .card-top {
@@ -520,18 +531,20 @@ h3.card-title {
   font-size: 0.86rem;
   font-weight: 550;
   padding: 7px 16px;
-  border-radius: 4px;
-  box-shadow: none;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(30, 58, 95, 0.15);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 7px;
   cursor: pointer;
-  transition: background-color 0.15s ease, border-color 0.15s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .action-btn-viewer:hover {
   background: var(--accent-hover);
   border-color: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(30, 58, 95, 0.25);
 }
 .action-btn-viewer:active {
   transform: translateY(0);
@@ -540,11 +553,15 @@ h3.card-title {
   background: var(--accent);
   color: #0f141a !important;
   font-weight: 600;
-  box-shadow: none;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+[data-theme="dark"] .action-btn-viewer:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
 }
 .viewer-caret {
+  display: inline-block;
   font-size: 0.9rem;
-  transition: transform 0.2s ease;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .action-btn-secondary {
@@ -554,17 +571,21 @@ h3.card-title {
   padding: 7px 13px;
   font-size: 0.84rem;
   font-weight: 450;
-  border-radius: 4px;
+  border-radius: 5px;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  transition: all 0.15s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .action-btn-secondary:hover {
   background: var(--surface-inset);
   color: var(--accent);
   border-color: var(--border-hover);
+  transform: translateY(-1px);
+}
+.action-btn-secondary:active {
+  transform: translateY(0);
 }
 
 .btn-icon {
@@ -618,6 +639,9 @@ details.deepdive-drawer[open] summary.deepdive-summary .deepdive-badge {
 }
 .deepdive-content {
   margin-top: 16px;
+}
+details.deepdive-drawer[open] .deepdive-content {
+  animation: drawerContentEnter 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* Deep Dive Narrative Prose */
@@ -718,12 +742,13 @@ table.data-table td {
   display: none;
   margin-top: 18px;
   border: 1px solid var(--border);
-  border-radius: 4px;
+  border-radius: 6px;
   overflow: hidden;
   background: var(--surface-inset);
 }
 .inline-viewer.active {
   display: block;
+  animation: viewerSlideDown 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 .viewer-topbar {
   display: flex;
@@ -871,37 +896,49 @@ table.method-table td {
   font-family: inherit;
   font-size: 0.86rem;
   font-weight: 500;
-  padding: 6px 16px;
-  border-radius: 4px;
+  padding: 7px 18px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .synth-btn:hover {
   background: var(--accent-hover);
   border-color: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(30, 58, 95, 0.25);
+}
+.synth-btn:active {
+  transform: translateY(0);
 }
 [data-theme="dark"] .synth-btn {
   background: var(--accent);
   color: #0f141a;
   font-weight: 600;
 }
+[data-theme="dark"] .synth-btn:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+}
 
 .synth-btn-secondary {
-  background: var(--surface-inset);
+  background: var(--surface);
   color: var(--ink-secondary);
   border: 1px solid var(--border);
   font-family: inherit;
   font-size: 0.84rem;
   font-weight: 450;
-  padding: 6px 14px;
-  border-radius: 4px;
+  padding: 7px 15px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .synth-btn-secondary:hover {
   background: var(--surface-hover);
   color: var(--ink);
   border-color: var(--border-hover);
+  transform: translateY(-1px);
+}
+.synth-btn-secondary:active {
+  transform: translateY(0);
 }
 
 .synth-phrase-banner {
@@ -1070,6 +1107,53 @@ footer.site-footer {
   border-color: var(--accent);
 }
 
+/* Smooth Fluid Animations & Motion System */
+@keyframes cardEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-enter {
+  animation: cardEnter 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes viewerSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes drawerContentEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 @media (max-width: 768px) {
   .project-brief {
     grid-template-columns: 1fr;
@@ -1086,7 +1170,7 @@ footer.site-footer {
   nav.filter-nav { padding: 8px 0; }
   .filter-btn { padding: 5px 10px; font-size: 0.82rem; }
   .section-jump { display: none; }
-  article.paper-card { padding: 32px 0 24px; margin-bottom: 0; }
+  article.paper-card { padding: 26px 20px; margin-bottom: 20px; border-radius: 6px; }
   h3.card-title { font-size: 1.38rem; line-height: 1.3; }
   .card-dek { font-size: 1.02rem; }
   .action-row { gap: 8px; padding-top: 14px; margin-top: 14px; }
@@ -2461,26 +2545,68 @@ function filterCategory(category, btn) {
   const paperCards = document.querySelectorAll('#papers .paper-card');
   const seriesBanners = document.querySelectorAll('#papers .series-banner');
 
+  let delayIdx = 0;
+
+  function revealCard(el) {
+    el.style.display = '';
+    el.classList.remove('card-enter');
+    void el.offsetWidth; // trigger reflow for smooth animation restart
+    el.style.animationDelay = (delayIdx * 45) + 'ms';
+    el.classList.add('card-enter');
+    delayIdx++;
+  }
+
+  function hideCard(el) {
+    el.style.display = 'none';
+    el.classList.remove('card-enter');
+  }
+
   if (category === 'all') {
     if (papersSection) papersSection.style.display = '';
-    if (musicSection) musicSection.style.display = '';
-    paperCards.forEach(card => card.style.display = '');
-    seriesBanners.forEach(b => b.style.display = '');
+    if (musicSection) {
+      musicSection.style.display = '';
+      const musicCard = musicSection.querySelector('.paper-card');
+      if (musicCard) {
+        musicCard.classList.remove('card-enter');
+        void musicCard.offsetWidth;
+        musicCard.style.animationDelay = '360ms';
+        musicCard.classList.add('card-enter');
+      }
+    }
+    seriesBanners.forEach(b => { b.style.display = ''; });
+    paperCards.forEach(card => revealCard(card));
   } else if (category === 'music') {
     if (papersSection) papersSection.style.display = 'none';
-    if (musicSection) musicSection.style.display = '';
-    seriesBanners.forEach(b => b.style.display = 'none');
+    if (musicSection) {
+      musicSection.style.display = '';
+      const musicCard = musicSection.querySelector('.paper-card');
+      if (musicCard) {
+        musicCard.classList.remove('card-enter');
+        void musicCard.offsetWidth;
+        musicCard.style.animationDelay = '0ms';
+        musicCard.classList.add('card-enter');
+      }
+    }
+    seriesBanners.forEach(b => hideCard(b));
   } else {
     // Paper categories: astrophysics, mathematics, physics
     if (papersSection) papersSection.style.display = '';
     if (musicSection) musicSection.style.display = 'none';
-    paperCards.forEach(card => {
-      const cardCat = card.getAttribute('data-category');
-      card.style.display = (cardCat === category) ? '' : 'none';
-    });
     seriesBanners.forEach(b => {
       const bannerCat = b.getAttribute('data-category');
-      b.style.display = (bannerCat === category) ? '' : 'none';
+      if (bannerCat === category) {
+        b.style.display = '';
+      } else {
+        hideCard(b);
+      }
+    });
+    paperCards.forEach(card => {
+      const cardCat = card.getAttribute('data-category');
+      if (cardCat === category) {
+        revealCard(card);
+      } else {
+        hideCard(card);
+      }
     });
   }
 }
@@ -2488,9 +2614,16 @@ function filterCategory(category, btn) {
 function toggleViewer(id) {
   const viewer = document.getElementById(id);
   if (!viewer) return;
-  viewer.classList.toggle('active');
-  if (viewer.classList.contains('active')) {
-    viewer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  const isActive = viewer.classList.toggle('active');
+  const btn = document.querySelector(`button[onclick*="${id}"]`);
+  if (btn) {
+    const caret = btn.querySelector('.viewer-caret');
+    if (caret) caret.style.transform = isActive ? 'rotate(180deg)' : 'rotate(0deg)';
+  }
+  if (isActive) {
+    setTimeout(() => {
+      viewer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 60);
   }
 }
 

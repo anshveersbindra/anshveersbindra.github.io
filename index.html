@@ -43,6 +43,24 @@
   --accent-hover: #132644;
   --accent-dim: rgba(30, 58, 95, 0.08);
   --accent-tint: rgba(30, 58, 95, 0.035);
+
+  /* Chromatic Discipline Accents (Enlivened Academic Palette) */
+  --astro: #1b4d89;           /* Cosmic Deep Blue */
+  --astro-bg: rgba(27, 77, 137, 0.07);
+  --astro-border: rgba(27, 77, 137, 0.24);
+
+  --math: #136a54;            /* Verdigris Emerald */
+  --math-bg: rgba(19, 106, 84, 0.07);
+  --math-border: rgba(19, 106, 84, 0.24);
+
+  --physics: #7e263d;         /* Scholarly Burgundy Wine */
+  --physics-bg: rgba(126, 38, 61, 0.07);
+  --physics-border: rgba(126, 38, 61, 0.24);
+
+  --music: #a35a18;           /* Burnished Mahogany Amber */
+  --music-bg: rgba(163, 90, 24, 0.07);
+  --music-border: rgba(163, 90, 24, 0.24);
+
   --card-shadow: none;
   --font-serif: 'Newsreader', Garamond, Georgia, serif;
   --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -67,6 +85,23 @@
   --accent-hover: #98bbe0;
   --accent-dim: rgba(124, 165, 207, 0.12);
   --accent-tint: rgba(124, 165, 207, 0.05);
+
+  --astro: #7aaad8;
+  --astro-bg: rgba(122, 170, 216, 0.12);
+  --astro-border: rgba(122, 170, 216, 0.3);
+
+  --math: #6ec7a8;
+  --math-bg: rgba(110, 199, 168, 0.12);
+  --math-border: rgba(110, 199, 168, 0.3);
+
+  --physics: #e0879c;
+  --physics-bg: rgba(224, 135, 156, 0.12);
+  --physics-border: rgba(224, 135, 156, 0.3);
+
+  --music: #e6ab6e;
+  --music-bg: rgba(230, 171, 110, 0.12);
+  --music-border: rgba(230, 171, 110, 0.3);
+
   --card-shadow: none;
 }
 
@@ -223,6 +258,26 @@ nav.filter-nav {
   border: 1px solid var(--accent-dim);
   font-weight: 600;
 }
+.filter-btn.active[data-filter="astrophysics"] {
+  color: var(--astro);
+  background: var(--astro-bg);
+  border-color: var(--astro-border);
+}
+.filter-btn.active[data-filter="mathematics"] {
+  color: var(--math);
+  background: var(--math-bg);
+  border-color: var(--math-border);
+}
+.filter-btn.active[data-filter="physics"] {
+  color: var(--physics);
+  background: var(--physics-bg);
+  border-color: var(--physics-border);
+}
+.filter-btn.active[data-filter="music"] {
+  color: var(--music);
+  background: var(--music-bg);
+  border-color: var(--music-border);
+}
 
 .nav-actions {
   display: flex;
@@ -350,32 +405,103 @@ article.paper-card:hover {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-items: baseline;
-  gap: 6px 14px;
-  margin-bottom: 10px;
+  align-items: center;
+  gap: 8px 14px;
+  margin-bottom: 12px;
+}
+
+.card-badges {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.type-pill {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 4px;
+  line-height: 1.4;
+  white-space: nowrap;
 }
 
 .card-discipline {
   font-size: 0.76rem;
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--ink-secondary);
+}
+
+/* Category-specific card accents and type badges */
+.paper-card[data-category="astrophysics"] {
+  border-left: 3px solid var(--astro);
+}
+.paper-card[data-category="astrophysics"] .type-pill {
+  color: var(--astro);
+  background: var(--astro-bg);
+  border: 1px solid var(--astro-border);
+}
+.paper-card[data-category="astrophysics"] .card-discipline {
+  color: var(--astro);
+}
+
+.paper-card[data-category="mathematics"] {
+  border-left: 3px solid var(--math);
+}
+.paper-card[data-category="mathematics"] .type-pill {
+  color: var(--math);
+  background: var(--math-bg);
+  border: 1px solid var(--math-border);
+}
+.paper-card[data-category="mathematics"] .card-discipline {
+  color: var(--math);
+}
+
+.paper-card[data-category="physics"] {
+  border-left: 3px solid var(--physics);
+}
+.paper-card[data-category="physics"] .type-pill {
+  color: var(--physics);
+  background: var(--physics-bg);
+  border: 1px solid var(--physics-border);
+}
+.paper-card[data-category="physics"] .card-discipline {
+  color: var(--physics);
+}
+
+.paper-card[data-category="music"],
+#music .paper-card {
+  border-left: 3px solid var(--music);
+}
+.paper-card[data-category="music"] .type-pill,
+#music .paper-card .type-pill {
+  color: var(--music);
+  background: var(--music-bg);
+  border: 1px solid var(--music-border);
+}
+.paper-card[data-category="music"] .card-discipline,
+#music .paper-card .card-discipline {
+  color: var(--music);
 }
 
 .series-pill {
-  font-size: 0.75rem;
+  font-size: 0.73rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--accent);
-  background: var(--accent-dim);
-  border: 1px solid var(--accent-dim);
+  color: var(--astro);
+  background: var(--astro-bg);
+  border: 1px solid var(--astro-border);
   padding: 2px 8px;
   border-radius: 3px;
 }
 [data-theme="dark"] .series-pill {
-  border-color: var(--accent-dim);
+  border-color: var(--astro-border);
 }
 
 .card-meta {
@@ -1236,18 +1362,17 @@ footer.site-footer {
   <!-- 1. ASTEROID ORBIT GAUSS (SSP) -->
   <article class="paper-card" data-category="astrophysics">
     <div class="card-top">
-      <span class="card-discipline">Celestial Mechanics &middot; Astrometry</span>
-      <span class="card-meta">With Chloe Leung &amp; Gavin Flajole &middot; <span class="card-venue">Observational Report (2024)</span> &middot; Summer Science Program &middot; MPC W85/W87</span>
+      <div class="card-badges">
+        <span class="type-pill">Observational Report</span>
+        <span class="card-discipline">Astrophysics &middot; Astrometry</span>
+      </div>
+      <span class="card-meta">With Chloe Leung &amp; Gavin Flajole &middot; Summer Science Program (2024) &middot; MPC W85/W87</span>
     </div>
 
     <h3 class="card-title">Orbit Determination of Near-Earth Asteroid 2015 GF27 via the Method of Gauss</h3>
 
-    <p class="card-dek">
-      Reconstructing a 3D Keplerian orbit from three 2D optical angle snapshots over a 26-day baseline—matching NASA JPL Horizons ephemerides and isolating how line-of-sight geometry governs orbital uncertainty.
-    </p>
-
     <div class="card-narrative">
-      Determining the full 3D heliocentric orbit of near-Earth asteroid 2015 GF27 using optical charge-coupled device (CCD) astrometry across a 26-day baseline from the Las Cumbres Observatory telescope network. The reconstructed Keplerian elements match JPL Horizons ephemerides to within 0.13% in ascending node, 1.56% in inclination, and ~2.8% in semi-major axis and eccentricity, demonstrating that observation geometry—not instrument precision—governs physical accuracy.
+      Reconstructing the 3D heliocentric Keplerian orbit of near-Earth asteroid 2015 GF27 from three optical CCD angle snapshots over a 26-day baseline using the Las Cumbres Observatory telescope network. The reconstructed elements match NASA JPL Horizons ephemerides to within 0.13% in ascending node, 1.56% in inclination, and ~2.8% in semi-major axis, demonstrating that line-of-sight observation geometry—not instrument precision—governs physical orbital accuracy.
     </div>
 
     <div class="project-brief">
@@ -1393,29 +1518,18 @@ footer.site-footer {
 
   <article class="paper-card" data-category="astrophysics">
     <div class="card-top">
-      <span class="card-discipline">Astrophysics &middot; Fluid Inversion</span>
-      <div class="series-pill">Part I of II</div>
-      <span class="card-meta">With Tanish Kulkarni &middot; <span class="card-venue">Preprint (2026)</span> &middot; In Preparation for AAS Journals</span>
+      <div class="card-badges">
+        <span class="type-pill">Original Research</span>
+        <span class="series-pill">Part I of II</span>
+        <span class="card-discipline">Astrophysics &middot; Fluid Inversion</span>
+      </div>
+      <span class="card-meta">With Tanish Kulkarni &middot; Preprint (2026) &middot; In Prep. for AAS</span>
     </div>
 
     <h3 class="card-title">A Weak-Form 2D Continuity Inversion for Pulsar Birth Demographics</h3>
 
-    <p class="card-dek">
-      Formulating a variational weak-form inversion of the 2D continuity equation to circumvent histogram derivative divergence, proving that Galactic pulsars are born spinning rapidly ($P_0 \sim 0.048\text{ s}$).
-    </p>
-
     <div class="card-narrative">
-      Resolving the 45-year controversy over whether neutron stars are born spinning fast or slow by treating the 2,356 pulsars of the ATNF catalogue as a fluid in phase space. By multiplying by smooth Sobolev test functions and integrating by parts, the inversion transfers spatial derivatives off noisy observational histograms, proving that fewer than 0.57% of pulsars are born at slow periods.
-    </div>
-
-    <div class="math-showcase">
-      <div class="math-showcase-title">Governing Phase-Space Continuity Inversion (Variational Weak Form)</div>
-      <div class="math-showcase-display">
-        $$\nabla \cdot \big(\mathbf{v}\,f\big) + \Lambda f = S(P, B) \quad \implies \quad \iint \mathcal{D} f\, \mathbf{v}\cdot \nabla \phi \, dP\,dB - \iint \mathcal{D} \Lambda f \phi\, dP\,dB = -\iint \mathcal{D} S \phi\, dP\,dB$$
-      </div>
-      <div class="math-showcase-note">
-        Integrating by parts against smooth Sobolev test functions $\phi$ transfers spatial derivatives off noisy survey histograms, eliminating numerical divergence and establishing that at most 0.57% of Galactic pulsars are born slow.
-      </div>
+      Resolving the 45-year controversy over neutron star birth periods by treating the 2,356 pulsars of the ATNF catalogue as a continuous fluid in phase space. Formulating a variational weak-form inversion integrated against smooth Sobolev test functions transfers spatial derivatives off noisy survey histograms, decisively proving that Galactic pulsars are born spinning rapidly ($P_0 \sim 0.048\text{ s}$) with fewer than 0.57% born at slow periods.
     </div>
 
     <div class="project-brief">
@@ -1519,29 +1633,18 @@ footer.site-footer {
   <!-- 3. PULSAR PAPER II (INTRINSIC EQUILIBRIUM) -->
   <article class="paper-card" data-category="astrophysics">
     <div class="card-top">
-      <span class="card-discipline">Astrophysics &middot; Population Synthesis</span>
-      <div class="series-pill">Part II of II</div>
-      <span class="card-meta">With Tanish Kulkarni &middot; <span class="card-venue">Preprint (2026)</span> &middot; AASTeX631 Template</span>
+      <div class="card-badges">
+        <span class="type-pill">Original Research</span>
+        <span class="series-pill">Part II of II</span>
+        <span class="card-discipline">Astrophysics &middot; Galactic Demographics</span>
+      </div>
+      <span class="card-meta">With Tanish Kulkarni &middot; Preprint (2026) &middot; In Prep. for AAS</span>
     </div>
 
     <h3 class="card-title">The Intrinsic Equilibrium Demographic Distribution of Galactic Pulsars</h3>
 
-    <p class="card-dek">
-      Resolving the 0.6-second observational peak paradox by deriving steady-state kinematic transport, proving that severe magnetic dipole deceleration causes fast-born pulsars to pile up in slow residence times.
-    </p>
-
     <div class="card-narrative">
-      Explaining why observed telescope surveys peak at 0.6 seconds when pulsars are born spinning 100 times faster. By solving the 2D steady-state transport equation under dipole braking and crustal ohmic field decay, we demonstrate a $10^5\times$ residence-time slowdown and reconstruct the true, unseen demographic distribution of the entire Milky Way.
-    </div>
-
-    <div class="math-showcase">
-      <div class="math-showcase-title">Steady-State Demographic Transport &amp; Residence Scaling</div>
-      <div class="math-showcase-display">
-        $$\frac{dN_{\text{true}}}{dP} \propto \frac{S(P)}{\dot{P}(P)} \propto P^{n-1} \quad \implies \quad \tau_{\text{residence}}(P) = \frac{P}{(n-1)\dot{P}} \propto P^2$$
-      </div>
-      <div class="math-showcase-note">
-        Pulsars take ~270 years to cross the fast regime but linger for 23 million years between 0.5 s and 3 s. This $10^5\times$ residence slowdown explains the 0.6 s survey peak without requiring slow birth injection.
-      </div>
+      Resolving why observational radio surveys peak at mature spin periods ($0.62\text{ s}$) despite rapid birth injection at $0.048\text{ s}$. Because spin-down residence times scale as $\tau_{\rm res} \propto P^2/B^2$, pulsars linger $10^5$ times longer at mature periods. Forward 2D kinematic transport reconstructs the entire Milky Way population of $(0.82 \pm 0.27) \times 10^5$ active pulsars, accurately forecasting upcoming SKA and FAST discovery medians.
     </div>
 
     <div class="project-brief">
@@ -1633,28 +1736,17 @@ footer.site-footer {
   <!-- 4. DIGIT-SUBTRACTION DYNAMICS (INTEGERS) -->
   <article class="paper-card" data-category="mathematics">
     <div class="card-top">
-      <span class="card-discipline">Number Theory &middot; Discrete Dynamical Systems</span>
-      <span class="card-meta">Anshveer Bindra &middot; <span class="card-venue">In Review at Integers (2026)</span> &middot; <a class="doi-link" href="https://doi.org/10.5281/zenodo.22100467" target="_blank" rel="noopener">doi:10.5281/zenodo.22100467</a></span>
+      <div class="card-badges">
+        <span class="type-pill">Original Research</span>
+        <span class="card-discipline">Number Theory &middot; Discrete Dynamical Systems</span>
+      </div>
+      <span class="card-meta">Anshveer Bindra &middot; In Review at Integers (2026) &middot; <a class="doi-link" href="https://doi.org/10.5281/zenodo.22100467" target="_blank" rel="noopener">doi:10.5281/zenodo.22100467</a></span>
     </div>
 
     <h3 class="card-title">The Single-Generator Theory of Cycle-Decomposed Digit-Subtraction Dynamics</h3>
 
-    <p class="card-dek">
-      Establishing complete dynamical classifications for cycle structures under digit-subtraction maps, identifying exact non-trivial limit cycles and proving universal terminal convergence.
-    </p>
-
     <div class="card-narrative">
-      Generalizing Kaprekar's routine (6174) to arbitrary number bases $B \ge 2$ and arbitrary digit permutations $\pi \in S_k$, proving that seemingly non-linear digit dynamics decompose into decoupled, independent cycles governed by a single modular generator $c = (B - 1)B^{t-1} \pmod{B^t - 1}$.
-    </div>
-
-    <div class="math-showcase">
-      <div class="math-showcase-title">Theorem: Continuous Interval Extension &amp; OEIS Attractor Rank</div>
-      <div class="math-showcase-display">
-        $$\tau_m(x) = \left|\frac{b-1}{b} - 2x\right| \qquad \text{Attractor Rank} = \prod_{i} \frac{N_2(B, t_i) + 1}{2}$$
-      </div>
-      <div class="math-showcase-note">
-        Factoring $B^t - 1 = N_1 N_2$ with $\gcd(N_2, B-1) = 1$. The discrete permutations project onto the continuous interval tent map $\tau_m$ on $[0, 1]$. For two-cycles ($t = 2$), the periodic attractor rank reduces to $(\mathrm{odd}(B+1) + 1)/2$, matching integer sequence OEIS A003602.
-      </div>
+      Generalizing Kaprekar's 6174 routine to arbitrary number bases $B \ge 2$ and arbitrary digit permutations $\pi \in S_k$. Proving that seemingly non-linear digit subtraction dynamics decouple into independent modular subsystems, each governed by a single generator $c = (B - 1)B^{t-1} \pmod{B^t - 1}$, with periodic attractor counts corresponding to integer sequence OEIS A003602.
     </div>
 
     <div class="project-brief">
@@ -1745,28 +1837,17 @@ footer.site-footer {
   <!-- 5. FORMULA FOR PI (AXIOM) -->
   <article class="paper-card" data-category="mathematics">
     <div class="card-top">
-      <span class="card-discipline">Analytic Number Theory</span>
-      <span class="card-meta">Anshveer Bindra &middot; <span class="card-venue">In Review at Axiom (2026)</span> &middot; <a class="doi-link" href="https://doi.org/10.5281/zenodo.23005968" target="_blank" rel="noopener">doi:10.5281/zenodo.23005968</a></span>
+      <div class="card-badges">
+        <span class="type-pill">Mathematical Discovery</span>
+        <span class="card-discipline">Analysis &middot; Analytic Number Theory</span>
+      </div>
+      <span class="card-meta">Anshveer Bindra &middot; In Review at Axiom (2026) &middot; <a class="doi-link" href="https://doi.org/10.5281/zenodo.23005968" target="_blank" rel="noopener">doi:10.5281/zenodo.23005968</a></span>
     </div>
 
     <h3 class="card-title">Rediscovering a Formula for &pi;</h3>
 
-    <p class="card-dek">
-      Deriving an elementary, closed-form summation for a one-parameter family of central binomial coefficient series, achieving geometric convergence to $\pi$ using only single-variable calculus.
-    </p>
-
     <div class="card-narrative">
-      While calculating series expansions for $\pi$ by hand, an algebraic error produced an unexpected closed-form sum. Developing this result into a rigorous proof without relying on generalized hypergeometric functions (${}_2F_1$), we constructed an elementary evaluation for the one-parameter family $S(a)$ using Euler's Beta integral—yielding geometric convergence to $\pi$ and evaluating special harmonic cases in closed form.
-    </div>
-
-    <div class="math-showcase">
-      <div class="math-showcase-title">The Closed-Form Hypergeometric-Type Identity</div>
-      <div class="math-showcase-display">
-        $$\sum_{n=0}^{\infty} \frac{2^n}{\binom{2n+1}{n+1}} = 1 + \frac{\pi}{2} \qquad S(a) = \frac{2}{4-a} + \frac{8}{(4-a)^{3/2}\sqrt{a}}\,\arctan\sqrt{\frac{a}{4-a}}$$
-      </div>
-      <div class="math-showcase-note">
-        Derived via Beta-integral transformations for all real $|a| < 4$. Choosing acceleration parameter $a = 2 - \sqrt{2}$ yields <strong>7 correct digits of $\pi$ in just 8 terms</strong> (compared to $10^7$ terms for the classical Leibniz series).
-      </div>
+      Developing an accidental handwritten calculation error into an elementary closed-form proof for a one-parameter family of central binomial coefficient series $S(a)$. By integrating under the integral sign via Euler's Beta representation, the sum evaluates without invoking generalized hypergeometric machinery (${}_2F_1$), yielding geometric convergence to $\pi$ in just 8 terms.
     </div>
 
     <div class="project-brief">
@@ -1856,23 +1937,17 @@ footer.site-footer {
   <!-- 6. QFT IN DE SITTER SPACE -->
   <article class="paper-card" data-category="physics">
     <div class="card-top">
-      <span class="card-discipline">Theoretical Physics &middot; Curved Spacetime QFT</span>
-      <span class="card-meta">Anshveer Bindra &middot; <span class="card-venue">Preprint (2026)</span> &middot; <a class="doi-link" href="https://doi.org/10.5281/zenodo.20476560" target="_blank" rel="noopener">doi:10.5281/zenodo.20476560</a></span>
+      <div class="card-badges">
+        <span class="type-pill">Expository Monograph</span>
+        <span class="card-discipline">Theoretical Physics &middot; Curved Spacetime</span>
+      </div>
+      <span class="card-meta">Anshveer Bindra &middot; Preprint (2026) &middot; <a class="doi-link" href="https://doi.org/10.5281/zenodo.20476560" target="_blank" rel="noopener">doi:10.5281/zenodo.20476560</a></span>
     </div>
 
     <h3 class="card-title">Quantum Field Theory in de Sitter Space: Foundations, Challenges, and Implications for Physics</h3>
 
-    <p class="card-dek">
-      A systematic pedagogical review of non-equilibrium quantum fields on curved backgrounds, detailing mode decompositions, the Bunch-Davies vacuum, and infrared particle production in inflationary spacetimes.
-    </p>
-
-    <div class="expository-description">
-      <p>
-        Because accelerating de Sitter spacetime lacks a global timelike Killing vector field, the classical concept of a unique, observer-independent empty vacuum state ceases to exist. Different coordinate observers perceive different particle contents, and the presence of a cosmological event horizon naturally radiates thermal particles at the Gibbons-Hawking temperature $T = H / 2\pi$.
-      </p>
-      <p>
-        This review bridges the coordinate-independent ambient-space hyperboloid embedding in $\mathbb{R}^{1,d}$ (preserving manifest $\mathrm{SO}(1,d)$ isometry) with canonical direct-sum Fock spaces and Bunch-Davies vacuum constructions. It addresses the infrared divergences generated by massless minimally coupled scalars and connects quantum field-theoretic fluctuations directly to the primordial seeds of cosmic structure observed in the cosmic microwave background.
-      </p>
+    <div class="card-narrative">
+      A systematic pedagogical treatise on quantum fields in accelerating cosmological backgrounds. Because de Sitter space lacks a global timelike Killing vector, the classical observer-independent vacuum ceases to exist, radiating thermal particles at the Gibbons-Hawking temperature $T = H / 2\pi$. The work bridges ambient-space hyperboloid embeddings in $\mathbb{R}^{1,d}$ with direct-sum Fock spaces, Bunch-Davies state constructions, and infrared loop anomalies.
     </div>
 
     <div class="action-row">
@@ -1940,15 +2015,18 @@ footer.site-footer {
   <!-- 7. FOUNDATIONS OF QUANTUM MECHANICS (10TH GRADE MONOGRAPH) -->
   <article class="paper-card" data-category="physics">
     <div class="card-top">
-      <span class="card-discipline">Theoretical Physics &middot; Quantum Foundations</span>
-      <span class="card-meta">10th Grade Personal Project &middot; 183 pp. &middot; <span class="card-venue">Published Monograph (2024)</span> &middot; ISBN: 978-93-5525-832-8 &middot; <a class="doi-link" href="https://doi.org/10.5281/zenodo.23419188" target="_blank" rel="noopener">doi:10.5281/zenodo.23419188</a></span>
+      <div class="card-badges">
+        <span class="type-pill">Expository Monograph</span>
+        <span class="card-discipline">Theoretical Physics &middot; Quantum Foundations</span>
+      </div>
+      <span class="card-meta">10th Grade Project &middot; 183 pp. &middot; Published Monograph (2024) &middot; <a class="doi-link" href="https://doi.org/10.5281/zenodo.23419188" target="_blank" rel="noopener">doi:10.5281/zenodo.23419188</a></span>
     </div>
 
     <h3 class="card-title">Foundations of Quantum Mechanics</h3>
 
-    <p class="card-dek">
-      A 183-page mathematical monograph developing quantum mechanics from first principles—from Hilbert space spectral theory to measurement dilemmas, non-locality, and interpretational frameworks.
-    </p>
+    <div class="card-narrative">
+      A 183-page mathematical monograph developing nonrelativistic quantum theory from first principles, authored as an extended 10th-grade personal project. Progressing from Lagrangian action principles and infinite-dimensional Hilbert space spectral theory to measurement postulates, 1D bound-state non-degeneracy, and the classical correspondence limit via Ehrenfest's theorem.
+    </div>
 
     <div class="monograph-syllabus">
       <span class="syllabus-label">Monograph Structure (183 pp.):</span>
@@ -1965,15 +2043,6 @@ footer.site-footer {
       <span class="syllabus-step">Ch. 6 The Classical Limit</span>
       <span class="syllabus-sep">&rarr;</span>
       <span class="syllabus-step">Ch. 7 Next Steps</span>
-    </div>
-
-    <div class="expository-description">
-      <p>
-        Authored as an extended 10th-grade personal project, this 183-page volume systematically constructs nonrelativistic quantum mechanics from first principles. Rather than taking wave mechanics as an ad hoc assumption, the book establishes the Lagrangian and Hamiltonian formulations via Legendre transforms as the formal springboard into operator theory.
-      </p>
-      <p>
-        The text provides an extensive mathematical interlude covering abstract vector spaces, dual spaces, Dirac bra-ket notation, projection operators, and infinite-dimensional Hilbert space $L^2(\mathbb{R})$. It formalizes the four foundational postulates of quantum theory, solves exactly one-dimensional potentials (free particle Gaussian propagators, infinite wells, probability continuity), proves the non-degeneracy of 1D bound states, and rigorously demonstrates the emergence of classical Newtonian trajectories via Ehrenfest's theorem and Gaussian wave packets.
-      </p>
     </div>
 
     <div class="action-row">
@@ -2070,15 +2139,18 @@ footer.site-footer {
   <!-- 8. HOMOLOGY TO DE RHAM COHOMOLOGY -->
   <article class="paper-card" data-category="mathematics">
     <div class="card-top">
-      <span class="card-discipline">Differential Topology &middot; Expository Work</span>
+      <div class="card-badges">
+        <span class="type-pill">Expository Treatise</span>
+        <span class="card-discipline">Pure Mathematics &middot; Differential Topology</span>
+      </div>
       <span class="card-meta">Independent Expository Work &middot; 137 pp. &middot; <span class="card-venue">Preprint (2025)</span> &middot; <a class="doi-link" href="https://doi.org/10.22541/au.175683844.48037590/v1" target="_blank" rel="noopener">doi:10.22541/au.175683844.48037590/v1</a></span>
     </div>
 
     <h3 class="card-title">From Homology to de Rham Cohomology: An Expository Journey through the Topology of Smooth Manifolds</h3>
 
-    <p class="card-dek">
-      A 137-page pedagogical exposition tracing topology to differential forms, culminating in a complete, self-contained proof of de Rham's duality theorem across smooth manifolds.
-    </p>
+    <div class="card-narrative">
+      A systematic 137-page pedagogical bridge between combinatorial algebraic topology and smooth differential geometry. Developing singular homology, differential forms, Stokes' Theorem, and the Mayer&ndash;Vietoris sequence, the exposition culminates in a complete, self-contained proof of de Rham's duality theorem, establishing that $\int: H^k_{\text{dR}}(M) \to \operatorname{Hom}(H_k(M), \mathbb{R})$ is an isomorphism of finite-dimensional vector spaces.
+    </div>
 
     <div class="exposition-syllabus">
       <span class="syllabus-label">Exposition Structure:</span>
@@ -2091,15 +2163,6 @@ footer.site-footer {
       <span class="syllabus-step">&sect;4 de Rham Cohomology</span>
       <span class="syllabus-sep">&rarr;</span>
       <span class="syllabus-step">&sect;5 de Rham's Theorem</span>
-    </div>
-
-    <div class="expository-description">
-      <p>
-        While local differential calculus cannot distinguish an open ball from an entire Euclidean space, algebraic topology detects global holes, voids, and higher-dimensional twists by associating algebraic invariants with topological spaces.
-      </p>
-      <p>
-        This 137-page expository manuscript builds a systematic, rigorous bridge between combinatorial topology (singular chains, boundary operators $\partial$, and singular homology groups $H_k(M)$) and smooth differential geometry (exterior algebra, differential forms $\Omega^k(M)$, and de Rham cohomology groups $H^k_{\text{dR}}(M)$). Developing Stokes' Theorem, partitions of unity, and the Mayer-Vietoris sequence, the exposition culminates in a complete proof of de Rham's Theorem, establishing that the integration period homomorphism $\int: H^k_{\text{dR}}(M) \to \operatorname{Hom}(H_k(M), \mathbb{R})$ is an isomorphism of finite-dimensional vector spaces.
-      </p>
     </div>
 
     <div class="action-row">
@@ -2173,20 +2236,19 @@ footer.site-footer {
     <p>Acoustic realization of modular serialism &mdash; deriving four-part chamber counterpoint from number-theoretic sequences.</p>
   </div>
 
-  <article class="paper-card">
+  <article class="paper-card" data-category="music">
     <div class="card-top">
-      <span class="card-discipline">Chamber Music &middot; Composition</span>
+      <div class="card-badges">
+        <span class="type-pill">Chamber Score &amp; Audio</span>
+        <span class="card-discipline">Chamber Music &middot; Composition</span>
+      </div>
       <span class="card-meta">Solo Composition &middot; <span class="card-venue">Score &amp; Recording (2025)</span> &middot; 2 Movements &middot; Two Violins, Viola, Violoncello</span>
     </div>
 
     <h3 class="card-title">String Quartet in E minor, &ldquo;Future&rdquo;</h3>
 
-    <p class="card-dek">
-      A classical two-movement chamber quartet (Andante into Adagio) structured on an algebraic interval system over modular residue classes, synthesizing strict Pisano periodicity with traditional contrapuntal counterpoint and structural resolution.
-    </p>
-
     <div class="card-narrative">
-      The intervals between notes are generated by integer sequences reduced modulo 7 or 11; the realization of voice-leading, counterpoint, rhythm, and harmony is shaped by composer agency, with a deliberate exception at measure 27 to achieve an authentic cadence in E minor.
+      A classical two-movement chamber quartet (Andante into Adagio) structured on an algebraic interval system over modular residue classes. Relative interval distances are generated by integer sequences reduced modulo 7 or 11, while 4-part counterpoint, voice-leading, and rhythm are shaped by composer agency&mdash;culminating in a deliberate sequence break at measure 27 to voice an authentic classical cadence in E minor.
     </div>
 
     <div class="project-brief">
@@ -2540,75 +2602,87 @@ function filterCategory(category, btn) {
   buttons.forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
 
-  const papersSection = document.getElementById('papers');
-  const musicSection = document.getElementById('music');
-  const paperCards = document.querySelectorAll('#papers .paper-card');
-  const seriesBanners = document.querySelectorAll('#papers .series-banner');
-
-  let delayIdx = 0;
-
-  function revealCard(el) {
-    el.style.display = '';
-    el.classList.remove('card-enter');
-    void el.offsetWidth; // trigger reflow for smooth animation restart
-    el.style.animationDelay = (delayIdx * 45) + 'ms';
-    el.classList.add('card-enter');
-    delayIdx++;
+  const mainWrap = document.querySelector('main.wrap');
+  if (mainWrap) {
+    mainWrap.style.transition = 'opacity 0.12s ease';
+    mainWrap.style.opacity = '0.5';
   }
 
-  function hideCard(el) {
-    el.style.display = 'none';
-    el.classList.remove('card-enter');
-  }
+  setTimeout(() => {
+    const papersSection = document.getElementById('papers');
+    const musicSection = document.getElementById('music');
+    const paperCards = document.querySelectorAll('#papers .paper-card');
+    const seriesBanners = document.querySelectorAll('#papers .series-banner');
 
-  if (category === 'all') {
-    if (papersSection) papersSection.style.display = '';
-    if (musicSection) {
-      musicSection.style.display = '';
-      const musicCard = musicSection.querySelector('.paper-card');
-      if (musicCard) {
-        musicCard.classList.remove('card-enter');
-        void musicCard.offsetWidth;
-        musicCard.style.animationDelay = '360ms';
-        musicCard.classList.add('card-enter');
-      }
+    let delayIdx = 0;
+
+    function revealCard(el) {
+      el.style.display = '';
+      el.classList.remove('card-enter');
+      void el.offsetWidth; // trigger reflow for smooth animation restart
+      el.style.animationDelay = (delayIdx * 45) + 'ms';
+      el.classList.add('card-enter');
+      delayIdx++;
     }
-    seriesBanners.forEach(b => { b.style.display = ''; });
-    paperCards.forEach(card => revealCard(card));
-  } else if (category === 'music') {
-    if (papersSection) papersSection.style.display = 'none';
-    if (musicSection) {
-      musicSection.style.display = '';
-      const musicCard = musicSection.querySelector('.paper-card');
-      if (musicCard) {
-        musicCard.classList.remove('card-enter');
-        void musicCard.offsetWidth;
-        musicCard.style.animationDelay = '0ms';
-        musicCard.classList.add('card-enter');
-      }
+
+    function hideCard(el) {
+      el.style.display = 'none';
+      el.classList.remove('card-enter');
     }
-    seriesBanners.forEach(b => hideCard(b));
-  } else {
-    // Paper categories: astrophysics, mathematics, physics
-    if (papersSection) papersSection.style.display = '';
-    if (musicSection) musicSection.style.display = 'none';
-    seriesBanners.forEach(b => {
-      const bannerCat = b.getAttribute('data-category');
-      if (bannerCat === category) {
-        b.style.display = '';
-      } else {
-        hideCard(b);
+
+    if (category === 'all') {
+      if (papersSection) papersSection.style.display = '';
+      if (musicSection) {
+        musicSection.style.display = '';
+        const musicCard = musicSection.querySelector('.paper-card');
+        if (musicCard) {
+          musicCard.classList.remove('card-enter');
+          void musicCard.offsetWidth;
+          musicCard.style.animationDelay = '360ms';
+          musicCard.classList.add('card-enter');
+        }
       }
-    });
-    paperCards.forEach(card => {
-      const cardCat = card.getAttribute('data-category');
-      if (cardCat === category) {
-        revealCard(card);
-      } else {
-        hideCard(card);
+      seriesBanners.forEach(b => { b.style.display = ''; });
+      paperCards.forEach(card => revealCard(card));
+    } else if (category === 'music') {
+      if (papersSection) papersSection.style.display = 'none';
+      if (musicSection) {
+        musicSection.style.display = '';
+        const musicCard = musicSection.querySelector('.paper-card');
+        if (musicCard) {
+          musicCard.classList.remove('card-enter');
+          void musicCard.offsetWidth;
+          musicCard.style.animationDelay = '0ms';
+          musicCard.classList.add('card-enter');
+        }
       }
-    });
-  }
+      seriesBanners.forEach(b => hideCard(b));
+    } else {
+      // Paper categories: astrophysics, mathematics, physics
+      if (papersSection) papersSection.style.display = '';
+      if (musicSection) musicSection.style.display = 'none';
+      seriesBanners.forEach(b => {
+        const bannerCat = b.getAttribute('data-category');
+        if (bannerCat === category) {
+          b.style.display = '';
+        } else {
+          hideCard(b);
+        }
+      });
+      paperCards.forEach(card => {
+        const cardCat = card.getAttribute('data-category');
+        if (cardCat === category) {
+          revealCard(card);
+        } else {
+          hideCard(card);
+        }
+      });
+    }
+
+    if (mainWrap) {
+      mainWrap.style.opacity = '1';
+    }
+  }, 90);
 }
 
 function toggleViewer(id) {

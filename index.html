@@ -27,24 +27,47 @@
 
 <style>
 :root {
-  --bg: #0e0f12;
-  --surface: #141519;
-  --surface-hover: #191b21;
-  --surface-inset: #111215;
-  --border: #23252c;
-  --border-light: #1c1e23;
-  --border-hover: #383b46;
-  --ink: #f0f1f4;
-  --ink-secondary: #bec2cc;
-  --ink-muted: #787d8a;
-  --ink-faint: #484b55;
-  --accent: #d89e5d;
-  --accent-hover: #e8b375;
-  --accent-dim: rgba(216, 158, 93, 0.12);
+  /* Warm Scholarly Paper Theme (Default) */
+  --bg: #fcfbf9;
+  --surface: #ffffff;
+  --surface-hover: #f7f4ed;
+  --surface-inset: #f4efe6;
+  --border: #e6e0d4;
+  --border-light: #eee9df;
+  --border-hover: #cfc7b6;
+  --ink: #1c1b18;
+  --ink-secondary: #4a463e;
+  --ink-muted: #787368;
+  --ink-faint: #aba497;
+  --accent: #9c4221;         /* Warm Venetian terracotta rust */
+  --accent-hover: #b84f28;
+  --accent-dim: rgba(156, 66, 33, 0.08);
+  --accent-tint: rgba(156, 66, 33, 0.04);
+  --card-shadow: 0 1px 3px rgba(28, 27, 24, 0.04), 0 4px 14px rgba(28, 27, 24, 0.02);
   --font-serif: 'Newsreader', Garamond, Georgia, serif;
   --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-  --radius: 4px;
+  --radius: 6px;
+}
+
+[data-theme="dark"] {
+  /* Candlelit Academic Night Theme */
+  --bg: #141413;
+  --surface: #1c1b19;
+  --surface-hover: #232220;
+  --surface-inset: #181716;
+  --border: #2c2a26;
+  --border-light: #22211e;
+  --border-hover: #3f3d37;
+  --ink: #eee8dc;
+  --ink-secondary: #c2bcb0;
+  --ink-muted: #847f75;
+  --ink-faint: #54514a;
+  --accent: #dfa05b;         /* Warm candlelit amber/bronze */
+  --accent-hover: #ebb170;
+  --accent-dim: rgba(223, 160, 91, 0.12);
+  --accent-tint: rgba(223, 160, 91, 0.06);
+  --card-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
 }
 
 * { box-sizing: border-box; }
@@ -57,6 +80,7 @@ body {
   font-size: 16px;
   line-height: 1.72;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 /* Typography */
@@ -93,6 +117,7 @@ header.site-header {
   background: var(--bg);
   border-bottom: 1px solid var(--border-light);
   padding: 68px 0 42px;
+  transition: background-color 0.2s ease;
 }
 
 .site-title {
@@ -107,7 +132,7 @@ header.site-header {
   font-family: var(--font-sans);
   font-size: 0.94rem;
   font-weight: 450;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
   color: var(--ink-muted);
   margin: 0 0 14px;
 }
@@ -128,7 +153,7 @@ header.site-header {
   color: #a6ce39;
   text-decoration: none;
   background: rgba(166, 206, 57, 0.07);
-  border: 1px solid rgba(166, 206, 57, 0.22);
+  border: 1px solid rgba(166, 206, 57, 0.25);
   padding: 3px 9px;
   border-radius: 3px;
   transition: all 0.15s ease;
@@ -139,14 +164,14 @@ header.site-header {
 }
 
 .site-bio {
-  font-size: 1rem;
+  font-size: 1.02rem;
   color: var(--ink-secondary);
   max-width: 48em;
   line-height: 1.76;
   margin: 0;
 }
 
-/* Restrained, Non-Glassmorphic Navigation */
+/* Sticky Filter & Theme Navigation */
 nav.filter-nav {
   position: sticky;
   top: 0;
@@ -154,6 +179,7 @@ nav.filter-nav {
   background: var(--bg);
   border-bottom: 1px solid var(--border-light);
   padding: 10px 0;
+  transition: background-color 0.2s ease;
 }
 
 .nav-row {
@@ -195,12 +221,18 @@ nav.filter-nav {
   font-weight: 600;
 }
 
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
 .section-jump {
   display: flex;
-  gap: 16px;
+  gap: 14px;
   font-size: 0.84rem;
   font-weight: 500;
-  flex-shrink: 0;
 }
 .section-jump a {
   color: var(--ink-muted);
@@ -209,6 +241,27 @@ nav.filter-nav {
 }
 .section-jump a:hover {
   color: var(--ink);
+}
+
+.theme-toggle-btn {
+  background: var(--surface-inset);
+  color: var(--ink-secondary);
+  border: 1px solid var(--border);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.15s ease;
+}
+.theme-toggle-btn:hover {
+  color: var(--ink);
+  border-color: var(--border-hover);
+  background: var(--surface);
 }
 
 /* Content Sections */
@@ -235,15 +288,46 @@ section.content-section {
   font-size: 0.94rem;
 }
 
-/* Research Articles: Clean, un-nested academic typesetting */
+/* Series Banner: Connecting Multi-Part Works */
+.series-banner {
+  background: var(--surface-inset);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+  padding: 18px 22px;
+  margin-bottom: 24px;
+}
+.series-banner-meta {
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.series-banner-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin: 0 0 6px;
+}
+.series-banner-text {
+  font-size: 0.92rem;
+  color: var(--ink-secondary);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* Research Articles: Clean, scholarly manuscript paper */
 article.paper-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 34px 38px;
-  margin-bottom: 30px;
-  box-shadow: none;
-  transition: border-color 0.15s ease;
+  border-radius: var(--radius);
+  padding: 36px 40px;
+  margin-bottom: 32px;
+  box-shadow: var(--card-shadow);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 article.paper-card:hover {
   border-color: var(--border-hover);
@@ -266,6 +350,21 @@ article.paper-card:hover {
   color: var(--accent);
 }
 
+.series-pill {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-dim);
+  border: 1px solid rgba(156, 66, 33, 0.2);
+  padding: 2px 8px;
+  border-radius: 3px;
+}
+[data-theme="dark"] .series-pill {
+  border-color: rgba(223, 160, 91, 0.3);
+}
+
 .card-meta {
   font-size: 0.85rem;
   color: var(--ink-muted);
@@ -276,137 +375,102 @@ article.paper-card:hover {
   color: var(--ink-secondary);
 }
 
-.series-tag {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 6px;
-}
-
 h3.card-title {
-  font-size: 1.62rem;
+  font-size: 1.68rem;
   font-weight: 400;
-  line-height: 1.32;
+  line-height: 1.3;
   letter-spacing: -0.01em;
   color: var(--ink);
+  margin: 0 0 10px;
+}
+
+/* Editorial Lead (Dek) - Seamless Takeaway */
+.card-dek {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--ink-secondary);
+  line-height: 1.58;
   margin: 0 0 14px;
 }
 
-/* Core Takeaway: Authorial marginal precis (NO nested gray box) */
-.takeaway-box {
-  display: flex;
-  align-items: baseline;
-  gap: 12px;
-  background: transparent;
-  border: none;
-  border-left: 2px solid var(--accent);
-  border-radius: 0;
-  padding: 2px 0 2px 14px;
+/* Narrative Body */
+.card-narrative {
+  font-size: 0.97rem;
+  color: var(--ink-secondary);
+  line-height: 1.72;
   margin: 0 0 16px;
-  font-size: 0.9rem;
-  line-height: 1.6;
-}
-.takeaway-label {
-  font-family: var(--font-serif);
-  font-size: 0.84rem;
-  font-style: italic;
-  font-weight: 600;
-  color: var(--accent);
-  white-space: nowrap;
-  letter-spacing: 0.02em;
-}
-.takeaway-text {
-  color: var(--ink-secondary);
 }
 
-/* Lead Abstract Prose */
-.card-summary {
-  font-size: 0.98rem;
-  color: var(--ink-secondary);
-  line-height: 1.7;
-  margin: 0 0 18px;
-}
-
-/* Research Metadata: Problem / Method / Key Result as typeset editorial strip */
-.executive-grid {
+/* Project Brief: Elegant, thin-hairline specification strip */
+.project-brief {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-  background: transparent;
-  border: none;
-  border-top: 1px solid var(--border-light);
-  border-bottom: 1px solid var(--border-light);
-  border-radius: 0;
-  padding: 14px 0 16px;
-  margin: 18px 0 20px;
-}
-.exec-item {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.exec-label {
-  font-family: var(--font-serif);
-  font-size: 0.86rem;
-  font-weight: 600;
-  font-style: italic;
-  color: var(--accent);
-}
-.exec-val {
-  font-size: 0.88rem;
-  color: var(--ink-secondary);
-  line-height: 1.58;
-}
-
-/* Featured Mathematical Formulations (Continuity & Formula Gem) */
-.continuity-featured-box,
-.formula-gem-box {
-  background: transparent;
-  border: none;
-  border-top: 1px solid var(--border-light);
-  border-bottom: 1px solid var(--border-light);
-  border-radius: 0;
+  gap: 18px;
   padding: 14px 0 16px;
   margin: 16px 0 18px;
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
 }
-.continuity-label,
-.formula-gem-label {
+.brief-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.brief-label {
   font-family: var(--font-serif);
-  font-size: 0.82rem;
-  font-style: italic;
+  font-size: 0.84rem;
   font-weight: 600;
+  font-style: italic;
   color: var(--accent);
-  margin-bottom: 4px;
 }
-.continuity-display,
-.formula-gem-math {
+.brief-val {
+  font-size: 0.88rem;
+  color: var(--ink-secondary);
+  line-height: 1.56;
+}
+
+/* Featured Mathematical Formulations & Showcases */
+.math-showcase {
+  background: var(--surface-inset);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 16px 20px;
+  margin: 16px 0 18px;
+}
+.math-showcase-title {
+  font-family: var(--font-serif);
+  font-size: 0.84rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.math-showcase-display {
   overflow-x: auto;
   font-size: 1.12rem;
   text-align: center;
-  padding: 4px 0;
+  padding: 6px 0;
   color: var(--ink);
 }
-.continuity-note,
-.formula-gem-note {
-  font-size: 0.83rem;
+.math-showcase-note {
+  font-size: 0.84rem;
   color: var(--ink-muted);
-  line-height: 1.54;
-  margin-top: 8px;
-  padding-top: 6px;
-  border-top: 1px dotted var(--border-light);
+  line-height: 1.55;
+  margin: 8px 0 0;
+  padding-top: 8px;
+  border-top: 1px dotted var(--border);
 }
 
-/* Expository Narrative Description (No forced grids for monographs/reviews) */
+/* Expository Narrative Description */
 .expository-description {
-  font-size: 0.96rem;
+  font-size: 0.97rem;
   color: var(--ink-secondary);
   line-height: 1.72;
   margin: 0 0 18px;
 }
 .expository-description p {
-  margin: 0 0 10px;
+  margin: 0 0 12px;
 }
 .expository-description p:last-child {
   margin-bottom: 0;
@@ -435,7 +499,7 @@ h3.card-title {
   color: var(--ink-faint);
 }
 
-/* Action Links: Quiet, functional academic actions */
+/* Action Links: Prominent Viewer & Scholarly Links */
 .action-row {
   display: flex;
   flex-wrap: wrap;
@@ -445,43 +509,64 @@ h3.card-title {
   padding-top: 16px;
   border-top: 1px solid var(--border-light);
 }
-.action-btn {
+
+.action-btn-viewer {
+  background: var(--accent);
+  color: #ffffff !important;
+  border: 1px solid var(--accent);
+  font-family: var(--font-sans);
+  font-size: 0.86rem;
+  font-weight: 550;
+  padding: 7px 16px;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(156, 66, 33, 0.2);
+  text-decoration: none;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-family: var(--font-sans);
-  border-radius: 4px;
-  text-decoration: none;
+  gap: 7px;
   cursor: pointer;
   transition: all 0.15s ease;
 }
-.action-btn-viewer {
-  background: rgba(216, 158, 93, 0.09);
-  color: var(--accent);
-  border: 1px solid rgba(216, 158, 93, 0.35);
-  padding: 6px 14px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  box-shadow: none;
-}
 .action-btn-viewer:hover {
-  background: rgba(216, 158, 93, 0.18);
-  border-color: var(--accent);
-  color: var(--accent-hover);
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  box-shadow: 0 3px 8px rgba(156, 66, 33, 0.3);
+  transform: translateY(-1px);
 }
+.action-btn-viewer:active {
+  transform: translateY(0);
+}
+[data-theme="dark"] .action-btn-viewer {
+  background: var(--accent);
+  color: #141413 !important;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+.viewer-caret {
+  font-size: 0.9rem;
+  transition: transform 0.2s ease;
+}
+
 .action-btn-secondary {
   background: transparent;
   color: var(--ink-secondary);
   border: 1px solid var(--border);
-  padding: 6px 12px;
+  padding: 7px 13px;
   font-size: 0.84rem;
   font-weight: 450;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
 }
 .action-btn-secondary:hover {
   background: var(--surface-hover);
   color: var(--ink);
   border-color: var(--border-hover);
 }
+
 .btn-icon {
   display: inline-block;
   vertical-align: middle;
@@ -631,7 +716,7 @@ table.data-table td {
 /* Inline PDF Viewer */
 .inline-viewer {
   display: none;
-  margin-top: 16px;
+  margin-top: 18px;
   border: 1px solid var(--border);
   border-radius: 4px;
   overflow: hidden;
@@ -652,6 +737,22 @@ table.data-table td {
 }
 .viewer-topbar a {
   color: var(--accent);
+}
+.viewer-close-btn {
+  background: var(--surface-inset);
+  border: 1px solid var(--border);
+  color: var(--ink-secondary);
+  padding: 3px 9px;
+  font-size: 0.78rem;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  margin-left: 8px;
+}
+.viewer-close-btn:hover {
+  background: var(--accent);
+  color: #ffffff;
+  border-color: var(--accent);
 }
 .inline-viewer object {
   width: 100%;
@@ -760,13 +861,13 @@ table.method-table td {
   padding: 5px 10px;
   border: 1px solid var(--border);
   border-radius: 4px;
-  background: var(--bg);
+  background: var(--surface-inset);
   color: var(--ink);
 }
 .synth-btn {
-  background: rgba(216, 158, 93, 0.1);
-  color: var(--accent);
-  border: 1px solid rgba(216, 158, 93, 0.4);
+  background: var(--accent);
+  color: #ffffff;
+  border: 1px solid var(--accent);
   font-family: inherit;
   font-size: 0.86rem;
   font-weight: 500;
@@ -776,9 +877,13 @@ table.method-table td {
   transition: all 0.15s ease;
 }
 .synth-btn:hover {
-  background: rgba(216, 158, 93, 0.2);
-  border-color: var(--accent);
-  color: var(--accent-hover);
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+[data-theme="dark"] .synth-btn {
+  background: var(--accent);
+  color: #141413;
+  font-weight: 600;
 }
 .synth-output {
   margin-top: 16px;
@@ -827,7 +932,7 @@ table.synth-table td:last-child {
 table.synth-table tr.pitch-row td {
   font-weight: 700;
   color: var(--accent);
-  background: rgba(216, 158, 93, 0.06);
+  background: var(--accent-tint);
 }
 .synth-progression {
   display: flex;
@@ -835,7 +940,7 @@ table.synth-table tr.pitch-row td {
   align-items: center;
   gap: 6px;
   padding: 10px 12px;
-  background: var(--bg);
+  background: var(--surface-inset);
   border: 1px solid var(--border);
   border-radius: 4px;
   margin-top: 8px;
@@ -861,7 +966,7 @@ table.synth-table tr.pitch-row td {
 .prog-pill.tonic {
   border-color: var(--accent);
   color: var(--accent);
-  background: rgba(216, 158, 93, 0.12);
+  background: var(--accent-dim);
 }
 .prog-arrow {
   color: var(--ink-faint);
@@ -888,6 +993,7 @@ footer.site-footer {
   padding: 42px 0;
   color: var(--ink-muted);
   font-size: 0.88rem;
+  transition: background-color 0.2s ease;
 }
 .footer-row {
   display: flex;
@@ -923,7 +1029,7 @@ footer.site-footer {
 }
 
 @media (max-width: 768px) {
-  .executive-grid {
+  .project-brief {
     grid-template-columns: 1fr;
     gap: 12px;
   }
@@ -940,10 +1046,9 @@ footer.site-footer {
   .section-jump { display: none; }
   article.paper-card { padding: 24px 20px; margin-bottom: 22px; }
   h3.card-title { font-size: 1.38rem; line-height: 1.3; }
-  .takeaway-box { padding-left: 10px; }
-  .card-summary { font-size: 0.94rem; }
+  .card-dek { font-size: 1.02rem; }
   .action-row { gap: 8px; padding-top: 14px; margin-top: 14px; }
-  .action-btn { padding: 5px 11px; font-size: 0.82rem; }
+  .action-btn-viewer, .action-btn-secondary { padding: 6px 11px; font-size: 0.82rem; }
   .inline-viewer object { height: 380px; }
   .technique-box { padding: 16px 0; }
   .interactive-synth { padding: 18px 16px; }
@@ -959,14 +1064,14 @@ footer.site-footer {
 <header class="site-header" id="top">
   <div class="wrap">
     <h1 class="site-title">Anshveer Bindra</h1>
-    <div class="site-subtitle">Physics, mathematics, and musical composition &middot; Mumbai, India</div>
+    <div class="site-subtitle">Astrophysics, pure mathematics, and musical composition &middot; Mumbai, India</div>
     <div class="site-links">
       <a class="orcid-link" href="https://orcid.org/0009-0008-3593-1450" target="_blank" rel="noopener">
         <svg class="orcid-icon" width="15" height="15" viewBox="0 0 256 256" fill="currentColor"><path d="M128 0C57.31 0 0 57.31 0 128s57.31 128 128 128 128-57.31 128-128S198.69 0 128 0zm-41.25 188.75H64.22V87.06h22.53v101.69zm-11.26-115.6c-7.22 0-13.06-5.85-13.06-13.07 0-7.22 5.84-13.07 13.06-13.07s13.07 5.85 13.07 13.07c-.01 7.22-5.85 13.07-13.07 13.07zm119.86 64.91c0 29.56-23.97 50.69-53.79 50.69h-38.31V87.06h39.73c29.13 0 52.37 20.94 52.37 50.99zm-23.01 0c0-18.06-13.92-30.88-31.98-30.88h-14.8v61.76h14.8c18.06 0 31.98-12.82 31.98-30.88z"/></svg> ORCID: 0009-0008-3593-1450
       </a>
     </div>
     <p class="site-bio">
-      Selected research across observational astrophysics, theoretical physics, algebraic topology, and analytic number theory, alongside an original chamber work in modular serialism. Each paper includes context on the problem, mathematical and numerical formulations, observational or experimental results, and complete manuscripts.
+      I am an independent researcher working across observational astronomy, theoretical astrophysics, and pure mathematics. This archive collects eight research papers and monographs alongside an original two-movement string quartet based on modular pitch structures. Every project includes open-access preprints, observational data or computational models, and an in-browser PDF reader.
     </p>
   </div>
 </header>
@@ -981,9 +1086,14 @@ footer.site-footer {
       <button class="filter-btn" data-filter="physics" onclick="filterCategory('physics', this)">Theoretical Physics</button>
       <button class="filter-btn" data-filter="music" onclick="filterCategory('music', this)">Music</button>
     </div>
-    <div class="section-jump">
-      <a href="#papers">Papers</a>
-      <a href="#music">Music</a>
+    <div class="nav-actions">
+      <div class="section-jump">
+        <a href="#papers">Papers</a>
+        <a href="#music">Music</a>
+      </div>
+      <button class="theme-toggle-btn" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Night Mode">
+        <span id="theme-icon">☾</span> <span id="theme-text">Night</span>
+      </button>
     </div>
   </div>
 </nav>
@@ -1006,38 +1116,39 @@ footer.site-footer {
 
     <h3 class="card-title">Orbit Determination of Near-Earth Asteroid 2015 GF27 via the Method of Gauss</h3>
 
-    <div class="takeaway-box">
-      <span class="takeaway-label">Core Finding</span>
-      <span class="takeaway-text">Reconstructs the 3D Keplerian orbit from three 2D angular observations, demonstrating that line-of-sight geometry—not measurement precision—governs physical orbital uncertainty.</span>
+    <p class="card-dek">
+      Reconstructing a 3D Keplerian orbit from three 2D optical angle snapshots over a 26-day baseline—matching NASA JPL Horizons ephemerides and isolating how line-of-sight geometry governs orbital uncertainty.
+    </p>
+
+    <div class="card-narrative">
+      Determining the full 3D heliocentric orbit of near-Earth asteroid 2015 GF27 using optical charge-coupled device (CCD) astrometry across a 26-day baseline from the Las Cumbres Observatory telescope network. The reconstructed Keplerian elements match JPL Horizons ephemerides to within 0.13% in ascending node, 1.56% in inclination, and ~2.8% in semi-major axis and eccentricity, demonstrating that observation geometry—not instrument precision—governs physical accuracy.
     </div>
 
-    <div class="card-summary">Determining the full 3D heliocentric orbit of a near-Earth asteroid using only three optical telescope observations across a 26-day baseline, matching NASA JPL Horizons ephemerides to within 0.13% in ascending node, 1.56% in inclination, and ~2.8% in semi-major axis and eccentricity, demonstrating how observational geometry governs physical accuracy.
-    </div>
-
-    <!-- Executive 3-Point Highlights -->
-    <div class="executive-grid">
-      <div class="exec-item">
-        <span class="exec-label">Problem</span>
-        <span class="exec-val">Reconstruct full 3D Keplerian orbit from only three 2D optical angle snapshots $(\alpha, \delta)$ across 26 days, without distance data.</span>
+    <div class="project-brief">
+      <div class="brief-item">
+        <span class="brief-label">Astrometric Baseline</span>
+        <span class="brief-val">3 optical CCD epochs across 26.0 days via LCO 0.4m network (Chile, Hawaii, Texas; MPC W85/W87)</span>
       </div>
-      <div class="exec-item">
-        <span class="exec-label">Method</span>
-        <span class="exec-val">Gauss method in Python; iterative refinement of triangular ratios with 4th-order $f$ &amp; $g$ series ($10^{-10}\text{ AU}$); 1,000 Monte Carlo trials.</span>
+      <div class="brief-item">
+        <span class="brief-label">Orbit Determination</span>
+        <span class="brief-val">Gauss method in Python with 4th-order $f$ &amp; $g$ Taylor series ($10^{-10}\text{ AU}$); 1,000 Monte Carlo noise trials</span>
       </div>
-      <div class="exec-item">
-        <span class="exec-label">Key Result</span>
-        <span class="exec-val">Matched NASA JPL to $0.13\%$ in ascending node ($\Delta \Omega = 0.31^\circ$), $1.56\%$ in inclination ($\Delta i = 0.16^\circ$), and $2.87\%$ in semi-major axis; traced mean anomaly divergence ($16.7\%$) to line-of-sight geometry.</span>
+      <div class="brief-item">
+        <span class="brief-label">Ephemeris Agreement</span>
+        <span class="brief-val">$\Delta\Omega = 0.13\%$, $\Delta i = 1.56\%$, $\Delta a \approx 2.8\%$ vs. NASA JPL; mean anomaly error ($16.7\%$) traced to geometry</span>
       </div>
     </div>
 
     <div class="action-row">
-      <button class="action-btn action-btn-viewer" onclick="toggleViewer('viewer-asteroid')"><svg class="btn-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg> Read Inline (Viewer)</button>
-      <a class="action-btn action-btn-secondary" href="papers/asteroid-2015-GF27.pdf" target="_blank" rel="noopener">Open in New Tab</a>
-      <a class="action-btn action-btn-secondary" href="papers/asteroid-2015-GF27.pdf" download>Download PDF</a>
+      <button class="action-btn-viewer" onclick="toggleViewer('viewer-asteroid')">
+        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+        <span>Read Inline (Viewer)</span>
+        <span class="viewer-caret">&darr;</span>
+      </button>
+      <a class="action-btn-secondary" href="papers/asteroid-2015-GF27.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+      <a class="action-btn-secondary" href="papers/asteroid-2015-GF27.pdf" download>Download PDF</a>
     </div>
-
-    <!-- Progressive Disclosure: Full In-Depth Analysis -->
-    <details class="deepdive-drawer">
+<details class="deepdive-drawer">
       <summary class="deepdive-summary">
         <span>Explore In-Depth Derivation, Data &amp; Methodology</span>
         <span class="deepdive-badge">Full Analysis &darr;</span>
@@ -1137,8 +1248,7 @@ footer.site-footer {
     <div id="viewer-asteroid" class="inline-viewer">
       <div class="viewer-topbar">
         <span>Orbit Determination of Asteroid 2015 GF27 &middot; Bindra, Leung, Flajole</span>
-        <a href="papers/asteroid-2015-GF27.pdf" target="_blank">Open in New Tab &rarr;</a>
-      </div>
+        <div><a href="papers/asteroid-2015-GF27.pdf" target="_blank">Open in New Tab &rarr;</a> <button class="viewer-close-btn" onclick="toggleViewer('viewer-asteroid')">&times; Close</button></div></div>
       <object data="papers/asteroid-2015-GF27.pdf" type="application/pdf">
         <p style="padding: 20px; color: #fff;">Unable to render inline. <a href="papers/asteroid-2015-GF27.pdf">Download PDF</a>.</p>
       </object>
@@ -1146,58 +1256,67 @@ footer.site-footer {
   </article>
 
   <!-- 2. PULSAR PAPER I (WEAK FORM INVERSION) -->
+    <!-- PULSAR DEMOGRAPHICS SERIES COMPANION BANNER -->
+  <div class="series-banner" data-category="astrophysics">
+    <div class="series-banner-meta">Astrophysics Series &middot; Parts I &amp; II</div>
+    <h3 class="series-banner-title">The Pulsar Demographics Series</h3>
+    <p class="series-banner-text">
+      A unified two-part demographic investigation resolving the 45-year dilemma of neutron star birth periods, magnetic field decay, and catalog equilibria. Paper I establishes rapid birth periods ($P_0 \sim 0.048\text{ s}$) via a variational continuity inversion; Paper II explains why observational surveys peak at $0.6\text{ s}$ through residence-time slowdown and reconstructs the true, unseen population of the entire Milky Way.
+    </p>
+  </div>
+
   <article class="paper-card" data-category="astrophysics">
     <div class="card-top">
       <span class="card-discipline">Astrophysics &middot; Fluid Inversion</span>
-    <div class="series-tag">Pulsar Demographics Series &middot; Paper I of II</div>
+      <div class="series-pill">Part I of II</div>
       <span class="card-meta">With Tanish Kulkarni &middot; <span class="card-venue">Preprint (2026)</span> &middot; In Preparation for AAS Journals</span>
     </div>
 
     <h3 class="card-title">A Weak-Form 2D Continuity Inversion for Pulsar Birth Demographics</h3>
 
-    <div class="takeaway-box">
-      <span class="takeaway-label">Core Finding</span>
-      <span class="takeaway-text">Formulates a variational weak-form inversion of the 2D continuity equation, circumventing histogram derivative divergence to demonstrate that Galactic pulsars are born spinning rapidly ($P_0 \sim 0.048\text{ s}$).</span>
+    <p class="card-dek">
+      Formulating a variational weak-form inversion of the 2D continuity equation to circumvent histogram derivative divergence, proving that Galactic pulsars are born spinning rapidly ($P_0 \sim 0.048\text{ s}$).
+    </p>
+
+    <div class="card-narrative">
+      Resolving the 45-year controversy over whether neutron stars are born spinning fast or slow by treating the 2,356 pulsars of the ATNF catalogue as a fluid in phase space. By multiplying by smooth Sobolev test functions and integrating by parts, the inversion transfers spatial derivatives off noisy observational histograms, proving that fewer than 0.57% of pulsars are born at slow periods.
     </div>
 
-    <div class="card-summary">Resolving the 45-year controversy on whether neutron stars are born spinning fast or slow by treating the 2,356 pulsars of the ATNF catalogue as a fluid in phase space and solving the inverse continuity equation in weak form.
-    </div>
-
-    <!-- Executive 3-Point Highlights -->
-    <div class="executive-grid">
-      <div class="exec-item">
-        <span class="exec-label">Problem</span>
-        <span class="exec-val">Numerical derivatives on noisy survey histograms diverge catastrophically, creating a 45-year dispute over whether pulsars are born fast or slow ($P > 0.4\text{ s}$).</span>
-      </div>
-      <div class="exec-item">
-        <span class="exec-label">Method</span>
-        <span class="exec-val">Cast 2D continuity equation into variational weak form via integration by parts against Sobolev test functions $\phi$, transferring derivatives off noisy data.</span>
-      </div>
-      <div class="exec-item">
-        <span class="exec-label">Key Result</span>
-        <span class="exec-val">Demonstrated only <strong>0.57%</strong> of pulsars are born slow (upper bound 9.03%); confirmed by 4 independent observational tests (SNRs, scale height).</span>
-      </div>
-    </div>
-    <!-- Featured 2D Phase-Space Continuity Formulation -->
-    <div class="continuity-featured-box">
-      <div class="continuity-label">Governing Phase-Space Continuity Equation (Variational Weak Form)</div>
-      <div class="continuity-display">
+    <div class="math-showcase">
+      <div class="math-showcase-title">Governing Phase-Space Continuity Inversion (Variational Weak Form)</div>
+      <div class="math-showcase-display">
         $$\nabla \cdot \big(\mathbf{v}\,f\big) + \Lambda f = S(P, B) \quad \implies \quad \iint \mathcal{D} f\, \mathbf{v}\cdot \nabla \phi \, dP\,dB - \iint \mathcal{D} \Lambda f \phi\, dP\,dB = -\iint \mathcal{D} S \phi\, dP\,dB$$
       </div>
-      <div class="continuity-note">
-        Treating the 2,356 pulsars of the ATNF catalogue as a fluid in $(P, B)$ phase space. Integrating by parts against smooth Sobolev test functions $\phi$ transfers all spatial derivatives off noisy, bin-counted observational histograms, completely eliminating numerical divergence and settling the 45-year slow-birth dispute.
+      <div class="math-showcase-note">
+        Integrating by parts against smooth Sobolev test functions $\phi$ transfers spatial derivatives off noisy survey histograms, eliminating numerical divergence and establishing that at most 0.57% of Galactic pulsars are born slow.
       </div>
     </div>
 
-
-    <div class="action-row">
-      <button class="action-btn action-btn-viewer" onclick="toggleViewer('viewer-pulsar-1')"><svg class="btn-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg> Read Inline (Viewer)</button>
-      <a class="action-btn action-btn-secondary" href="papers/weak-form-inversion.pdf" target="_blank" rel="noopener">Open in New Tab</a>
-      <a class="action-btn action-btn-secondary" href="papers/weak-form-inversion.pdf" download>Download PDF</a>
+    <div class="project-brief">
+      <div class="brief-item">
+        <span class="brief-label">The 45-Year Dispute</span>
+        <span class="brief-val">Numerical derivatives on noisy survey histograms diverge catastrophically, sustaining claims that 40%–75% of pulsars are born slow ($P > 0.4\text{ s}$).</span>
+      </div>
+      <div class="brief-item">
+        <span class="brief-label">Variational Inversion</span>
+        <span class="brief-val">Weak-form integration by parts transfers derivatives onto test functions $\phi$; visibility calibrated strictly outside the contested slow window.</span>
+      </div>
+      <div class="brief-item">
+        <span class="brief-label">Physical Validation</span>
+        <span class="brief-val">Decisively bounds slow births to $\le 0.57\%$ (upper limit 9.03%); confirmed by SNRs, scale-height kinematic clock, and high-field conservation.</span>
+      </div>
     </div>
 
-    <!-- Progressive Disclosure: Full In-Depth Analysis -->
-    <details class="deepdive-drawer">
+    <div class="action-row">
+      <button class="action-btn-viewer" onclick="toggleViewer('viewer-pulsar-1')">
+        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+        <span>Read Inline (Viewer)</span>
+        <span class="viewer-caret">&darr;</span>
+      </button>
+      <a class="action-btn-secondary" href="papers/weak-form-inversion.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+      <a class="action-btn-secondary" href="papers/weak-form-inversion.pdf" download>Download PDF</a>
+    </div>
+<details class="deepdive-drawer">
       <summary class="deepdive-summary">
         <span>Explore In-Depth Derivation, Data &amp; Methodology</span>
         <span class="deepdive-badge">Full Analysis &darr;</span>
@@ -1264,8 +1383,7 @@ footer.site-footer {
     <div id="viewer-pulsar-1" class="inline-viewer">
       <div class="viewer-topbar">
         <span>A Weak-Form 2D Continuity Inversion for Pulsar Birth Demographics &middot; Bindra &amp; Kulkarni</span>
-        <a href="papers/weak-form-inversion.pdf" target="_blank">Open in New Tab &rarr;</a>
-      </div>
+        <div><a href="papers/weak-form-inversion.pdf" target="_blank">Open in New Tab &rarr;</a> <button class="viewer-close-btn" onclick="toggleViewer('viewer-pulsar-1')">&times; Close</button></div></div>
       <object data="papers/weak-form-inversion.pdf" type="application/pdf">
         <p style="padding: 20px; color: #fff;">Unable to render inline. <a href="papers/weak-form-inversion.pdf">Download PDF</a>.</p>
       </object>
@@ -1276,54 +1394,55 @@ footer.site-footer {
   <article class="paper-card" data-category="astrophysics">
     <div class="card-top">
       <span class="card-discipline">Astrophysics &middot; Population Synthesis</span>
-    <div class="series-tag">Pulsar Demographics Series &middot; Paper II of II</div>
+      <div class="series-pill">Part II of II</div>
       <span class="card-meta">With Tanish Kulkarni &middot; <span class="card-venue">Preprint (2026)</span> &middot; AASTeX631 Template</span>
     </div>
 
     <h3 class="card-title">The Intrinsic Equilibrium Demographic Distribution of Galactic Pulsars</h3>
 
-    <div class="takeaway-box">
-      <span class="takeaway-label">Core Finding</span>
-      <span class="takeaway-text">Resolves the 0.6-second observational peak paradox by deriving steady-state kinematic transport, proving that severe magnetic dipole deceleration causes fast-born pulsars to pile up in slow residence times.</span>
+    <p class="card-dek">
+      Resolving the 0.6-second observational peak paradox by deriving steady-state kinematic transport, proving that severe magnetic dipole deceleration causes fast-born pulsars to pile up in slow residence times.
+    </p>
+
+    <div class="card-narrative">
+      Explaining why observed telescope surveys peak at 0.6 seconds when pulsars are born spinning 100 times faster. By solving the 2D steady-state transport equation under dipole braking and crustal ohmic field decay, we demonstrate a $10^5\times$ residence-time slowdown and reconstruct the true, unseen demographic distribution of the entire Milky Way.
     </div>
 
-    <div class="card-summary">Explaining why observed telescope surveys peak at 0.6 seconds when pulsars are born spinning 100 times faster, through the physics of residence-time slowdown, and reconstructing the true, unseen population of the entire Milky Way.
-    </div>
-
-    <!-- Executive 3-Point Highlights -->
-    <div class="executive-grid">
-      <div class="exec-item">
-        <span class="exec-label">Problem</span>
-        <span class="exec-val">Astronomical catalogues peak at $0.6\text{ s}$ despite pulsars being born at $0.048\text{ s}$. How do selection effects and spin-down mask the true Milky Way population?</span>
-      </div>
-      <div class="exec-item">
-        <span class="exec-label">Method</span>
-        <span class="exec-val">2D steady-state demographic transport with dipole braking and crustal ohmic field decay; validated against 100,000-star Fortran Monte Carlo simulation ($W_1 = 0.028\text{ dex}$).</span>
-      </div>
-      <div class="exec-item">
-        <span class="exec-label">Key Result</span>
-        <span class="exec-val">Proved a $10^5\times$ residence slowdown ($\tau_{\rm res} \propto P^2/B^2$); reconstructed true Galactic population ($(0.82 \pm 0.27) \times 10^5$ pulsars) peaking at $1.61\text{ s}$.</span>
-      </div>
-    </div>
-    <!-- Featured Demographic Transport & Residence-Time Scaling -->
-    <div class="continuity-featured-box">
-      <div class="continuity-label">Intrinsic Equilibrium Demographic Transport &amp; Residence-Time Scaling</div>
-      <div class="continuity-display">
+    <div class="math-showcase">
+      <div class="math-showcase-title">Steady-State Demographic Transport &amp; Residence Scaling</div>
+      <div class="math-showcase-display">
         $$\frac{dN_{\text{true}}}{dP} \propto \frac{S(P)}{\dot{P}(P)} \propto P^{n-1} \quad \implies \quad \tau_{\text{residence}}(P) = \frac{P}{(n-1)\dot{P}} \propto P^2$$
       </div>
-      <div class="continuity-note">
-        Solving the continuity transport equation through phase space reveals that pulsars spend $\sim 10^5\times$ longer drifting slowly through mature periods ($P \sim 1\text{ s}$) than at their initial rapid injection ($P \sim 0.05\text{ s}$), explaining why raw survey catalogues peak at $0.6\text{ s}$ despite an overwhelmingly fast birth population.
+      <div class="math-showcase-note">
+        Pulsars take ~270 years to cross the fast regime but linger for 23 million years between 0.5 s and 3 s. This $10^5\times$ residence slowdown explains the 0.6 s survey peak without requiring slow birth injection.
+      </div>
+    </div>
+
+    <div class="project-brief">
+      <div class="brief-item">
+        <span class="brief-label">The Catalog Paradox</span>
+        <span class="brief-val">Survey catalogues peak at $0.62\text{ s}$ despite pulsars being born at $0.048\text{ s}$; how does deceleration mask the true Galaxy?</span>
+      </div>
+      <div class="brief-item">
+        <span class="brief-label">Kinematic Transport</span>
+        <span class="brief-val">Dipole braking ($n=3$) and ohmic field decay; validated against a 100,000-star Fortran Monte Carlo simulation ($W_1 = 0.028\text{ dex}$).</span>
+      </div>
+      <div class="brief-item">
+        <span class="brief-label">True Galactic Census</span>
+        <span class="brief-val">Reconstructs $(0.82 \pm 0.27) \times 10^5$ active pulsars peaking at $1.61\text{ s}$; blind kinematic test predicts high-latitude scale heights ($p = 0.199$).</span>
       </div>
     </div>
 
     <div class="action-row">
-      <button class="action-btn action-btn-viewer" onclick="toggleViewer('viewer-pulsar-2')"><svg class="btn-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg> Read Inline (Viewer)</button>
-      <a class="action-btn action-btn-secondary" href="papers/pulsar-demographics.pdf" target="_blank" rel="noopener">Open in New Tab</a>
-      <a class="action-btn action-btn-secondary" href="papers/pulsar-demographics.pdf" download>Download PDF</a>
+      <button class="action-btn-viewer" onclick="toggleViewer('viewer-pulsar-2')">
+        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+        <span>Read Inline (Viewer)</span>
+        <span class="viewer-caret">&darr;</span>
+      </button>
+      <a class="action-btn-secondary" href="papers/pulsar-demographics.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+      <a class="action-btn-secondary" href="papers/pulsar-demographics.pdf" download>Download PDF</a>
     </div>
-
-    <!-- Progressive Disclosure: Full In-Depth Analysis -->
-    <details class="deepdive-drawer">
+<details class="deepdive-drawer">
       <summary class="deepdive-summary">
         <span>Explore In-Depth Derivation, Data &amp; Methodology</span>
         <span class="deepdive-badge">Full Analysis &darr;</span>
@@ -1378,8 +1497,7 @@ footer.site-footer {
     <div id="viewer-pulsar-2" class="inline-viewer">
       <div class="viewer-topbar">
         <span>The Intrinsic Equilibrium Demographic Distribution of Galactic Pulsars &middot; Bindra &amp; Kulkarni</span>
-        <a href="papers/pulsar-demographics.pdf" target="_blank">Open in New Tab &rarr;</a>
-      </div>
+        <div><a href="papers/pulsar-demographics.pdf" target="_blank">Open in New Tab &rarr;</a> <button class="viewer-close-btn" onclick="toggleViewer('viewer-pulsar-2')">&times; Close</button></div></div>
       <object data="papers/pulsar-demographics.pdf" type="application/pdf">
         <p style="padding: 20px; color: #fff;">Unable to render inline. <a href="papers/pulsar-demographics.pdf">Download PDF</a>.</p>
       </object>
@@ -1395,38 +1513,49 @@ footer.site-footer {
 
     <h3 class="card-title">The Single-Generator Theory of Cycle-Decomposed Digit-Subtraction Dynamics</h3>
 
-    <div class="takeaway-box">
-      <span class="takeaway-label">Core Finding</span>
-      <span class="takeaway-text">Establishes complete dynamical classifications for cycle structures under digit-subtraction maps, identifying exact non-trivial limit cycles and proving universal terminal convergence.</span>
+    <p class="card-dek">
+      Establishing complete dynamical classifications for cycle structures under digit-subtraction maps, identifying exact non-trivial limit cycles and proving universal terminal convergence.
+    </p>
+
+    <div class="card-narrative">
+      Generalizing Kaprekar's routine (6174) to arbitrary number bases $B \ge 2$ and arbitrary digit permutations $\pi \in S_k$, proving that seemingly non-linear digit dynamics decompose into decoupled, independent cycles governed by a single modular generator $c = (B - 1)B^{t-1} \pmod{B^t - 1}$.
     </div>
 
-    <div class="card-summary">Generalizing Kaprekar's routine (6174) to arbitrary number bases and digit permutations, proving that seemingly non-linear digit dynamics decompose into decoupled, independent cycles governed by a single modular generator.
+    <div class="math-showcase">
+      <div class="math-showcase-title">Theorem: Continuous Interval Extension &amp; OEIS Attractor Rank</div>
+      <div class="math-showcase-display">
+        $$\tau_m(x) = \left|\frac{b-1}{b} - 2x\right| \qquad \text{Attractor Rank} = \prod_{i} \frac{N_2(B, t_i) + 1}{2}$$
+      </div>
+      <div class="math-showcase-note">
+        Factoring $B^t - 1 = N_1 N_2$ with $\gcd(N_2, B-1) = 1$. The discrete permutations project onto the continuous interval tent map $\tau_m$ on $[0, 1]$. For two-cycles ($t = 2$), the periodic attractor rank reduces to $(\mathrm{odd}(B+1) + 1)/2$, matching integer sequence OEIS A003602.
+      </div>
     </div>
 
-    <!-- Executive 3-Point Highlights -->
-    <div class="executive-grid">
-      <div class="exec-item">
-        <span class="exec-label">Problem</span>
-        <span class="exec-val">Kaprekar's 6174 puzzle has resisted general algebraic solution when extended to arbitrary number bases $B \ge 2$ and arbitrary digit permutations $\pi \in S_k$.</span>
+    <div class="project-brief">
+      <div class="brief-item">
+        <span class="brief-label">The General Problem</span>
+        <span class="brief-val">Kaprekar's 6174 puzzle has resisted algebraic generalization to arbitrary number bases $B \ge 2$ and arbitrary digit permutations $\pi \in S_k$.</span>
       </div>
-      <div class="exec-item">
-        <span class="exec-label">Method</span>
-        <span class="exec-val">Proved non-linear dynamics decouple across permutation cycles; mapped action on each cycle to multiplication by a single generator $c = (B-1)B^{t-1} \pmod{B^t-1}$.</span>
+      <div class="brief-item">
+        <span class="brief-label">Cycle Decomposition</span>
+        <span class="brief-val">Dynamics decouple across permutation cycles; each cycle reduces to multiplication by single generator $c = (B-1)B^{t-1} \pmod{B^t-1}$.</span>
       </div>
-      <div class="exec-item">
-        <span class="exec-label">Key Result</span>
-        <span class="exec-val">Derived closed-form formula for periodic attractor rank $\prod_i (N_2(B, t_i)+1)/2$ matching OEIS A003602, and established universal transient bounds.</span>
+      <div class="brief-item">
+        <span class="brief-label">Universal Invariants</span>
+        <span class="brief-val">Every state enters a periodic orbit within $a_0+1$ steps; total collapse to zero occurs iff $t=1$, or $t=2$ when $B+1$ is a power of two.</span>
       </div>
     </div>
 
     <div class="action-row">
-      <button class="action-btn action-btn-viewer" onclick="toggleViewer('viewer-digit')"><svg class="btn-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg> Read Inline (Viewer)</button>
-      <a class="action-btn action-btn-secondary" href="papers/digit-subtraction.pdf" target="_blank" rel="noopener">Open in New Tab</a>
-      <a class="action-btn action-btn-secondary" href="papers/digit-subtraction.pdf" download>Download PDF</a>
+      <button class="action-btn-viewer" onclick="toggleViewer('viewer-digit')">
+        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+        <span>Read Inline (Viewer)</span>
+        <span class="viewer-caret">&darr;</span>
+      </button>
+      <a class="action-btn-secondary" href="papers/digit-subtraction.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+      <a class="action-btn-secondary" href="papers/digit-subtraction.pdf" download>Download PDF</a>
     </div>
-
-    <!-- Progressive Disclosure: Full In-Depth Analysis -->
-    <details class="deepdive-drawer">
+<details class="deepdive-drawer">
       <summary class="deepdive-summary">
         <span>Explore In-Depth Derivation, Data &amp; Methodology</span>
         <span class="deepdive-badge">Full Analysis &darr;</span>
@@ -1480,8 +1609,7 @@ footer.site-footer {
     <div id="viewer-digit" class="inline-viewer">
       <div class="viewer-topbar">
         <span>Single-Generator Digit-Subtraction Dynamics &middot; Anshveer Bindra</span>
-        <a href="papers/digit-subtraction.pdf" target="_blank">Open in New Tab &rarr;</a>
-      </div>
+        <div><a href="papers/digit-subtraction.pdf" target="_blank">Open in New Tab &rarr;</a> <button class="viewer-close-btn" onclick="toggleViewer('viewer-digit')">&times; Close</button></div></div>
       <object data="papers/digit-subtraction.pdf" type="application/pdf">
         <p style="padding: 20px; color: #fff;">Unable to render inline. <a href="papers/digit-subtraction.pdf">Download PDF</a>.</p>
       </object>
@@ -1497,44 +1625,49 @@ footer.site-footer {
 
     <h3 class="card-title">Rediscovering a Formula for &pi;</h3>
 
-    <div class="takeaway-box">
-      <span class="takeaway-label">Core Finding</span>
-      <span class="takeaway-text">Derives an exact analytical closed-form representation for $\pi$ via alternating hypergeometric-type infinite series, linking polynomial denominators to Ramanujan-type summation identities.</span>
+    <p class="card-dek">
+      Deriving an elementary, closed-form summation for a one-parameter family of central binomial coefficient series, achieving geometric convergence to $\pi$ using only single-variable calculus.
+    </p>
+
+    <div class="card-narrative">
+      While calculating series expansions for $\pi$ by hand, an algebraic error produced an unexpected closed-form sum. Developing this result into a rigorous proof without relying on generalized hypergeometric functions (${}_2F_1$), we constructed an elementary evaluation for the one-parameter family $S(a)$ using Euler's Beta integral—yielding geometric convergence to $\pi$ and evaluating special harmonic cases in closed form.
     </div>
 
-    <div class="card-summary">Deriving an elementary, closed-form summation for a one-parameter family of central binomial coefficient series, achieving geometric convergence to $\pi$ using only single-variable calculus.
-    </div>
-
-    <div class="formula-gem-box">
-      <div class="formula-gem-label">The Central Closed-Form Identity</div>
-      <div class="formula-gem-math">$$\sum_{n=0}^{\infty} \frac{2^n}{\binom{2n+1}{n+1}} = 1 + \frac{\pi}{2}$$</div>
-      <div class="formula-gem-note">Elementary closed-form summation derived via Beta-integral transformations, converging at geometric rate $\mathcal{O}(2^{-N})$.</div>
-    </div>
-
-    <!-- Executive 3-Point Highlights -->
-    <div class="executive-grid">
-      <div class="exec-item">
-        <span class="exec-label">Problem</span>
-        <span class="exec-val">Prove the unexpected identity $\sum_{n \ge 0} \frac{2^n}{\binom{2n+1}{n+1}} = 1 + \frac{\pi}{2}$ without relying on generalized hypergeometric functions (${}_2F_1$).</span>
+    <div class="math-showcase">
+      <div class="math-showcase-title">The Closed-Form Hypergeometric-Type Identity</div>
+      <div class="math-showcase-display">
+        $$\sum_{n=0}^{\infty} \frac{2^n}{\binom{2n+1}{n+1}} = 1 + \frac{\pi}{2} \qquad S(a) = \frac{2}{4-a} + \frac{8}{(4-a)^{3/2}\sqrt{a}}\,\arctan\sqrt{\frac{a}{4-a}}$$
       </div>
-      <div class="exec-item">
-        <span class="exec-label">Method</span>
-        <span class="exec-val">Rewrote reciprocal central binomials via Euler's Beta integral; summed geometric series under the integral sign and integrated via completing the square.</span>
+      <div class="math-showcase-note">
+        Derived via Beta-integral transformations for all real $|a| < 4$. Choosing acceleration parameter $a = 2 - \sqrt{2}$ yields <strong>7 correct digits of $\pi$ in just 8 terms</strong> (compared to $10^7$ terms for the classical Leibniz series).
       </div>
-      <div class="exec-item">
-        <span class="exec-label">Key Result</span>
-        <span class="exec-val">Derived closed form $S(a)$ for all $|a|<4$, showing terms shrink as $(a/4)^n$ and yielding <strong>7 digits of $\pi$ in 8 terms</strong> (vs. $10^7$ for Leibniz).</span>
+    </div>
+
+    <div class="project-brief">
+      <div class="brief-item">
+        <span class="brief-label">The Problem</span>
+        <span class="brief-val">Prove the unexpected identity $\sum_{n \ge 0} \frac{2^n}{\binom{2n+1}{n+1}} = 1 + \frac{\pi}{2}$ without invoking generalized hypergeometric machinery.</span>
+      </div>
+      <div class="brief-item">
+        <span class="brief-label">Beta Integration</span>
+        <span class="brief-val">Rewrote reciprocal central binomials via Euler's Beta integral; summed geometric series under the integral sign and evaluated by completing the square.</span>
+      </div>
+      <div class="brief-item">
+        <span class="brief-label">Exact Harmonic Values</span>
+        <span class="brief-val">$S(1) = \frac{2}{3} + \frac{4\pi}{9\sqrt{3}}$, $S(2) = 1 + \frac{\pi}{2}$, and $S(3) = 2 + \frac{8\pi}{3\sqrt{3}}$; terms shrink as $(a/4)^n$.</span>
       </div>
     </div>
 
     <div class="action-row">
-      <button class="action-btn action-btn-viewer" onclick="toggleViewer('viewer-pi')"><svg class="btn-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg> Read Inline (Viewer)</button>
-      <a class="action-btn action-btn-secondary" href="papers/formula-for-pi.pdf" target="_blank" rel="noopener">Open in New Tab</a>
-      <a class="action-btn action-btn-secondary" href="papers/formula-for-pi.pdf" download>Download PDF</a>
+      <button class="action-btn-viewer" onclick="toggleViewer('viewer-pi')">
+        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+        <span>Read Inline (Viewer)</span>
+        <span class="viewer-caret">&darr;</span>
+      </button>
+      <a class="action-btn-secondary" href="papers/formula-for-pi.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+      <a class="action-btn-secondary" href="papers/formula-for-pi.pdf" download>Download PDF</a>
     </div>
-
-    <!-- Progressive Disclosure: Full In-Depth Analysis -->
-    <details class="deepdive-drawer">
+<details class="deepdive-drawer">
       <summary class="deepdive-summary">
         <span>Explore In-Depth Derivation, Data &amp; Methodology</span>
         <span class="deepdive-badge">Full Analysis &darr;</span>
@@ -1587,8 +1720,7 @@ footer.site-footer {
     <div id="viewer-pi" class="inline-viewer">
       <div class="viewer-topbar">
         <span>Rediscovering a Formula for &pi; &middot; Anshveer Bindra</span>
-        <a href="papers/formula-for-pi.pdf" target="_blank">Open in New Tab &rarr;</a>
-      </div>
+        <div><a href="papers/formula-for-pi.pdf" target="_blank">Open in New Tab &rarr;</a> <button class="viewer-close-btn" onclick="toggleViewer('viewer-pi')">&times; Close</button></div></div>
       <object data="papers/formula-for-pi.pdf" type="application/pdf">
         <p style="padding: 20px; color: #fff;">Unable to render inline. <a href="papers/formula-for-pi.pdf">Download PDF</a>.</p>
       </object>
@@ -1604,15 +1736,10 @@ footer.site-footer {
 
     <h3 class="card-title">Quantum Field Theory in de Sitter Space: Foundations, Challenges, and Implications for Physics</h3>
 
-    <div class="takeaway-box">
-      <span class="takeaway-label">Core Scope</span>
-      <span class="takeaway-text">A systematic pedagogical review of non-equilibrium quantum fields on curved backgrounds, detailing mode decompositions, the Bunch-Davies vacuum, and infrared particle production in inflationary spacetimes.</span>
-    </div>
+    <p class="card-dek">
+      A systematic pedagogical review of non-equilibrium quantum fields on curved backgrounds, detailing mode decompositions, the Bunch-Davies vacuum, and infrared particle production in inflationary spacetimes.
+    </p>
 
-    <div class="card-summary">Synthesizing quantum field theory in an accelerating, curved spacetime—examining how observer horizons generate intrinsic thermal radiation, infrared divergences, and primordial cosmological fluctuations.
-    </div>
-
-    <!-- Executive 3-Point Highlights -->
     <div class="expository-description">
       <p>
         Because accelerating de Sitter spacetime lacks a global timelike Killing vector field, the classical concept of a unique, observer-independent empty vacuum state ceases to exist. Different coordinate observers perceive different particle contents, and the presence of a cosmological event horizon naturally radiates thermal particles at the Gibbons-Hawking temperature $T = H / 2\pi$.
@@ -1623,13 +1750,15 @@ footer.site-footer {
     </div>
 
     <div class="action-row">
-      <button class="action-btn action-btn-viewer" onclick="toggleViewer('viewer-qft')"><svg class="btn-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg> Read Inline (Viewer)</button>
-      <a class="action-btn action-btn-secondary" href="papers/qft-de-sitter.pdf" target="_blank" rel="noopener">Open in New Tab</a>
-      <a class="action-btn action-btn-secondary" href="papers/qft-de-sitter.pdf" download>Download PDF</a>
+      <button class="action-btn-viewer" onclick="toggleViewer('viewer-qft')">
+        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+        <span>Read Inline (Viewer)</span>
+        <span class="viewer-caret">&darr;</span>
+      </button>
+      <a class="action-btn-secondary" href="papers/qft-de-sitter.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+      <a class="action-btn-secondary" href="papers/qft-de-sitter.pdf" download>Download PDF</a>
     </div>
-
-    <!-- Progressive Disclosure: Full In-Depth Analysis -->
-    <details class="deepdive-drawer">
+<details class="deepdive-drawer">
       <summary class="deepdive-summary">
         <span>Explore In-Depth Derivation, Data &amp; Methodology</span>
         <span class="deepdive-badge">Full Analysis &darr;</span>
@@ -1675,8 +1804,7 @@ footer.site-footer {
     <div id="viewer-qft" class="inline-viewer">
       <div class="viewer-topbar">
         <span>QFT in de Sitter Space &middot; Anshveer Bindra</span>
-        <a href="papers/qft-de-sitter.pdf" target="_blank">Open in New Tab &rarr;</a>
-      </div>
+        <div><a href="papers/qft-de-sitter.pdf" target="_blank">Open in New Tab &rarr;</a> <button class="viewer-close-btn" onclick="toggleViewer('viewer-qft')">&times; Close</button></div></div>
       <object data="papers/qft-de-sitter.pdf" type="application/pdf">
         <p style="padding: 20px; color: #fff;">Unable to render inline. <a href="papers/qft-de-sitter.pdf">Download PDF</a>.</p>
       </object>
@@ -1692,13 +1820,9 @@ footer.site-footer {
 
     <h3 class="card-title">Foundations of Quantum Mechanics</h3>
 
-    <div class="takeaway-box">
-      <span class="takeaway-label">Core Scope</span>
-      <span class="takeaway-text">A 183-page mathematical monograph developing quantum mechanics from first principles—from Hilbert space spectral theory to measurement dilemmas, non-locality, and interpretational frameworks.</span>
-    </div>
-
-    <div class="card-summary">A self-contained 183-page mathematical monograph authored as a 10th-grade personal project, systematically developing nonrelativistic quantum theory from Lagrangian and Hamiltonian dynamics through abstract linear algebra, Hilbert space postulates, and one-dimensional wave mechanics to Ehrenfest's theorem and the classical correspondence limit.
-    </div>
+    <p class="card-dek">
+      A 183-page mathematical monograph developing quantum mechanics from first principles—from Hilbert space spectral theory to measurement dilemmas, non-locality, and interpretational frameworks.
+    </p>
 
     <div class="monograph-syllabus">
       <span class="syllabus-label">Monograph Structure (183 pp.):</span>
@@ -1717,7 +1841,6 @@ footer.site-footer {
       <span class="syllabus-step">Ch. 7 Next Steps</span>
     </div>
 
-    <!-- Executive 3-Point Highlights -->
     <div class="expository-description">
       <p>
         Authored as an extended 10th-grade personal project, this 183-page volume systematically constructs nonrelativistic quantum mechanics from first principles. Rather than taking wave mechanics as an ad hoc assumption, the book establishes the Lagrangian and Hamiltonian formulations via Legendre transforms as the formal springboard into operator theory.
@@ -1728,14 +1851,16 @@ footer.site-footer {
     </div>
 
     <div class="action-row">
-      <button class="action-btn action-btn-viewer" onclick="toggleViewer('viewer-quantum')"><svg class="btn-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg> Read Inline (Viewer)</button>
-      <a class="action-btn action-btn-secondary" href="papers/foundations-quantum-mechanics.pdf" target="_blank" rel="noopener">Open in New Tab</a>
-      <a class="action-btn action-btn-secondary" href="papers/foundations-quantum-mechanics.pdf" download>Download PDF</a>
+      <button class="action-btn-viewer" onclick="toggleViewer('viewer-quantum')">
+        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+        <span>Read Inline (Viewer)</span>
+        <span class="viewer-caret">&darr;</span>
+      </button>
+      <a class="action-btn-secondary" href="papers/foundations-quantum-mechanics.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+      <a class="action-btn-secondary" href="papers/foundations-quantum-mechanics.pdf" download>Download PDF</a>
       <a class="doi-pill" href="https://doi.org/10.5281/zenodo.23419188" target="_blank" rel="noopener">Zenodo DOI</a>
     </div>
-
-    <!-- Progressive Disclosure: In-Depth Overview of the Monograph -->
-    <details class="deepdive-drawer">
+<details class="deepdive-drawer">
       <summary class="deepdive-summary">
         <span>Explore Monograph Chapters, Formal Proofs &amp; Mathematical Postulates</span>
         <span class="deepdive-badge">Full Analysis &darr;</span>
@@ -1809,8 +1934,7 @@ footer.site-footer {
     <div id="viewer-quantum" class="inline-viewer">
       <div class="viewer-topbar">
         <span>Foundations of Quantum Mechanics (Monograph) &middot; Anshveer Bindra</span>
-        <a href="papers/foundations-quantum-mechanics.pdf" target="_blank">Open in New Tab &rarr;</a>
-      </div>
+        <div><a href="papers/foundations-quantum-mechanics.pdf" target="_blank">Open in New Tab &rarr;</a> <button class="viewer-close-btn" onclick="toggleViewer('viewer-quantum')">&times; Close</button></div></div>
       <object data="papers/foundations-quantum-mechanics.pdf" type="application/pdf">
         <p style="padding: 20px; color: #fff;">Unable to render inline. <a href="papers/foundations-quantum-mechanics.pdf">Download Monograph PDF</a>.</p>
       </object>
@@ -1826,13 +1950,9 @@ footer.site-footer {
 
     <h3 class="card-title">From Homology to de Rham Cohomology: An Expository Journey through the Topology of Smooth Manifolds</h3>
 
-    <div class="takeaway-box">
-      <span class="takeaway-label">Core Scope</span>
-      <span class="takeaway-text">A 137-page pedagogical exposition tracing topology to differential forms, culminating in a complete, self-contained proof of de Rham's duality theorem across smooth manifolds.</span>
-    </div>
-
-    <div class="card-summary">A self-contained, 137-page mathematical exposition tracing how differential forms and integration on smooth manifolds compute topological invariants, culminating in a proof of de Rham's Theorem.
-    </div>
+    <p class="card-dek">
+      A 137-page pedagogical exposition tracing topology to differential forms, culminating in a complete, self-contained proof of de Rham's duality theorem across smooth manifolds.
+    </p>
 
     <div class="exposition-syllabus">
       <span class="syllabus-label">Exposition Structure:</span>
@@ -1847,7 +1967,6 @@ footer.site-footer {
       <span class="syllabus-step">&sect;5 de Rham's Theorem</span>
     </div>
 
-    <!-- Executive 3-Point Highlights -->
     <div class="expository-description">
       <p>
         While local differential calculus cannot distinguish an open ball from an entire Euclidean space, algebraic topology detects global holes, voids, and higher-dimensional twists by associating algebraic invariants with topological spaces.
@@ -1858,13 +1977,15 @@ footer.site-footer {
     </div>
 
     <div class="action-row">
-      <button class="action-btn action-btn-viewer" onclick="toggleViewer('viewer-topology')"><svg class="btn-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg> Read Inline (Viewer)</button>
-      <a class="action-btn action-btn-secondary" href="papers/homology-to-de-rham.pdf" target="_blank" rel="noopener">Open in New Tab</a>
-      <a class="action-btn action-btn-secondary" href="papers/homology-to-de-rham.pdf" download>Download PDF</a>
+      <button class="action-btn-viewer" onclick="toggleViewer('viewer-topology')">
+        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+        <span>Read Inline (Viewer)</span>
+        <span class="viewer-caret">&darr;</span>
+      </button>
+      <a class="action-btn-secondary" href="papers/homology-to-de-rham.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+      <a class="action-btn-secondary" href="papers/homology-to-de-rham.pdf" download>Download PDF</a>
     </div>
-
-    <!-- Progressive Disclosure: Full In-Depth Analysis -->
-    <details class="deepdive-drawer">
+<details class="deepdive-drawer">
       <summary class="deepdive-summary">
         <span>Explore In-Depth Derivation, Data &amp; Methodology</span>
         <span class="deepdive-badge">Full Analysis &darr;</span>
@@ -1911,8 +2032,7 @@ footer.site-footer {
     <div id="viewer-topology" class="inline-viewer">
       <div class="viewer-topbar">
         <span>From Homology to de Rham Cohomology &middot; Anshveer Bindra</span>
-        <a href="papers/homology-to-de-rham.pdf" target="_blank">Open in New Tab &rarr;</a>
-      </div>
+        <div><a href="papers/homology-to-de-rham.pdf" target="_blank">Open in New Tab &rarr;</a> <button class="viewer-close-btn" onclick="toggleViewer('viewer-topology')">&times; Close</button></div></div>
       <object data="papers/homology-to-de-rham.pdf" type="application/pdf">
         <p style="padding: 20px; color: #fff;">Unable to render inline. <a href="papers/homology-to-de-rham.pdf">Download PDF</a>.</p>
       </object>
@@ -1935,27 +2055,26 @@ footer.site-footer {
 
     <h3 class="card-title">String Quartet in E minor, &ldquo;Future&rdquo;</h3>
 
-    <div class="takeaway-box">
-      <span class="takeaway-label">Core Conception</span>
-      <span class="takeaway-text">A classical two-movement chamber quartet (Andante into Adagio) structured on an algebraic interval system over modular residue classes, synthesizing strict Pisano periodicity with traditional contrapuntal counterpoint and structural resolution.</span>
+    <p class="card-dek">
+      A classical two-movement chamber quartet (Andante into Adagio) structured on an algebraic interval system over modular residue classes, synthesizing strict Pisano periodicity with traditional contrapuntal counterpoint and structural resolution.
+    </p>
+
+    <div class="card-narrative">
+      The intervals between notes are generated by integer sequences reduced modulo 7 or 11; the realization of voice-leading, counterpoint, rhythm, and harmony is shaped by composer agency, with a deliberate exception at measure 27 to achieve an authentic cadence in E minor.
     </div>
 
-    <div class="card-summary">The intervals between notes are generated by integer sequences reduced modulo 7 or 11; the realization of voice-leading, counterpoint, rhythm, and harmony is shaped by composer agency, with a deliberate exception at measure 27.
-    </div>
-
-    <!-- Executive 3-Point Highlights -->
-    <div class="executive-grid">
-      <div class="exec-item">
-        <span class="exec-label">The Method</span>
-        <span class="exec-val">Serialism of relative interval distances ($x_n$) rather than absolute pitches, generated by integer sequences reduced modulo 7 or 11.</span>
+    <div class="project-brief">
+      <div class="brief-item">
+        <span class="brief-label">The Method</span>
+        <span class="brief-val">Serialism of relative interval distances ($x_n$) rather than absolute pitches, generated by integer sequences reduced modulo 7 or 11.</span>
       </div>
-      <div class="exec-item">
-        <span class="exec-label">The Geometry</span>
-        <span class="exec-val">Axioms $+a \equiv -a$ and $+a \equiv m-a$ collapse all moves into class $\mathcal{E}(a) = \{\pm a, \pm (m-a)\}$; classical serialist inversions cannot exist.</span>
+      <div class="brief-item">
+        <span class="brief-label">The Geometry</span>
+        <span class="brief-val">Axioms $+a \equiv -a$ and $+a \equiv m-a$ collapse all moves into class $\mathcal{E}(a) = \{\pm a, \pm (m-a)\}$; classical serialist inversions cannot exist.</span>
       </div>
-      <div class="exec-item">
-        <span class="exec-label">The Expression</span>
-        <span class="exec-val">Composer shapes 4-part counterpoint across strings, register ($a+7$), and breaks the rule at measure 27 to resolve in E minor.</span>
+      <div class="brief-item">
+        <span class="brief-label">The Expression</span>
+        <span class="brief-val">Composer shapes 4-part counterpoint across strings, register ($a+7$), and breaks the rule at measure 27 to resolve in E minor.</span>
       </div>
     </div>
 
@@ -1997,14 +2116,45 @@ footer.site-footer {
       </div>
     </div>
 
-    <div class="action-row">
-      <button class="action-btn action-btn-viewer" onclick="toggleViewer('viewer-quartet')"><svg class="btn-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg> Read Inline Score (Viewer)</button>
-      <a class="action-btn action-btn-secondary" href="music/quartet-future-score.pdf" target="_blank" rel="noopener">Open Score in New Tab</a>
-      <a class="action-btn action-btn-secondary" href="music/quartet-future.mp3" download>Download Audio</a>
+    <!-- Interactive Tone & Sequence Generator -->
+    <div class="interactive-synth">
+      <div class="synth-header">Interactive Sound Lab: Generate and Hear the Interval Classes</div>
+      <div class="synth-controls">
+        <label>Sequence:
+          <select id="seq">
+            <option value="fib">Fibonacci (1, 1, 2, 3, 5, 8, ...)</option>
+            <option value="prime">Primes (2, 3, 5, 7, 11, ...)</option>
+            <option value="sq">Squares (1, 4, 9, 16, 25, ...)</option>
+          </select>
+        </label>
+        <label>Modulus:
+          <select id="mod">
+            <option value="7">7 (Diatonic, E minor scale)</option>
+            <option value="11">11 (Chromatic pitch space)</option>
+          </select>
+        </label>
+        <button class="synth-btn" id="play" type="button">Generate &amp; Play</button>
+      </div>
+      
+      <div id="out" class="synth-output"></div>
+      
+      <div class="synth-agency-note">
+        <strong>How to listen:</strong> Starting from E4 (tonic), each note realizes its interval from the term's equivalence class $\mathcal{E}(a) = \{\pm a, \pm (m-a)\}$ using optimal composer contour for melodic balance. Synthesized with the Web Audio API using harmonic triangle waves.
+      </div>
     </div>
 
-    <!-- Progressive Disclosure: Complete Theoretical Proofs & Trace -->
-    <details class="deepdive-drawer">
+    
+
+    <div class="action-row">
+      <button class="action-btn-viewer" onclick="toggleViewer('viewer-quartet')">
+        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+        <span>Read Inline Score (Viewer)</span>
+        <span class="viewer-caret">&darr;</span>
+      </button>
+      <a class="action-btn-secondary" href="music/quartet-future-score.pdf" target="_blank" rel="noopener">Open Score in New Tab</a>
+      <a class="action-btn-secondary" href="music/quartet-future.mp3" download>Download Audio</a>
+    </div>
+<details class="deepdive-drawer">
       <summary class="deepdive-summary">
         <span>Explore Complete Theoretical Proofs, Quotient Tables &amp; Harmonic Trace</span>
         <span class="deepdive-badge">Full Music Theory &darr;</span>
@@ -2230,8 +2380,7 @@ footer.site-footer {
     <div id="viewer-quartet" class="inline-viewer">
       <div class="viewer-topbar">
         <span>String Quartet in Em ("Future") Score &middot; Anshveer Bindra</span>
-        <a href="music/quartet-future-score.pdf" target="_blank">Open in New Tab &rarr;</a>
-      </div>
+        <div><a href="music/quartet-future-score.pdf" target="_blank">Open in New Tab &rarr;</a> <button class="viewer-close-btn" onclick="toggleViewer('viewer-quartet')">&times; Close</button></div></div>
       <object data="music/quartet-future-score.pdf" type="application/pdf">
         <p style="padding: 20px; color: #fff;">Unable to render inline. <a href="music/quartet-future-score.pdf">Download Score</a>.</p>
       </object>
@@ -2257,6 +2406,38 @@ footer.site-footer {
 
 <!-- CATEGORY FILTER, VIEWER SCRIPTS, & SYNTHESIZER -->
 <script>
+
+// Theme Management: Scholarly Paper (Default) & Candlelit Night
+function initTheme() {
+  const saved = localStorage.getItem('site-theme');
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const theme = saved || (prefersDark ? 'dark' : 'light');
+  setTheme(theme, false);
+}
+
+function setTheme(theme, save = true) {
+  const root = document.documentElement;
+  const icon = document.getElementById('theme-icon');
+  const text = document.getElementById('theme-text');
+  if (theme === 'dark') {
+    root.setAttribute('data-theme', 'dark');
+    if (icon) icon.textContent = '☀';
+    if (text) text.textContent = 'Paper';
+  } else {
+    root.removeAttribute('data-theme');
+    if (icon) icon.textContent = '☾';
+    if (text) text.textContent = 'Night';
+  }
+  if (save) localStorage.setItem('site-theme', theme);
+}
+
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme');
+  setTheme(current === 'dark' ? 'light' : 'dark', true);
+}
+
+initTheme();
+
 function filterCategory(category, btn) {
   const buttons = document.querySelectorAll('.filter-btn');
   buttons.forEach(b => b.classList.remove('active'));
@@ -2265,14 +2446,17 @@ function filterCategory(category, btn) {
   const papersSection = document.getElementById('papers');
   const musicSection = document.getElementById('music');
   const paperCards = document.querySelectorAll('#papers .paper-card');
+  const seriesBanners = document.querySelectorAll('#papers .series-banner');
 
   if (category === 'all') {
     if (papersSection) papersSection.style.display = '';
     if (musicSection) musicSection.style.display = '';
     paperCards.forEach(card => card.style.display = '');
+    seriesBanners.forEach(b => b.style.display = '');
   } else if (category === 'music') {
     if (papersSection) papersSection.style.display = 'none';
     if (musicSection) musicSection.style.display = '';
+    seriesBanners.forEach(b => b.style.display = 'none');
   } else {
     // Paper categories: astrophysics, mathematics, physics
     if (papersSection) papersSection.style.display = '';
@@ -2280,6 +2464,10 @@ function filterCategory(category, btn) {
     paperCards.forEach(card => {
       const cardCat = card.getAttribute('data-category');
       card.style.display = (cardCat === category) ? '' : 'none';
+    });
+    seriesBanners.forEach(b => {
+      const bannerCat = b.getAttribute('data-category');
+      b.style.display = (bannerCat === category) ? '' : 'none';
     });
   }
 }

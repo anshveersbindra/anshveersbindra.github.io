@@ -1651,7 +1651,7 @@ footer.site-footer {
       </div>
       <div class="brief-item">
         <span class="brief-label">Orbit Determination</span>
-        <span class="brief-val">Gauss method in Python with 4th-order $f$ &amp; $g$ Taylor series ($10^{-10}\text{ AU}$); 1,000 Monte Carlo noise trials</span>
+        <span class="brief-val">Method of Gauss in Python with 4th-order $f$ &amp; $g$ Taylor series ($10^{-10}\text{ AU}$); 1,000 Monte Carlo noise trials</span>
       </div>
       <div class="brief-item">
         <span class="brief-label">Ephemeris Agreement</span>
@@ -1682,9 +1682,9 @@ footer.site-footer {
         </div>
 
         <div class="narrative-section">
-          <h4>Gauss\'s Method and the Laplace Root Search</h4>
+          <h4>The Method of Gauss and the Laplace Root Search</h4>
           <p>
-            We acquired and reduced raw FITS charge-coupled device (CCD) images using Las Cumbres Observatory (LCO) telescopes located in Chile, Hawaii, and Texas. After performing astrometric calibration against 20 reference stars per exposure to establish plate constants, we implemented Carl Friedrich Gauss's 1801 method of initial orbit determination in Python.
+            We acquired and reduced raw FITS charge-coupled device (CCD) images using Las Cumbres Observatory (LCO) telescopes located in Chile, Hawaii, and Texas. After performing astrometric calibration against 20 reference stars per exposure to establish plate constants, we implemented the Method of Gauss (1801) for initial orbit determination in Python.
           </p>
           <p>
             Because the asteroid's heliocentric position vectors $\mathbf{r}_1, \mathbf{r}_2, \mathbf{r}_3$ lie in a single orbital plane, the middle vector can be expressed as a linear combination of the outer two: $\mathbf{r}_2 = a_1 \mathbf{r}_1 + a_3 \mathbf{r}_3$. Using Kepler's second law (conservation of areal velocity), the triangular areas ratio is iteratively refined with fourth-order Taylor series in Gaussian time intervals $\tau = k(t - t_2)$ until convergence to $10^{-10}\text{ AU}$. Random observational centroid noise was propagated through 1,000 Monte Carlo trials.
@@ -1760,7 +1760,7 @@ footer.site-footer {
             The Monte Carlo uncertainty resulting from astrometric centroid noise was tiny (for example, $\pm 0.005\text{ AU}$ in the semi-major axis)—far smaller than the gap to NASA JPL Horizons. This discrepancy demonstrates an essential physical principle: high observational precision does not guarantee accuracy.
           </p>
           <p>
-            The errors are systematic: Gauss's classical method assumes an idealized two-body Keplerian problem, neglecting planetary gravitational perturbations from Jupiter and Earth. Furthermore, because asteroid 2015 GF27 has a shallow inclination ($i \approx 10^\circ$), the out-of-plane signal is small, which mathematically amplifies the sensitivity of the node and periapsis to minor observational errors. The mean anomaly error then compounds from the slight offset in semi-major axis through Kepler's equation.
+            The errors are systematic: the classical Method of Gauss assumes an idealized two-body Keplerian problem, neglecting planetary gravitational perturbations from Jupiter and Earth. Furthermore, because asteroid 2015 GF27 has a shallow inclination ($i \approx 10^\circ$), the out-of-plane signal is small, which mathematically amplifies the sensitivity of the node and periapsis to minor observational errors. The mean anomaly error then compounds from the slight offset in semi-major axis through Kepler's equation.
           </p>
         </div>
       </div>

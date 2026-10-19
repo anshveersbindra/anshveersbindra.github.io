@@ -205,6 +205,12 @@ header.site-header {
   line-height: 1.76;
   margin: 0;
 }
+.site-bio p {
+  margin: 0 0 14px;
+}
+.site-bio p:last-child {
+  margin-bottom: 0;
+}
 
 /* Sticky Filter & Theme Navigation */
 nav.filter-nav {
@@ -417,6 +423,18 @@ article.paper-card:hover {
   gap: 8px;
 }
 
+.subject-pill {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
 .type-pill {
   font-family: var(--font-sans);
   font-size: 0.72rem;
@@ -437,9 +455,14 @@ article.paper-card:hover {
   color: var(--ink-secondary);
 }
 
-/* Category-specific card accents and type badges */
+/* Category-specific card accents, subject badges, and type pills */
 .paper-card[data-category="astrophysics"] {
   border-left: 3px solid var(--astro);
+  background: linear-gradient(180deg, var(--astro-bg) 0%, var(--surface) 90px);
+}
+.paper-card[data-category="astrophysics"] .subject-pill {
+  color: #ffffff;
+  background: var(--astro);
 }
 .paper-card[data-category="astrophysics"] .type-pill {
   color: var(--astro);
@@ -452,6 +475,11 @@ article.paper-card:hover {
 
 .paper-card[data-category="mathematics"] {
   border-left: 3px solid var(--math);
+  background: linear-gradient(180deg, var(--math-bg) 0%, var(--surface) 90px);
+}
+.paper-card[data-category="mathematics"] .subject-pill {
+  color: #ffffff;
+  background: var(--math);
 }
 .paper-card[data-category="mathematics"] .type-pill {
   color: var(--math);
@@ -464,6 +492,11 @@ article.paper-card:hover {
 
 .paper-card[data-category="physics"] {
   border-left: 3px solid var(--physics);
+  background: linear-gradient(180deg, var(--physics-bg) 0%, var(--surface) 90px);
+}
+.paper-card[data-category="physics"] .subject-pill {
+  color: #ffffff;
+  background: var(--physics);
 }
 .paper-card[data-category="physics"] .type-pill {
   color: var(--physics);
@@ -477,6 +510,12 @@ article.paper-card:hover {
 .paper-card[data-category="music"],
 #music .paper-card {
   border-left: 3px solid var(--music);
+  background: linear-gradient(180deg, var(--music-bg) 0%, var(--surface) 90px);
+}
+.paper-card[data-category="music"] .subject-pill,
+#music .paper-card .subject-pill {
+  color: #ffffff;
+  background: var(--music);
 }
 .paper-card[data-category="music"] .type-pill,
 #music .paper-card .type-pill {
@@ -487,6 +526,24 @@ article.paper-card:hover {
 .paper-card[data-category="music"] .card-discipline,
 #music .paper-card .card-discipline {
   color: var(--music);
+}
+
+[data-theme="dark"] .paper-card[data-category="astrophysics"] .subject-pill {
+  color: #0b1520;
+  background: var(--astro);
+}
+[data-theme="dark"] .paper-card[data-category="mathematics"] .subject-pill {
+  color: #081a14;
+  background: var(--math);
+}
+[data-theme="dark"] .paper-card[data-category="physics"] .subject-pill {
+  color: #200810;
+  background: var(--physics);
+}
+[data-theme="dark"] .paper-card[data-category="music"] .subject-pill,
+[data-theme="dark"] #music .paper-card .subject-pill {
+  color: #201206;
+  background: var(--music);
 }
 
 .series-pill {
@@ -1233,20 +1290,23 @@ footer.site-footer {
   border-color: var(--accent);
 }
 
-/* Smooth Fluid Animations & Motion System */
-@keyframes cardEnter {
+/* Natural Lateral "Swipe" Transition for Category Filtering */
+@keyframes cardSwipeIn {
   0% {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translate3d(24px, 0, 0);
+  }
+  60% {
+    opacity: 0.85;
   }
   100% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
 .card-enter {
-  animation: cardEnter 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: cardSwipeIn 0.32s cubic-bezier(0.18, 0.9, 0.28, 1) both;
 }
 
 @keyframes viewerSlideDown {
@@ -1322,9 +1382,17 @@ footer.site-footer {
         <svg class="orcid-icon" width="15" height="15" viewBox="0 0 256 256" fill="currentColor"><path d="M128 0C57.31 0 0 57.31 0 128s57.31 128 128 128 128-57.31 128-128S198.69 0 128 0zm-41.25 188.75H64.22V87.06h22.53v101.69zm-11.26-115.6c-7.22 0-13.06-5.85-13.06-13.07 0-7.22 5.84-13.07 13.06-13.07s13.07 5.85 13.07 13.07c-.01 7.22-5.85 13.07-13.07 13.07zm119.86 64.91c0 29.56-23.97 50.69-53.79 50.69h-38.31V87.06h39.73c29.13 0 52.37 20.94 52.37 50.99zm-23.01 0c0-18.06-13.92-30.88-31.98-30.88h-14.8v61.76h14.8c18.06 0 31.98-12.82 31.98-30.88z"/></svg> ORCID: 0009-0008-3593-1450
       </a>
     </div>
-    <p class="site-bio">
-      I am an independent researcher working across observational astronomy, theoretical astrophysics, and pure mathematics. This archive collects eight research papers and monographs alongside an original two-movement string quartet based on modular pitch structures. Every project includes open-access preprints, observational data or computational models, and an in-browser PDF reader.
-    </p>
+    <div class="site-bio">
+      <p>
+        I am a high school student from Mumbai interested in the places where mathematics, physics, and philosophy begin to overlap. Most of my work starts with a question that refuses to leave me alone: sometimes trying to understand why a discrete pattern behaves as it does, sometimes formulating a physical model for a celestial system, and sometimes wondering whether the formal language we use to describe the universe is quietly hiding something from us.
+      </p>
+      <p>
+        This archive collects what has come out of those questions across eight research manuscripts and an original two-movement chamber score. Some projects began as attempts to test or prove a small conjecture; others grew out of questions about orbital mechanics, pulsars, cosmology, or the foundational assumptions built into nonrelativistic quantum theory. The music follows the exact same instinct&mdash;deriving four-part counterpoint from modular residue classes, even when musical notation occasionally becomes less cooperative.
+      </p>
+      <p>
+        I have included open-access preprints, observational data, and in-browser readers alongside short accounts of the ideas, methods, and motivating questions behind each work. Some pieces are polished results; others are honest records of ideas that changed substantially during investigation. I have kept both, because discovering where an argument breaks down is often far more interesting than the argument that survives intact.
+      </p>
+    </div>
   </div>
 </header>
 
@@ -1356,15 +1424,16 @@ footer.site-footer {
 <section id="papers" class="content-section">
   <div class="section-header">
     <h2>Papers</h2>
-    <p>Eight research works and monographs ordered across celestial mechanics, pulsar astrophysics, dynamical systems, infinite series, theoretical physics, quantum foundations, and topology.</p>
+    <p>Eight research manuscripts and treatises across celestial mechanics, pulsar astrophysics, dynamical systems, infinite series, theoretical physics, quantum foundations, and differential topology.</p>
   </div>
 
   <!-- 1. ASTEROID ORBIT GAUSS (SSP) -->
   <article class="paper-card" data-category="astrophysics">
     <div class="card-top">
       <div class="card-badges">
+        <span class="subject-pill">Astrophysics</span>
         <span class="type-pill">Observational Report</span>
-        <span class="card-discipline">Astrophysics &middot; Astrometry</span>
+        <span class="card-discipline">Astrometry &middot; Celestial Mechanics</span>
       </div>
       <span class="card-meta">With Chloe Leung &amp; Gavin Flajole &middot; Summer Science Program (2024) &middot; MPC W85/W87</span>
     </div>
@@ -1519,9 +1588,10 @@ footer.site-footer {
   <article class="paper-card" data-category="astrophysics">
     <div class="card-top">
       <div class="card-badges">
+        <span class="subject-pill">Astrophysics</span>
         <span class="type-pill">Original Research</span>
         <span class="series-pill">Part I of II</span>
-        <span class="card-discipline">Astrophysics &middot; Fluid Inversion</span>
+        <span class="card-discipline">Electrodynamics &middot; Inverse Problems</span>
       </div>
       <span class="card-meta">With Tanish Kulkarni &middot; Preprint (2026) &middot; In Prep. for AAS</span>
     </div>
@@ -1634,9 +1704,10 @@ footer.site-footer {
   <article class="paper-card" data-category="astrophysics">
     <div class="card-top">
       <div class="card-badges">
+        <span class="subject-pill">Astrophysics</span>
         <span class="type-pill">Original Research</span>
         <span class="series-pill">Part II of II</span>
-        <span class="card-discipline">Astrophysics &middot; Galactic Demographics</span>
+        <span class="card-discipline">Statistical Demographics &middot; Population Synthesis</span>
       </div>
       <span class="card-meta">With Tanish Kulkarni &middot; Preprint (2026) &middot; In Prep. for AAS</span>
     </div>
@@ -1737,8 +1808,9 @@ footer.site-footer {
   <article class="paper-card" data-category="mathematics">
     <div class="card-top">
       <div class="card-badges">
+        <span class="subject-pill">Mathematics</span>
         <span class="type-pill">Original Research</span>
-        <span class="card-discipline">Number Theory &middot; Discrete Dynamical Systems</span>
+        <span class="card-discipline">Discrete Dynamical Systems &middot; Number Theory</span>
       </div>
       <span class="card-meta">Anshveer Bindra &middot; In Review at Integers (2026) &middot; <a class="doi-link" href="https://doi.org/10.5281/zenodo.22100467" target="_blank" rel="noopener">doi:10.5281/zenodo.22100467</a></span>
     </div>
@@ -1838,6 +1910,7 @@ footer.site-footer {
   <article class="paper-card" data-category="mathematics">
     <div class="card-top">
       <div class="card-badges">
+        <span class="subject-pill">Mathematics</span>
         <span class="type-pill">Mathematical Discovery</span>
         <span class="card-discipline">Analysis &middot; Analytic Number Theory</span>
       </div>
@@ -1847,7 +1920,7 @@ footer.site-footer {
     <h3 class="card-title">Rediscovering a Formula for &pi;</h3>
 
     <div class="card-narrative">
-      Developing an accidental handwritten calculation error into an elementary closed-form proof for a one-parameter family of central binomial coefficient series $S(a)$. By integrating under the integral sign via Euler's Beta representation, the sum evaluates without invoking generalized hypergeometric machinery (${}_2F_1$), yielding geometric convergence to $\pi$ in just 8 terms.
+      Developing an accidental handwritten calculation error into an elementary closed-form proof for a one-parameter family of central binomial coefficient series $S(a)$. By representing reciprocal central binomial coefficients via Euler's Beta integral and interchanging summation and integration via uniform convergence, the sum evaluates in closed form without invoking generalized hypergeometric machinery (${}_2F_1$), yielding geometric convergence to $\pi$ in just a few terms.
     </div>
 
     <div class="project-brief">
@@ -1856,8 +1929,8 @@ footer.site-footer {
         <span class="brief-val">Prove the unexpected identity $\sum_{n \ge 0} \frac{2^n}{\binom{2n+1}{n+1}} = 1 + \frac{\pi}{2}$ without invoking generalized hypergeometric machinery.</span>
       </div>
       <div class="brief-item">
-        <span class="brief-label">Beta Integration</span>
-        <span class="brief-val">Rewrote reciprocal central binomials via Euler's Beta integral; summed geometric series under the integral sign and evaluated by completing the square.</span>
+        <span class="brief-label">Beta Representation</span>
+        <span class="brief-val">Rewrote reciprocal central binomials via Euler's Beta integral; interchanged sum and integral by uniform convergence on $[0,1]$, evaluating the resulting algebraic integral by completing the square.</span>
       </div>
       <div class="brief-item">
         <span class="brief-label">Exact Harmonic Values</span>
@@ -1894,7 +1967,7 @@ footer.site-footer {
           <p>
             We construct a self-contained derivation for the entire one-parameter family $S(a) = \sum_{n \ge 0} \frac{a^n}{\binom{2n+1}{n+1}}$ valid for all real $|a| < 4$. Rather than invoking heavy hypergeometric identities, the proof applies Euler's Beta integral identity to rewrite the reciprocal central binomial coefficient:
             $$\frac{1}{\binom{2n+1}{n+1}} = (n+1)\int_0^1 t^n(1-t)^n\,dt$$
-            Summing the series under the integral sign converts the sum into a geometric series, yielding $\int_0^1 \frac{dt}{(1 - at(1-t))^2}$, which is evaluated directly by completing the square and applying elementary substitutions.
+            Because $t(1-t) \le 1/4$ on $[0,1]$, the power series converges uniformly for $|a| < 4$. Interchanging summation and integration converts the sum into $\int_0^1 \frac{dt}{(1 - at(1-t))^2}$, which is evaluated directly by completing the square and applying elementary substitutions.
           </p>
         </div>
 
@@ -1938,10 +2011,11 @@ footer.site-footer {
   <article class="paper-card" data-category="physics">
     <div class="card-top">
       <div class="card-badges">
-        <span class="type-pill">Expository Monograph</span>
-        <span class="card-discipline">Theoretical Physics &middot; Curved Spacetime</span>
+        <span class="subject-pill">Theoretical Physics</span>
+        <span class="type-pill">Expository Treatise</span>
+        <span class="card-discipline">Curved Spacetime &middot; Horizon Thermodynamics</span>
       </div>
-      <span class="card-meta">Anshveer Bindra &middot; Preprint (2026) &middot; <a class="doi-link" href="https://doi.org/10.5281/zenodo.20476560" target="_blank" rel="noopener">doi:10.5281/zenodo.20476560</a></span>
+      <span class="card-meta">Anshveer Bindra &middot; 112 pp. &middot; Preprint (2026) &middot; <a class="doi-link" href="https://doi.org/10.5281/zenodo.20476560" target="_blank" rel="noopener">doi:10.5281/zenodo.20476560</a></span>
     </div>
 
     <h3 class="card-title">Quantum Field Theory in de Sitter Space: Foundations, Challenges, and Implications for Physics</h3>
@@ -2016,8 +2090,9 @@ footer.site-footer {
   <article class="paper-card" data-category="physics">
     <div class="card-top">
       <div class="card-badges">
-        <span class="type-pill">Expository Monograph</span>
-        <span class="card-discipline">Theoretical Physics &middot; Quantum Foundations</span>
+        <span class="subject-pill">Theoretical Physics</span>
+        <span class="type-pill">Expository Treatise</span>
+        <span class="card-discipline">Quantum Foundations &middot; Operator Theory</span>
       </div>
       <span class="card-meta">10th Grade Project &middot; 183 pp. &middot; Published Monograph (2024) &middot; <a class="doi-link" href="https://doi.org/10.5281/zenodo.23419188" target="_blank" rel="noopener">doi:10.5281/zenodo.23419188</a></span>
     </div>
@@ -2140,8 +2215,9 @@ footer.site-footer {
   <article class="paper-card" data-category="mathematics">
     <div class="card-top">
       <div class="card-badges">
+        <span class="subject-pill">Mathematics</span>
         <span class="type-pill">Expository Treatise</span>
-        <span class="card-discipline">Pure Mathematics &middot; Differential Topology</span>
+        <span class="card-discipline">Differential Topology &middot; Exterior Calculus</span>
       </div>
       <span class="card-meta">Independent Expository Work &middot; 137 pp. &middot; <span class="card-venue">Preprint (2025)</span> &middot; <a class="doi-link" href="https://doi.org/10.22541/au.175683844.48037590/v1" target="_blank" rel="noopener">doi:10.22541/au.175683844.48037590/v1</a></span>
     </div>
@@ -2239,8 +2315,9 @@ footer.site-footer {
   <article class="paper-card" data-category="music">
     <div class="card-top">
       <div class="card-badges">
+        <span class="subject-pill">Music</span>
         <span class="type-pill">Chamber Score &amp; Audio</span>
-        <span class="card-discipline">Chamber Music &middot; Composition</span>
+        <span class="card-discipline">Chamber Music &middot; Modular Serialism</span>
       </div>
       <span class="card-meta">Solo Composition &middot; <span class="card-venue">Score &amp; Recording (2025)</span> &middot; 2 Movements &middot; Two Violins, Viola, Violoncello</span>
     </div>
@@ -2604,8 +2681,9 @@ function filterCategory(category, btn) {
 
   const mainWrap = document.querySelector('main.wrap');
   if (mainWrap) {
-    mainWrap.style.transition = 'opacity 0.12s ease';
-    mainWrap.style.opacity = '0.5';
+    mainWrap.style.transition = 'opacity 0.1s ease, transform 0.1s cubic-bezier(0.2, 0.8, 0.2, 1)';
+    mainWrap.style.opacity = '0.35';
+    mainWrap.style.transform = 'translate3d(-14px, 0, 0)';
   }
 
   setTimeout(() => {
@@ -2620,7 +2698,7 @@ function filterCategory(category, btn) {
       el.style.display = '';
       el.classList.remove('card-enter');
       void el.offsetWidth; // trigger reflow for smooth animation restart
-      el.style.animationDelay = (delayIdx * 45) + 'ms';
+      el.style.animationDelay = (delayIdx * 40) + 'ms';
       el.classList.add('card-enter');
       delayIdx++;
     }
@@ -2638,7 +2716,7 @@ function filterCategory(category, btn) {
         if (musicCard) {
           musicCard.classList.remove('card-enter');
           void musicCard.offsetWidth;
-          musicCard.style.animationDelay = '360ms';
+          musicCard.style.animationDelay = '320ms';
           musicCard.classList.add('card-enter');
         }
       }
@@ -2680,9 +2758,10 @@ function filterCategory(category, btn) {
     }
 
     if (mainWrap) {
+      mainWrap.style.transform = 'translate3d(0, 0, 0)';
       mainWrap.style.opacity = '1';
     }
-  }, 90);
+  }, 95);
 }
 
 function toggleViewer(id) {

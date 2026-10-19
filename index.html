@@ -2131,7 +2131,7 @@ footer.site-footer {
       </audio>
     </div>
 
-        <!-- Interactive Tone & Sequence Generator -->
+            <!-- Interactive Tone & Sequence Generator -->
     <div class="interactive-synth">
       <div class="synth-header">Interactive Sound Lab: Generate and Hear the Interval Classes</div>
       <div class="synth-controls">
@@ -2148,14 +2148,13 @@ footer.site-footer {
             <option value="11">11 (Chromatic pitch space)</option>
           </select>
         </label>
-        <button class="synth-btn" id="play" type="button">Generate Next Phrase &amp; Play &rarr;</button>
-        <button class="synth-btn-secondary" id="reset-seq" type="button">Reset to Phrase 1</button>
+        <button class="synth-btn" id="play" type="button">Generate &amp; Play &rarr;</button>
       </div>
       
       <div id="out" class="synth-output"></div>
       
       <div class="synth-agency-note">
-        <strong>How to listen:</strong> Each generation advances into the next musical phrase of the sequence, realizing different contrapuntal roles (exposition, ascending development, complementary reflection via Axiom II, multi-octave expansion via Axiom III, and cadential resolution to E minor). Synthesized with the Web Audio API using harmonic acoustic string modeling.
+        <strong>How to listen:</strong> Starting from E4 (tonic), each generation creates a distinct, tonally grounded contrapuntal realization guided by modal voice-leading rules over the modular equivalence class $\mathcal{E}(a) = \{\pm a, \pm (m-a)\}$. Synthesized with the Web Audio API using harmonic acoustic string modeling.
       </div>
     </div>
 
@@ -2495,40 +2494,20 @@ function toggleViewer(id) {
   }
 }
 
-// Web Audio API Interactive Sound Lab & Sequence Synthesizer
+// Web Audio API Interactive Sound Lab: Rule-Guided Contrapuntal Generator
 (function(){
-  var A = [0, 2, 3, 5, 7, 8, 10]; // E minor scale degrees relative to C
+  var A = [0, 2, 3, 5, 7, 8, 10]; // E natural minor scale degrees relative to E:
+  // E=0 (MIDI 64), F#=2 (66), G=3 (67), A=5 (69), B=7 (71), C=8 (72), D=10 (74)
   var NM = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
 
-  function generateFullSequence(type, count) {
-    var r = [];
+  function getSeqTerms(type) {
     if (type === 'fib') {
-      var a = 1, b = 1;
-      for (var i = 0; i < count; i++) {
-        r.push(a);
-        var c = a + b;
-        a = b;
-        b = c;
-      }
+      return [1, 1, 2, 3, 5, 8, 13, 21];
     } else if (type === 'prime') {
-      var primes = [];
-      var n = 2;
-      while (primes.length < count) {
-        var isP = true;
-        for (var p = 0; p < primes.length; p++) {
-          if (primes[p] * primes[p] > n) break;
-          if (n % primes[p] === 0) { isP = false; break; }
-        }
-        if (isP) primes.push(n);
-        n++;
-      }
-      r = primes;
+      return [2, 3, 5, 7, 11, 13, 17, 19];
     } else { // sq
-      for (var i = 1; i <= count; i++) {
-        r.push(i * i);
-      }
+      return [1, 4, 9, 16, 25, 36, 49, 64];
     }
-    return r;
   }
 
   function midi(pos, m) {
@@ -2597,45 +2576,23 @@ function toggleViewer(id) {
     });
   }
 
-  // Generation Archetypes
-  var PHRASE_ARCHETYPES = [
-    {
-      name: "Phrase 1: Exposition (Tonic Foundation)",
-      desc: "Terms 1–8 · Centered around tonic E4 with balanced melodic contour.",
-      startPos: 0,
-      mode: "balanced"
-    },
-    {
-      name: "Phrase 2: Development & Ascending Counterpoint",
-      desc: "Terms 5–12 · Ascends into the upper string register on dominant B4.",
-      startPos: 4, // B4
-      mode: "ascending"
-    },
-    {
-      name: "Phrase 3: Complementary Reflection (Axiom II)",
-      desc: "Terms 9–16 · Reflects downward from high E5 via complementary class -(m-a).",
-      startPos: 7, // E5
-      mode: "complementary"
-    },
-    {
-      name: "Phrase 4: Multi-Octave Range Expansion (Axiom III)",
-      desc: "Terms 13–20 · Applies octave shift displacements (a+7) across cello and violin compass.",
-      startPos: -3, // B3
-      mode: "octave_shift"
-    },
-    {
-      name: "Phrase 5: Cadential Resolution (Measure 27 Cadence)",
-      desc: "Terms 17–24 · Leads from subdominant motion into authentic resolution on E minor.",
-      startPos: 5, // C5
-      mode: "cadence"
+  function isTriad(pos, m) {
+    if (m === 7) {
+      var d = ((pos % 7) + 7) % 7;
+      return (d === 0 || d === 2 || d === 4); // E, G, B
     }
-  ];
+    var semi = ((pos % 12) + 12) % 12;
+    return (semi === 0 || semi === 3 || semi === 7); // E, G, B
+  }
 
-  var phraseIndex = 0;
-  var currentSeqType = 'fib';
-  var currentMod = 7;
+  function isTonic(pos, m) {
+    if (m === 7) {
+      return ((pos % 7) + 7) % 7 === 0; // E
+    }
+    return ((pos % 12) + 12) % 12 === 0; // E
+  }
 
-  function runGeneration(advance) {
+  function runGeneration() {
     var seqSelect = document.getElementById('seq');
     var modSelect = document.getElementById('mod');
     if (!seqSelect || !modSelect) return;
@@ -2643,95 +2600,129 @@ function toggleViewer(id) {
     var seqType = seqSelect.value;
     var m = +modSelect.value;
 
-    if (seqType !== currentSeqType || m !== currentMod) {
-      phraseIndex = 0;
-      currentSeqType = seqType;
-      currentMod = m;
-    } else if (advance) {
-      phraseIndex++;
-    }
-
-    var archetype = PHRASE_ARCHETYPES[phraseIndex % PHRASE_ARCHETYPES.length];
-    var cycleNum = Math.floor(phraseIndex / PHRASE_ARCHETYPES.length) + 1;
-    var phraseTitle = archetype.name + (cycleNum > 1 ? " (Variation " + cycleNum + ")" : "");
-
-    // Window of 8 terms: offset by phraseIndex * 4 terms
-    var termOffset = (phraseIndex * 4);
-    var fullTerms = generateFullSequence(seqType, termOffset + 12);
-    var terms = fullTerms.slice(termOffset, termOffset + 8);
-
-    var pos = archetype.startPos;
+    var terms = getSeqTerms(seqType);
+    var pos = 0; // start on tonic E4
+    var prevLeap = 0;
     var notes = [midi(pos, m)];
     var residues = [];
     var realizedMoves = [];
 
-    terms.forEach(function(v, idx) {
-      var a = ((v % m) + m) % m;
+    terms.forEach(function(x, idx) {
+      var a = ((x % m) + m) % m;
       var c = (m - a) % m;
-      var step = a;
-      var moveLabel = '+' + a;
+      residues.push(a);
 
-      if (archetype.mode === "ascending") {
-        if (pos > 8) {
-          step = (a !== 0) ? -c : 0;
-          moveLabel = (step === 0) ? '0' : '-' + c;
-        } else {
-          step = a;
-          moveLabel = (a === 0) ? '0' : '+' + a;
-        }
-      } else if (archetype.mode === "complementary") {
-        if (pos < -4) {
-          step = a;
-          moveLabel = (a === 0) ? '0' : '+' + a;
-        } else {
-          step = (c !== 0) ? -c : 0;
-          moveLabel = (c === 0) ? '0' : '-' + c;
-        }
-      } else if (archetype.mode === "octave_shift") {
-        if (idx % 2 === 1 && a > 0) {
-          step = a + 7;
-          moveLabel = '+' + (a + 7) + ' (oct)';
-        } else {
-          step = (a > m/2) ? -c : a;
-          moveLabel = (step < 0) ? '-' + Math.abs(step) : (step === 0 ? '0' : '+' + step);
-        }
-      } else if (archetype.mode === "cadence") {
-        if (idx === 6) {
-          step = 6 - pos; // Land on leading tone D (scale step 6)
-          moveLabel = (step >= 0 ? '+' : '') + step + ' (prep)';
-        } else if (idx === 7) {
-          step = 7 - pos; // Resolve to tonic E5 (scale step 7)
-          moveLabel = (step >= 0 ? '+' : '') + step + ' (cadence)';
-        } else {
-          step = (a > m/2) ? -c : a;
-          moveLabel = (step < 0) ? '-' + Math.abs(step) : (step === 0 ? '0' : '+' + step);
-        }
+      // Collect candidate moves from equivalence class: {+a, -a, +c, -c} and octave variants
+      var rawOptions = [];
+      if (a === 0) {
+        rawOptions.push([0, "0"]);
+        rawOptions.push([7, "+7 (oct)"]);
+        rawOptions.push([-7, "-7 (oct)"]);
       } else {
-        if (pos > 5) {
-          step = (a !== 0) ? -a : 0;
-          moveLabel = (step === 0) ? '0' : '-' + Math.abs(step);
-        } else if (pos < -5) {
-          step = a;
-          moveLabel = (step === 0) ? '0' : '+' + step;
-        } else {
-          if (a > m / 2) {
-            step = -c;
-            moveLabel = (c === 0) ? '0' : '-' + c;
-          } else {
-            step = a;
-            moveLabel = (a === 0) ? '0' : '+' + a;
-          }
+        rawOptions.push([a, "+" + a]);
+        rawOptions.push([-a, "-" + a]);
+        if (c !== a && c !== 0) {
+          rawOptions.push([c, "+" + c]);
+          rawOptions.push([-c, "-" + c]);
+        }
+        if (a <= 3) {
+          rawOptions.push([a + 7, "+" + (a + 7) + " (oct)"]);
+          rawOptions.push([-a - 7, "-" + (a + 7) + " (oct)"]);
         }
       }
 
-      residues.push(a);
-      realizedMoves.push(moveLabel);
-      pos += step;
+      // Deduplicate options
+      var seen = {};
+      var options = [];
+      rawOptions.forEach(function(opt) {
+        if (!seen[opt[0]]) {
+          seen[opt[0]] = true;
+          options.push(opt);
+        }
+      });
+
+      // Score options via contrapuntal voice-leading rules
+      var scores = options.map(function(opt) {
+        var step = opt[0];
+        var candPos = pos + step;
+        var score = 0.0;
+
+        // 1. Compass / Range constraint: sweet singing range between E3 (pos -7) and G5 (pos +9)
+        if (candPos < -7 || candPos > 9) {
+          score -= 12.0;
+        } else if (candPos < -4 || candPos > 7) {
+          score -= 2.5;
+        } else {
+          score += 2.0; // center bonus
+        }
+
+        // 2. Contrary motion & balance after leaps (Fux rule)
+        if (Math.abs(prevLeap) >= 3) {
+          if ((prevLeap > 0 && step < 0) || (prevLeap < 0 && step > 0)) {
+            score += 3.5; // contrary motion recovery
+            if (Math.abs(step) <= 2) score += 2.0; // stepwise recovery
+          } else if ((prevLeap > 0 && step > 0) || (prevLeap < 0 && step < 0)) {
+            score -= 3.0; // avoid galloping in same direction
+          }
+        }
+
+        // 3. Step-wise preference
+        if (Math.abs(step) === 1 || Math.abs(step) === 2) {
+          score += 2.2;
+        } else if (Math.abs(step) === 3 || Math.abs(step) === 4) {
+          score += 1.2;
+        } else if (Math.abs(step) >= 6) {
+          score -= 2.0;
+        }
+
+        // 4. Tonal grounding in E minor (E, G, B)
+        if (isTriad(candPos, m)) {
+          score += 2.5;
+          if (isTonic(candPos, m)) score += 1.8;
+        }
+
+        // 5. Cadential resolution on final steps
+        if (idx === terms.length - 1) {
+          if (isTonic(candPos, m)) {
+            score += 7.0; // strong pull to tonic E on arrival
+          } else if (isTriad(candPos, m)) {
+            score += 3.5;
+          }
+        } else if (idx === terms.length - 2) {
+          // Penultimate step: leading tone or subdominant prep
+          var d = ((candPos % 7) + 7) % 7;
+          if (d === 1 || d === 5 || d === 6) score += 2.0;
+        }
+
+        return score;
+      });
+
+      // Softmax sampling with temperature T = 0.8
+      var maxScore = Math.max.apply(null, scores);
+      var expScores = scores.map(function(s) { return Math.exp((s - maxScore) / 0.8); });
+      var sumExp = expScores.reduce(function(acc, val) { return acc + val; }, 0);
+      var probs = expScores.map(function(e) { return e / sumExp; });
+
+      var rand = Math.random();
+      var cum = 0;
+      var chosenIdx = 0;
+      for (var k = 0; k < probs.length; k++) {
+        cum += probs[k];
+        if (rand <= cum) {
+          chosenIdx = k;
+          break;
+        }
+      }
+
+      var chosen = options[chosenIdx];
+      pos += chosen[0];
+      prevLeap = chosen[0];
+      realizedMoves.push(chosen[1]);
       notes.push(midi(pos, m));
     });
 
+    // Render table
     var rows = '<tr><th>Step</th>' + terms.map(function(_, i) { return '<td>' + (i + 1) + '</td>'; }).join('') + '</tr>';
-    rows += '<tr><th>Index (<em>n</em>)</th>' + terms.map(function(_, i) { return '<td><em>n</em>=' + (termOffset + i + 1) + '</td>'; }).join('') + '</tr>';
     rows += '<tr><th>Sequence Term (<em>x<sub>n</sub></em>)</th>' + terms.map(function(v) { return '<td>' + v + '</td>'; }).join('') + '</tr>';
     rows += '<tr><th>Residue (mod ' + m + ')</th>' + residues.map(function(v) { return '<td>' + v + '</td>'; }).join('') + '</tr>';
     rows += '<tr><th>Realized Leap</th>' + realizedMoves.map(function(v) { return '<td style="color:var(--accent);font-weight:600;">' + v + '</td>'; }).join('') + '</tr>';
@@ -2741,8 +2732,8 @@ function toggleViewer(id) {
     rows += '<tr class="pitch-row"><th>Resulting Pitch</th>' + pitchCells + '</tr>';
 
     var pills = noteNames.map(function(name, idx) {
-      var isTonic = (name === 'E3' || name === 'E4' || name === 'E5');
-      var pillHtml = '<span class="prog-pill' + (isTonic ? ' tonic' : '') + '">' + name + '</span>';
+      var isTonicNote = (name === 'E3' || name === 'E4' || name === 'E5');
+      var pillHtml = '<span class="prog-pill' + (isTonicNote ? ' tonic' : '') + '">' + name + '</span>';
       if (idx === 0) return pillHtml;
       return '<span class="prog-arrow">&rarr;</span>' + pillHtml;
     }).join('');
@@ -2750,13 +2741,9 @@ function toggleViewer(id) {
     var out = document.getElementById('out');
     if (out) {
       out.innerHTML =
-        '<div class="synth-phrase-banner">' +
-          '<span class="synth-phrase-title">' + phraseTitle + '</span>' +
-          '<span class="synth-phrase-meta">' + archetype.desc + '</span>' +
-        '</div>' +
         '<div style="overflow-x:auto;"><table class="synth-table">' + rows + '</table></div>' +
         '<div class="synth-progression">' +
-          '<span class="synth-progression-label">Audible Realization:</span>' +
+          '<span class="synth-progression-label">Realized Progression:</span>' +
           pills +
         '</div>';
     }
@@ -2766,30 +2753,7 @@ function toggleViewer(id) {
 
   var btn = document.getElementById('play');
   if (btn) {
-    btn.onclick = function() { runGeneration(true); };
-  }
-
-  var resetBtn = document.getElementById('reset-seq');
-  if (resetBtn) {
-    resetBtn.onclick = function() {
-      phraseIndex = 0;
-      runGeneration(false);
-    };
-  }
-
-  var seqSelect = document.getElementById('seq');
-  if (seqSelect) {
-    seqSelect.onchange = function() {
-      phraseIndex = 0;
-      runGeneration(false);
-    };
-  }
-  var modSelect = document.getElementById('mod');
-  if (modSelect) {
-    modSelect.onchange = function() {
-      phraseIndex = 0;
-      runGeneration(false);
-    };
+    btn.onclick = function() { runGeneration(); };
   }
 })();
 </script>

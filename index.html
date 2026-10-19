@@ -458,7 +458,6 @@ article.paper-card:hover {
 /* Category-specific card accents, subject badges, and type pills */
 .paper-card[data-category="astrophysics"] {
   border-left: 3px solid var(--astro);
-  background: linear-gradient(180deg, var(--astro-bg) 0%, var(--surface) 90px);
 }
 .paper-card[data-category="astrophysics"] .subject-pill {
   color: #ffffff;
@@ -475,7 +474,6 @@ article.paper-card:hover {
 
 .paper-card[data-category="mathematics"] {
   border-left: 3px solid var(--math);
-  background: linear-gradient(180deg, var(--math-bg) 0%, var(--surface) 90px);
 }
 .paper-card[data-category="mathematics"] .subject-pill {
   color: #ffffff;
@@ -492,7 +490,6 @@ article.paper-card:hover {
 
 .paper-card[data-category="physics"] {
   border-left: 3px solid var(--physics);
-  background: linear-gradient(180deg, var(--physics-bg) 0%, var(--surface) 90px);
 }
 .paper-card[data-category="physics"] .subject-pill {
   color: #ffffff;
@@ -510,7 +507,6 @@ article.paper-card:hover {
 .paper-card[data-category="music"],
 #music .paper-card {
   border-left: 3px solid var(--music);
-  background: linear-gradient(180deg, var(--music-bg) 0%, var(--surface) 90px);
 }
 .paper-card[data-category="music"] .subject-pill,
 #music .paper-card .subject-pill {
@@ -672,27 +668,32 @@ h3.card-title {
   margin-bottom: 0;
 }
 
-/* Syllabus Outline Trails */
-.monograph-syllabus, .exposition-syllabus {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 6px 10px;
-  font-size: 0.82rem;
-  color: var(--ink-muted);
-  background: transparent;
-  border: none;
-  border-left: 2px solid var(--border-hover);
-  border-radius: 0;
-  padding: 4px 0 4px 12px;
-  margin: 12px 0 16px;
+/* KaTeX Typography & Responsive Math Protection */
+.katex {
+  white-space: nowrap;
+  font-size: 1.01em;
+  text-rendering: auto;
 }
-.syllabus-label {
-  font-weight: 600;
-  color: var(--accent);
+
+.katex-display {
+  display: block;
+  margin: 0.8em 0;
+  text-align: center;
+  overflow: visible;
+  max-width: 100%;
 }
-.syllabus-sep {
-  color: var(--ink-faint);
+
+.katex-display > .katex {
+  white-space: normal;
+  display: block;
+  text-align: center;
+  max-width: 100%;
+}
+
+.katex-display > .katex > .katex-html {
+  white-space: normal;
+  text-align: center;
+  max-width: 100%;
 }
 
 /* Action Links: Prominent Viewer & Scholarly Links */
@@ -872,11 +873,13 @@ details.deepdive-drawer[open] .deepdive-content {
   margin-bottom: 6px;
 }
 .equation-display {
-  overflow-x: auto;
-  font-size: 1.12rem;
-  padding: 6px 0;
+  font-size: 1.05rem;
+  padding: 8px 0;
   text-align: center;
   color: var(--ink);
+  line-height: 1.85;
+  overflow: visible;
+  max-width: 100%;
 }
 .equation-explanation {
   font-size: 0.84rem;
@@ -1345,6 +1348,10 @@ footer.site-footer {
     grid-template-columns: 1fr;
     gap: 12px;
   }
+  .equation-display {
+    font-size: 0.94rem;
+    line-height: 1.7;
+  }
 }
 
 @media (max-width: 640px) {
@@ -1359,6 +1366,7 @@ footer.site-footer {
   article.paper-card { padding: 26px 20px; margin-bottom: 20px; border-radius: 6px; }
   h3.card-title { font-size: 1.38rem; line-height: 1.3; }
   .card-dek { font-size: 1.02rem; }
+  .equation-display { font-size: 0.85rem; line-height: 1.6; }
   .action-row { gap: 8px; padding-top: 14px; margin-top: 14px; }
   .action-btn-viewer, .action-btn-secondary { padding: 6px 11px; font-size: 0.82rem; }
   .inline-viewer object { height: 380px; }
@@ -1494,7 +1502,8 @@ footer.site-footer {
         <div class="equation-box">
           <div class="equation-label">Iterative 4th-Order Gauss $f$ and $g$ Series</div>
           <div class="equation-display">
-            $$\mathbf{r}(\tau) = f(\tau)\,\mathbf{r}_2 + g(\tau)\,\dot{\mathbf{r}}_2, \quad f(\tau) = 1 - \frac{\mu}{2r_2^3}\tau^2 + \dots, \quad g(\tau) = \tau - \frac{\mu}{6r_2^3}\tau^3 + \dots$$
+            $$\mathbf{r}(\tau) = f(\tau)\,\mathbf{r}_2 + g(\tau)\,\dot{\mathbf{r}}_2$$
+            $$f(\tau) = 1 - \frac{\mu}{2r_2^3}\tau^2 + \dots, \qquad g(\tau) = \tau - \frac{\mu}{6r_2^3}\tau^3 + \dots$$
           </div>
           <div class="equation-explanation">
             <strong>Symbol Key:</strong> $\tau = k(t - t_2)$ is the Gaussian time interval ($k$ is the Gaussian gravitational constant), $\mu = 1$ in canonical solar units, and $r_2 = \|\mathbf{r}_2\|$ is the asteroid's heliocentric distance at the second observation.
@@ -1650,7 +1659,8 @@ footer.site-footer {
           <div class="equation-box">
             <div class="equation-label">Weak-Form Phase-Space Continuity Inversion</div>
             <div class="equation-display">
-              $$\nabla \cdot \big(\mathbf{v}\,f\big) + \Lambda f = S \quad \implies \quad \iint \Big[ \mathbf{v}f \cdot \nabla\phi - \Lambda f \phi + S\phi \Big] \,d(\log P)\,d(\log B) = 0$$
+              $$\nabla \cdot (\mathbf{v}f) + \Lambda f = S$$
+              $$\iint \Big[ \mathbf{v}f \cdot \nabla\phi - \Lambda f \phi + S\phi \Big] \,d(\log P)\,d(\log B) = 0$$
             </div>
             <div class="equation-explanation">
               <strong>Symbol Key:</strong> $\mathbf{v} = (\dot{P}, \dot{B})$ is the deterministic kinematic drift vector, $f(P,B)$ is the true phase-space density, $\Lambda$ is the death/luminosity cutoff rate, $S$ is the birth distribution to be recovered, and $\phi$ is an infinitely differentiable test function.
@@ -1768,7 +1778,8 @@ footer.site-footer {
         <div class="equation-box">
           <div class="equation-label">Steady-State Demographic Transport</div>
           <div class="equation-display">
-            $$\partial_x\big(v_x f\big) + \partial_y\big(v_y f\big) + \Lambda f = S, \quad v_x \propto B^2 P^{-(n-1)}, \quad \tau_{\rm res} \propto \frac{P^2}{B^2}$$
+            $$\partial_x(v_x f) + \partial_y(v_y f) + \Lambda f = S$$
+            $$v_x \propto B^2 P^{-(n-1)}, \qquad \tau_{\rm res} \propto \frac{P^2}{B^2}$$
           </div>
           <div class="equation-explanation">
             <strong>Symbol Key:</strong> $x = \log P$, $y = \log B$, $v_x$ is magnetic dipole braking drift, $v_y$ is crustal ohmic decay, and $\tau_{\rm res}$ is the residence timescale per decade of spin period.
@@ -1866,7 +1877,8 @@ footer.site-footer {
           <div class="equation-box">
             <div class="equation-label">Single-Generator Theorem &amp; Attractor Rank</div>
             <div class="equation-display">
-              $$c = (B - 1)B^{t-1} \pmod{B^t - 1}, \qquad \text{Total Attractor Rank} = \prod_{i} \frac{N_2(B, t_i) + 1}{2}$$
+              $$c = (B - 1)B^{t-1} \pmod{B^t - 1}$$
+              $$\text{Total Attractor Rank} = \prod_{i} \frac{N_2(B, t_i) + 1}{2}$$
             </div>
             <div class="equation-explanation">
               <strong>The Connection:</strong> Factoring $B^t - 1 = N_1 N_2$, where prime factors of $N_1$ divide $B-1$ and $\gcd(N_2, B-1) = 1$. For two-cycles ($t = 2$), the rank reduces to $(\mathrm{odd}(B+1) + 1)/2$, which corresponds to the integer sequence OEIS A003602.
@@ -1974,7 +1986,8 @@ footer.site-footer {
         <div class="equation-box">
           <div class="equation-label">Closed-Form Evaluation for Real $|a| < 4$</div>
           <div class="equation-display">
-            $$S(a) = \sum_{n=0}^\infty \frac{a^n}{\binom{2n+1}{n+1}} = \frac{2}{4-a} + \frac{8}{(4-a)^{3/2}\sqrt{a}}\,\arctan\sqrt{\frac{a}{4-a}}$$
+            $$S(a) = \sum_{n=0}^\infty \frac{a^n}{\binom{2n+1}{n+1}}$$
+            $$= \frac{2}{4-a} + \frac{8}{(4-a)^{3/2}\sqrt{a}}\,\arctan\sqrt{\frac{a}{4-a}}$$
           </div>
           <div class="equation-explanation">
             <strong>Special Exact Values:</strong> $S(1) = \frac{2}{3} + \frac{4\pi}{9\sqrt{3}}$, $S(2) = 1 + \frac{\pi}{2}$, and $S(3) = 2 + \frac{8\pi}{3\sqrt{3}}$.
@@ -2060,7 +2073,8 @@ footer.site-footer {
         <div class="equation-box">
           <div class="equation-label">Gibbons-Hawking Temperature &amp; Ambient Hyperboloid</div>
           <div class="equation-display">
-            $$T_{\rm dS} = \frac{H}{2\pi}, \qquad -X_0^2 + \sum_{i=1}^4 X_i^2 = H^{-2}, \qquad \mathcal{P}_\phi = \frac{H^2}{4\pi^2}$$
+            $$T_{\rm dS} = \frac{H}{2\pi}, \qquad \mathcal{P}_\phi = \frac{H^2}{4\pi^2}$$
+            $$-X_0^2 + \sum_{i=1}^4 X_i^2 = H^{-2}$$
           </div>
           <div class="equation-explanation">
             <strong>Symbol Key:</strong> $H$ is the Hubble expansion parameter, $T_{\rm dS}$ is the horizon temperature in natural units ($\hbar = c = k_B = 1$), and $\mathcal{P}_\phi$ is the primordial scalar perturbation power spectrum that seeds cosmological structure.
@@ -2103,22 +2117,7 @@ footer.site-footer {
       A 183-page mathematical monograph developing nonrelativistic quantum theory from first principles, authored as an extended 10th-grade personal project. Progressing from Lagrangian action principles and infinite-dimensional Hilbert space spectral theory to measurement postulates, 1D bound-state non-degeneracy, and the classical correspondence limit via Ehrenfest's theorem.
     </div>
 
-    <div class="monograph-syllabus">
-      <span class="syllabus-label">Monograph Structure (183 pp.):</span>
-      <span class="syllabus-step">Ch. 1 Classical Foundation</span>
-      <span class="syllabus-sep">&rarr;</span>
-      <span class="syllabus-step">Ch. 2 Linear Algebra &amp; Dirac Notation</span>
-      <span class="syllabus-sep">&rarr;</span>
-      <span class="syllabus-step">Ch. 3 Crisis of Classical Physics</span>
-      <span class="syllabus-sep">&rarr;</span>
-      <span class="syllabus-step">Ch. 4 The Postulates</span>
-      <span class="syllabus-sep">&rarr;</span>
-      <span class="syllabus-step">Ch. 5 1D Quantum Systems</span>
-      <span class="syllabus-sep">&rarr;</span>
-      <span class="syllabus-step">Ch. 6 The Classical Limit</span>
-      <span class="syllabus-sep">&rarr;</span>
-      <span class="syllabus-step">Ch. 7 Next Steps</span>
-    </div>
+
 
     <div class="action-row">
       <button class="action-btn-viewer" onclick="toggleViewer('viewer-quantum')">
@@ -2228,18 +2227,7 @@ footer.site-footer {
       A systematic 137-page pedagogical bridge between combinatorial algebraic topology and smooth differential geometry. Developing singular homology, differential forms, Stokes' Theorem, and the Mayer&ndash;Vietoris sequence, the exposition culminates in a complete, self-contained proof of de Rham's duality theorem, establishing that $\int: H^k_{\text{dR}}(M) \to \operatorname{Hom}(H_k(M), \mathbb{R})$ is an isomorphism of finite-dimensional vector spaces.
     </div>
 
-    <div class="exposition-syllabus">
-      <span class="syllabus-label">Exposition Structure:</span>
-      <span class="syllabus-step">&sect;1 Singular Homology</span>
-      <span class="syllabus-sep">&rarr;</span>
-      <span class="syllabus-step">&sect;2 Smooth Manifolds</span>
-      <span class="syllabus-sep">&rarr;</span>
-      <span class="syllabus-step">&sect;3 Differential Forms</span>
-      <span class="syllabus-sep">&rarr;</span>
-      <span class="syllabus-step">&sect;4 de Rham Cohomology</span>
-      <span class="syllabus-sep">&rarr;</span>
-      <span class="syllabus-step">&sect;5 de Rham's Theorem</span>
-    </div>
+
 
     <div class="action-row">
       <button class="action-btn-viewer" onclick="toggleViewer('viewer-topology')">
@@ -2278,7 +2266,8 @@ footer.site-footer {
         <div class="equation-box">
           <div class="equation-label">De Rham Isomorphism &amp; Generalized Stokes' Theorem</div>
           <div class="equation-display">
-            $$H^k_{\mathrm{dR}}(M) \;\cong\; H^k(M; \mathbb{R}) \qquad \Longleftrightarrow \qquad \int_M d\omega = \int_{\partial M} \omega$$
+            $$H^k_{\mathrm{dR}}(M) \;\cong\; H^k(M; \mathbb{R})$$
+            $$\int_M d\omega = \int_{\partial M} \omega$$
           </div>
           <div class="equation-explanation">
             <strong>The Deep Insight:</strong> The vector space of closed forms modulo exact forms ($H^k_{\mathrm{dR}}(M)$) is canonically isomorphic to the singular cohomology groups with real coefficients ($H^k(M;\mathbb{R})$).
@@ -2392,8 +2381,8 @@ footer.site-footer {
     </div>
 <details class="deepdive-drawer">
       <summary class="deepdive-summary">
-        <span>Explore Complete Theoretical Proofs, Quotient Tables &amp; Harmonic Trace</span>
-        <span class="deepdive-badge">Full Music Theory &darr;</span>
+        <span>Explore Theoretical System, Quotient Tables &amp; Harmonic Structure</span>
+        <span class="deepdive-badge">Full Analysis &darr;</span>
       </summary>
       <div class="deepdive-content">
         <div class="technique-box" style="margin: 0; border: none; padding: 6px 0;">

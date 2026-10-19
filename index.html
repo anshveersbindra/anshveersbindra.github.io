@@ -151,16 +151,63 @@ a:hover {
 header.site-header {
   background: var(--bg);
   border-bottom: 1px solid var(--border-light);
-  padding: 68px 0 42px;
+  padding: 56px 0 38px;
   transition: background-color 0.2s ease;
 }
 
+.header-masthead {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-bottom: 26px;
+}
+
+.author-avatar-wrap {
+  flex-shrink: 0;
+}
+
+.author-avatar {
+  width: 148px;
+  height: 148px;
+  border-radius: 14px;
+  object-fit: cover;
+  object-position: center 20%;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+  display: block;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+[data-theme="dark"] .author-avatar {
+  border-color: var(--border-light);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+}
+.author-avatar:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.author-heading {
+  flex: 1;
+  min-width: 0;
+}
+
+.author-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
 .site-title {
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-size: clamp(2.3rem, 4.5vw, 3.2rem);
   letter-spacing: -0.015em;
-  margin: 0 0 10px;
+  margin: 0 0 8px;
   font-weight: 400;
   color: var(--ink);
+  line-height: 1.15;
 }
 
 .site-subtitle {
@@ -170,10 +217,11 @@ header.site-header {
   letter-spacing: 0.01em;
   color: var(--ink-muted);
   margin: 0 0 14px;
+  line-height: 1.45;
 }
 
 .site-links {
-  margin: 0 0 18px;
+  margin: 0;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -198,12 +246,33 @@ header.site-header {
   border-color: #a6ce39;
 }
 
+.site-bio-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
+  padding: 24px 28px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+[data-theme="dark"] .site-bio-card {
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
 .site-bio {
-  font-size: 1.02rem;
+  font-size: 0.98rem;
   color: var(--ink-secondary);
-  max-width: 48em;
+  max-width: 100%;
   line-height: 1.76;
   margin: 0;
+}
+.site-bio-lead {
+  font-size: 1.04rem;
+  font-weight: 450;
+  color: var(--ink);
+  line-height: 1.74;
 }
 .site-bio p {
   margin: 0 0 14px;
@@ -1356,10 +1425,14 @@ footer.site-footer {
 
 @media (max-width: 640px) {
   .wrap { padding: 0 16px; }
-  header.site-header { padding: 42px 0 28px; }
-  .site-title { font-size: 2.2rem; }
+  header.site-header { padding: 36px 0 24px; }
+  .header-masthead { flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 20px; }
+  .author-avatar { width: 104px; height: 104px; border-radius: 12px; }
+  .site-title { font-size: 2.1rem; }
   .site-subtitle { font-size: 0.9rem; margin-bottom: 12px; }
-  .site-bio { font-size: 0.95rem; line-height: 1.65; }
+  .site-bio-card { padding: 18px 16px; }
+  .site-bio-lead { font-size: 0.98rem; }
+  .site-bio { font-size: 0.92rem; line-height: 1.68; }
   nav.filter-nav { padding: 8px 0; }
   .filter-btn { padding: 5px 10px; font-size: 0.82rem; }
   .section-jump { display: none; }
@@ -1383,23 +1456,37 @@ footer.site-footer {
 <!-- SITE HEADER -->
 <header class="site-header" id="top">
   <div class="wrap">
-    <h1 class="site-title">Anshveer Bindra</h1>
-    <div class="site-subtitle">Astrophysics, pure mathematics, and musical composition &middot; Mumbai, India</div>
-    <div class="site-links">
-      <a class="orcid-link" href="https://orcid.org/0009-0008-3593-1450" target="_blank" rel="noopener">
-        <svg class="orcid-icon" width="15" height="15" viewBox="0 0 256 256" fill="currentColor"><path d="M128 0C57.31 0 0 57.31 0 128s57.31 128 128 128 128-57.31 128-128S198.69 0 128 0zm-41.25 188.75H64.22V87.06h22.53v101.69zm-11.26-115.6c-7.22 0-13.06-5.85-13.06-13.07 0-7.22 5.84-13.07 13.06-13.07s13.07 5.85 13.07 13.07c-.01 7.22-5.85 13.07-13.07 13.07zm119.86 64.91c0 29.56-23.97 50.69-53.79 50.69h-38.31V87.06h39.73c29.13 0 52.37 20.94 52.37 50.99zm-23.01 0c0-18.06-13.92-30.88-31.98-30.88h-14.8v61.76h14.8c18.06 0 31.98-12.82 31.98-30.88z"/></svg> ORCID: 0009-0008-3593-1450
-      </a>
+    <div class="header-masthead">
+      <div class="author-avatar-wrap">
+        <img src="anshveer-bindra.jpg" alt="Anshveer Bindra" class="author-avatar" width="148" height="148">
+      </div>
+      <div class="author-heading">
+        <div class="author-kicker">Research Archive &amp; Working Papers</div>
+        <h1 class="site-title">Anshveer Bindra</h1>
+        <div class="site-subtitle">Astrophysics, pure mathematics, and musical composition &middot; Mumbai, India</div>
+        <div class="site-links">
+          <a class="orcid-link" href="https://orcid.org/0009-0008-3593-1450" target="_blank" rel="noopener">
+            <svg class="orcid-icon" width="15" height="15" viewBox="0 0 256 256" fill="currentColor"><path d="M128 0C57.31 0 0 57.31 0 128s57.31 128 128 128 128-57.31 128-128S198.69 0 128 0zm-41.25 188.75H64.22V87.06h22.53v101.69zm-11.26-115.6c-7.22 0-13.06-5.85-13.06-13.07 0-7.22 5.84-13.07 13.06-13.07s13.07 5.85 13.07 13.07c-.01 7.22-5.85 13.07-13.07 13.07zm119.86 64.91c0 29.56-23.97 50.69-53.79 50.69h-38.31V87.06h39.73c29.13 0 52.37 20.94 52.37 50.99zm-23.01 0c0-18.06-13.92-30.88-31.98-30.88h-14.8v61.76h14.8c18.06 0 31.98-12.82 31.98-30.88z"/></svg> ORCID: 0009-0008-3593-1450
+          </a>
+        </div>
+      </div>
     </div>
-    <div class="site-bio">
-      <p>
-        I am a high school student from Mumbai interested in the places where mathematics, physics, and philosophy begin to overlap. Most of my work starts with a question that refuses to leave me alone: sometimes trying to understand why a discrete pattern behaves as it does, sometimes formulating a physical model for a celestial system, and sometimes wondering whether the formal language we use to describe the universe is quietly hiding something from us.
-      </p>
-      <p>
-        This archive collects what has come out of those questions across eight research manuscripts and an original two-movement chamber score. Some projects began as attempts to test or prove a small conjecture; others grew out of questions about orbital mechanics, pulsars, cosmology, or the foundational assumptions built into nonrelativistic quantum theory. The music follows the exact same instinct&mdash;deriving four-part counterpoint from modular residue classes, even when musical notation occasionally becomes less cooperative.
-      </p>
-      <p>
-        I have included open-access preprints, observational data, and in-browser readers alongside short accounts of the ideas, methods, and motivating questions behind each work. Some pieces are polished results; others are honest records of ideas that changed substantially during investigation. I have kept both, because discovering where an argument breaks down is often far more interesting than the argument that survives intact.
-      </p>
+
+    <div class="site-bio-card">
+      <div class="site-bio">
+        <p class="site-bio-lead">
+          I am a high school student from Mumbai interested in the places where mathematics, physics, and philosophy begin to overlap. Most of my work starts with a question that refuses to leave me alone: sometimes that means trying to understand why a mathematical pattern works, sometimes building a model of a physical system, and sometimes wondering whether the language we use to describe the universe is hiding something from us.
+        </p>
+        <p>
+          This website is an archive of some of the things that have come out of those questions across ten research manuscripts and treatises, and an original musical score. Some pieces began as attempts to prove or disprove a small conjecture; others grew out of questions about orbital mechanics, pulsars, ecological optimization, cosmology, or the assumptions built into physical theories. My music follows a rather similar instinct, although the notation occasionally becomes less cooperative.
+        </p>
+        <p>
+          I have included the work itself alongside short descriptions of the ideas, methods, and questions behind it. Some of these projects are polished; others are records of ideas that changed substantially as I worked through them. I have kept both, because the process of finding where an argument breaks is often more interesting than the argument that survives.
+        </p>
+        <p>
+          The site is not intended to be a catalogue of everything I have done. It is a collection of the work that best represents how I like to think: starting with something that bothers me, pushing it until I understand it, and then usually finding a more interesting question underneath.
+        </p>
+      </div>
     </div>
   </div>
 </header>
@@ -1432,7 +1519,7 @@ footer.site-footer {
 <section id="papers" class="content-section">
   <div class="section-header">
     <h2>Papers</h2>
-    <p>Eight research manuscripts and treatises across celestial mechanics, pulsar astrophysics, dynamical systems, infinite series, theoretical physics, quantum foundations, and differential topology.</p>
+    <p>Ten research manuscripts and treatises across celestial mechanics, pulsar astrophysics, dynamical systems, infinite series, formal language theory, spatial optimization, theoretical physics, quantum foundations, and differential topology.</p>
   </div>
 
   <!-- 1. ASTEROID ORBIT GAUSS (SSP) -->
@@ -2020,7 +2107,272 @@ footer.site-footer {
     </div>
   </article>
 
-  <!-- 6. QFT IN DE SITTER SPACE -->
+  <!-- 6. ETEAM PROBLEM 10: PLAY ON WORDS -->
+  <article class="paper-card" data-category="mathematics">
+    <div class="card-top">
+      <div class="card-badges">
+        <span class="subject-pill">Mathematics</span>
+        <span class="type-pill">Research Paper</span>
+        <span class="card-discipline">Formal Language Theory &middot; Combinatorics on Words</span>
+      </div>
+      <span class="card-meta">Anshveer Bindra &middot; ETEAM / LGP Lumi&egrave;res (2024) &middot; 30 pp.</span>
+    </div>
+
+    <h3 class="card-title">Play on Words: Code Effectiveness, Density Dichotomy, and Metric Continuity in Free Monoids</h3>
+
+    <div class="card-narrative">
+      A 30-page mathematical investigation into the asymptotic growth, combinatorial density, and topological continuity of finite code generators over free monoids $\{0, 1\}^*$, authored for Problem 10 of the European Team Mathematical Olympiad (ETEAM / LGP Lumi&egrave;res). Defining code effectiveness $\mathrm{Eff}(S) = \lim_{n\to\infty} |S^{\le n}|^{1/n}$, we prove existence via submultiplicativity and Fekete&rsquo;s Subadditive Lemma, establishing sharp extremal bounds $1 \le \mathrm{Eff}(S) \le |S|$. We show that maximal effectiveness characterizes uniquely decodable codes, reduce minimal concatenation length $\ell_S(v)$ to shortest paths on directed acyclic position graphs, equip code spaces with a prefix metric to prove uniform continuity of $\mathrm{Eff}(S)$, prove a density dichotomy $\mathcal{D}(S) \in \{0, |S|/(|S|-1)\}$, and resolve the length-constrained sparsity problem via antichain counting in the prefix poset.
+    </div>
+
+    <div class="project-brief">
+      <div class="brief-item">
+        <span class="brief-label">Submultiplicativity &amp; Fekete</span>
+        <span class="brief-val">Proved $a_{m+n} \le a_m a_n$ for $a_n = |S^{\le n}|$, ensuring $\lim_{n\to\infty} a_n^{1/n} = \inf_{n\ge 1} a_n^{1/n}$ exists with sharp bounds $1 \le \mathrm{Eff}(S) \le |S|$.</span>
+      </div>
+      <div class="brief-item">
+        <span class="brief-label">DAG Shortest Paths</span>
+        <span class="brief-val">Constructed acyclic graph $G=(V,E)$ on cut-points $0 \dots |v|$ with $(i,j)\in E \iff v[i+1:j]\in S$; shortest path length exactly equals minimal decomposition $\ell_S(v)$.</span>
+      </div>
+      <div class="brief-item">
+        <span class="brief-label">Density Dichotomy &amp; Posets</span>
+        <span class="brief-val">Established that code density $\mathcal{D}(S) = \lim |S^{\le n}|/|S|^n$ strictly collapses to $0$ under any collision, and solved $\omega_{0,k}$ via prefix poset antichain enumeration.</span>
+      </div>
+    </div>
+
+    <div class="action-row">
+      <button class="action-btn-viewer" onclick="toggleViewer('viewer-eteam')">
+        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+        Read Manuscript
+      </button>
+      <a class="action-btn-download" href="papers/eteam-play-on-words.pdf" target="_blank" rel="noopener">
+        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download PDF (30 pp.)
+      </a>
+    </div>
+
+    <details class="deepdive-drawer">
+      <summary class="deepdive-summary">
+        <span>Explore Combinatorial Proofs, DAG Shortest-Path Reduction &amp; Poset Antichains</span>
+        <span class="deepdive-badge">Full Analysis &darr;</span>
+      </summary>
+      <div class="deepdive-content">
+        <div class="technique-box" style="margin: 0; border: none; padding: 6px 0;">
+          <h4 style="margin-top: 0; color: var(--ink);">1. Submultiplicative Sequences &amp; Fekete&rsquo;s Subadditive Lemma</h4>
+          <p>
+            Given a finite generating code $S \subset \{0, 1\}^*$ of cardinality $|S| = k \ge 2$, let $S^{\le n}$ denote the set of words formed by concatenating at most $n$ codewords from $S$. Concatenating any word in $S^{\le m}$ with a word in $S^{\le n}$ yields a word in $S^{\le (m+n)}$. Consequently, the concatenation map $S^{\le m} \times S^{\le n} \to S^{\le (m+n)}$ is surjective onto its image, establishing submultiplicativity:
+          </p>
+          <div class="equation-box">
+            <div class="equation-label">Submultiplicativity &amp; Asymptotic Effectiveness</div>
+            <div class="equation-display">
+              $$a_{m+n} \le a_m a_n \quad \text{for } a_n = |S^{\le n}|$$
+              $$\mathrm{Eff}(S) = \lim_{n\to\infty} a_n^{1/n} = \inf_{n\ge 1} a_n^{1/n}, \qquad 1 \le \mathrm{Eff}(S) \le |S|$$
+            </div>
+            <div class="equation-explanation">
+              <strong>Proof Mechanism:</strong> Taking logarithms transforms $a_{m+n} \le a_m a_n$ into $b_{m+n} \le b_m + b_n$ for $b_n = \ln a_n$. Applying Fekete&rsquo;s Subadditive Lemma guarantees that $\lim_{n\to\infty} b_n/n = \inf_{n\ge 1}(b_n/n)$ exists finitely. Exponentiating yields $\mathrm{Eff}(S)$. The lower bound is sharp for sets of word powers $S = \{\varepsilon, w, \dots, w^{k-1}\}$ where $|S^{\le n}| = (k-1)n + 1 \implies \mathrm{Eff}(S) = 1$.
+            </div>
+          </div>
+
+          <h5>2. Unique Decodability &amp; The Upper Bound Dichotomy</h5>
+          <p>
+            When $S$ is uniquely decodable (e.g., prefix-free), every sequence of $n$ codewords produces a distinct word, giving $|S^{\le n}| = \sum_{j=0}^n k^j = (k^{n+1}-1)/(k-1)$, which attains $\mathrm{Eff}(S) = k$. Conversely, if $S$ fails unique decodability, there exist two distinct sequences $u_1 \dots u_r = v_1 \dots v_s =: w$. Constructing the length-$(r+s)$ words $(u_1 \dots u_r, v_1 \dots v_s)$ and $(v_1 \dots v_s, u_1 \dots u_r)$ produces a collision, forcing:
+          </p>
+          <div class="equation-box">
+            <div class="equation-label">Strict Inequality for Non-Uniquely Decodable Codes</div>
+            <div class="equation-display">
+              $$a_{r+s} \le k^{r+s} - 1 \implies a_{r+s}^{1/(r+s)} < k$$
+              $$\mathrm{Eff}(S) = \inf_{n\ge 1} a_n^{1/n} \le a_{r+s}^{1/(r+s)} < k$$
+            </div>
+            <div class="equation-explanation">
+              <strong>Significance:</strong> Unique decodability is the exact boundary separating maximum combinatorial entropy $\mathrm{Eff}(S) = k$ from sub-exponential degradation $\mathrm{Eff}(S) < k$.
+            </div>
+          </div>
+
+          <h5>3. Minimal Decomposition Length $\ell_S(v)$ via Acyclic Position Graphs</h5>
+          <p>
+            For a target word $v \in S^*$ of length $L$, the minimal number of codewords required to form $v$ is determined by constructing a directed acyclic graph $G = (V, E)$ where vertices $V = \{0, 1, \dots, L\}$ represent boundary cut-points between characters, with directed edges:
+          </p>
+          <div class="equation-box">
+            <div class="equation-label">Shortest-Path Equivalence on Cut-Point DAG</div>
+            <div class="equation-display">
+              $$(i \to j) \in E \iff v[i+1 : j] \in S$$
+              $$\ell_S(v) = \mathrm{dist}_G(0, L) = \min_{\text{paths } 0 \leadsto L} (\text{number of edges})$$
+            </div>
+            <div class="equation-explanation">
+              <strong>Algorithmic Complexity:</strong> Because every edge $(i \to j)$ satisfies $i < j$, the graph contains no cycles. The shortest path from source vertex $0$ to target vertex $L$ can be solved exactly in $O(L^2)$ time using topological relaxation.
+            </div>
+          </div>
+
+          <h5>4. Metric Topology on Words &amp; Uniform Effectiveness Continuity</h5>
+          <p>
+            Equipping $\{0, 1\}^*$ with the prefix metric $d(u, v) = 2^{-|P|}$ (where $P$ is the longest common prefix of $u$ and $v$) and code subsets with the Hausdorff-type metric $d(S, T) = \max(\sup_{x\in S}\inf_{y\in T} d(x,y), \sup_{y\in T}\inf_{x\in S} d(x,y))$, we prove:
+          </p>
+          <div class="equation-box">
+            <div class="equation-label">Metric Convergence &amp; Continuity Theorem</div>
+            <div class="equation-display">
+              $$\lim_{n\to\infty} d(S_n, T_n) = 0 \implies \lim_{n\to\infty} \big(\mathrm{Eff}(S_n) - \mathrm{Eff}(T_n)\big) = 0$$
+            </div>
+            <div class="equation-explanation">
+              <strong>Structural Insight:</strong> When $d(S_n, T_n) < 2^{-L}$ with $L > k \ell_{\max}$, each codeword in $S_n$ shares a prefix of length $L$ with its partner in $T_n$. This yields mutual injections between $k$-block concatenations, forcing exact equality $|S_n^{\le k}| = |T_n^{\le k}|$ for all sufficiently large $n$ and ensuring convergence of their infimum limits.
+            </div>
+          </div>
+
+          <h5>5. Code Density Dichotomy &amp; Poset Antichain Formula</h5>
+          <p>
+            The code density $\mathcal{D}(S) = \lim_{n\to\infty} |S^{\le n}|/|S|^n$ satisfies a clean dichotomy: it equals $|S|/(|S|-1)$ if $S$ is uniquely decodable, and identically $0$ otherwise. To study the normalized counts $\omega_{0,k}$ under a maximum codeword length constraint $|w| \le k$, we reinterpret codes as antichains in the prefix poset $(P_k, \preceq)$:
+          </p>
+          <div class="equation-box">
+            <div class="equation-label">Poset Antichain Characterization of Sparsity</div>
+            <div class="equation-display">
+              $$\omega_{0,k} = \frac{1}{2^k} \left[ \sum_{j=2}^k \binom{|P_k|}{j} - \sum_{j=2}^k a_j^{(k)} \right]$$
+              $$|P_k| = 2^{k+1} - 1, \qquad a_j^{(k)} = |\{S \subseteq P_k : |S| = j, \; S \text{ is an antichain}\}|$$
+            </div>
+            <div class="equation-explanation">
+              <strong>Combinatorial Synthesis:</strong> Non-uniquely decodable codes correspond precisely to subsets of the prefix poset that fail to form antichains. For $k=2$, $|P_2| = 7$, $\binom{7}{2} = 21$, $a_2^{(2)} = 11$ antichains, yielding exactly $|S_2| = 10$ and $\omega_{0,2} = 10/4 = 5/2$.
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <div id="viewer-eteam" class="inline-viewer">
+      <div class="viewer-topbar">
+        <span>Play on Words &middot; ETEAM Problem 10 &middot; Anshveer Bindra</span>
+        <div><a href="papers/eteam-play-on-words.pdf" target="_blank">Open in New Tab &rarr;</a> <button class="viewer-close-btn" onclick="toggleViewer('viewer-eteam')">&times; Close</button></div></div>
+      <object data="papers/eteam-play-on-words.pdf" type="application/pdf">
+        <p style="padding: 20px; color: #fff;">Unable to render inline. <a href="papers/eteam-play-on-words.pdf">Download PDF</a>.</p>
+      </object>
+    </div>
+  </article>
+
+  <!-- 7. IMMC 2026: ETOSHA CONSERVATION OPTIMIZATION -->
+  <article class="paper-card" data-category="mathematics">
+    <div class="card-top">
+      <div class="card-badges">
+        <span class="subject-pill">Mathematics</span>
+        <span class="type-pill">Collaborative Research</span>
+        <span class="card-discipline">Spatial Optimization &middot; Operations Research</span>
+      </div>
+      <span class="card-meta">With Tanish Kulkarni, Vedansh Saha &amp; Nipun Saha &middot; IM&sup2;C (2026) &middot; 101 pp.</span>
+    </div>
+
+    <h3 class="card-title">On the Minimisation of Conservation Loss in Etosha National Park Through Optimal Resource Allocation</h3>
+
+    <div class="card-narrative">
+      A 101-page mathematical modeling study developing a spatially explicit mixed-integer nonlinear programming (MINLP) optimization framework to allocate rangers, aerial drones, camera traps, and satellite imagery across Etosha National Park (22,935 km&sup2;, Namibia). Tessellating the reserve into 990 grid cells ($5 \times 5\text{ km}$), we construct time-varying multi-threat fields for rhino poaching, wildfire, and human-wildlife conflict. We formulate a discounted-horizon loss function over 52 weeks and solve its continuous relaxation using Spectral Projected Gradient (SPG) descent with Barzilai-Borwein updates and simplex projections, followed by largest-remainder integer rounding. The deployment achieves 99.08%-optimality (integrality gap $< 1\%$), reduces conservation loss by 40.3%, provides 86.6% spatial coverage (92.3% weighted by ecological importance), and demonstrates structural stability across 60 Monte Carlo uncertainty simulations and reserve portability to Yellowstone and Kakadu.
+    </div>
+
+    <div class="project-brief">
+      <div class="brief-item">
+        <span class="brief-label">The Park Scale</span>
+        <span class="brief-val">22,935 km&sup2; reserve, 990 grid cells ($5\times 5\text{ km}$), 86 waterholes, and 3 interacting threats (poaching $\tau^P$, wildfire $\tau^F$, camp conflict $\tau^H$).</span>
+      </div>
+      <div class="brief-item">
+        <span class="brief-label">Multi-Tier Defense</span>
+        <span class="brief-val">Optimized allocation of 104 rangers, 211 drones (43 operators), 468 camera traps, and 1 satellite pass (594 cells) under a N$2,376,923 weekly budget.</span>
+      </div>
+      <div class="brief-item">
+        <span class="brief-label">99.08% Optimality Bound</span>
+        <span class="brief-val">Solved via non-monotone SPG descent with Barzilai-Borwein step sizes; largest-remainder integer rounding yields an integrality gap $\delta = 0.925\% < 1\%$.</span>
+      </div>
+    </div>
+
+    <div class="action-row">
+      <button class="action-btn-viewer" onclick="toggleViewer('viewer-im2c')">
+        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+        Read Manuscript
+      </button>
+      <a class="action-btn-download" href="papers/im2c-etosha-conservation.pdf" target="_blank" rel="noopener">
+        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download PDF (101 pp.)
+      </a>
+    </div>
+
+    <details class="deepdive-drawer">
+      <summary class="deepdive-summary">
+        <span>Explore MINLP Formulation, SPG Optimization &amp; Spatial Simulation Architecture</span>
+        <span class="deepdive-badge">Full Analysis &darr;</span>
+      </summary>
+      <div class="deepdive-content">
+        <div class="technique-box" style="margin: 0; border: none; padding: 6px 0;">
+          <h4 style="margin-top: 0; color: var(--ink);">1. Multi-Threat Quantification &amp; Ecological Importance Weights</h4>
+          <p>
+            Etosha&rsquo;s 990 grid cells are characterized by composite ecological weights $w_i$ combining species priority scores $S_i$ (derived from GBIF records, IUCN status, and Namibian endemism), seasonal waterhole proximity $W_i(t) = q \exp(-\alpha_w d_i^w)$, spatial corridor connectivity $C_i$, and fire potential $\tilde{\Psi}_i$:
+          </p>
+          <div class="equation-box">
+            <div class="equation-label">Composite Ecological Weight &amp; Boundary Threat Amplification</div>
+            <div class="equation-display">
+              $$w_i = \frac{\tilde{S}_i(1 + 0.40 W_i) + 0.20 C_i + 0.15 \tilde{\Psi}_i}{\max_j [\;\cdot\;] + \varepsilon}$$
+              $$\hat{\tau}_i^P(0) = \tau_i^P(0) \Big(1 + 0.60 \exp(-d_i^b / 8\text{ km})\Big)$$
+            </div>
+            <div class="equation-explanation">
+              <strong>Threat Dynamics:</strong> Weekly threat vectors evolve through first-order mean-reverting Markov updates $\tau(t+1) = \max(0, \rho \tau(t) + \mu \hat{\tau}(0) s(t) \phi(t))$, where poaching persistence ($\rho_P = 0.85$) reflects corridor entrenchment, while wildfire fuel exhaustion exhibits low persistence ($\rho_F = 0.20$).
+            </div>
+          </div>
+
+          <h5>2. Non-Convex Mixed-Integer Nonlinear Program (MINLP)</h5>
+          <p>
+            Protection probabilities against poaching $p_i^P$, wildfire $p_i^F$, and conflict $p_i^H$ combine ranger deterrence $\Delta_i = 1 - e^{-\lambda h_i^r}$, rapid response $p_i^{\text{resp}}$, and multi-sensor detection $\Sigma_i^P = 1 - (1 - \sigma_d^P h_i^d)(1 - \sigma_c u_i^c)(1 - \sigma_r h_i^r)$. The discounted 52-week horizon objective is:
+          </p>
+          <div class="equation-box">
+            <div class="equation-label">Discounted-Horizon Conservation Objective &amp; Budget Constraint</div>
+            <div class="equation-display">
+              $$\min_{\mathbf{x}} \; \mathcal{L}(\mathbf{x}) = \sum_{t=0}^{T-1} \gamma^t L(t; \mathbf{x}) + P_{\mathrm{conc}}(\mathbf{x}_r, \mathbf{x}_d) + P_{\mathrm{overlap}}(\mathbf{h}_r, \mathbf{h}_d, \mathbf{u}_c)$$
+              $$\text{s.t.} \quad c_r \|\mathbf{x}_r\|_1 + c_d \|\mathbf{x}_d\|_1 + c_c \|\mathbf{u}_c\|_1 + c_s s \le B$$
+            </div>
+            <div class="equation-explanation">
+              <strong>Non-Convexity Proof:</strong> Restricting to a 1D slice along ranger home variable $z$ gives fire residual $g(z) = e^{-\sigma a z} + e^{-b z} - e^{-(\sigma a + b) z}$. Evaluating the second derivative shows $g''(0) = -2\sigma a b < 0$, while $g''(z) > 0$ for large $z$, proving that the objective changes sign and is fundamentally non-convex.
+            </div>
+          </div>
+
+          <h5>3. Continuous SPG Relaxation &amp; Dual Simplex Projection</h5>
+          <p>
+            An exact branch-and-cut solve requires exploring $O(2^m N^3)$ combinations for $m \approx 2n+c \approx 2448$ variables, which is computationally intractable. We solve the continuous relaxation via Spectral Projected Gradient (SPG) descent with Barzilai-Borwein adaptive step sizes:
+          </p>
+          <div class="equation-box">
+            <div class="equation-label">Spectral Step-Size Update &amp; Bisection Projection</div>
+            <div class="equation-display">
+              $$\alpha_k = \frac{\mathbf{s}_{k-1}^T \mathbf{s}_{k-1}}{\mathbf{s}_{k-1}^T \mathbf{y}_{k-1}}, \qquad \mathbf{s}_{k-1} = \mathbf{x}_k - \mathbf{x}_{k-1}, \quad \mathbf{y}_{k-1} = \nabla\mathcal{L}_k - \nabla\mathcal{L}_{k-1}$$
+              $$\mathbf{x}_{k+1} = \mathcal{P}_{\Omega} \big(\mathbf{x}_k - \alpha_k \nabla\mathcal{L}(\mathbf{x}_k)\big)$$
+            </div>
+            <div class="equation-explanation">
+              <strong>Simplex Projection:</strong> Projection onto the budget simplex $\mathcal{P}_\Omega$ is evaluated at each iteration in $O(N \log N)$ time using an exact dual-variable bisection search: $x_i = \mathrm{clip}(y_i - \lambda^* c_i, 0, u_i)$ with $\sum c_i x_i = B$.
+            </div>
+          </div>
+
+          <h5>4. Largest-Remainder Rounding &amp; 99.08% Optimality Certificate</h5>
+          <p>
+            The continuous minimizer $\mathbf{x}^*$ is converted to a discrete operational deployment via largest-remainder rounding: decision variables are floored to integers, and residual budget is incrementally allocated to candidate cells sorted by descending fractional remainder. This provides an explicit optimality certificate:
+          </p>
+          <div class="equation-box">
+            <div class="equation-label">Integrality Gap &amp; Performance Metrics</div>
+            <div class="equation-display">
+              $$\delta = \frac{\mathcal{L}(\hat{\mathbf{x}}) - \mathcal{L}^*}{\mathcal{L}^*} \times 100\% = 0.925\% \implies 99.08\%\text{-optimal}$$
+              $$\Delta \mathcal{L} = -40.3\% \quad (L_{S1} = 3.282 \text{ vs } L_{S0} = 5.499), \quad \text{Coverage} = 92.3\%\text{ weighted}$$
+            </div>
+            <div class="equation-explanation">
+              <strong>Final Deployment:</strong> Commits 104 employed rangers (74 on active duty at any time under a 5-day cycle), 211 drones supported by 43 operators, 468 camera traps installed at waterholes, and 1 Planet SuperDove satellite footprint covering 594 cells, utilizing 99.6% of the N$2,376,923 weekly budget.
+            </div>
+          </div>
+
+          <h5>5. Monte Carlo Stability &amp; Reserve Portability</h5>
+          <p>
+            Across 60 stochastic Monte Carlo simulation runs and 14 scenario perturbations (varying budget by $\pm 10\%$, drone costs by $+50\%$, and patrol schedules), the spatial deployment pattern proved structurally invariant: resources consistently concentrate along boundary infiltration corridors and central waterhole clusters. Furthermore, the mathematical architecture was demonstrated portable to Yellowstone National Park (reparameterized around road corridors and bear-human conflict) and Kakadu National Park (reparameterized around monsoon floodplains and fire regimes).
+          </p>
+        </div>
+      </div>
+    </details>
+
+    <div id="viewer-im2c" class="inline-viewer">
+      <div class="viewer-topbar">
+        <span>Etosha Conservation Resource Allocation &middot; IM&sup2;C 2026 &middot; Anshveer Bindra et al.</span>
+        <div><a href="papers/im2c-etosha-conservation.pdf" target="_blank">Open in New Tab &rarr;</a> <button class="viewer-close-btn" onclick="toggleViewer('viewer-im2c')">&times; Close</button></div></div>
+      <object data="papers/im2c-etosha-conservation.pdf" type="application/pdf">
+        <p style="padding: 20px; color: #fff;">Unable to render inline. <a href="papers/im2c-etosha-conservation.pdf">Download PDF</a>.</p>
+      </object>
+    </div>
+  </article>
+
+  <!-- 8. QFT IN DE SITTER SPACE -->
   <article class="paper-card" data-category="physics">
     <div class="card-top">
       <div class="card-badges">
@@ -2100,7 +2452,7 @@ footer.site-footer {
     </div>
   </article>
 
-  <!-- 7. FOUNDATIONS OF QUANTUM MECHANICS (10TH GRADE MONOGRAPH) -->
+  <!-- 9. FOUNDATIONS OF QUANTUM MECHANICS -->
   <article class="paper-card" data-category="physics">
     <div class="card-top">
       <div class="card-badges">
@@ -2210,7 +2562,7 @@ footer.site-footer {
     </div>
   </article>
 
-  <!-- 8. HOMOLOGY TO DE RHAM COHOMOLOGY -->
+  <!-- 10. HOMOLOGY TO DE RHAM COHOMOLOGY -->
   <article class="paper-card" data-category="mathematics">
     <div class="card-top">
       <div class="card-badges">

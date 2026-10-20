@@ -1426,19 +1426,25 @@ footer.site-footer {
 .doi-pill {
   display: inline-flex;
   align-items: center;
+  gap: 5px;
   font-family: var(--font-mono);
-  font-size: 0.76rem;
+  font-size: 0.78rem;
   color: var(--ink-muted);
   background: transparent;
   border: 1px solid var(--border);
-  padding: 4px 10px;
-  border-radius: 3px;
+  padding: 6px 12px;
+  border-radius: 5px;
   text-decoration: none;
-  transition: all 0.15s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .doi-pill:hover {
   color: var(--accent);
-  border-color: var(--accent);
+  border-color: var(--border-hover);
+  background: var(--surface-inset);
+  transform: translateY(-1px);
+}
+.doi-pill:active {
+  transform: translateY(0);
 }
 
 /* Natural Lateral "Swipe" Transition for Category Filtering */
@@ -2047,6 +2053,7 @@ footer.site-footer {
       </button>
       <a class="action-btn-secondary" href="papers/digit-subtraction.pdf" target="_blank" rel="noopener">Open in New Tab</a>
       <a class="action-btn-secondary" href="papers/digit-subtraction.pdf" download>Download PDF</a>
+      <a class="doi-pill" href="https://doi.org/10.5281/zenodo.22100467" target="_blank" rel="noopener">Zenodo DOI</a>
     </div>
 <details class="deepdive-drawer">
       <summary class="deepdive-summary">
@@ -2150,6 +2157,7 @@ footer.site-footer {
       </button>
       <a class="action-btn-secondary" href="papers/formula-for-pi.pdf" target="_blank" rel="noopener">Open in New Tab</a>
       <a class="action-btn-secondary" href="papers/formula-for-pi.pdf" download>Download PDF</a>
+      <a class="doi-pill" href="https://doi.org/10.5281/zenodo.23005968" target="_blank" rel="noopener">Zenodo DOI</a>
     </div>
 <details class="deepdive-drawer">
       <summary class="deepdive-summary">
@@ -2247,12 +2255,11 @@ footer.site-footer {
     <div class="action-row">
       <button class="action-btn-viewer" onclick="toggleViewer('viewer-eteam')">
         <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-        Read Manuscript
+        <span>Read Inline (Viewer)</span>
+        <span class="viewer-caret">&darr;</span>
       </button>
-      <a class="action-btn-download" href="papers/eteam-play-on-words.pdf" target="_blank" rel="noopener">
-        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download PDF (30 pp.)
-      </a>
+      <a class="action-btn-secondary" href="papers/eteam-play-on-words.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+      <a class="action-btn-secondary" href="papers/eteam-play-on-words.pdf" download>Download PDF</a>
     </div>
 
     <details class="deepdive-drawer">
@@ -2357,13 +2364,13 @@ footer.site-footer {
         <span class="type-pill">Competition Manuscript</span>
         <span class="card-discipline">Spatial Optimization &middot; Operations Research</span>
       </div>
-      <span class="card-meta">With Tanish Kulkarni, Vedansh Saha &amp; Nipun Saha &middot; IM&sup2;C (2026) &middot; 101 pp.</span>
+      <span class="card-meta">With Tanish Kulkarni, Vedansh Saha &amp; Nipun Saha &middot; IM&sup2;C (2026) &middot; 30 pp. + Code</span>
     </div>
 
     <h3 class="card-title">On the Minimisation of Conservation Loss in Etosha National Park Through Optimal Resource Allocation</h3>
 
     <div class="card-narrative">
-      A 101-page mathematical modeling study developing a spatially explicit mixed-integer nonlinear programming (MINLP) optimization framework to allocate rangers, aerial drones, camera traps, and satellite imagery across Etosha National Park (22,935 km&sup2;, Namibia). Tessellating the reserve into 990 grid cells ($5 \times 5\text{ km}$), we construct time-varying multi-threat fields for rhino poaching, wildfire, and human-wildlife conflict. We formulate a discounted-horizon loss function over 52 weeks and solve its continuous relaxation using Spectral Projected Gradient (SPG) descent with Barzilai-Borwein updates and simplex projections, followed by largest-remainder integer rounding. The deployment achieves 99.08%-optimality (integrality gap $< 1\%$), reduces conservation loss by 40.3%, provides 86.6% spatial coverage (92.3% weighted by ecological importance), and demonstrates structural stability across 60 Monte Carlo uncertainty simulations and reserve portability to Yellowstone and Kakadu.
+      A 30-page mathematical modeling study (with complete codebase and computational appendices) developing a spatially explicit mixed-integer nonlinear programming (MINLP) optimization framework to allocate rangers, aerial drones, camera traps, and satellite imagery across Etosha National Park (22,935 km&sup2;, Namibia). Tessellating the reserve into 990 grid cells ($5 \times 5\text{ km}$), we construct time-varying multi-threat fields for rhino poaching, wildfire, and human-wildlife conflict. We formulate a discounted-horizon loss function over 52 weeks and solve its continuous relaxation using Spectral Projected Gradient (SPG) descent with Barzilai-Borwein updates and simplex projections, followed by largest-remainder integer rounding. The deployment achieves 99.08%-optimality (integrality gap $< 1\%$), reduces conservation loss by 40.3%, provides 86.6% spatial coverage (92.3% weighted by ecological importance), and demonstrates structural stability across 60 Monte Carlo uncertainty simulations and reserve portability to Yellowstone and Kakadu.
     </div>
 
     <div class="project-brief">
@@ -2384,12 +2391,11 @@ footer.site-footer {
     <div class="action-row">
       <button class="action-btn-viewer" onclick="toggleViewer('viewer-im2c')">
         <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-        Read Manuscript
+        <span>Read Inline (Viewer)</span>
+        <span class="viewer-caret">&darr;</span>
       </button>
-      <a class="action-btn-download" href="papers/im2c-etosha-conservation.pdf" target="_blank" rel="noopener">
-        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download PDF (101 pp.)
-      </a>
+      <a class="action-btn-secondary" href="papers/im2c-etosha-conservation.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+      <a class="action-btn-secondary" href="papers/im2c-etosha-conservation.pdf" download>Download PDF</a>
     </div>
 
     <details class="deepdive-drawer">
@@ -2512,12 +2518,11 @@ footer.site-footer {
     <div class="action-row">
       <button class="action-btn-viewer" onclick="toggleViewer('viewer-bblc')">
         <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-        Read Manuscript
+        <span>Read Inline (Viewer)</span>
+        <span class="viewer-caret">&darr;</span>
       </button>
-      <a class="action-btn-download" href="papers/bblc-proton-scattering.pdf" target="_blank" rel="noopener">
-        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download PDF (18 pp.)
-      </a>
+      <a class="action-btn-secondary" href="papers/bblc-proton-scattering.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+      <a class="action-btn-secondary" href="papers/bblc-proton-scattering.pdf" download>Download PDF</a>
     </div>
 
     <details class="deepdive-drawer">
@@ -2605,6 +2610,7 @@ footer.site-footer {
       </button>
       <a class="action-btn-secondary" href="papers/qft-de-sitter.pdf" target="_blank" rel="noopener">Open in New Tab</a>
       <a class="action-btn-secondary" href="papers/qft-de-sitter.pdf" download>Download PDF</a>
+      <a class="doi-pill" href="https://doi.org/10.5281/zenodo.20476560" target="_blank" rel="noopener">Zenodo DOI</a>
     </div>
 <details class="deepdive-drawer">
       <summary class="deepdive-summary">
@@ -2797,6 +2803,7 @@ footer.site-footer {
       </button>
       <a class="action-btn-secondary" href="papers/homology-to-de-rham.pdf" target="_blank" rel="noopener">Open in New Tab</a>
       <a class="action-btn-secondary" href="papers/homology-to-de-rham.pdf" download>Download PDF</a>
+      <a class="doi-pill" href="https://doi.org/10.22541/au.175683844.48037590/v1" target="_blank" rel="noopener">Authorea DOI</a>
     </div>
 <details class="deepdive-drawer">
       <summary class="deepdive-summary">

@@ -1568,7 +1568,7 @@ footer.site-footer {
         <div class="hero-content-col">
           <div class="banner-eyebrow">
             <span class="eyebrow-pill">Research Archive</span>
-            <span class="eyebrow-stat">10 Manuscripts &middot; 1 Original Score</span>
+            <span class="eyebrow-stat">11 Manuscripts &middot; 1 Original Score</span>
           </div>
           <h1 class="banner-title">Anshveer Bindra</h1>
           <div class="banner-disciplines">
@@ -1587,7 +1587,7 @@ footer.site-footer {
               I am a high school student from Mumbai working where mathematics, astrophysics, and theoretical physics overlap with philosophical inquiry. Most of my work starts with a question that refuses to leave me alone: trying to understand why a mathematical pattern works, building an exact physical model of an astrophysical system, or wondering whether the formal language we use to describe reality is hiding something from us.
             </p>
             <p>
-              This website is an archive of some of the things that have come out of those questions across ten research manuscripts and an original musical score. I have included the work alongside short accounts of the ideas, methods, and questions behind each piece—both the polished results and the records of where arguments broke down—because pushing an idea until its limits appear is where understanding actually begins.
+              This website is an archive of some of the things that have come out of those questions across eleven research manuscripts and treatises, alongside an original musical score. I have included the work alongside short accounts of the ideas, methods, and questions behind each piece—both the polished results and the records of where arguments broke down—because pushing an idea until its limits appear is where understanding actually begins.
             </p>
           </div>
         </div>
@@ -1624,7 +1624,7 @@ footer.site-footer {
 <section id="papers" class="content-section">
   <div class="section-header">
     <h2>Papers</h2>
-    <p>Ten research manuscripts and treatises across celestial mechanics, pulsar astrophysics, dynamical systems, infinite series, formal language theory, spatial optimization, theoretical physics, quantum foundations, and differential topology.</p>
+    <p>Eleven research manuscripts and treatises across celestial mechanics, pulsar astrophysics, dynamical systems, infinite series, formal language theory, spatial optimization, proton scattering imaging, theoretical physics, quantum foundations, and differential topology.</p>
   </div>
 
   <!-- 1. ASTEROID ORBIT GAUSS (SSP) -->
@@ -1655,7 +1655,7 @@ footer.site-footer {
       </div>
       <div class="brief-item">
         <span class="brief-label">Ephemeris Agreement</span>
-        <span class="brief-val">$\Delta\Omega = 0.13\%$, $\Delta i = 1.56\%$, $\Delta a \approx 2.8\%$ vs. NASA JPL; mean anomaly error ($16.7\%$) traced to geometry</span>
+        <span class="brief-val">0.13% in $\Omega$, 1.56% in $i$, ~2.8% in $a$ vs. NASA JPL; mean anomaly error (16.7%) traced to geometry</span>
       </div>
     </div>
 
@@ -1730,13 +1730,13 @@ footer.site-footer {
                 <td>Inclination ($i$)</td>
                 <td>$9.978^\circ$</td>
                 <td>$10.136^\circ$</td>
-                <td><strong>1.56%</strong> ($\Delta i = 0.16^\circ$)</td>
+                <td><strong>1.56%</strong></td>
               </tr>
               <tr>
                 <td>Longitude of ascending node ($\Omega$)</td>
                 <td>$231.708^\circ$</td>
                 <td>$231.401^\circ$</td>
-                <td><strong>0.13%</strong> ($\Delta \Omega = 0.31^\circ$)</td>
+                <td><strong>0.13%</strong></td>
               </tr>
               <tr>
                 <td>Argument of periapsis ($\omega$)</td>
@@ -2477,7 +2477,110 @@ footer.site-footer {
     </div>
   </article>
 
-  <!-- 8. QFT IN DE SITTER SPACE -->
+  <!-- 8. BBLC 2026: PROTON SCATTERING IMAGING -->
+  <article class="paper-card" data-category="physics">
+    <div class="card-top">
+      <div class="card-badges">
+        <span class="subject-pill">Theoretical Physics</span>
+        <span class="type-pill">Competition Manuscript</span>
+        <span class="card-discipline">Medical Physics &middot; Multiple Coulomb Scattering</span>
+      </div>
+      <span class="card-meta">With Rizul Garg, Yash Varshney &amp; Tranav Tyagi &middot; BBLC (2026) &middot; 18 pp.</span>
+    </div>
+
+    <h3 class="card-title">Turning Proton Scattering into a Second Imaging Signal for Safer Range Decisions in Proton Therapy</h3>
+
+    <div class="card-narrative">
+      An 18-page simulation-backed beamline study authored for the Bose Beamline Challenge (BBLC / CERN BL4S analogue, Team &sigma; scanner). While proton therapy exploits the Bragg peak for localized tumor destruction, treatment planning relies on water-equivalent path length (WEPL) from Bethe-Bloch energy loss, where different biological tissues can be nearly degenerate. We invert the conventional paradigm—which treats Multiple Coulomb Scattering (MCS) as noise to suppress—by demonstrating that scattering width encodes radiation length $X_0$. Evaluating a near-degenerate polymer pair (PVC and PEEK, differing in WEPL by only $0.175\%$), our Geant4 11.4.0 Monte Carlo simulation across 100,000 protons through a 4-plane Delay Wire Chamber (DWC) tracking telescope proves an air-subtracted variance ratio of $1.683$, achieving a statistical separation of $11.8\sigma$ ($> 4\times$ the $1\text{ mrad}$ detector angular resolution) to resolve material ambiguities and shrink treatment margins.
+    </div>
+
+    <div class="project-brief">
+      <div class="brief-item">
+        <span class="brief-label">The WEPL Degeneracy</span>
+        <span class="brief-val">PVC and PEEK differ in water-equivalent path length by only $0.175\%$ (statistically merged in energy loss), but PVC contains chlorine ($Z=17$), reducing $X_0$ from $31.41\text{ cm}$ to $18.20\text{ cm}$.</span>
+      </div>
+      <div class="brief-item">
+        <span class="brief-label">Highland Scaling</span>
+        <span class="brief-val">Multiple Coulomb scattering width scales as $\theta_0 \propto \sqrt{x/X_0}$; at $0.7\text{ GeV/c}$, Highland-Lynch-Dahl predicts a $1.343\times$ scattering-width ratio.</span>
+      </div>
+      <div class="brief-item">
+        <span class="brief-label">Geant4 Verification</span>
+        <span class="brief-val">100,000-proton simulation yields $\theta_{\text{RMS,tr}} = 19.31\text{ mrad}$ (PVC) vs. $15.00\text{ mrad}$ (PEEK), achieving an $11.8\sigma$ contrast-to-noise ratio ($4.31\text{ mrad}$ separation).</span>
+      </div>
+    </div>
+
+    <div class="action-row">
+      <button class="action-btn-viewer" onclick="toggleViewer('viewer-bblc')">
+        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+        Read Manuscript
+      </button>
+      <a class="action-btn-download" href="papers/bblc-proton-scattering.pdf" target="_blank" rel="noopener">
+        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download PDF (18 pp.)
+      </a>
+    </div>
+
+    <details class="deepdive-drawer">
+      <summary class="deepdive-summary">
+        <span>Explore Highland Scattering Physics, Geant4 Simulation Architecture &amp; Instrumentation</span>
+        <span class="deepdive-badge">Full Analysis &darr;</span>
+      </summary>
+      <div class="deepdive-content">
+        <div class="technique-box" style="margin: 0; border: none; padding: 6px 0;">
+          <h4 style="margin-top: 0; color: var(--ink);">1. The Clinical Bragg Peak and the Stopping-Power Blindspot</h4>
+          <p>
+            Proton radiotherapy achieves superior sparing of distal healthy tissues compared to conventional X-rays because protons exhibit an inverted depth-dose profile terminating in a steep Bragg peak. However, converting patient CT images into proton stopping powers introduces a $3.5\% + 1\text{ mm}$ range uncertainty budget. Standard transmission proton radiography (pCT) measures water-equivalent path length (WEPL) via Bethe-Bloch energy loss, but two distinct tissues can share identical stopping powers while differing fundamentally in elemental composition.
+          </p>
+
+          <h5>2. Multiple Coulomb Scattering and the Highland-Lynch-Dahl Formula</h5>
+          <p>
+            Rather than discarding angular deflections as noise, we treat multiple Coulomb scattering (MCS) as a secondary, orthogonal diagnostic signal. While electronic stopping power scales predominantly with electron density $\rho_e$, Coulomb deflections in the nuclear field scale inversely with radiation length $X_0$:
+          </p>
+          <div class="equation-box">
+            <div class="equation-label">Highland Scattering Width &amp; Measured Discrimination</div>
+            <div class="equation-display">
+              $$\theta_0 = \frac{13.6\text{ MeV}}{\beta p c} \sqrt{\frac{x}{X_0}} \left[ 1 + 0.038 \ln\left(\frac{x}{X_0}\right) \right]$$
+              $$\theta_{\mathrm{RMS,tr}}(\text{PVC}) - \theta_{\mathrm{RMS,tr}}(\text{PEEK}) = 4.31\text{ mrad}, \qquad \mathrm{CNR} = 11.8\sigma$$
+            </div>
+            <div class="equation-explanation">
+              <strong>Symbol Key:</strong> $\beta = v/c$ and $p = 0.7\text{ GeV/c}$ ($T \approx 232\text{ MeV}$) are the proton velocity and momentum, $x = 5\text{ cm}$ is insert thickness, and $X_0$ is material radiation length ($18.2\text{ cm}$ for PVC with $Z=17$ vs. $31.4\text{ cm}$ for PEEK with $Z_{\max}=8$).
+            </div>
+          </div>
+
+          <h5>3. Beamline Instrumentation and Rotatable Phantom Design</h5>
+          <p>
+            The proposed experimental setup at the Bose Beamline Challenge facility consists of an entrance scintillation trigger and threshold Cherenkov veto (suppressing relativistic leptons and pions), a four-plane Delay Wire Chamber (DWC) tracking telescope ($10 \times 10\text{ cm}^2$ active area, $300\ \mu\text{m}$ spatial resolution, $60\text{ cm}$ lever arms upstream and downstream), and a rotatable cylindrical polymethyl-methacrylate (PMMA, $\varnothing 10\text{ cm} \times 5\text{ cm}$) phantom with four $2\text{ cm}$ cylindrical inserts (PVC, PEEK, Al, and PMMA). The combined tracker angular resolution is $\sim 1\text{ mrad}$, well below the $4.31\text{ mrad}$ PVC&ndash;PEEK separation signal.
+          </p>
+
+          <h5>4. Geant4 11.4.0 Monte Carlo Verification &amp; Statistical Feasibility</h5>
+          <p>
+            Full-scale Monte Carlo simulation with Geant4 11.4.0 (`FTFP_BERT` physics list with `G4EmStandardPhysics_option4` and $0.1\text{ mm}$ production cuts) across 100,000 incident protons confirms the theoretical prediction:
+          </p>
+          <div class="equation-box">
+            <div class="equation-label">Differential Variance Ratio &amp; Statistical Feasibility</div>
+            <div class="equation-display">
+              $$\Delta \sigma_\theta^2(\text{mat}) = \sigma_{\theta,\text{mat}}^2 - \sigma_{\theta,\text{air}}^2 \implies \frac{\Delta \sigma_\theta^2(\text{PVC})}{\Delta \sigma_\theta^2(\text{PEEK})} = 1.683$$
+              $$N_{\text{req}} = 339 \text{ tracks for } 5\sigma \text{ separation} \quad (\text{Available: } \approx 2,400 \text{ clean tracks})$$
+            </div>
+            <div class="equation-explanation">
+              <strong>Clinical Translation:</strong> Truncated 90th-percentile RMS angles filter out rare wide-angle hadronic scatters, preserving the Coulomb-dominated Gaussian core. Even after accounting for detector acceptance ($81\%$) and insert geometry, the $11.8\sigma$ full-dataset separation provides a $7\times$ safety margin above the $5\sigma$ discovery threshold, demonstrating that dual-modality pCT can reliably separate stopping-power-degenerate tissues to shrink treatment planning margins.
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <div id="viewer-bblc" class="inline-viewer">
+      <div class="viewer-topbar">
+        <span>Turning Proton Scattering into a Second Imaging Signal &middot; BBLC 2026 &middot; Rizul Garg, Yash Varshney, Tranav Tyagi, Anshveer Bindra</span>
+        <div><a href="papers/bblc-proton-scattering.pdf" target="_blank">Open in New Tab &rarr;</a> <button class="viewer-close-btn" onclick="toggleViewer('viewer-bblc')">&times; Close</button></div></div>
+      <object data="papers/bblc-proton-scattering.pdf" type="application/pdf">
+        <p style="padding: 20px; color: #fff;">Unable to render inline. <a href="papers/bblc-proton-scattering.pdf">Download PDF</a>.</p>
+      </object>
+    </div>
+  </article>
+
+  <!-- 9. QFT IN DE SITTER SPACE -->
   <article class="paper-card" data-category="physics">
     <div class="card-top">
       <div class="card-badges">
@@ -2557,7 +2660,7 @@ footer.site-footer {
     </div>
   </article>
 
-  <!-- 9. FOUNDATIONS OF QUANTUM MECHANICS -->
+  <!-- 10. FOUNDATIONS OF QUANTUM MECHANICS -->
   <article class="paper-card" data-category="physics">
     <div class="card-top">
       <div class="card-badges">
@@ -2667,7 +2770,7 @@ footer.site-footer {
     </div>
   </article>
 
-  <!-- 10. HOMOLOGY TO DE RHAM COHOMOLOGY -->
+  <!-- 11. HOMOLOGY TO DE RHAM COHOMOLOGY -->
   <article class="paper-card" data-category="mathematics">
     <div class="card-top">
       <div class="card-badges">
@@ -2751,7 +2854,7 @@ footer.site-footer {
   </article>
 </section>
 
-<!-- MUSIC SECTION -->
+<!-- 12. MUSIC SECTION -->
 <section id="music" class="content-section" data-category="music">
   <div class="section-header">
     <h2>Music</h2>

@@ -2981,8 +2981,15 @@ footer.site-footer {
         <label>Sequence:
           <select id="seq">
             <option value="fib">Fibonacci (1, 1, 2, 3, 5, 8, ...)</option>
-            <option value="prime">Primes (2, 3, 5, 7, 11, ...)</option>
-            <option value="sq">Squares (1, 4, 9, 16, 25, ...)</option>
+            <option value="lucas">Lucas Numbers (2, 1, 3, 4, 7, 11, ...)</option>
+            <option value="prime">Primes (2, 3, 5, 7, 11, 13, ...)</option>
+            <option value="tri">Triangular (1, 3, 6, 10, 15, 21, ...)</option>
+            <option value="sq">Squares (1, 4, 9, 16, 25, 36, ...)</option>
+            <option value="recaman">Recam&aacute;n (1, 3, 6, 2, 7, 13, ...)</option>
+            <option value="padovan">Padovan (1, 1, 1, 2, 2, 3, ...)</option>
+            <option value="pell">Pell Numbers (1, 2, 5, 12, 29, ...)</option>
+            <option value="catalan">Catalan Numbers (1, 2, 5, 14, 42, ...)</option>
+            <option value="pow2">Powers of 2 (1, 2, 4, 8, 16, ...)</option>
           </select>
         </label>
         <label>Modulus:
@@ -2991,13 +2998,19 @@ footer.site-footer {
             <option value="11">11 (Chromatic pitch space)</option>
           </select>
         </label>
+        <label>Cadence:
+          <select id="cadence">
+            <option value="m27">Measure 27 Cadence (Authentic Resolution to E)</option>
+            <option value="modal">Strict Modular (Best Harmonic Resolution)</option>
+          </select>
+        </label>
         <button class="synth-btn" id="play" type="button">Generate &amp; Play &rarr;</button>
       </div>
       
       <div id="out" class="synth-output"></div>
       
       <div class="synth-agency-note">
-        <strong>How to listen:</strong> Starting from E4 (tonic), each generation creates a distinct, tonally grounded contrapuntal realization guided by modal voice-leading rules over the modular equivalence class $\mathcal{E}(a) = \{\pm a, \pm (m-a)\}$. Synthesized with the Web Audio API using harmonic acoustic string modeling.
+        <strong>How to listen:</strong> Starting from E4 (tonic), each generation creates a distinct contrapuntal phrase guided by classical voice-leading rules over the modular equivalence class $\mathcal{E}(a) = \{\pm a, \pm (m-a)\}$. Look-ahead steering prepares the cadence, resolving decisively into E minor with realistic harmonic string synthesis.
       </div>
     </div>
 
@@ -3407,12 +3420,18 @@ function toggleViewer(id) {
   var NM = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
 
   function getSeqTerms(type) {
-    if (type === 'fib') {
-      return [1, 1, 2, 3, 5, 8, 13, 21];
-    } else if (type === 'prime') {
-      return [2, 3, 5, 7, 11, 13, 17, 19];
-    } else { // sq
-      return [1, 4, 9, 16, 25, 36, 49, 64];
+    switch(type) {
+      case 'fib': return [1, 1, 2, 3, 5, 8, 13, 21];
+      case 'lucas': return [2, 1, 3, 4, 7, 11, 18, 29];
+      case 'prime': return [2, 3, 5, 7, 11, 13, 17, 19];
+      case 'tri': return [1, 3, 6, 10, 15, 21, 28, 36];
+      case 'sq': return [1, 4, 9, 16, 25, 36, 49, 64];
+      case 'recaman': return [1, 3, 6, 2, 7, 13, 20, 12];
+      case 'padovan': return [1, 1, 1, 2, 2, 3, 4, 5];
+      case 'pell': return [1, 2, 5, 12, 29, 70, 169, 408];
+      case 'catalan': return [1, 2, 5, 14, 42, 132, 429, 1430];
+      case 'pow2': return [1, 2, 4, 8, 16, 32, 64, 128];
+      default: return [1, 1, 2, 3, 5, 8, 13, 21];
     }
   }
 
@@ -3434,6 +3453,8 @@ function toggleViewer(id) {
     var noteDuration = 0.44;
 
     notes.forEach(function(pitch, i) {
+      var isLast = (i === notes.length - 1);
+      var dur = isLast ? 0.95 : noteDuration;
       var noteStart = startTime + i * noteDuration;
       var freq = 440 * Math.pow(2, (pitch - 69) / 12);
 
@@ -3453,7 +3474,7 @@ function toggleViewer(id) {
       var lfoGain = ctx.createGain();
       lfoGain.gain.setValueAtTime(0, noteStart);
       lfoGain.gain.setValueAtTime(0, noteStart + 0.08); // onset delay
-      lfoGain.gain.linearRampToValueAtTime(freq * 0.012, noteStart + 0.22); // subtle vibrato depth
+      lfoGain.gain.linearRampToValueAtTime(freq * (isLast ? 0.016 : 0.012), noteStart + 0.22); // subtle vibrato depth
       lfo.connect(lfoGain);
       lfoGain.connect(osc1.frequency);
 
@@ -3461,11 +3482,16 @@ function toggleViewer(id) {
       var noteGain = ctx.createGain();
       noteGain.gain.setValueAtTime(0, noteStart);
       noteGain.gain.linearRampToValueAtTime(0.20, noteStart + 0.03); // bow bite
-      noteGain.gain.linearRampToValueAtTime(0.16, noteStart + 0.24); // warm sustain
-      noteGain.gain.exponentialRampToValueAtTime(0.001, noteStart + noteDuration); // smooth release
+      if (isLast) {
+        noteGain.gain.linearRampToValueAtTime(0.18, noteStart + 0.35); // warm sustained resolution
+        noteGain.gain.exponentialRampToValueAtTime(0.001, noteStart + dur);
+      } else {
+        noteGain.gain.linearRampToValueAtTime(0.16, noteStart + 0.24); // warm sustain
+        noteGain.gain.exponentialRampToValueAtTime(0.001, noteStart + dur);
+      }
 
       var sheenGain = ctx.createGain();
-      sheenGain.gain.value = 0.05;
+      sheenGain.gain.value = isLast ? 0.06 : 0.05;
 
       osc1.connect(noteGain);
       osc2.connect(sheenGain);
@@ -3476,9 +3502,9 @@ function toggleViewer(id) {
       osc2.start(noteStart);
       lfo.start(noteStart);
 
-      osc1.stop(noteStart + noteDuration + 0.05);
-      osc2.stop(noteStart + noteDuration + 0.05);
-      lfo.stop(noteStart + noteDuration + 0.05);
+      osc1.stop(noteStart + dur + 0.05);
+      osc2.stop(noteStart + dur + 0.05);
+      lfo.stop(noteStart + dur + 0.05);
     });
   }
 
@@ -3501,10 +3527,12 @@ function toggleViewer(id) {
   function runGeneration() {
     var seqSelect = document.getElementById('seq');
     var modSelect = document.getElementById('mod');
+    var cadSelect = document.getElementById('cadence');
     if (!seqSelect || !modSelect) return;
 
     var seqType = seqSelect.value;
     var m = +modSelect.value;
+    var cadenceMode = cadSelect ? cadSelect.value : 'm27';
 
     var terms = getSeqTerms(seqType);
     var pos = 0; // start on tonic E4
@@ -3512,6 +3540,7 @@ function toggleViewer(id) {
     var notes = [midi(pos, m)];
     var residues = [];
     var realizedMoves = [];
+    var N = terms.length;
 
     terms.forEach(function(x, idx) {
       var a = ((x % m) + m) % m;
@@ -3546,6 +3575,31 @@ function toggleViewer(id) {
           options.push(opt);
         }
       });
+
+      var isLast = (idx === N - 1);
+      var isPenult = (idx === N - 2);
+
+      // If in m.27 cadence mode and on the final step:
+      // If none of the strict modular options land on tonic E, inject the Measure 27 cadence break!
+      if (isLast && cadenceMode === 'm27') {
+        var canLandTonic = options.some(function(opt) {
+          return ((pos + opt[0]) % m + m) % m === 0;
+        });
+        if (!canLandTonic) {
+          var targets = (m === 7) ? [0, 7, -7] : [0, 12, -12];
+          var bestTarget = 0;
+          var minDiff = 999;
+          targets.forEach(function(t) {
+            var diff = Math.abs(t - pos);
+            if (diff < minDiff) {
+              minDiff = diff;
+              bestTarget = t;
+            }
+          });
+          var cadenceStep = bestTarget - pos;
+          options.push([cadenceStep, "Cadence \u2192 E (m.27 break)"]);
+        }
+      }
 
       // Score options via contrapuntal voice-leading rules
       var scores = options.map(function(opt) {
@@ -3582,30 +3636,54 @@ function toggleViewer(id) {
         }
 
         // 4. Tonal grounding in E minor (E, G, B)
+        var d = ((candPos % m) + m) % m;
         if (isTriad(candPos, m)) {
           score += 2.5;
           if (isTonic(candPos, m)) score += 1.8;
         }
 
-        // 5. Cadential resolution on final steps
-        if (idx === terms.length - 1) {
-          if (isTonic(candPos, m)) {
-            score += 7.0; // strong pull to tonic E on arrival
-          } else if (isTriad(candPos, m)) {
-            score += 3.5;
+        // 5. Look-ahead cadential steering on penultimate step (Step N-2)!
+        if (isPenult) {
+          var aFinal = ((terms[N - 1] % m) + m) % m;
+          // Check if candPos can reach tonic 0 on final step
+          var reachesTonic = (
+            ((candPos + aFinal) % m + m) % m === 0 ||
+            ((candPos - aFinal) % m + m) % m === 0 ||
+            ((candPos + (m - aFinal)) % m + m) % m === 0 ||
+            ((candPos - (m - aFinal)) % m + m) % m === 0
+          );
+          if (reachesTonic) {
+            score += 12.0; // Strong cadential setup bonus!
+          } else {
+            // Check if candPos can reach triad note (G or B) on final step
+            var degNextPlus = ((candPos + aFinal) % m + m) % m;
+            var degNextMinus = ((candPos - aFinal) % m + m) % m;
+            if (degNextPlus === 2 || degNextPlus === 4 || degNextMinus === 2 || degNextMinus === 4) {
+              score += 5.0; // Triad setup bonus
+            }
           }
-        } else if (idx === terms.length - 2) {
-          // Penultimate step: leading tone or subdominant prep
-          var d = ((candPos % 7) + 7) % 7;
-          if (d === 1 || d === 5 || d === 6) score += 2.0;
+        }
+
+        // 6. Cadential resolution on final step (Step N-1)!
+        if (isLast) {
+          if (opt[1].indexOf("Cadence") !== -1) {
+            score += 35.0; // Measure 27 authentic cadential resolution
+          } else if (isTonic(candPos, m)) {
+            score += 40.0; // Pure modular arrival on tonic E!
+          } else if (isTriad(candPos, m)) {
+            score += 22.0; // Harmonic arrival on triad (G or B)
+          } else {
+            score -= 15.0; // Strongly penalize ungrounded cadential endings
+          }
         }
 
         return score;
       });
 
-      // Softmax sampling with temperature T = 0.8
+      // Softmax sampling: low temperature (T=0.15) on arrival to decisively resolve
+      var temp = isLast ? 0.15 : 0.8;
       var maxScore = Math.max.apply(null, scores);
-      var expScores = scores.map(function(s) { return Math.exp((s - maxScore) / 0.8); });
+      var expScores = scores.map(function(s) { return Math.exp((s - maxScore) / temp); });
       var sumExp = expScores.reduce(function(acc, val) { return acc + val; }, 0);
       var probs = expScores.map(function(e) { return e / sumExp; });
 
@@ -3631,7 +3709,12 @@ function toggleViewer(id) {
     var rows = '<tr><th>Step</th>' + terms.map(function(_, i) { return '<td>' + (i + 1) + '</td>'; }).join('') + '</tr>';
     rows += '<tr><th>Sequence Term (<em>x<sub>n</sub></em>)</th>' + terms.map(function(v) { return '<td>' + v + '</td>'; }).join('') + '</tr>';
     rows += '<tr><th>Residue (mod ' + m + ')</th>' + residues.map(function(v) { return '<td>' + v + '</td>'; }).join('') + '</tr>';
-    rows += '<tr><th>Realized Leap</th>' + realizedMoves.map(function(v) { return '<td style="color:var(--accent);font-weight:600;">' + v + '</td>'; }).join('') + '</tr>';
+    rows += '<tr><th>Realized Leap</th>' + realizedMoves.map(function(v) {
+      if (v.indexOf("Cadence") !== -1) {
+        return '<td style="color:var(--accent);font-weight:700;">' + v + '</td>';
+      }
+      return '<td style="color:var(--accent);font-weight:600;">' + v + '</td>';
+    }).join('') + '</tr>';
 
     var noteNames = notes.map(function(n) { return NM[n % 12] + (Math.floor(n / 12) - 1); });
     var pitchCells = noteNames.slice(1).map(function(p) { return '<td>' + p + '</td>'; }).join('');

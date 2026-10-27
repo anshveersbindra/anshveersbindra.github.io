@@ -2091,21 +2091,21 @@ footer.site-footer {
     <h3 class="card-title">The Single-Generator Theory of Cycle-Decomposed Digit-Subtraction Dynamics</h3>
 
     <div class="card-narrative">
-      Generalizing Kaprekar's 6174 routine to arbitrary number bases $B \ge 2$ and arbitrary digit permutations $\pi \in S_k$. Proving that seemingly non-linear digit subtraction dynamics decouple into independent modular subsystems, each governed by a single generator $c = (B - 1)B^{t-1} \pmod{B^t - 1}$, with periodic attractor counts corresponding to integer sequence OEIS A003602.
+      Establishing a closed-form algebraic theory for the arithmetic dynamical system $F_\pi$, where base-$B$ numerals are cyclically rotated and subtracted along the disjoint cycles of a single permutation generator $\pi \in S_k$ and scattered back. Proving that the global dynamics decouple into an exact direct product of local maps $g_t$, each semiconjugate on $\pm$-classes modulo $B^t - 1$ to linear multiplication by $c = (B - 1)B^{t-1}$. Via the coprime splitting $B^t - 1 = N_1 N_2$, determines exact attractor counts $(N_2 + 1)/2$, closed-form fixed points, transient bounds $a_0 \le \iota \le a_0 + 1$, the total collapse criterion, and the 2-cycle rank identification with OEIS A003602.
     </div>
 
     <div class="project-brief">
       <div class="brief-item">
-        <span class="brief-label">The General Problem</span>
-        <span class="brief-val">Kaprekar's 6174 puzzle has resisted algebraic generalization to arbitrary number bases $B \ge 2$ and arbitrary digit permutations $\pi \in S_k$.</span>
+        <span class="brief-label">The Problem</span>
+        <span class="brief-val">Iterated digit-subtraction maps historically relied on sorting (Kaprekar) or global permutations (Smarandache); here, operations act cyclewise along a fixed permutation $\pi \in S_k$.</span>
       </div>
       <div class="brief-item">
-        <span class="brief-label">Cycle Decomposition</span>
-        <span class="brief-val">Dynamics decouple across permutation cycles; each cycle reduces to multiplication by single generator $c = (B-1)B^{t-1} \pmod{B^t-1}$.</span>
+        <span class="brief-label">Product Decoupling</span>
+        <span class="brief-val">$F_\pi \cong \prod_i g_{t_i}$; each local map linearizes on $\pm$-classes to $g_t(v) \equiv \pm cv \pmod{B^t-1}$ with $c=(B-1)B^{t-1}$, bijective on periodic states.</span>
       </div>
       <div class="brief-item">
-        <span class="brief-label">Universal Invariants</span>
-        <span class="brief-val">Every state enters a periodic orbit within $a_0+1$ steps; total collapse to zero occurs iff $t=1$, or $t=2$ when $B+1$ is a power of two.</span>
+        <span class="brief-label">Closed-Form Attractors</span>
+        <span class="brief-val">Coprime splitting $B^t - 1 = N_1 N_2$ yields exactly $(N_2 + 1)/2$ periodic points, period LCM $P_*$, transient $\le a_0 + 1$, and 2-cycle rank matching OEIS A003602.</span>
       </div>
     </div>
 
@@ -2126,47 +2126,71 @@ footer.site-footer {
       </summary>
       <div class="deepdive-content">
         <div class="narrative-section">
-          <h4>Algebraic Generalization of Kaprekar Dynamics</h4>
+          <h4>Cyclewise Digit-Subtraction Dynamics and Single-Generator Systems</h4>
           <p>
-            In 1949, D.R. Kaprekar discovered that sorting the digits of any four-digit number in descending and ascending order and subtracting always reaches 6174 within 7 steps. What algebraic mechanisms govern this process when generalized to arbitrary number bases $B \ge 2$, under arbitrary digit permutations $\pi \in S_k$ where digit positions rotate and subtract on disjoint cycles?
+            Iterated digit-rearrangement-and-subtraction maps originated with D.R. Kaprekar's 1949 observation that sorting digits descending and ascending and subtracting drives every non-repdigit 4-digit number to 6174 within 7 steps. Subsequent generalizations either analyzed sorting routines across bases (Lapenta, Ludington, Prichett; Yamagami, Matsui; Kay, Downes-Ward) or studied global permutations $|P_1(x) - P_2(x)|$ (Smarandache).
+          </p>
+          <p>
+            This paper introduces a fundamentally different arithmetic dynamical system $F_\pi$ defined on $k$-digit base-$B$ numerals for a fixed permutation $\pi \in S_k$ with disjoint cycle decomposition $\pi = \pi_1 \pi_2 \cdots \pi_m$. For each cycle $\pi_i = (a_1 a_2 \cdots a_t)$ in canonical form:
+          </p>
+          <ol style="margin: 8px 0 12px 20px; line-height: 1.6; color: var(--text-secondary, #cbd5e1);">
+            <li><strong>Read:</strong> Form the local $t$-digit base-$B$ number $x_i$ from positions $a_1, \dots, a_t$.</li>
+            <li><strong>Rotate:</strong> Compute $\rho_t(x_i)$, the cyclic right-rotation of $x_i$.</li>
+            <li><strong>Subtract:</strong> Compute the local difference $g_i = |x_i - \rho_t(x_i)|$, retaining leading zeros.</li>
+            <li><strong>Scatter:</strong> Write the resulting digits back to the original cycle positions $a_1, \dots, a_t$.</li>
+          </ol>
+          <p>
+            Because the transformation is governed by a <em>single generator</em> $\pi$, its cycle partition is static under iteration, preserving coordinate alignment across all steps and enabling exact decoupling.
           </p>
         </div>
 
         <div class="narrative-section">
-          <h4>Cycle Decomposition and the Single Modular Generator</h4>
+          <h4>Direct-Product Decomposition &amp; Linear Semiconjugacy</h4>
           <p>
-            We prove that the global dynamical system decouples into completely independent subsystems—one for each disjoint cycle of $\pi$. On each cycle of length $t$, the subtraction map, after modulo-sign equivalence $x \sim -x$, simplifies to multiplication by a single generator:
+            The global map $F_\pi$ decouples into an exact direct product of independent local maps: $F_\pi \cong g_{t_1} \times \cdots \times g_{t_m}$. The global period of any digit vector $d$ is the least common multiple of its local cycle periods: $\ell(d) = \mathrm{lcm}(\ell_1, \dots, \ell_m)$. Furthermore, the divisibility invariant $(B - 1) \mid F_\pi(x)$ holds universally for all states.
+          </p>
+          <p>
+            Each local map $g_t$ satisfies complementation symmetry $g_t(B^t - 1 - x) = g_t(x)$ and linearizes on the full modulus $N = B^t - 1$:
           </p>
           <div class="equation-box">
-            <div class="equation-label">Single-Generator Theorem &amp; Attractor Rank</div>
+            <div class="equation-label">Linearization on Signed Classes &amp; Periodic Bijection</div>
             <div class="equation-display">
-              $$c = (B - 1)B^{t-1} \pmod{B^t - 1}$$
-              $$\text{Total Attractor Rank} = \prod_{i} \frac{N_2(B, t_i) + 1}{2}$$
+              $$g_t(v) \equiv \pm c v \pmod{B^t - 1}, \quad \text{where } c = (B - 1)B^{t-1}$$
+              $$\kappa_N(g_t(v)) = \kappa_N(c \cdot \kappa_N(v)), \quad \kappa_N(v) = \min(v, N - v)$$
             </div>
             <div class="equation-explanation">
-              <strong>The Connection:</strong> Factoring $B^t - 1 = N_1 N_2$, where prime factors of $N_1$ divide $B-1$ and $\gcd(N_2, B-1) = 1$. For two-cycles ($t = 2$), the rank reduces to $(\mathrm{odd}(B+1) + 1)/2$, which corresponds to the integer sequence OEIS A003602.
+              <strong>Semiconjugacy to Linear Model:</strong> The canonical representative map $\kappa_N$ is a semiconjugacy from $g_t$ to multiplication by $c$ on $\pm$-classes modulo $N$. Crucially, $\kappa_N$ restricts to a strict <em>bijection</em> between the periodic points of $g_t$ and the periodic $\pm$-classes under multiplication by $c$.
             </div>
           </div>
-          <p>
-            This formulation turns the entire dynamical system into exact modular arithmetic on the ring $\mathbb{Z}/(B^t - 1)\mathbb{Z}$, allowing attractor counts, cycle lengths, and transient convergence bounds to be determined analytically.
-          </p>
         </div>
 
         <div class="narrative-section">
-          <h4>Attractor Cardinality, Invariant Bounds, and Zero Collapse</h4>
+          <h4>The Coprime Splitting, Attractor Rank &amp; Orbit Periods</h4>
+          <p>
+            Factoring $N = B^t - 1 = N_1 N_2$ uniquely such that every prime divisor of $N_1$ divides $B - 1$ and $\gcd(N_2, B - 1) = 1$ completely separates the transient from the periodic dynamics:
+          </p>
+          <div class="equation-box">
+            <div class="equation-label">Attractor Cardinality, Orbit LCM &amp; Eventual Rank</div>
+            <div class="equation-display">
+              $$|\mathrm{Per}(g_t)| = \frac{N_2(B, t) + 1}{2}, \qquad |\mathrm{Im}(F_\pi^j)| = \prod_{i=1}^m \frac{N_2(B, t_i) + 1}{2} \quad (j \ge \max_i B^{t_i})$$
+              $$P_* = \mathrm{ord}_{(\mathbb{Z}/N_2\mathbb{Z})^\times / \{\pm 1\}}(c) = \min\{j \ge 1 : c^j \equiv \pm 1 \pmod{N_2}\}$$
+            </div>
+            <div class="equation-explanation">
+              <strong>Periodic Structure:</strong> Since $N_2$ is always odd, periodic $\pm$-classes are precisely the multiples of $N_1$, giving exactly $(N_2 + 1)/2$ periodic attractor states. For class $N_1 r$, the minimal period is $P(r) = \min\{j \ge 1 : c^j \equiv \pm 1 \pmod{N_2 / \gcd(r, N_2)}\}$, with $P_*$ being the LCM of all periodic-orbit lengths.
+            </div>
+          </div>
+        </div>
+
+        <div class="narrative-section">
+          <h4>Universal Theorems &amp; Dynamical Invariants</h4>
           <ul>
-            <li><strong>Attractor Cardinality:</strong> Each independent subsystem has exactly $(N_2 + 1)/2$ periodic attractor states.</li>
-            <li><strong>Transient Bound:</strong> Every state enters a periodic orbit in at most $a_0$ or $a_0 + 1$ iterations, where $a_0$ is the least integer satisfying $N_1 \mid c^{a_0}$.</li>
-            <li><strong>Zero Collapse:</strong> Total collapse to zero occurs if and only if $t = 1$, or $t = 2$ when $B+1$ is a power of two.</li>
-            <li><strong>Multi-Cycle Behavior:</strong> Discovered multi-cycle attractors—for example, Base 14 with cycle length 3 exhibits an orbit of period 105; Base 6 with length 4 hosts simultaneous cycles of lengths 1, 3, and 9.</li>
+            <li><strong>Exact Fixed-Point Count:</strong> For $B \ge 2$ and $t \ge 2$, the number of fixed points of $g_t$ is exactly $1 + \lfloor \frac{(B - 1)\gcd(B^{t-1} - 2, 2B - 1)}{2B - 1} \rfloor$.</li>
+            <li><strong>Sharp Two-Value Transient Bound:</strong> Let $a_0$ be the least integer $\ge 0$ such that $N_1 \mid c^{a_0}$. The exact transient length $\iota$ to reach $\mathrm{Per}(g_t)$ satisfies $a_0 \le \iota \le a_0 + 1$. Every state is periodic within $a_0 + 1$ iterations.</li>
+            <li><strong>Two-Cycle Spread Map &amp; OEIS A003602:</strong> For $t = 2$, local dynamics reduce to the spread map $\beta(m) = |2m - (B + 1)|$. Writing $B + 1 = 2^s u_0$ ($u_0$ odd), every starting spread reaches the invariant set $E(B)$ in $\le s + 1$ steps (sharp). The eventual rank is $(u_0 + 1)/2 = a(B + 1)$, proving an exact correspondence with Kimberling's paraphrase of the binary system (OEIS A003602).</li>
+            <li><strong>Total Collapse Criterion:</strong> Every state reaches $0$ if and only if $t = 1$, or $t = 2$ and $B + 1$ is a power of 2 ($u_0 = 1$). For every $t \ge 3$, divisors of $B^t - 1$ coprime to $B - 1$ provide a conserved quantity that strictly obstructs collapse to zero.</li>
+            <li><strong>Semigroup Idempotent:</strong> For a single full $k$-cycle $\pi$, the cyclic semigroup $\langle F_\pi \rangle$ contains an idempotent of minimal rank $(N_2 + 1)/2$, satisfying $F_\pi^{j + P_*} = F_\pi^j$ for all sufficiently large $j$.</li>
+            <li><strong>Single vs. Multi-Generator Dynamics:</strong> Composing maps with different permutations breaks cycle partition alignment, causing the coordinatewise product decomposition to vanish and highlighting the unique structural tractability of single-generator systems.</li>
           </ul>
-        </div>
-
-        <div class="narrative-section">
-          <h4>Algebraic Universality Across Arbitrary Bases</h4>
-          <p>
-            Provides a closed-form algebraic theory for a long-standing class of discrete dynamical systems, converting a recreational digit puzzle into an exact question of modular group theory.
-          </p>
         </div>
       </div>
     </details>

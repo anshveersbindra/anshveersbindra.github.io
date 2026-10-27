@@ -45,7 +45,7 @@
   --border-hover: #c4baa7;
   --ink: #1f1e1b;
   --ink-secondary: #49463f;
-  --ink-muted: #767268;
+  --ink-muted: #646056;
   --ink-faint: #aba598;
   --accent: #1e3a5f;         /* Oxford Academic Navy */
   --accent-hover: #132644;
@@ -87,7 +87,7 @@
   --border-hover: #3b3f46;
   --ink: #eae6df;
   --ink-secondary: #bab5ac;
-  --ink-muted: #827e76;
+  --ink-muted: #959086;
   --ink-faint: #54524c;
   --accent: #7ca5cf;         /* Luminous Oxford slate-blue */
   --accent-hover: #98bbe0;
@@ -349,18 +349,29 @@ header.site-header {
   gap: 6px;
   font-family: var(--font-mono);
   font-size: 0.8rem;
-  color: #a6ce39;
+  color: #3b660a;
   text-decoration: none;
-  background: rgba(166, 206, 57, 0.07);
-  border: 1px solid rgba(166, 206, 57, 0.25);
+  background: rgba(166, 206, 57, 0.12);
+  border: 1px solid rgba(166, 206, 57, 0.35);
   padding: 3px 9px;
   border-radius: 3px;
   white-space: nowrap;
   transition: all 0.15s ease;
 }
+.orcid-link .orcid-icon {
+  color: #7ca818;
+}
 .orcid-link:hover {
-  background: rgba(166, 206, 57, 0.14);
-  border-color: #a6ce39;
+  background: rgba(166, 206, 57, 0.22);
+  border-color: #6a9612;
+}
+[data-theme="dark"] .orcid-link {
+  color: #b4db48;
+  background: rgba(166, 206, 57, 0.10);
+  border-color: rgba(166, 206, 57, 0.28);
+}
+[data-theme="dark"] .orcid-link .orcid-icon {
+  color: #b4db48;
 }
 
 /* Sticky Filter & Theme Navigation */
@@ -1002,15 +1013,19 @@ details.deepdive-drawer[open] .deepdive-content {
   color: var(--ink-secondary);
   line-height: 1.72;
 }
-.narrative-section ul {
+.narrative-section ul,
+.narrative-section ol {
   margin: 6px 0 12px;
-  padding-left: 20px;
+  padding-left: 22px;
   font-size: 0.94rem;
   color: var(--ink-secondary);
 }
 .narrative-section li {
   margin-bottom: 6px;
   line-height: 1.65;
+}
+.narrative-section li strong {
+  color: var(--ink);
 }
 
 /* Scientific Equations inside Deep Dive */
@@ -1039,15 +1054,15 @@ details.deepdive-drawer[open] .deepdive-content {
   max-width: 100%;
 }
 .equation-explanation {
-  font-size: 0.84rem;
-  color: var(--ink-muted);
-  line-height: 1.55;
+  font-size: 0.86rem;
+  color: var(--ink-secondary);
+  line-height: 1.6;
   margin-top: 8px;
   padding-top: 6px;
   border-top: 1px dotted var(--border-light);
 }
 .equation-explanation strong {
-  color: var(--ink-secondary);
+  color: var(--ink);
 }
 
 /* Data Tables: Booktabs style */
@@ -1127,7 +1142,22 @@ table.data-table td {
   width: 100%;
   height: 600px;
   border: none;
-  background: #ffffff;
+  background: var(--surface);
+}
+.viewer-fallback {
+  padding: 32px 20px;
+  text-align: center;
+  color: var(--ink-secondary);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  background: var(--surface-inset);
+  margin: 0;
+}
+.viewer-fallback a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 /* Music Technique & Interactive Synthesizer */
@@ -1841,7 +1871,7 @@ footer.site-footer {
         <span>Orbit Determination of Asteroid 2015 GF27 &middot; Bindra, Leung, Flajole</span>
         <div><a href="papers/asteroid-2015-GF27.pdf" target="_blank">Open in New Tab &rarr;</a> <button class="viewer-close-btn" onclick="toggleViewer('viewer-asteroid')">&times; Close</button></div></div>
       <object data="papers/asteroid-2015-GF27.pdf" type="application/pdf">
-        <p style="padding: 20px; color: #fff;">Unable to render inline. <a href="papers/asteroid-2015-GF27.pdf">Download PDF</a>.</p>
+        <p class="viewer-fallback">Unable to render inline. <a href="papers/asteroid-2015-GF27.pdf">Download PDF</a>.</p>
       </object>
     </div>
   </article>
@@ -1967,7 +1997,7 @@ footer.site-footer {
         <span>A Weak-Form 2D Continuity Inversion for Pulsar Birth Demographics &middot; Bindra &amp; Kulkarni</span>
         <div><a href="papers/weak-form-inversion.pdf" target="_blank">Open in New Tab &rarr;</a> <button class="viewer-close-btn" onclick="toggleViewer('viewer-pulsar-1')">&times; Close</button></div></div>
       <object data="papers/weak-form-inversion.pdf" type="application/pdf">
-        <p style="padding: 20px; color: #fff;">Unable to render inline. <a href="papers/weak-form-inversion.pdf">Download PDF</a>.</p>
+        <p class="viewer-fallback">Unable to render inline. <a href="papers/weak-form-inversion.pdf">Download PDF</a>.</p>
       </object>
     </div>
   </article>
@@ -2072,7 +2102,7 @@ footer.site-footer {
         <span>The Intrinsic Equilibrium Demographic Distribution of Galactic Pulsars &middot; Bindra &amp; Kulkarni</span>
         <div><a href="papers/pulsar-demographics.pdf" target="_blank">Open in New Tab &rarr;</a> <button class="viewer-close-btn" onclick="toggleViewer('viewer-pulsar-2')">&times; Close</button></div></div>
       <object data="papers/pulsar-demographics.pdf" type="application/pdf">
-        <p style="padding: 20px; color: #fff;">Unable to render inline. <a href="papers/pulsar-demographics.pdf">Download PDF</a>.</p>
+        <p class="viewer-fallback">Unable to render inline. <a href="papers/pulsar-demographics.pdf">Download PDF</a>.</p>
       </object>
     </div>
   </article>
@@ -2133,7 +2163,7 @@ footer.site-footer {
           <p>
             This paper investigates the underlying algebraic structure of digit subtraction by fixing the permutation: rather than state-dependent sorting, a <em>single generator</em> $\pi \in S_k$ governs the dynamics. For a base $B \ge 2$, numeral digits are partitioned into the disjoint cycles of $\pi = \pi_1 \pi_2 \cdots \pi_m$. Along each canonical cycle $\pi_i = (a_1 a_2 \cdots a_t)$:
           </p>
-          <ol style="margin: 8px 0 12px 20px; line-height: 1.6; color: var(--text-secondary, #cbd5e1);">
+          <ol>
             <li><strong>Read:</strong> Form the local $t$-digit base-$B$ numeral $x_i$ from coordinates $a_1, \dots, a_t$.</li>
             <li><strong>Rotate:</strong> Form $\rho_t(x_i)$, the cyclic right-rotation of $x_i$ (moving the last digit to the front).</li>
             <li><strong>Subtract:</strong> Compute the local difference $g_i = |x_i - \rho_t(x_i)|$, preserving leading zeros.</li>
@@ -2222,7 +2252,7 @@ footer.site-footer {
         <span>Single-Generator Digit-Subtraction Dynamics &middot; Anshveer Bindra</span>
         <div><a href="papers/digit-subtraction.pdf" target="_blank">Open in New Tab &rarr;</a> <button class="viewer-close-btn" onclick="toggleViewer('viewer-digit')">&times; Close</button></div></div>
       <object data="papers/digit-subtraction.pdf" type="application/pdf">
-        <p style="padding: 20px; color: #fff;">Unable to render inline. <a href="papers/digit-subtraction.pdf">Download PDF</a>.</p>
+        <p class="viewer-fallback">Unable to render inline. <a href="papers/digit-subtraction.pdf">Download PDF</a>.</p>
       </object>
     </div>
   </article>
@@ -2325,7 +2355,7 @@ footer.site-footer {
         <span>Rediscovering a Formula for &pi; &middot; Anshveer Bindra</span>
         <div><a href="papers/formula-for-pi.pdf" target="_blank">Open in New Tab &rarr;</a> <button class="viewer-close-btn" onclick="toggleViewer('viewer-pi')">&times; Close</button></div></div>
       <object data="papers/formula-for-pi.pdf" type="application/pdf">
-        <p style="padding: 20px; color: #fff;">Unable to render inline. <a href="papers/formula-for-pi.pdf">Download PDF</a>.</p>
+        <p class="viewer-fallback">Unable to render inline. <a href="papers/formula-for-pi.pdf">Download PDF</a>.</p>
       </object>
     </div>
   </article>
@@ -2461,7 +2491,7 @@ footer.site-footer {
         <span>Play on Words &middot; ETEAM Problem 10 &middot; Anshveer Bindra</span>
         <div><a href="papers/eteam-play-on-words.pdf" target="_blank">Open in New Tab &rarr;</a> <button class="viewer-close-btn" onclick="toggleViewer('viewer-eteam')">&times; Close</button></div></div>
       <object data="papers/eteam-play-on-words.pdf" type="application/pdf">
-        <p style="padding: 20px; color: #fff;">Unable to render inline. <a href="papers/eteam-play-on-words.pdf">Download PDF</a>.</p>
+        <p class="viewer-fallback">Unable to render inline. <a href="papers/eteam-play-on-words.pdf">Download PDF</a>.</p>
       </object>
     </div>
   </article>
@@ -2588,7 +2618,7 @@ footer.site-footer {
         <span>Etosha Conservation Resource Allocation &middot; IM&sup2;C 2026 &middot; Anshveer Bindra et al.</span>
         <div><a href="papers/im2c-etosha-conservation.pdf" target="_blank">Open in New Tab &rarr;</a> <button class="viewer-close-btn" onclick="toggleViewer('viewer-im2c')">&times; Close</button></div></div>
       <object data="papers/im2c-etosha-conservation.pdf" type="application/pdf">
-        <p style="padding: 20px; color: #fff;">Unable to render inline. <a href="papers/im2c-etosha-conservation.pdf">Download PDF</a>.</p>
+        <p class="viewer-fallback">Unable to render inline. <a href="papers/im2c-etosha-conservation.pdf">Download PDF</a>.</p>
       </object>
     </div>
   </article>
@@ -2690,7 +2720,7 @@ footer.site-footer {
         <span>Turning Proton Scattering into a Second Imaging Signal &middot; BBLC 2026 &middot; Rizul Garg, Yash Varshney, Tranav Tyagi, Anshveer Bindra</span>
         <div><a href="papers/bblc-proton-scattering.pdf" target="_blank">Open in New Tab &rarr;</a> <button class="viewer-close-btn" onclick="toggleViewer('viewer-bblc')">&times; Close</button></div></div>
       <object data="papers/bblc-proton-scattering.pdf" type="application/pdf">
-        <p style="padding: 20px; color: #fff;">Unable to render inline. <a href="papers/bblc-proton-scattering.pdf">Download PDF</a>.</p>
+        <p class="viewer-fallback">Unable to render inline. <a href="papers/bblc-proton-scattering.pdf">Download PDF</a>.</p>
       </object>
     </div>
   </article>
@@ -2771,7 +2801,7 @@ footer.site-footer {
         <span>QFT in de Sitter Space &middot; Anshveer Bindra</span>
         <div><a href="papers/qft-de-sitter.pdf" target="_blank">Open in New Tab &rarr;</a> <button class="viewer-close-btn" onclick="toggleViewer('viewer-qft')">&times; Close</button></div></div>
       <object data="papers/qft-de-sitter.pdf" type="application/pdf">
-        <p style="padding: 20px; color: #fff;">Unable to render inline. <a href="papers/qft-de-sitter.pdf">Download PDF</a>.</p>
+        <p class="viewer-fallback">Unable to render inline. <a href="papers/qft-de-sitter.pdf">Download PDF</a>.</p>
       </object>
     </div>
   </article>
@@ -2881,7 +2911,7 @@ footer.site-footer {
         <span>Foundations of Quantum Mechanics (Monograph) &middot; Anshveer Bindra</span>
         <div><a href="papers/foundations-quantum-mechanics.pdf" target="_blank">Open in New Tab &rarr;</a> <button class="viewer-close-btn" onclick="toggleViewer('viewer-quantum')">&times; Close</button></div></div>
       <object data="papers/foundations-quantum-mechanics.pdf" type="application/pdf">
-        <p style="padding: 20px; color: #fff;">Unable to render inline. <a href="papers/foundations-quantum-mechanics.pdf">Download Monograph PDF</a>.</p>
+        <p class="viewer-fallback">Unable to render inline. <a href="papers/foundations-quantum-mechanics.pdf">Download Monograph PDF</a>.</p>
       </object>
     </div>
   </article>
@@ -2965,7 +2995,7 @@ footer.site-footer {
         <span>From Homology to de Rham Cohomology &middot; Anshveer Bindra</span>
         <div><a href="papers/homology-to-de-rham.pdf" target="_blank">Open in New Tab &rarr;</a> <button class="viewer-close-btn" onclick="toggleViewer('viewer-topology')">&times; Close</button></div></div>
       <object data="papers/homology-to-de-rham.pdf" type="application/pdf">
-        <p style="padding: 20px; color: #fff;">Unable to render inline. <a href="papers/homology-to-de-rham.pdf">Download PDF</a>.</p>
+        <p class="viewer-fallback">Unable to render inline. <a href="papers/homology-to-de-rham.pdf">Download PDF</a>.</p>
       </object>
     </div>
   </article>
@@ -3297,7 +3327,7 @@ footer.site-footer {
         <span>String Quartet in Em ("Future") Score &middot; Anshveer Bindra</span>
         <div><a href="music/quartet-future-score.pdf" target="_blank">Open in New Tab &rarr;</a> <button class="viewer-close-btn" onclick="toggleViewer('viewer-quartet')">&times; Close</button></div></div>
       <object data="music/quartet-future-score.pdf" type="application/pdf">
-        <p style="padding: 20px; color: #fff;">Unable to render inline. <a href="music/quartet-future-score.pdf">Download Score</a>.</p>
+        <p class="viewer-fallback">Unable to render inline. <a href="music/quartet-future-score.pdf">Download Score</a>.</p>
       </object>
     </div>
   </article>

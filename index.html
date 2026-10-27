@@ -3074,19 +3074,13 @@ footer.site-footer {
             <option value="11">11 (Chromatic pitch space)</option>
           </select>
         </label>
-        <label>Cadence:
-          <select id="cadence">
-            <option value="m27">Measure 27 Cadence (Authentic Resolution to E)</option>
-            <option value="modal">Strict Modular (Best Harmonic Resolution)</option>
-          </select>
-        </label>
         <button class="synth-btn" id="play" type="button">Generate &amp; Play &rarr;</button>
       </div>
       
       <div id="out" class="synth-output"></div>
       
       <div class="synth-agency-note">
-        <strong>How to listen:</strong> Starting from E4 (tonic), each generation creates a distinct contrapuntal phrase guided by classical voice-leading rules over the modular equivalence class $\mathcal{E}(a) = \{\pm a, \pm (m-a)\}$. Look-ahead steering prepares the cadence, resolving decisively into E minor with realistic harmonic string synthesis.
+        <strong>How to listen:</strong> Starting from E4 (tonic), each generation produces an authentic contrapuntal voice line derived strictly from the modular equivalence class $\mathcal{E}(a) = \{\pm a, \pm (m-a)\}$ and octave extensions ($a+7$). Classical voice-leading rules (Fuxian contrary motion and range bounds) choose among allowable modular leaps, demonstrating the mathematical method purely without external overrides.
       </div>
     </div>
 
@@ -3603,12 +3597,10 @@ function toggleViewer(id) {
   function runGeneration() {
     var seqSelect = document.getElementById('seq');
     var modSelect = document.getElementById('mod');
-    var cadSelect = document.getElementById('cadence');
     if (!seqSelect || !modSelect) return;
 
     var seqType = seqSelect.value;
     var m = +modSelect.value;
-    var cadenceMode = cadSelect ? cadSelect.value : 'm27';
 
     var terms = getSeqTerms(seqType);
     var pos = 0; // start on tonic E4
@@ -3623,7 +3615,8 @@ function toggleViewer(id) {
       var c = (m - a) % m;
       residues.push(a);
 
-      // Collect candidate moves from equivalence class: {+a, -a, +c, -c} and octave variants
+      // Collect candidate moves strictly from the modular equivalence class: {+a, -a, +c, -c}
+      // and octave extensions (+/- (a + 7) for a <= 3, or +/- 7 for a == 0)
       var rawOptions = [];
       if (a === 0) {
         rawOptions.push([0, "0"]);
@@ -3653,31 +3646,8 @@ function toggleViewer(id) {
       });
 
       var isLast = (idx === N - 1);
-      var isPenult = (idx === N - 2);
 
-      // If in m.27 cadence mode and on the final step:
-      // If none of the strict modular options land on tonic E, inject the Measure 27 cadence break!
-      if (isLast && cadenceMode === 'm27') {
-        var canLandTonic = options.some(function(opt) {
-          return ((pos + opt[0]) % m + m) % m === 0;
-        });
-        if (!canLandTonic) {
-          var targets = (m === 7) ? [0, 7, -7] : [0, 12, -12];
-          var bestTarget = 0;
-          var minDiff = 999;
-          targets.forEach(function(t) {
-            var diff = Math.abs(t - pos);
-            if (diff < minDiff) {
-              minDiff = diff;
-              bestTarget = t;
-            }
-          });
-          var cadenceStep = bestTarget - pos;
-          options.push([cadenceStep, "Cadence \u2192 E (m.27 break)"]);
-        }
-      }
-
-      // Score options via contrapuntal voice-leading rules
+      // Score options via classical contrapuntal voice-leading rules
       var scores = options.map(function(opt) {
         var step = opt[0];
         var candPos = pos + step;
@@ -3692,7 +3662,7 @@ function toggleViewer(id) {
           score += 2.0; // center bonus
         }
 
-        // 2. Contrary motion & balance after leaps (Fux rule)
+        // 2. Contrary motion & balance after leaps (Fuxian rule)
         if (Math.abs(prevLeap) >= 3) {
           if ((prevLeap > 0 && step < 0) || (prevLeap < 0 && step > 0)) {
             score += 3.5; // contrary motion recovery
@@ -3711,53 +3681,26 @@ function toggleViewer(id) {
           score -= 2.0;
         }
 
-        // 4. Tonal grounding in E minor (E, G, B)
-        var d = ((candPos % m) + m) % m;
+        // 4. Harmonic grounding in E minor (E, G, B)
         if (isTriad(candPos, m)) {
           score += 2.5;
           if (isTonic(candPos, m)) score += 1.8;
         }
 
-        // 5. Look-ahead cadential steering on penultimate step (Step N-2)!
-        if (isPenult) {
-          var aFinal = ((terms[N - 1] % m) + m) % m;
-          // Check if candPos can reach tonic 0 on final step
-          var reachesTonic = (
-            ((candPos + aFinal) % m + m) % m === 0 ||
-            ((candPos - aFinal) % m + m) % m === 0 ||
-            ((candPos + (m - aFinal)) % m + m) % m === 0 ||
-            ((candPos - (m - aFinal)) % m + m) % m === 0
-          );
-          if (reachesTonic) {
-            score += 12.0; // Strong cadential setup bonus!
-          } else {
-            // Check if candPos can reach triad note (G or B) on final step
-            var degNextPlus = ((candPos + aFinal) % m + m) % m;
-            var degNextMinus = ((candPos - aFinal) % m + m) % m;
-            if (degNextPlus === 2 || degNextPlus === 4 || degNextMinus === 2 || degNextMinus === 4) {
-              score += 5.0; // Triad setup bonus
-            }
-          }
-        }
-
-        // 6. Cadential resolution on final step (Step N-1)!
+        // 5. Final note grounding preference strictly within allowable modular options
         if (isLast) {
-          if (opt[1].indexOf("Cadence") !== -1) {
-            score += 35.0; // Measure 27 authentic cadential resolution
-          } else if (isTonic(candPos, m)) {
-            score += 40.0; // Pure modular arrival on tonic E!
+          if (isTonic(candPos, m)) {
+            score += 4.0;
           } else if (isTriad(candPos, m)) {
-            score += 22.0; // Harmonic arrival on triad (G or B)
-          } else {
-            score -= 15.0; // Strongly penalize ungrounded cadential endings
+            score += 2.0;
           }
         }
 
         return score;
       });
 
-      // Softmax sampling: low temperature (T=0.15) on arrival to decisively resolve
-      var temp = isLast ? 0.15 : 0.8;
+      // Softmax sampling over strictly modular candidate moves
+      var temp = 0.75;
       var maxScore = Math.max.apply(null, scores);
       var expScores = scores.map(function(s) { return Math.exp((s - maxScore) / temp); });
       var sumExp = expScores.reduce(function(acc, val) { return acc + val; }, 0);
@@ -3786,9 +3729,6 @@ function toggleViewer(id) {
     rows += '<tr><th>Sequence Term (<em>x<sub>n</sub></em>)</th>' + terms.map(function(v) { return '<td>' + v + '</td>'; }).join('') + '</tr>';
     rows += '<tr><th>Residue (mod ' + m + ')</th>' + residues.map(function(v) { return '<td>' + v + '</td>'; }).join('') + '</tr>';
     rows += '<tr><th>Realized Leap</th>' + realizedMoves.map(function(v) {
-      if (v.indexOf("Cadence") !== -1) {
-        return '<td style="color:var(--accent);font-weight:700;">' + v + '</td>';
-      }
       return '<td style="color:var(--accent);font-weight:600;">' + v + '</td>';
     }).join('') + '</tr>';
 
